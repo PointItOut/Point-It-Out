@@ -19,3 +19,24 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.videoContainer {
+  position: relative;
+  margin: 0px auto;
+  width: 1000px;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid red;
+  width: 1000px;
+  height: 750px;
+}
