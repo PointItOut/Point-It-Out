@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { withRouter, Route, Switch } from 'react-router-dom'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome } from './components'
-import { me } from './store'
-import { Stage, Layer, Rect, Text } from 'react-konva';
+import {Login, Signup, UserHome} from './components'
+import {me} from './store'
+import {Stage, Layer, Rect, Text} from 'react-konva'
 import CameraCanvas from './components/CameraCanvas'
+import Diffy from './components/diffy'
 
 /**
  * COMPONENT
@@ -16,13 +17,14 @@ class Routes extends Component {
   }
 
   render() {
-    const { isLoggedIn } = this.props
+    const {isLoggedIn} = this.props
 
     return (
       <div>
-        <CameraCanvas />
+        <Diffy />
         <Switch>
           {/* Routes placed here are available to all visitors */}
+
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           {isLoggedIn && (
