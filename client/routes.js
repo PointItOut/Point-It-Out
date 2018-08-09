@@ -6,7 +6,6 @@ import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import {Stage, Layer, Rect, Text} from 'react-konva'
 import CameraCanvas from './components/CameraCanvas'
-import Diffy from './components/diffy'
 
 /**
  * COMPONENT
@@ -21,7 +20,7 @@ class Routes extends Component {
 
     return (
       <div>
-        <Diffy />
+        <CameraCanvas />
         <Switch>
           {/* Routes placed here are available to all visitors */}
 

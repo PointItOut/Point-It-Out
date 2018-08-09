@@ -30,6 +30,7 @@ canvas {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 100;
 }
 
 video {
@@ -39,4 +40,7 @@ video {
   border: 1px solid red;
   width: 1000px;
   height: 750px;
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg); /* Safari and Chrome */
+  -moz-transform: rotateY(180deg); /* Firefox */
 }
