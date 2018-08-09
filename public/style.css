@@ -20,10 +20,12 @@ form div {
   display: inline-block;
 }
 
-.videoContainer {
-  position: relative;
-  margin: 0px auto;
-  width: 1000px;
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* margin: 0px auto;
+  width: 1000px; */
 }
 
 canvas {

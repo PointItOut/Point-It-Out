@@ -5,7 +5,7 @@ const diffy = create({
   resolution: {x: 15, y: 10},
   sensitivity: 0.2,
   threshold: 25,
-  debug: true,
+  debug: false,
   containerClassName: 'my-diffy-container',
   sourceDimensions: {w: 130, h: 100},
   onFrame: matrix => {
@@ -31,12 +31,12 @@ const diffy = create({
     // console.log(matrix)
   }
 })
-const myDiffy = props => {
+const Diffy = props => {
   window.diffy = diffy
+
   return (
     <div>
-
     </div>
   )
 }
-export default myDiffy
+export default Diffy
