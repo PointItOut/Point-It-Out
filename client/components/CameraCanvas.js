@@ -13,8 +13,10 @@ class CameraCanvas extends React.Component {
   }
 
   render() {
+    // console.log(Diffy)
     return (
-      <div >
+      <div className="video-container">
+        <Webcam />
         {/* <Diffy /> */}
         <Stage
           ref={ref => {
