@@ -4,56 +4,71 @@ const db = require('../db')
 const app = require('../index')
 const {Choice, Question} = require('../db/models')
 
+const questions = [
+  {
+    theQuestion: 'What is the capital of Russia',
+    category: 'geography'
+  },
+  {
+    theQuestion: 'Who was the first U.S. President',
+    category: 'history'
+  },
+  {
+    theQuestion: 'Who was the artist who painted Starry Night',
+    category: 'art'
+  }
+]
+
+const choices = [
+  {
+    theChoice: 'Moscow',
+    isCorrect: true,
+    isPicture: false,
+    questionId: 1
+  },
+  {
+    theChoice: 'Boston',
+    isCorrect: false,
+    isPicture: false,
+    questionId: 1
+  },
+  {
+    theChoice: 'Tel Aviv',
+    isCorrect: false,
+    isPicture: false,
+    questionId: 1
+  },
+  {
+    theChoice: 'D.C.',
+    isCorrect: false,
+    isPicture: false,
+    questionId: 1
+  }
+]
+
 describe('Question routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
 
-  describe('/api/questions/', () => {
-    const questions = [
-      {
-        theQuestion: 'What is the capital of Russia',
-        category: 'geography'
-      },
-      {
-        theQuestion: 'Who was the first U.S. President',
-        category: 'history'
-      },
-      {
-        theQuestion: 'Who was the artist who painted Starry Night',
-        category: 'art'
-      }
-    ]
-
-    const choices = [
-      {
-        theChoice: 'Moscow',
-        isCorrect: true,
-        isPicture: false
-      },
-      {
-        theChoice: 'Boston',
-        isCorrect: false,
-        isPicture: false
-      },
-      {
-        theChoice: 'Tel Aviv',
-        isCorrect: false,
-        isPicture: false
-      },
-      {
-        theChoice: 'D.C.',
-        isCorrect: false,
-        isPicture: false
-      }
-    ]
-
+  describe('/api/questions/:category', () => {
     beforeEach(async () => {
       Question.bulkCreate(questions)
-      Choice.bulkCreate(choices)
-      const myQuestion = await Question.findOne()
-      console.log(myQuestion)
-      // myQuestion.setChoices(choices)
+      const allChoices = await Choice.bulkCreate(choices)
+    })
+    it('GET /api/questions/:categories', async () => {
+      const res = await request(app)
+        .get('/api/questions/art')
+        .expect(200)
+      expect(res.body).to.be.an('array')
+      expect(res.body.length).to.be.equal(1)
+    })
+  })
+
+  describe('/api/questions/', () => {
+    beforeEach(async () => {
+      Question.bulkCreate(questions)
+      const allChoices = await Choice.bulkCreate(choices)
     })
     it('GET /api/questions', async () => {
       const res = await request(app)
@@ -61,10 +76,11 @@ describe('Question routes', () => {
         .expect(200)
       expect(res.body).to.be.an('array')
       expect(res.body.length).to.be.equal(3)
-      expect(res.body.find(elem => elem.id === 1).theQuestion).to.be.equal(
+      const myQuestion = res.body.find(elem => elem.id === 1)
+      expect(myQuestion.theQuestion).to.be.equal(
         'What is the capital of Russia'
       )
-      expect(res.body[0].choices).to.be.equal(4)
+      expect(myQuestion.choices.length).to.be.equal(4)
     })
   })
 })

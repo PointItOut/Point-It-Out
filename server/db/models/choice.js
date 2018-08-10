@@ -9,12 +9,10 @@ const Choices = db.define('choices', {
   },
   isCorrect: {
     type: Sequelize.BOOLEAN,
-    allowNull: false,
     defaultValue: false
   },
   isPicture: {
     type: Sequelize.BOOLEAN,
-    allowNull: false,
     defaultValue: false
   }
 })
