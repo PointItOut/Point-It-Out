@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {setCategory} from '../store/category'
+import { connect } from 'react-redux'
+import { setCategory } from '../store/category'
 
 /**
  * COMPONENT
  */
-class UserHome extends React.Component {
+export class UserHome extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -43,8 +43,8 @@ class UserHome extends React.Component {
     })
   }
 
-  render () {
-    const {email} = this.props
+  render() {
+    const { email } = this.props
     return (
       <div>
         <h3>Welcome, {email}</h3>
@@ -59,10 +59,10 @@ class UserHome extends React.Component {
         {
           ((this.state.choosingMode) ? (
             <div>
-            <button>Challenge a Friend</button>
-            <button onClick={() => this.props.history.push('/solo')}>Challenge Yourself</button>
-          </div>
-        ) : null)
+              <button>Challenge a Friend</button>
+              <button onClick={() => this.props.history.push('/solo')}>Challenge Yourself</button>
+            </div>
+          ) : null)
 
         }
       </div>
