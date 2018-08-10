@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { Login, Signup, UserHome } from './components'
 import { me } from './store'
 import { Stage, Layer, Rect, Text } from 'react-konva'
-import CameraCanvas from './components/CameraCanvas'
+import SoloMode from './components/SoloMode';
 // import MyApp from './components/camera'
 
 /**
@@ -22,7 +22,7 @@ class Routes extends Component {
     return (
       <div>
         {/* <MyApp /> */}
-        <CameraCanvas />
+        {/* <CameraCanvas /> */}
         <Switch>
           {/* Routes placed here are available to all visitors */}
 
@@ -32,10 +32,11 @@ class Routes extends Component {
             <Switch>
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
+              <Route path="/solo" component={SoloMode} />
             </Switch>
           )}
           {/* Displays our Login component as a fallback */}
-          {/* <Route component={Login} /> */}
+          <Route component={Login} />
         </Switch>
       </div>
     )
