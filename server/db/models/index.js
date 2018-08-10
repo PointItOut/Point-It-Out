@@ -1,5 +1,9 @@
 const User = require('./user')
 const Question = require('./question')
+const Choice = require('./choice')
+
+Choice.belongsTo(Question)
+Question.hasMany(Choice)
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -16,5 +20,6 @@ const Question = require('./question')
  */
 module.exports = {
   User,
-  Question
+  Question,
+  Choice
 }
