@@ -29,9 +29,8 @@ class CameraCanvas extends React.Component {
             <Text text="Try click on rect" />
             <Rect x={0} y={0} width={200} height={75} fill={'purple'} />
             <Rect x={266} y={0} width={200} height={75} fill={'green'} />
-            <Rect x={533} y={0} width={200} height={75} fill={'yellow'}/>
-            <Rect x={799} y={0} width={200} height={75} fill={'red'}/>
-
+            <Rect x={533} y={0} width={200} height={75} fill={'yellow'} />
+            <Rect x={799} y={0} width={200} height={75} fill={'red'} />
           </Layer>
         </Stage>
       </div>
