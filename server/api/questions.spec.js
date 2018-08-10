@@ -52,7 +52,8 @@ describe('Question routes', () => {
       Question.bulkCreate(questions)
       Choice.bulkCreate(choices)
       const myQuestion = await Question.findOne()
-      myQuestion.setChoices(choices)
+      console.log(myQuestion)
+      // myQuestion.setChoices(choices)
     })
     it('GET /api/questions', async () => {
       const res = await request(app)
@@ -60,10 +61,9 @@ describe('Question routes', () => {
         .expect(200)
       expect(res.body).to.be.an('array')
       expect(res.body.length).to.be.equal(3)
-      expect(res.body[0].theQuestion).to.be.equal(
+      expect(res.body.find(elem => elem.id === 1).theQuestion).to.be.equal(
         'What is the capital of Russia'
       )
-      console.log('res.body is', res.body)
       expect(res.body[0].choices).to.be.equal(4)
     })
   })
