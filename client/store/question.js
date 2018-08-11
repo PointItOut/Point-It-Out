@@ -1,4 +1,5 @@
 import axios from 'axios'
+import history from '../history'
 
 //ACTION TYPES
 const GOT_QUESTIONS_FOR_CATEGORY = 'GOT_QUESTIONS_FOR_CATEGORY'
@@ -15,6 +16,7 @@ export const getQuestions = chosenCategory => async dispatch => {
   try {
     const res = await axios.get(`/api/questions/${chosenCategory}`)
     dispatch(gotQuestionsForCategory(res.data))
+    history.push('/solo')
   } catch (err) {
     console.error(err)
   }
