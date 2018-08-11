@@ -12,4 +12,15 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:category', async (req, res, next) => {
+  try {
+    // const questions = await Question.findAll({
+    //   where: category
+    // })
+    res.json([])
+  } catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router
