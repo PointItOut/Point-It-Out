@@ -51,24 +51,34 @@ describe('Question routes', () => {
     return db.sync({force: true})
   })
 
-  describe('/api/questions/:category', () => {
-    beforeEach(async () => {
-      Question.bulkCreate(questions)
-      const allChoices = await Choice.bulkCreate(choices)
-    })
-    it('GET /api/questions/:categories', async () => {
-      const res = await request(app)
-        .get('/api/questions/art')
-        .expect(200)
-      expect(res.body).to.be.an('array')
-      expect(res.body.length).to.be.equal(1)
-    })
+  afterEach(() => {
+    return db.sync({force: true})
   })
+
+  // describe('/api/questions/:category', () => {
+  //   beforeEach(async () => {
+  //     Question.bulkCreate(questions)
+  //     await Choice.bulkCreate(choices)
+  //   })
+  //   afterEach(() => {
+  //     return db.sync({force: true})
+  //   })
+  //   it('GET /api/questions/:categories', async () => {
+  //     const res = await request(app)
+  //       .get('/api/questions/art')
+  //       .expect(200)
+  //     expect(res.body).to.be.an('array')
+  //     expect(res.body.length).to.be.equal(1)
+  //   })
+  // })
 
   describe('/api/questions/', () => {
     beforeEach(async () => {
       Question.bulkCreate(questions)
-      const allChoices = await Choice.bulkCreate(choices)
+      await Choice.bulkCreate(choices)
+    })
+    afterEach(() => {
+      return db.sync({force: true})
     })
     it('GET /api/questions', async () => {
       const res = await request(app)
