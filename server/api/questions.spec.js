@@ -58,7 +58,7 @@ describe('Question routes', () => {
   describe('/api/questions/:category', () => {
     it('GET /api/questions/:categories', async () => {
       const res = await request(app)
-        .get('/api/questions/art')
+        .get('/api/questions/history')
         .expect(200)
       expect(res.body).to.be.an('array')
       expect(res.body.length).to.be.equal(1)
