@@ -14,10 +14,11 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:category', async (req, res, next) => {
   try {
-    // const questions = await Question.findAll({
-    //   where: category
-    // })
-    res.json([])
+    const questions = await Question.findAll({
+      where: {category: 'art'},
+      include: {model: Choice}
+    })
+    res.json(questions)
   } catch (err) {
     next(err)
   }

@@ -23,63 +23,50 @@ const choices = [
   {
     theChoice: 'Moscow',
     isCorrect: true,
-    isPicture: false,
-    questionId: 1
+    isPicture: false
   },
   {
     theChoice: 'Boston',
     isCorrect: false,
-    isPicture: false,
-    questionId: 1
+    isPicture: false
   },
   {
     theChoice: 'Tel Aviv',
     isCorrect: false,
-    isPicture: false,
-    questionId: 1
+    isPicture: false
   },
   {
     theChoice: 'D.C.',
     isCorrect: false,
-    isPicture: false,
-    questionId: 1
+    isPicture: false
   }
 ]
 
 describe('Question routes', () => {
-  beforeEach(() => {
-    return db.sync({force: true})
+  beforeEach(async () => {
+    await db.sync({force: true})
+    Question.bulkCreate(questions)
+    const myChoices = await Choice.bulkCreate(choices)
+    const aQuestion = await Question.findById(1)
+    await aQuestion.setChoices(myChoices)
   })
 
   afterEach(() => {
     return db.sync({force: true})
   })
 
-  // describe('/api/questions/:category', () => {
-  //   beforeEach(async () => {
-  //     Question.bulkCreate(questions)
-  //     await Choice.bulkCreate(choices)
-  //   })
-  //   afterEach(() => {
-  //     return db.sync({force: true})
-  //   })
-  //   it('GET /api/questions/:categories', async () => {
-  //     const res = await request(app)
-  //       .get('/api/questions/art')
-  //       .expect(200)
-  //     expect(res.body).to.be.an('array')
-  //     expect(res.body.length).to.be.equal(1)
-  //   })
-  // })
+  describe('/api/questions/:category', () => {
+    it('GET /api/questions/:categories', async () => {
+      const res = await request(app)
+        .get('/api/questions/art')
+        .expect(200)
+      expect(res.body).to.be.an('array')
+      expect(res.body.length).to.be.equal(1)
+      //add a test for choices
+    })
+  })
 
   describe('/api/questions/', () => {
-    beforeEach(async () => {
-      Question.bulkCreate(questions)
-      await Choice.bulkCreate(choices)
-    })
-    afterEach(() => {
-      return db.sync({force: true})
-    })
     it('GET /api/questions', async () => {
       const res = await request(app)
         .get('/api/questions')
