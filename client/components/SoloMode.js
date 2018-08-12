@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import CameraCanvas from './CameraCanvas'
 
 class SoloMode extends Component {
@@ -19,12 +19,9 @@ class SoloMode extends Component {
 
 const mapState = state => {
   return {
-    category: state.category
+    category: state.category,
+    questions: state.questions
   }
 }
 
-
 export default connect(mapState)(SoloMode)
-
-
-
