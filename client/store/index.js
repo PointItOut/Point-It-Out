@@ -5,9 +5,15 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import user from './user'
 import category from './category'
 import questions from './questions'
+<<<<<<< HEAD
 import game from './game'
 
 const reducer = combineReducers({ user, category, questions, game })
+=======
+import currentQuestion from './CurrentQuestion'
+
+const reducer = combineReducers({ user, category, questions, currentQuestion })
+>>>>>>> master
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 )
