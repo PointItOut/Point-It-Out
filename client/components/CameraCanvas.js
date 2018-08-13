@@ -6,6 +6,7 @@ import Webcam from 'react-webcam'
 import Diffy from './diffy'
 import { connect } from 'react-redux'
 import { submitAnswer, setCurrentQuestion } from '../store/CurrentQuestion'
+import { updateScore } from '../store/score';
 
 class CameraCanvas extends React.Component {
   constructor() {
@@ -33,12 +34,12 @@ class CameraCanvas extends React.Component {
   }
 
   nextQuestion(wasCorrect) {
-    const { setQuestion, questions, currentQuestion, submitUserGuess } = this.props
+    const { setQuestion, questions, currentQuestion, submitUserGuess, updateUserScore, score } = this.props
     const question = questions.find((ques, index) => questions[index-1] === currentQuestion.question)
 
     if (wasCorrect) {
-      // update score!
-      console.log('you got a point!')
+      updateUserScore(score + 1)
+      console.log('You got a point! Your new score is', score + 1)
     }
     setTimeout(() => {
       submitUserGuess(null)
@@ -127,12 +128,14 @@ class CameraCanvas extends React.Component {
 }
 
 const mapState = state => ({
-  currentQuestion: state.currentQuestion
+  currentQuestion: state.currentQuestion,
+  score: state.score
 })
 
 const mapDispatch = dispatch => ({
   submitUserGuess: guess => dispatch(submitAnswer(guess)),
-  setQuestion: question => dispatch(setCurrentQuestion(question))
+  setQuestion: question => dispatch(setCurrentQuestion(question)),
+  updateUserScore: score => dispatch(updateScore(score))
 })
 
 export default connect(mapState, mapDispatch)(CameraCanvas)
