@@ -8,10 +8,10 @@ class SoloMode extends Component {
   }
 
   render() {
+    const questions = this.props.questions
     return (
       <div>
-        <h2>Solo Mode</h2>
-        <CameraCanvas />
+        <CameraCanvas questions={questions} />
       </div>
     )
   }

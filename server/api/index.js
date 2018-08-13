@@ -3,6 +3,8 @@ module.exports = router
 
 router.use('/users', require('./users'))
 
+router.use('/game', require('./game'))
+
 router.use('/questions', require('./questions'))
 
 router.use((req, res, next) => {

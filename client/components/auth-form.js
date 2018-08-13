@@ -24,6 +24,18 @@ const AuthForm = props => {
           </label>
           <input name="password" type="password" />
         </div>
+        {props.name === 'signup' ? (
+          <div>
+            <label htmlFor="username">
+              <small>Username</small>
+            </label>
+            <input
+              name="username"
+              type="text"
+              placeholder="Choose a username"
+            />
+          </div>
+        ) : null}
         <div>
           <button type="submit">{displayName}</button>
         </div>
@@ -57,7 +69,20 @@ const mapSignup = state => {
   }
 }
 
-const mapDispatch = dispatch => {
+const mapSignupDispatch = dispatch => {
+  return {
+    handleSubmit(evt) {
+      evt.preventDefault()
+      const formName = evt.target.name
+      const email = evt.target.email.value
+      const password = evt.target.password.value
+      const userName = evt.target.username.value
+      dispatch(auth(email, password, formName, userName))
+    }
+  }
+}
+
+const mapLoginDispatch = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
@@ -69,8 +94,8 @@ const mapDispatch = dispatch => {
   }
 }
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+export const Login = connect(mapLogin, mapLoginDispatch)(AuthForm)
+export const Signup = connect(mapSignup, mapSignupDispatch)(AuthForm)
 
 /**
  * PROP TYPES
