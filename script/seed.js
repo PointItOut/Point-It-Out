@@ -22,6 +22,7 @@ async function seed() {
 
   //QUESTIONS
   const questions = await Promise.all([
+    //Geography
     Question.create({
       theQuestion: 'What is the capital of Russia?',
       category: 'geography'
@@ -35,6 +36,29 @@ async function seed() {
       category: 'geography'
     }),
     Question.create({
+      theQuestion: `Which is the world's highest mountain?`,
+      category: 'geography'
+    }),
+    Question.create({
+      theQuestion: 'What is the biggest desert in the world?',
+      category: 'geography'
+    }),
+    Question.create({
+      theQuestion: 'Which US state is the Grand Canyon located in?',
+      category: 'geography'
+    }),
+    Question.create({
+      theQuestion: 'Which is the longest river in the world',
+      category: 'geography'
+    }),
+    Question.create({
+      theQuestion:
+        'Which is the smallest country, measured by total land area?',
+      category: 'geography'
+    }),
+
+    //History
+    Question.create({
       theQuestion: 'World War I began in which year?',
       category: 'history'
     }),
@@ -42,10 +66,12 @@ async function seed() {
       theQuestion: 'Who was the first president to live in the White House?',
       category: 'history'
     }),
-    // Question.create({
-    //   theQuestion: `Who painted 'The Starry Night'?`,
-    //   category: 'art'
-    // }),
+
+    //Art
+    Question.create({
+      theQuestion: `Who painted 'The Starry Night'?`,
+      category: 'art'
+    }),
     Question.create({
       theQuestion: `Click on purple square`,
       category: 'art'
