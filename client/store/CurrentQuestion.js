@@ -34,10 +34,10 @@ const reducer = (state = initialState, action) => {
         question: action.question
       }
     case SUBMIT_ANSWER:
+      console.log('previous guess:', state.userGuess)
       return {
         ...state,
-        userGuess: action.userGuess,
-        isCorrect: action.isCorrect
+        userGuess: state.userGuess === '' || action.userGuess === '' ? action.userGuess : state.userGuess,
       }
     default:
       return state
