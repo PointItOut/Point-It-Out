@@ -24,6 +24,18 @@ const AuthForm = props => {
           </label>
           <input name="password" type="password" />
         </div>
+        {props.name === 'signup' ? (
+          <div>
+            <label htmlFor="username">
+              <small>Username</small>
+            </label>
+            <input
+              name="username"
+              type="text"
+              placeholder="Choose a username"
+            />
+          </div>
+        ) : null}
         <div>
           <button type="submit">{displayName}</button>
         </div>
