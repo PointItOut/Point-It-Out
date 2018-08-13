@@ -15,14 +15,16 @@ class CameraCanvas extends React.Component {
 
   render() {
     console.log('INSIDE THE CANVAS', this.props.questions)
-    const question = this.props.questions[0]
-    const options = question.choices[0]
+    const question = this.props.questions[0] // first question
+    const options = question.choices
     console.log('OPTIONSSSS===>', options)
     // console.log(Diffy)
+
+    const xPositions = [0, 266, 533, 799]
+
     return (
       <div className="video-container">
         <Webcam />
-        {/* <Diffy /> */}
         <Stage
           ref={ref => {
             this.stageRef = ref
@@ -36,14 +38,35 @@ class CameraCanvas extends React.Component {
             <Rect x={533} y={0} width={200} height={75} fill={'yellow'} />
             <Rect x={799} y={0} width={200} height={75} fill={'red'} />
 
+
+            {
+              // option text boxes
+              options.map((option, index) => {
+              return (
+                <Text
+                  key={option.id}
+                  text={option.theChoice}
+                  x={xPositions[index]}
+                  y={10}
+                  fontSize={20}
+                  width={200}
+                  align={"center"}
+                  fill={'black'}
+                />)
+              })
+
+            }
+
             <Text
-              text="Try click on rect"
-              x={10}
-              y={10}
+              text={question.theQuestion}
+              x={266}
+              y={700}
               fontSize={20}
-              fill={'red'}
-              stroke={'black'}
+              fill={'black'}
+              align={"center"}
+              width={333}
             />
+
           </Layer>
         </Stage>
       </div>
