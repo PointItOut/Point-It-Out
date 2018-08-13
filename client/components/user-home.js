@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {setCategory} from '../store/category'
-import {getQuestions} from '../store/question'
+import {getQuestions} from '../store/questions'
 
 /**
  * COMPONENT
