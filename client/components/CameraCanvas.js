@@ -4,6 +4,8 @@ import {Stage, Layer, Rect, Text, Circle} from 'react-konva'
 import Konva from 'konva'
 import Webcam from 'react-webcam'
 import Diffy from './diffy'
+import { connect } from 'react-redux'
+import { submitAnswer, setCurrentQuestion } from '../store/CurrentQuestion'
 
 class CameraCanvas extends React.Component {
   componentDidMount() {
@@ -11,19 +13,36 @@ class CameraCanvas extends React.Component {
     console.log(this.stageRef)
     // log Konva.Stage instance
     console.log(this.stageRef.getStage())
+
+    // set first currentQuestion
+    // we get questions passed as a prop from the parent
+    const { setQuestion, questions } = this.props
+    setQuestion(questions[0])
   }
 
   render() {
     console.log('INSIDE THE CANVAS', this.props.questions)
-    const question = this.props.questions[0] // first question
+    const {currentQuestion} = this.props
+    const question = currentQuestion.question
     const options = question.choices
     console.log('OPTIONSSSS===>', options)
     // console.log(Diffy)
 
     const xPositions = [0, 266, 533, 799]
 
+    if (options && currentQuestion.userGuess !== '') {
+      const selectedAnswer = options[+question.userGuess]
+      console.log('You guessed', selectedAnswer)
+      if (selectedAnswer && selectedAnswer.isCorrect) {
+        return <div>You got it correct!</div>
+      } else {
+        return <div>YOU'RE WRONG!!!</div>
+      }
+    }
+
     return (
       <div className="video-container">
+        <Diffy />
         <Webcam />
         <Stage
           ref={ref => {
@@ -41,7 +60,7 @@ class CameraCanvas extends React.Component {
 
             {
               // option text boxes
-              options.map((option, index) => {
+              options && options.map((option, index) => {
               return (
                 <Text
                   key={option.id}
@@ -74,4 +93,13 @@ class CameraCanvas extends React.Component {
   }
 }
 
-export default CameraCanvas
+const mapState = state => ({
+  currentQuestion: state.currentQuestion
+})
+
+const mapDispatch = dispatch => ({
+  // submitUserGuess: guess => dispatch(submitAnswer())
+  setQuestion: question => dispatch(setCurrentQuestion(question))
+})
+
+export default connect(mapState, mapDispatch)(CameraCanvas)

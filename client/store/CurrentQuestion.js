@@ -1,10 +1,10 @@
 import axios from 'axios'
 
 // INITIAL STATE
-const initialState = {question: '', choices: [], userGuess: '', isCorrect: ''}
+const initialState = {question: {}, userGuess: ''}
 
 // ACTION TYPES
-const SETTING_CURRENT_QUESTION = 'ETTING_CURRENT_QUESTION'
+const SETTING_CURRENT_QUESTION = 'SETTING_CURRENT_QUESTION'
 const SUBMIT_ANSWER = 'SUBMIT_ANSWER'
 
 // ACTION CREATORS
@@ -13,16 +13,35 @@ export const setCurrentQuestion = question => ({
   question
 })
 
-export const submitAnswer = (userGuess, isCorrect) => ({
+export const submitAnswer = userGuess => ({
   type: SUBMIT_ANSWER,
-  userGuess,
-  isCorrect
+  userGuess
 })
 
 // THUNK CREATORS
-
-const evaluateAnswer = userGuess => async dispatch => {}
+export const publishAnswer = userGuess => dispatch => {
+  console.log('inside publishAnswer')
+  dispatch(submitAnswer(userGuess))
+}
+// const evaluateAnswer = userGuess => async dispatch => {}
 
 // REDUCER
+const reducer = (state = initialState, action) => {
+  switch(action.type) {
+    case SETTING_CURRENT_QUESTION:
+      return {
+        ...state,
+        question: action.question
+      }
+    case SUBMIT_ANSWER:
+      return {
+        ...state,
+        userGuess: action.userGuess,
+        isCorrect: action.isCorrect
+      }
+    default:
+      return state
+  }
+}
 
 export default reducer
