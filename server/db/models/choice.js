@@ -11,9 +11,8 @@ const Choice = db.define('choices', {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
-  isPicture: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false
+  picture: {
+    type: Sequelize.STRING
   }
 })
 
