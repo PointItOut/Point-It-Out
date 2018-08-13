@@ -35,8 +35,8 @@ class CameraCanvas extends React.Component {
             <Rect x={266} y={0} width={200} height={75} fill={'green'} />
             <Rect x={533} y={0} width={200} height={75} fill={'yellow'} />
             <Rect x={799} y={0} width={200} height={75} fill={'red'} />
+
             <Text
-              iscorrect={options.iscorrect}
               text="Try click on rect"
               x={10}
               y={10}
