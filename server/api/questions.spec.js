@@ -23,32 +23,34 @@ const choices = [
   {
     theChoice: 'Moscow',
     isCorrect: true,
-    isPicture: false
+    isPicture: false,
+    questionId: 1
   },
   {
     theChoice: 'Boston',
     isCorrect: false,
-    isPicture: false
+    isPicture: false,
+    questionId: 1
   },
   {
     theChoice: 'Tel Aviv',
     isCorrect: false,
-    isPicture: false
+    isPicture: false,
+    questionId: 1
   },
   {
     theChoice: 'D.C.',
     isCorrect: false,
-    isPicture: false
+    isPicture: false,
+    questionId: 1
   }
 ]
 
 describe('Question routes', () => {
-  beforeEach(async () => {
-    await db.sync({force: true})
-    Question.bulkCreate(questions)
-    const myChoices = await Choice.bulkCreate(choices)
-    const aQuestion = await Question.findById(1)
-    await aQuestion.setChoices(myChoices)
+  beforeEach(() => {
+    return db.sync({ force: true })
+      .then(() => Question.bulkCreate(questions))
+      .then(() => Choice.bulkCreate(choices))
   })
 
   afterEach(() => {
@@ -62,7 +64,7 @@ describe('Question routes', () => {
         .expect(200)
       expect(res.body).to.be.an('array')
       expect(res.body.length).to.be.equal(1)
-      //add a test for choices
+      expect(res.body[0].choices).to.be.an('array')
     })
   })
 
@@ -74,9 +76,7 @@ describe('Question routes', () => {
       expect(res.body).to.be.an('array')
       expect(res.body.length).to.be.equal(3)
       const myQuestion = res.body.find(elem => elem.id === 1)
-      expect(myQuestion.theQuestion).to.be.equal(
-        'What is the capital of Russia'
-      )
+      expect(myQuestion.theQuestion).to.be.equal('What is the capital of Russia')
       expect(myQuestion.choices.length).to.be.equal(4)
     })
   })

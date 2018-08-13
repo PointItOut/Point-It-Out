@@ -21,7 +21,7 @@ class SoloMode extends Component {
 const mapState = state => {
   return {
     category: state.category,
-    questions: state.question
+    questions: state.questions
   }
 }
 
