@@ -18,8 +18,6 @@ export const getQuestions = (chosenCategory, currentMode) => async dispatch => {
     dispatch(gotQuestionsForCategory(res.data))
     if (currentMode === 'solo') {
       history.push('/solo')
-    } else {
-      history.push('/partner')
     }
   } catch (err) {
     console.error(err)

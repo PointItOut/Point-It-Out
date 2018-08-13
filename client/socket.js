@@ -13,4 +13,9 @@ socket.on('new-connection', payload => {
 socket.on('purple', payload => {
   console.log(payload)
 })
+
+socket.on('webcam', payload => {
+  console.log(payload)
+})
+
 export default socket
