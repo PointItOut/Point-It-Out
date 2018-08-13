@@ -21,6 +21,8 @@ class CameraCanvas extends React.Component {
     submitUserGuess('')
   }
 
+
+
   render() {
     const { currentQuestion } = this.props
     const question = currentQuestion.question
