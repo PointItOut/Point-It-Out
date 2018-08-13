@@ -32,19 +32,19 @@ export class UserHome extends React.Component {
       <div>
         <button
           id="btn-geography"
-          onClick={() => handleChooseCategory('geography')}>
+          onClick={() => handleChooseCategory('geography')}
+        >
           geography
         </button>
 
-        <button
-          id="btn-art"
-          onClick={() => handleChooseCategory('art')}>
+        <button id="btn-art" onClick={() => handleChooseCategory('art')}>
           art
         </button>
 
         <button
           id="btn-history"
-          onClick={() => handleChooseCategory('history')}>
+          onClick={() => handleChooseCategory('history')}
+        >
           history
         </button>
       </div>
@@ -52,17 +52,17 @@ export class UserHome extends React.Component {
   }
 
   handleChooseCategory(category) {
-    const { chooseCategory } = this.props
+    const {chooseCategory} = this.props
     chooseCategory(category)
     this.setState({
       choosingMode: true
     })
   }
 
-  handleChooseMode() {
+  handleChooseMode(currentMode) {
     const {loadQuestions} = this.props
     //load questions dispatches a thunk to get the questions and  dispatch an action to put them on state and redirect the user to the play page
-    loadQuestions(this.props.chosenCategory)
+    loadQuestions(this.props.chosenCategory, currentMode)
     //can add more functionality here as needed
   }
 
@@ -81,8 +81,20 @@ export class UserHome extends React.Component {
 
         {this.state.choosingMode ? (
           <div>
-            <button>Challenge a Friend</button>
-            <button onClick={this.handleChooseMode}>Challenge Yourself</button>
+            <button
+              onClick={() => {
+                this.handleChooseMode('partner')
+              }}
+            >
+              Challenge a Friend
+            </button>
+            <button
+              onClick={() => {
+                this.handleChooseMode('solo')
+              }}
+            >
+              Challenge Yourself
+            </button>
           </div>
         ) : null}
       </div>
@@ -103,7 +115,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     chooseCategory: category => dispatch(setCategory(category)),
-    loadQuestions: category => dispatch(getQuestions(category))
+    loadQuestions: (category, currentMode) =>
+      dispatch(getQuestions(category, currentMode))
   }
 }
 
