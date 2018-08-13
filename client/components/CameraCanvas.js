@@ -24,8 +24,6 @@ class CameraCanvas extends React.Component {
     // log Konva.Stage instance
     console.log(this.stageRef.getStage())
 
-    // set first currentQuestion
-    // we get questions passed as a prop from the parent
     const { setQuestion, questions, submitUserGuess } = this.props
     setQuestion(questions[0])
     submitUserGuess(null) // to reset userguess to null
@@ -38,11 +36,11 @@ class CameraCanvas extends React.Component {
     const { setQuestion, questions, currentQuestion, submitUserGuess, updateUserScore, score } = this.props
     const question = questions.find((ques, index) => questions[index-1] === currentQuestion.question)
 
-    if (wasCorrect) {
-      updateUserScore(score + 1)
-      console.log('You got a point! Your new score is', score + 1)
-    }
     setTimeout(() => {
+      if (wasCorrect) {
+        updateUserScore(score + 1)
+        console.log('You got a point! Your new score is', score + 1)
+      }
       submitUserGuess(null)
       setQuestion(question)
     }, 1000)
@@ -57,6 +55,7 @@ class CameraCanvas extends React.Component {
 
     if (this.state.loaded && currentQuestion.userGuess !== null) {
       const wasGuessCorrect = options[currentQuestion.userGuess].isCorrect
+      console.log('did you answer right?', wasGuessCorrect)
       this.nextQuestion(wasGuessCorrect)
     }
 
