@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { setCategory } from '../store/category'
-import { getQuestions } from '../store/question'
+import {connect} from 'react-redux'
+import {setCategory} from '../store/category'
+import {getQuestions} from '../store/question'
 
 /**
  * COMPONENT
@@ -27,7 +27,7 @@ export class UserHome extends React.Component {
   }
 
   renderCategoryChoices() {
-    const { handleChooseCategory } = this
+    const {handleChooseCategory} = this
     return (
       <div>
         <button onClick={() => handleChooseCategory('geography')}>
@@ -40,7 +40,7 @@ export class UserHome extends React.Component {
   }
 
   handleChooseCategory(category) {
-    const { chooseCategory } = this.props
+    const {chooseCategory} = this.props
     chooseCategory(category)
     this.setState({
       choosingMode: true
@@ -48,14 +48,14 @@ export class UserHome extends React.Component {
   }
 
   handleChooseMode(currentMode) {
-    const { loadQuestions } = this.props
+    const {loadQuestions} = this.props
     //load questions dispatches a thunk to get the questions and  dispatch an action to put them on state and redirect the user to the play page
     loadQuestions(this.props.chosenCategory, currentMode)
     //can add more functionality here as needed
   }
 
   render() {
-    const { email } = this.props
+    const {email} = this.props
     return (
       <div>
         <h3>Welcome, {email}</h3>
@@ -69,8 +69,20 @@ export class UserHome extends React.Component {
 
         {this.state.choosingMode ? (
           <div>
-            <button onClick={() => { this.handleChooseMode('partner') }}>Challenge a Friend</button>
-            <button onClick={() => { this.handleChooseMode('solo') }}>Challenge Yourself</button>
+            <button
+              onClick={() => {
+                this.handleChooseMode('partner')
+              }}
+            >
+              Challenge a Friend
+            </button>
+            <button
+              onClick={() => {
+                this.handleChooseMode('solo')
+              }}
+            >
+              Challenge Yourself
+            </button>
           </div>
         ) : null}
       </div>
@@ -91,7 +103,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     chooseCategory: category => dispatch(setCategory(category)),
-    loadQuestions: (category, currentMode) => dispatch(getQuestions(category, currentMode))
+    loadQuestions: (category, currentMode) =>
+      dispatch(getQuestions(category, currentMode))
   }
 }
 

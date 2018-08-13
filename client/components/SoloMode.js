@@ -8,10 +8,11 @@ class SoloMode extends Component {
   }
 
   render() {
+    const questions = this.props.questions
     return (
       <div>
         <h2>Solo Mode</h2>
-        <CameraCanvas />
+        <CameraCanvas questions={questions} />
       </div>
     )
   }
@@ -20,7 +21,7 @@ class SoloMode extends Component {
 const mapState = state => {
   return {
     category: state.category,
-    questions: state.questions
+    questions: state.question
   }
 }
 
