@@ -32,15 +32,18 @@ class CameraCanvas extends React.Component {
     })
   }
 
-  nextQuestion() {
+  nextQuestion(wasCorrect) {
     const { setQuestion, questions, currentQuestion, submitUserGuess } = this.props
     const question = questions.find((ques, index) => questions[index-1] === currentQuestion.question)
-    console.log('moving on to the next question')
+
+    if (wasCorrect) {
+      // update score!
+      console.log('you got a point!')
+    }
     setTimeout(() => {
       submitUserGuess(null)
       setQuestion(question)
     }, 1000)
-    // update score if necessary
   }
 
   render() {
@@ -50,8 +53,8 @@ class CameraCanvas extends React.Component {
     const xPositions = [0, 266, 533, 799]
 
     if (this.state.loaded && currentQuestion.userGuess !== null) {
-      console.log('You have made your guess!')
-      this.nextQuestion()
+      const wasGuessCorrect = options[currentQuestion.userGuess].isCorrect
+      this.nextQuestion(wasGuessCorrect)
     }
 
     return (
