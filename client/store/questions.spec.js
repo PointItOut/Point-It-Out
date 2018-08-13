@@ -41,7 +41,7 @@ describe('thunk creators', () => {
       mockAxios.onGet('/api/questions/geography').replyOnce(200, fakeQuestions)
       await store.dispatch(getQuestions(chosenCategory))
 
-      const actions = store.getActions() // not getting any actions
+      const actions = store.getActions()
       expect(actions[0].type).to.be.equal('GOT_QUESTIONS_FOR_CATEGORY')
       expect(actions[0].questions).to.be.deep.equal(fakeQuestions)
     })

@@ -20,12 +20,21 @@ describe('UserHome', () => {
   })
 
 
-  it('clicking the button update choosingCategory on state', () => {
+  it('clicking the button updates choosingCategory on local state', () => {
     userHome.find('button').simulate('click')
     expect(userHome.state('choosingCategory')).to.be.equal(true)
-    expect(userHome.find('button')).to.have.length(3)  //only works for only 3 categories
-
+    expect(userHome.state('choosingMode')).to.be.equal(false)
+    expect(userHome.find('button')).to.have.length(3)  //testing for exactly 3 categories, which are hard coded
   })
+
+  it('after choosing a category, the user sees two buttons for choosing the mode of play', () => {
+    userHome.setProps({ chooseCategory: () => console.log('=*= fake chooseCategory called =*=') })
+    userHome.setState({ choosingCategory: true, choosingMode: false })
+    userHome.find('#btn-geography').simulate('click')
+    expect(userHome.state('choosingMode')).to.be.equal(true)
+    expect(userHome.find('button')).to.have.length(2) // two buttons for choosing mode
+  })
+
 })
 
 

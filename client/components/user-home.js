@@ -30,17 +30,29 @@ export class UserHome extends React.Component {
     const {handleChooseCategory} = this
     return (
       <div>
-        <button onClick={() => handleChooseCategory('geography')}>
+        <button
+          id="btn-geography"
+          onClick={() => handleChooseCategory('geography')}>
           geography
         </button>
-        <button onClick={() => handleChooseCategory('art')}> art</button>
-        <button onClick={() => handleChooseCategory('history')}>history</button>
+
+        <button
+          id="btn-art"
+          onClick={() => handleChooseCategory('art')}>
+          art
+        </button>
+
+        <button
+          id="btn-history"
+          onClick={() => handleChooseCategory('history')}>
+          history
+        </button>
       </div>
     )
   }
 
   handleChooseCategory(category) {
-    const {chooseCategory} = this.props
+    const { chooseCategory } = this.props
     chooseCategory(category)
     this.setState({
       choosingMode: true
