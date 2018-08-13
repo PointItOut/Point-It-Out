@@ -32,19 +32,33 @@ class CameraCanvas extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps) {
+    const { currentQuestion } = this.props
+    const question = currentQuestion.question
+    const options = question ? question.choices : []
+    if (currentQuestion.userGuess !== prevProps.currentQuestion.userGuess && this.props.currentQuestion !== null) {
+      // we just recorded a guess!
+      const wasGuessCorrect = options[currentQuestion.userGuess] ? options[currentQuestion.userGuess].isCorrect : false
+      this.nextQuestion(wasGuessCorrect)
+    }
+  }
+
   nextQuestion(wasCorrect) {
     const { setQuestion, questions, currentQuestion, submitUserGuess, updateUserScore, score } = this.props
     const question = questions.find((ques, index) => questions[index-1] === currentQuestion.question)
 
-    setTimeout(() => {
-      if (wasCorrect) {
-        updateUserScore(score + 1)
-        console.log('You got a point! Your new score is', score + 1)
-      }
-      submitUserGuess(null)
-      setQuestion(question)
-    }, 1000)
+    if (wasCorrect) {
+      updateUserScore(score.total + 1)
+    }
+
+    if (question && currentQuestion.userGuess !== null) {
+      setTimeout(() => {
+        submitUserGuess(null)
+        setQuestion(question)
+      }, 1000)
+    }
   }
+
 
 
   render() {
@@ -52,12 +66,6 @@ class CameraCanvas extends React.Component {
     const question = currentQuestion.question
     const options = question ? question.choices : undefined
     const xPositions = [0, 266, 533, 799]
-
-    if (this.state.loaded && currentQuestion.userGuess !== null) {
-      const wasGuessCorrect = options[currentQuestion.userGuess].isCorrect
-      console.log('did you answer right?', wasGuessCorrect)
-      this.nextQuestion(wasGuessCorrect)
-    }
 
     return (
       <div className="video-container">
