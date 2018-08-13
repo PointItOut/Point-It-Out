@@ -5,6 +5,9 @@ const Game = db.define('game', {
     name: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    sessionId: {
+        type: Sequelize.TEXT
     }
 })
 

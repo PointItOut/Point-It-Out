@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateGame, getGames } from '../store/game'
+import { getGames, updateGame } from '../store/game'
 import { withRouter } from 'react-router-dom';
 
 

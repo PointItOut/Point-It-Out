@@ -13,16 +13,20 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:name', async (req, res, next) => {
     try {
+        let opentok = new OpenTok(
+            process.env.OPENTOK_APIKEY,
+            process.env.OPENTOK_SECRET
+        );
         const gameName = req.params.name
         const existgame = await Game.findOne({
             where: { name: gameName }
         })
-        await User.update({ gameId: existgame.id },
+        let token = opentok.generateToken(existgame.sessionId);
+        await User.update({ gameId: existgame.id, token },
             { where: { id: req.user.id } })
 
-        const game = Game.findAll({ where: { gameId: existgame.id }, include: [{ model: User }] })
 
-        res.json(game)
+        res.json(existgame)
     } catch (err) {
         next(err)
     }
@@ -30,11 +34,27 @@ router.get('/:name', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const newGame = await Game.create(req.body)
-        await User.update({ gameId: newGame.id },
-            { where: { id: req.user.id } })
+        let opentok = new OpenTok(
+            process.env.OPENTOK_APIKEY,
+            process.env.OPENTOK_SECRET
+        );
 
-        res.json(newGame)
+        opentok.createSession({ mediaMode: "routed" }, async function (err, session) {
+            if (err) {
+                console.log(err);
+                res.status(500).send({ error: "createSession error: ", err });
+                return;
+            }
+
+            let sessionId = session.sessionId;
+            req.body.sessionId = sessionId;
+            const newGame = await Game.create(req.body)
+            let token = opentok.generateToken(newGame.sessionId);
+            await User.update({ gameId: newGame.id, token },
+                { where: { id: req.user.id } })
+            res.json(newGame)
+
+        })
     } catch (err) {
         next(err)
     }

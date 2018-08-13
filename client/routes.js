@@ -34,7 +34,7 @@ class Routes extends Component {
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
               <Route path="/solo" component={SoloMode} />
-              <Route path="/partner" component={PartnerMode} />
+              <Route path="/game/:name" component={PartnerMode} />
             </Switch>
           )}
           {/* Displays our Login component as a fallback */}
