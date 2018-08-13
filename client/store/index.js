@@ -9,8 +9,9 @@ import questions from './questions'
 
 import game from './game'
 import currentQuestion from './CurrentQuestion'
+import score from './score'
 
-const reducer = combineReducers({ user, category, questions, currentQuestion, game })
+const reducer = combineReducers({ user, category, questions, currentQuestion, score, game })
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))

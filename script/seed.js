@@ -22,6 +22,7 @@ async function seed() {
 
   //QUESTIONS
   const questions = await Promise.all([
+    //Geography
     Question.create({
       theQuestion: 'What is the capital of Russia?',
       category: 'geography'
@@ -35,6 +36,29 @@ async function seed() {
       category: 'geography'
     }),
     Question.create({
+      theQuestion: `Which is the world's highest mountain?`,
+      category: 'geography'
+    }),
+    Question.create({
+      theQuestion: 'What is the biggest desert in the world?',
+      category: 'geography'
+    }),
+    Question.create({
+      theQuestion: 'Which US state is the Grand Canyon located in?',
+      category: 'geography'
+    }),
+    Question.create({
+      theQuestion: 'Which is the longest river in the world',
+      category: 'geography'
+    }),
+    Question.create({
+      theQuestion:
+        'Which is the smallest country, measured by total land area?',
+      category: 'geography'
+    }),
+
+    //History
+    Question.create({
       theQuestion: 'World War I began in which year?',
       category: 'history'
     }),
@@ -42,10 +66,12 @@ async function seed() {
       theQuestion: 'Who was the first president to live in the White House?',
       category: 'history'
     }),
-    // Question.create({
-    //   theQuestion: `Who painted 'The Starry Night'?`,
-    //   category: 'art'
-    // }),
+
+    //Art
+    Question.create({
+      theQuestion: `Who painted 'The Starry Night'?`,
+      category: 'art'
+    }),
     Question.create({
       theQuestion: `Click on purple square`,
       category: 'art'
@@ -72,254 +98,387 @@ async function seed() {
     Choice.create({
       theChoice: 'Moscow',
       isCorrect: true,
-      isPicture: false,
+
       questionId: 1
     }),
     Choice.create({
       theChoice: 'Saint Petersburg',
       isCorrect: false,
-      isPicture: false,
+
       questionId: 1
     }),
     Choice.create({
       theChoice: 'Yekaterinburg',
       isCorrect: false,
-      isPicture: false,
+
       questionId: 1
     }),
     Choice.create({
       theChoice: 'Kazan',
       isCorrect: false,
-      isPicture: false,
+
       questionId: 1
     }),
 
     Choice.create({
       theChoice: 'Atlantic Ocean',
       isCorrect: true,
-      isPicture: false,
+
       questionId: 2
     }),
     Choice.create({
       theChoice: 'Arctic Ociean',
       isCorrect: false,
-      isPicture: false,
+
       questionId: 2
     }),
     Choice.create({
       theChoice: 'Pacific Ociean',
       isCorrect: false,
-      isPicture: false,
+
       questionId: 2
     }),
     Choice.create({
       theChoice: 'Southern Ociean',
       isCorrect: false,
-      isPicture: false,
+
       questionId: 2
     }),
 
     Choice.create({
       theChoice: 'Missouri River',
       isCorrect: true,
-      isPicture: false,
+
       questionId: 3
     }),
     Choice.create({
       theChoice: 'Mississippi River',
       isCorrect: false,
-      isPicture: false,
+
       questionId: 3
     }),
     Choice.create({
       theChoice: 'Yukon River',
       isCorrect: false,
-      isPicture: false,
+
       questionId: 3
     }),
     Choice.create({
       theChoice: 'Rio Grande',
       isCorrect: false,
-      isPicture: false,
+
       questionId: 3
+    }),
+
+    Choice.create({
+      theChoice: 'Mount Everest',
+      isCorrect: true,
+
+      questionId: 4
+    }),
+    Choice.create({
+      theChoice: 'Makalu',
+      isCorrect: false,
+
+      questionId: 4
+    }),
+    Choice.create({
+      theChoice: 'K2',
+      isCorrect: false,
+
+      questionId: 4
+    }),
+    Choice.create({
+      theChoice: 'Kilimanjaro',
+      isCorrect: false,
+
+      questionId: 4
+    }),
+
+    Choice.create({
+      theChoice: 'Sahara',
+      isCorrect: true,
+
+      questionId: 5
+    }),
+    Choice.create({
+      theChoice: 'Arabian',
+      isCorrect: false,
+
+      questionId: 5
+    }),
+    Choice.create({
+      theChoice: 'Great Australian',
+      isCorrect: false,
+
+      questionId: 5
+    }),
+    Choice.create({
+      theChoice: 'Negev',
+      isCorrect: false,
+
+      questionId: 5
+    }),
+
+    Choice.create({
+      theChoice: 'Arizona',
+      isCorrect: true,
+
+      questionId: 6
+    }),
+    Choice.create({
+      theChoice: 'New-Mexico',
+      isCorrect: false,
+
+      questionId: 6
+    }),
+    Choice.create({
+      theChoice: 'Wyoming',
+      isCorrect: false,
+
+      questionId: 6
+    }),
+    Choice.create({
+      theChoice: 'Nevada',
+      isCorrect: false,
+
+      questionId: 6
+    }),
+
+    Choice.create({
+      theChoice: 'Nile River',
+      isCorrect: true,
+
+      questionId: 7
+    }),
+    Choice.create({
+      theChoice: 'Amazon River',
+      isCorrect: false,
+
+      questionId: 7
+    }),
+    Choice.create({
+      theChoice: 'Congo River',
+      isCorrect: false,
+
+      questionId: 7
+    }),
+    Choice.create({
+      theChoice: 'Danube River',
+      isCorrect: false,
+
+      questionId: 7
+    }),
+
+    Choice.create({
+      theChoice: 'Vatican',
+      isCorrect: true,
+
+      questionId: 8
+    }),
+    Choice.create({
+      theChoice: 'Monoco',
+      isCorrect: false,
+
+      questionId: 8
+    }),
+    Choice.create({
+      theChoice: 'Maldives',
+      isCorrect: false,
+
+      questionId: 8
+    }),
+    Choice.create({
+      theChoice: 'Tuvalu',
+      isCorrect: false,
+
+      questionId: 8
     }),
 
     //History
     Choice.create({
       theChoice: '1914',
       isCorrect: true,
-      isPicture: false,
-      questionId: 4
+
+      questionId: 9
     }),
     Choice.create({
       theChoice: '1942',
       isCorrect: false,
-      isPicture: false,
-      questionId: 4
+
+      questionId: 9
     }),
     Choice.create({
       theChoice: '1917',
       isCorrect: false,
-      isPicture: false,
-      questionId: 4
+
+      questionId: 9
     }),
     Choice.create({
       theChoice: '1924',
       isCorrect: false,
-      isPicture: false,
-      questionId: 4
+
+      questionId: 9
     }),
 
     Choice.create({
       theChoice: 'John Adams',
       isCorrect: true,
-      isPicture: false,
-      questionId: 5
+
+      questionId: 10
     }),
     Choice.create({
       theChoice: 'George Washington',
       isCorrect: false,
-      isPicture: false,
-      questionId: 5
+
+      questionId: 10
     }),
     Choice.create({
       theChoice: 'Franklin Pierce',
       isCorrect: false,
-      isPicture: false,
-      questionId: 5
+
+      questionId: 10
     }),
     Choice.create({
       theChoice: 'John Tyler',
       isCorrect: false,
-      isPicture: false,
-      questionId: 5
+
+      questionId: 10
     }),
 
     //Art
-    //TODO Only add this after we have an ID for the art questions
-    // Choice.create({
-    //   theChoice: 'Vincent van Gogh',
-    //   isCorrect: true,
-    //   isPicture: false,
-    //   questionId:
-    // }),
-    // Choice.create({
-    //   theChoice: 'Pablo Picasso',
-    //   isCorrect: false,
-    //   isPicture: false,
-    //   questionId:
-    // }),
-    // Choice.create({
-    //   theChoice: 'Paul Cézanne',
-    //   isCorrect: false,
-    //   isPicture: false,
-    //   questionId:
-    // }),
-    // Choice.create({
-    //   theChoice: 'Camille Pissarro',
-    //   isCorrect: false,
-    //   isPicture: false,
-    //   questionId:
-    // }),
+
+    Choice.create({
+      theChoice: 'Vincent van Gogh',
+      isCorrect: true,
+      picture:
+        'https://upload.wikimedia.org/wikipedia/commons/9/9b/Vincent_van_Gogh_-_s0273V1962_-_Van_Gogh_Museum.jpg',
+      questionId: 11
+    }),
+    Choice.create({
+      theChoice: 'Pablo Picasso',
+      isCorrect: false,
+      picture:
+        'https://commons.wikimedia.org/wiki/File:Portrait_de_Picasso,_1908.jpg#/media/File:Portrait_de_Picasso,_1908.jpg',
+      questionId: 11
+    }),
+    Choice.create({
+      theChoice: 'Paul Cézanne',
+      isCorrect: false,
+      picture:
+        'https://commons.wikimedia.org/wiki/File:Paul_C%C3%A9zanne_158.jpg#/media/File:Paul_C%C3%A9zanne_158.jpg',
+      questionId: 11
+    }),
+    Choice.create({
+      theChoice: 'Camille Pissarro',
+      isCorrect: false,
+      picture:
+        'https://commons.wikimedia.org/wiki/File:Pissarro-portrait-c1900.jpg#/media/File:Pissarro-portrait-c1900.jpg',
+      questionId: 11
+    }),
 
     Choice.create({
       theChoice: 'Purple',
       isCorrect: true,
-      isPicture: false,
-      questionId: 6
+      picture:
+        'https://commons.wikimedia.org/wiki/File:Color_icon_purple.svg#/media/File:Color_icon_purple.svg',
+      questionId: 12
     }),
     Choice.create({
       theChoice: 'Yello',
       isCorrect: false,
-      isPicture: false,
-      questionId: 6
+      picture:
+        'https://commons.wikimedia.org/wiki/File:Color_icon_yellow.svg#/media/File:Color_icon_yellow.svg',
+      questionId: 12
     }),
     Choice.create({
       theChoice: 'Green',
       isCorrect: false,
-      isPicture: false,
-      questionId: 6
+      picture:
+        'https://commons.wikimedia.org/wiki/File:Color_icon_green.svg#/media/File:Color_icon_green.svg',
+      questionId: 12
     }),
     Choice.create({
       theChoice: 'Red',
       isCorrect: false,
-      isPicture: false,
-      questionId: 6
-    }),
-
-    Choice.create({
-      theChoice: 'Purple',
-      isCorrect: false,
-      isPicture: false,
-      questionId: 7
-    }),
-    Choice.create({
-      theChoice: 'Yello',
-      isCorrect: true,
-      isPicture: false,
-      questionId: 7
-    }),
-    Choice.create({
-      theChoice: 'Green',
-      isCorrect: false,
-      isPicture: false,
-      questionId: 7
-    }),
-    Choice.create({
-      theChoice: 'Red',
-      isCorrect: false,
-      isPicture: false,
-      questionId: 7
+      picture:
+        'https://commons.wikimedia.org/wiki/File:Color_icon_red.svg#/media/File:Color_icon_red.svg',
+      questionId: 12
     }),
 
     Choice.create({
       theChoice: 'Purple',
       isCorrect: false,
-      isPicture: false,
-      questionId: 8
+
+      questionId: 13
     }),
     Choice.create({
       theChoice: 'Yello',
-      isCorrect: false,
-      isPicture: false,
-      questionId: 8
+      isCorrect: true,
+
+      questionId: 13
     }),
     Choice.create({
       theChoice: 'Green',
-      isCorrect: true,
-      isPicture: false,
-      questionId: 8
+      isCorrect: false,
+
+      questionId: 13
     }),
     Choice.create({
       theChoice: 'Red',
       isCorrect: false,
-      isPicture: false,
-      questionId: 8
+
+      questionId: 13
     }),
 
     Choice.create({
       theChoice: 'Purple',
       isCorrect: false,
-      isPicture: false,
-      questionId: 9
+
+      questionId: 14
     }),
     Choice.create({
       theChoice: 'Yello',
       isCorrect: false,
-      isPicture: false,
-      questionId: 9
+
+      questionId: 14
+    }),
+    Choice.create({
+      theChoice: 'Green',
+      isCorrect: true,
+
+      questionId: 14
+    }),
+    Choice.create({
+      theChoice: 'Red',
+      isCorrect: false,
+
+      questionId: 14
+    }),
+
+    Choice.create({
+      theChoice: 'Purple',
+      isCorrect: false,
+
+      questionId: 15
+    }),
+    Choice.create({
+      theChoice: 'Yello',
+      isCorrect: false,
+
+      questionId: 15
     }),
     Choice.create({
       theChoice: 'Green',
       isCorrect: false,
-      isPicture: false,
-      questionId: 9
+
+      questionId: 15
     }),
     Choice.create({
       theChoice: 'Red',
       isCorrect: true,
-      isPicture: false,
-      questionId: 9
+
+      questionId: 15
     })
   ])
   console.log(`seeded ${choices.length} choices`)
