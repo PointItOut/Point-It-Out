@@ -6,6 +6,7 @@ import { Login, Signup, UserHome } from './components'
 import { me } from './store'
 import { Stage, Layer, Rect, Text } from 'react-konva'
 import SoloMode from './components/SoloMode';
+import PartnerMode from './components/PartnerMode'
 // import MyApp from './components/camera'
 
 /**
@@ -33,6 +34,7 @@ class Routes extends Component {
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
               <Route path="/solo" component={SoloMode} />
+              <Route path="/partner" component={PartnerMode} />
             </Switch>
           )}
           {/* Displays our Login component as a fallback */}

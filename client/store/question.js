@@ -12,11 +12,15 @@ const gotQuestionsForCategory = questions => ({
 
 //THUNK CREATORS
 
-export const getQuestions = chosenCategory => async dispatch => {
+export const getQuestions = (chosenCategory, currentMode) => async dispatch => {
   try {
     const res = await axios.get(`/api/questions/${chosenCategory}`)
     dispatch(gotQuestionsForCategory(res.data))
-    history.push('/solo')
+    if (currentMode === 'solo') {
+      history.push('/solo')
+    } else {
+      history.push('/partner')
+    }
   } catch (err) {
     console.error(err)
   }
