@@ -11,7 +11,6 @@ class SoloMode extends Component {
     const questions = this.props.questions
     return (
       <div>
-        <h2>Solo Mode</h2>
         <CameraCanvas questions={questions} />
       </div>
     )

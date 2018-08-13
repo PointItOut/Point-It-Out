@@ -16,29 +16,17 @@ class CameraCanvas extends React.Component {
 
     // set first currentQuestion
     // we get questions passed as a prop from the parent
-    const { setQuestion, questions } = this.props
+    const { setQuestion, questions, submitUserGuess } = this.props
     setQuestion(questions[0])
+    submitUserGuess('')
   }
 
   render() {
-    console.log('INSIDE THE CANVAS', this.props.questions)
-    const {currentQuestion} = this.props
+    const { currentQuestion } = this.props
     const question = currentQuestion.question
     const options = question.choices
-    console.log('OPTIONSSSS===>', options)
-    // console.log(Diffy)
 
     const xPositions = [0, 266, 533, 799]
-
-    if (options && currentQuestion.userGuess !== '') {
-      const selectedAnswer = options[+question.userGuess]
-      console.log('You guessed', selectedAnswer)
-      if (selectedAnswer && selectedAnswer.isCorrect) {
-        return <div>You got it correct!</div>
-      } else {
-        return <div>YOU'RE WRONG!!!</div>
-      }
-    }
 
     return (
       <div className="video-container">
@@ -52,28 +40,45 @@ class CameraCanvas extends React.Component {
           height={750}
         >
           <Layer>
-            <Rect x={0} y={0} width={200} height={75} fill={'purple'} />
-            <Rect x={266} y={0} width={200} height={75} fill={'green'} />
-            <Rect x={533} y={0} width={200} height={75} fill={'yellow'} />
-            <Rect x={799} y={0} width={200} height={75} fill={'red'} />
+            <Rect x={0} y={10} width={200} height={75} fill={'purple'} opacity={0.5} />
+            <Rect x={266} y={10} width={200} height={75} fill={'green'} opacity={0.5} />
+            <Rect x={533} y={10} width={200} height={75} fill={'yellow'} opacity={0.5} />
+            <Rect x={799} y={10} width={200} height={75} fill={'red'} opacity={0.5} />
 
 
             {
               // option text boxes
               options && options.map((option, index) => {
-              return (
-                <Text
-                  key={option.id}
-                  text={option.theChoice}
-                  x={xPositions[index]}
-                  y={10}
-                  fontSize={20}
-                  width={200}
-                  align={"center"}
-                  fill={'black'}
-                />)
-              })
+                return (
+                  <Text
+                    key={option.id}
+                    text={option.theChoice}
+                    x={xPositions[index]}
+                    y={20}
+                    fontSize={20}
+                    width={200}
+                    align={"center"}
+                    fill={'black'}
+                  />)
+                })
+            }
 
+            {
+              options && options.map((option, index) => {
+                if (currentQuestion.userGuess === index) {
+                  if (option.isCorrect) {
+                    // they got it right! add green border
+                    return (
+                    <Rect x={xPositions[index]} y={10} width={200} height={75} stroke={'green'} strokeWidth={10} />
+                    )
+                  } else {
+                    // they got it wrong! add red border
+                    return <Rect x={xPositions[index]} y={10} width={200} height={75} stroke={'red'} strokeWidth={10} />
+                  }
+                } else {
+                  return null
+                }
+              })
             }
 
             <Text
@@ -98,7 +103,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  // submitUserGuess: guess => dispatch(submitAnswer())
+  submitUserGuess: guess => dispatch(submitAnswer(guess)),
   setQuestion: question => dispatch(setCurrentQuestion(question))
 })
 
