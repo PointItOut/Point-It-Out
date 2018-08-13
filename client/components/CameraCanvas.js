@@ -1,9 +1,10 @@
-import React, {Component} from 'react'
-import {render} from 'react-dom'
-import {Stage, Layer, Rect, Text, Circle} from 'react-konva'
+import React, { Component } from 'react'
+import { render } from 'react-dom'
+import { Stage, Layer, Rect, Text, Circle } from 'react-konva'
 import Konva from 'konva'
 import Webcam from 'react-webcam'
 import Diffy from './diffy'
+
 import { connect } from 'react-redux'
 import { submitAnswer, setCurrentQuestion } from '../store/CurrentQuestion'
 
@@ -20,6 +21,7 @@ class CameraCanvas extends React.Component {
     setQuestion(questions[0])
     submitUserGuess('')
   }
+
 
 
 
@@ -62,7 +64,7 @@ class CameraCanvas extends React.Component {
                     align={"center"}
                     fill={'black'}
                   />)
-                })
+              })
             }
 
             {
@@ -71,7 +73,7 @@ class CameraCanvas extends React.Component {
                   if (option.isCorrect) {
                     // they got it right! add green border
                     return (
-                    <Rect x={xPositions[index]} y={10} width={200} height={75} stroke={'green'} strokeWidth={10} />
+                      <Rect x={xPositions[index]} y={10} width={200} height={75} stroke={'green'} strokeWidth={10} />
                     )
                   } else {
                     // they got it wrong! add red border

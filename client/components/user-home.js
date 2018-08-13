@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {setCategory} from '../store/category'
-import {getQuestions} from '../store/questions'
+import { connect } from 'react-redux'
+import { setCategory } from '../store/category'
+import { getQuestions } from '../store/questions'
+import AddGame from './AddGame'
+import JoinGame from './JoinGame'
 
 /**
  * COMPONENT
@@ -12,7 +14,8 @@ export class UserHome extends React.Component {
     super()
     this.state = {
       choosingMode: false,
-      choosingCategory: false
+      choosingCategory: false,
+      partnerMode: false
     }
     this.handlePlay = this.handlePlay.bind(this)
     this.renderCategoryChoices = this.renderCategoryChoices.bind(this)
@@ -27,7 +30,7 @@ export class UserHome extends React.Component {
   }
 
   renderCategoryChoices() {
-    const {handleChooseCategory} = this
+    const { handleChooseCategory } = this
     return (
       <div>
         <button
@@ -52,7 +55,7 @@ export class UserHome extends React.Component {
   }
 
   handleChooseCategory(category) {
-    const {chooseCategory} = this.props
+    const { chooseCategory } = this.props
     chooseCategory(category)
     this.setState({
       choosingMode: true
@@ -60,19 +63,25 @@ export class UserHome extends React.Component {
   }
 
   handleChooseMode(currentMode) {
-    const {loadQuestions} = this.props
+    if (currentMode === 'partner') {
+      this.setState({ partnerMode: true })
+    }
+    const { loadQuestions } = this.props
     //load questions dispatches a thunk to get the questions and  dispatch an action to put them on state and redirect the user to the play page
     loadQuestions(this.props.chosenCategory, currentMode)
     //can add more functionality here as needed
   }
 
   render() {
-    const {email} = this.props
+    const { email } = this.props
     return (
       <div>
         <h3>Welcome, {email}</h3>
         {!this.state.choosingCategory ? (
-          <button onClick={this.handlePlay}>Play</button>
+          <div>
+            <button onClick={this.handlePlay}>Play</button>
+            <JoinGame />
+          </div>
         ) : null}
 
         {!this.state.choosingMode && this.state.choosingCategory
@@ -96,6 +105,9 @@ export class UserHome extends React.Component {
               Challenge Yourself
             </button>
           </div>
+        ) : null}
+        {this.state.partnerMode ? (
+          <AddGame />
         ) : null}
       </div>
     )
