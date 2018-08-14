@@ -15,7 +15,14 @@ const gotQuestionsForCategory = questions => ({
 export const getQuestions = (chosenCategory, currentMode) => async dispatch => {
   try {
     const res = await axios.get(`/api/questions/${chosenCategory}`)
-    dispatch(gotQuestionsForCategory(res.data))
+
+    const questionArr = res.data
+    //Shuffeling the options
+    for (let i = 0; i < questionArr.length; i++) {
+      questionArr[i].choices = shuffleArray(questionArr[i].choices)
+    }
+    //dispatching shuffled questions
+    dispatch(gotQuestionsForCategory(shuffleArray(questionArr)))
     if (currentMode === 'solo') {
       history.push('/solo')
     }
@@ -34,3 +41,13 @@ const reducer = (state = [], action) => {
   }
 }
 export default reducer
+
+//Helper Functions
+function shuffleArray(array) {
+  let modified = [...array]
+  for (let i = modified.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[modified[i], modified[j]] = [modified[j], modified[i]]
+  }
+  return modified
+}
