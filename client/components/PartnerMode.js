@@ -20,10 +20,16 @@ class PartnerMode extends Component {
     const token = this.props.token
     const currentgame = games.find(game => game.name === name)
     return (
+<<<<<<< HEAD
       <div className="game-wrapper">
         <CameraCanvas questions={this.props.questions} />
         <GameSidebar />
         <Opentok currentgame={currentgame} token={token} />
+=======
+      <div>
+        <h2>Partner Mode</h2>
+        <Opentok currentgame={currentgame} token={token} user={user} />
+>>>>>>> master
       </div>
     )
   }
