@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {setCategory} from '../store/category'
+import {setCategory} from '../store/categories'
 import {getQuestions} from '../store/questions'
 import { AddGame, JoinGame } from './index'
 
@@ -20,6 +20,10 @@ export class UserHome extends React.Component {
     this.renderCategoryChoices = this.renderCategoryChoices.bind(this)
     this.handleChooseCategory = this.handleChooseCategory.bind(this)
     this.handleChooseMode = this.handleChooseMode.bind(this)
+  }
+
+  componentDidMount() {
+    // get all categories and set them on state
   }
 
   handlePlay() {

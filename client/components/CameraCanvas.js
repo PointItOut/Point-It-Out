@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Stage, Layer, Rect, Text, Circle} from 'react-konva'
+import {Stage, Layer, Rect, Text, Circle, Image} from 'react-konva'
 import Konva from 'konva'
 import Webcam from 'react-webcam'
 import Diffy from './diffy'
@@ -8,10 +8,62 @@ import {connect} from 'react-redux'
 import {submitAnswer, setQuestion} from '../store/currentQuestion'
 import {updateScore} from '../store/score'
 
+const PurpleRect = () => {
+  return (
+    <Rect
+      x={0}
+      y={10}
+      width={200}
+      height={75}
+      fill='purple'
+      opacity={0.5}
+    />
+  )
+}
+
+const GreenRect = () => {
+  return (
+    <Rect
+      x={266}
+      y={10}
+      width={200}
+      height={75}
+      fill='green'
+      opacity={0.5}
+    />
+  )
+}
+
+const YellowRect = () => {
+  return (
+    <Rect
+      x={533}
+      y={10}
+      width={200}
+      height={75}
+      fill='yellow'
+      opacity={0.5}
+    />
+  )
+}
+
+const RedRect = () => {
+  return (
+    <Rect
+      x={799}
+      y={10}
+      width={200}
+      height={75}
+      fill='red'
+      opacity={0.5}
+    />
+  )
+}
+
 class CameraCanvas extends Component {
   constructor() {
     super()
-    this.state = {loaded: false}
+    this.state = { loaded: false }
     this.nextQuestion = this.nextQuestion.bind(this)
   }
 
@@ -87,38 +139,27 @@ class CameraCanvas extends Component {
           height={750}
         >
           <Layer>
-            <Rect
-              x={0}
-              y={10}
-              width={200}
-              height={75}
-              fill={'purple'}
-              opacity={0.5}
-            />
-            <Rect
-              x={266}
-              y={10}
-              width={200}
-              height={75}
-              fill={'green'}
-              opacity={0.5}
-            />
-            <Rect
-              x={533}
-              y={10}
-              width={200}
-              height={75}
-              fill={'yellow'}
-              opacity={0.5}
-            />
-            <Rect
-              x={799}
-              y={10}
-              width={200}
-              height={75}
-              fill={'red'}
-              opacity={0.5}
-            />
+            <PurpleRect />
+            <GreenRect />
+            <YellowRect />
+            <RedRect />
+
+            { // option images
+              options && options.map((option, index) => {
+                if (option.picture) {
+                  const imageObj = new window.Image()
+                  imageObj.onload = () => {
+
+                  }
+                  imageObj.src = option.picture
+                  return (
+                    <Image x={xPositions[index]} y={85} image={imageObj} width="200" ref={ref => { this.stageRef = ref }} />
+                  )
+                } else {
+                  return null
+                }
+              })
+            }
 
             {// option text boxes
             options &&
@@ -135,7 +176,8 @@ class CameraCanvas extends Component {
                     fill={'black'}
                   />
                 )
-              })}
+              })
+            }
 
             {
               // if we have options and the user has guessed, show feedback:

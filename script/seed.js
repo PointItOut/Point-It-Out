@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Question, Choice} = require('../server/db/models')
+const {User, Question, Choice, Category} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -9,8 +9,9 @@ async function seed() {
 
   //USER
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123', userName: 'Cody'}),
+    User.create({email: 'cody@email.com', password: '123', userName: 'Cody', id: 1}),
     User.create({
+      id: 2,
       email: 'murphy@email.com',
       password: '123',
       userName: 'Murphy'
@@ -19,74 +20,106 @@ async function seed() {
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
+  // CATEGORIES
+  const categories = await Promise.all([
+    Category.create({
+      id: 1,
+      name: "geography",
+      public: true
+    }),
+    Category.create({
+      id: 2,
+      name: "history",
+      public: true
+    }),
+    Category.create({
+      id: 3,
+      name: "art",
+      public: true
+    }),
+    Category.create({
+      id: 4,
+      name: "cody's cafe",
+      public: false,
+      authorId: 1
+    })
+  ])
+  console.log(`seeded ${categories.length} categories`)
+  console.log(`seeded successfully`)
 
   //QUESTIONS
   const questions = await Promise.all([
     //Geography
     Question.create({
       theQuestion: 'What is the capital of Russia?',
-      category: 'geography'
+      categoryId: 1
     }),
     Question.create({
       theQuestion: 'Which ocean lies on the east of the United States?',
-      category: 'geography'
+      categoryId: 1
     }),
     Question.create({
       theQuestion: 'Which is the longest river in the US?',
-      category: 'geography'
+      categoryId: 1
     }),
     Question.create({
       theQuestion: `Which is the world's highest mountain?`,
-      category: 'geography'
+      categoryId: 1
     }),
     Question.create({
       theQuestion: 'What is the biggest desert in the world?',
-      category: 'geography'
+      categoryId: 1
     }),
     Question.create({
       theQuestion: 'Which US state is the Grand Canyon located in?',
-      category: 'geography'
+      categoryId: 1
     }),
     Question.create({
       theQuestion: 'Which is the longest river in the world',
-      category: 'geography'
+      categoryId: 1
     }),
     Question.create({
       theQuestion:
         'Which is the smallest country, measured by total land area?',
-      category: 'geography'
+      categoryId: 1
     }),
 
     //History
     Question.create({
       theQuestion: 'World War I began in which year?',
-      category: 'history'
+      categoryId: 2
     }),
     Question.create({
       theQuestion: 'Who was the first president to live in the White House?',
-      category: 'history'
+      categoryId: 2
     }),
 
     //Art
     Question.create({
       theQuestion: `Who painted 'The Starry Night'?`,
-      category: 'art'
+      categoryId: 3
     }),
     Question.create({
       theQuestion: `Click on purple square`,
-      category: 'art'
+      categoryId: 3
     }),
     Question.create({
       theQuestion: `Click on yellow square`,
-      category: 'art'
+      categoryId: 3
     }),
     Question.create({
       theQuestion: `Click on green square`,
-      category: 'art'
+      categoryId: 3
     }),
     Question.create({
       theQuestion: `Click on red square`,
-      category: 'art'
+      categoryId: 3
+    }),
+
+    // CODY
+    Question.create({
+      theQuestion: "What is cody's favorite beverage?",
+      categoryId: 4
     })
   ])
   console.log(`seeded ${questions.length} questions`)
@@ -479,11 +512,40 @@ async function seed() {
       isCorrect: true,
 
       questionId: 15
+    }),
+
+    Choice.create({
+      theChoice: 'Puppicino',
+      isCorrect: true,
+
+      questionId: 16
+    }),
+    Choice.create({
+      theChoice: 'Puggiato',
+      isCorrect: false,
+
+      questionId: 16
+    }),
+    Choice.create({
+      theChoice: 'Tea',
+      isCorrect: false,
+
+      questionId: 16
+    }),
+    Choice.create({
+      theChoice: 'Hot Milk',
+      isCorrect: false,
+
+      questionId: 16
     })
   ])
   console.log(`seeded ${choices.length} choices`)
   console.log(`seeded successfully`)
+
+
 }
+
+
 
 // We've separated the `seed` function from the `runSeed` function.
 // This way we can isolate the error handling and exit trapping.
