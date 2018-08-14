@@ -21,7 +21,7 @@ export const getQuestions = (chosenCategory, currentMode) => async dispatch => {
       questionArr[i].choices = shuffleArray(questionArr[i].choices)
     }
     console.log('SHUFFLED OPTIONS: ', questionArr)
-    dispatch(gotQuestionsForCategory(res.data))
+    dispatch(gotQuestionsForCategory(shuffleArray(questionArr)))
     if (currentMode === 'solo') {
       history.push('/solo')
     }
