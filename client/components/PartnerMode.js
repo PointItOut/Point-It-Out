@@ -16,12 +16,12 @@ class PartnerMode extends Component {
         const games = this.props.games
         const user = this.props.user
         const name = this.props.match.params.name
+        const token = this.props.token
         const currentgame = games.find(game => game.name === name)
-        console.log('game===>', games)
         return (
             <div>
                 <h2>Partner Mode</h2>
-                <Opentalk currentgame={currentgame} user={user} />
+                <Opentalk currentgame={currentgame} token={token} />
             </div>
         )
     }
@@ -37,8 +37,9 @@ const mapDispatchToProps = function (dispatch) {
 const mapState = state => {
     return {
         category: state.category,
-        games: state.game,
-        user: state.user
+        games: state.game.games,
+        user: state.user,
+        token: state.game.token
     }
 }
 
