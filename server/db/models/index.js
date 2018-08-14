@@ -3,6 +3,7 @@ const Question = require('./question')
 const Choice = require('./choice')
 const Game = require('./Game')
 const Category = require('./category')
+const User_Category = require('./user_category')
 
 Choice.belongsTo(Question)
 Question.hasMany(Choice)
@@ -11,6 +12,8 @@ User.belongsTo(Game)
 Game.hasMany(User)
 
 Category.belongsTo(User, {as: 'author'})
+User.belongsToMany(Category, {through: 'users_categories'})
+Category.belongsToMany(User, {through: 'users_categories'})
 
 /**
  * If we had any associations to make, this would be a great place to put them!
