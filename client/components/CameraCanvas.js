@@ -99,20 +99,22 @@ class CameraCanvas extends Component {
             }
 
             {
-              options && options.map((option, index) => {
+              // if we have options and the user has guessed, show feedback:
+              currentQuestion.userGuess !== null && options ? options.map((option, index) => {
                 if (currentQuestion.userGuess === index) {
                   if (option.isCorrect) {
                     // they got it right! add green border
                     return <Rect x={xPositions[index]} y={10} width={200} height={75} stroke={'green'} strokeWidth={10} />
-
                   } else {
                     // they got it wrong! add red border
                     return <Rect x={xPositions[index]} y={10} width={200} height={75} stroke={'red'} strokeWidth={10} />
                   }
+                } else if (option.isCorrect) {
+                  return <Rect x={xPositions[index]} y={10} width={200} height={75} stroke={'green'} strokeWidth={10} />
                 } else {
                   return null
                 }
-              })
+              }) : null
             }
 
             <Text
