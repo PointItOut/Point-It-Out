@@ -21,7 +21,7 @@ class PartnerMode extends Component {
     return (
       <div>
         <h2>Partner Mode</h2>
-        <Opentok currentgame={currentgame} token={token} />
+        <Opentok currentgame={currentgame} token={token} user={user} />
       </div>
     )
   }
