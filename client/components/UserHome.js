@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {setCategory} from '../store/category'
 import {getQuestions} from '../store/questions'
-import AddGame from './AddGame'
-import JoinGame from './JoinGame'
+import { AddGame, JoinGame } from './index'
 
 /**
  * COMPONENT

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import CameraCanvas from './CameraCanvas'
+import { CameraCanvas, GameSidebar } from './index'
 
 class SoloMode extends Component {
   constructor() {
@@ -10,8 +10,9 @@ class SoloMode extends Component {
   render() {
     const questions = this.props.questions
     return (
-      <div>
+      <div className="game-wrapper">
         <CameraCanvas questions={questions} />
+        <GameSidebar />
       </div>
     )
   }

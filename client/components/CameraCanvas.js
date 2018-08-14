@@ -1,20 +1,17 @@
 import React, { Component } from 'react'
-import { render } from 'react-dom'
 import { Stage, Layer, Rect, Text, Circle } from 'react-konva'
 import Konva from 'konva'
 import Webcam from 'react-webcam'
 import Diffy from './diffy'
 
 import { connect } from 'react-redux'
-import { submitAnswer, setCurrentQuestion } from '../store/CurrentQuestion'
+import { submitAnswer, setQuestion } from '../store/currentQuestion'
 import { updateScore } from '../store/score';
 
-class CameraCanvas extends React.Component {
+class CameraCanvas extends Component {
   constructor() {
     super()
-    this.state = {
-      loaded: false
-    }
+    this.state = { loaded: false }
     this.nextQuestion = this.nextQuestion.bind(this)
   }
 
@@ -24,8 +21,8 @@ class CameraCanvas extends React.Component {
     // log Konva.Stage instance
     console.log(this.stageRef.getStage())
 
-    const { setQuestion, questions, submitUserGuess } = this.props
-    setQuestion(questions[0])
+    const { setNewQuestion, questions, submitUserGuess } = this.props
+    setNewQuestion(questions[0]) // start with first question
     submitUserGuess(null) // to reset userguess to null
     this.setState({
       loaded: true
@@ -37,24 +34,23 @@ class CameraCanvas extends React.Component {
     const question = currentQuestion.question
     const options = question ? question.choices : []
     if (currentQuestion.userGuess !== prevProps.currentQuestion.userGuess && this.props.currentQuestion !== null) {
-      // we just recorded a guess!
       const wasGuessCorrect = options[currentQuestion.userGuess] ? options[currentQuestion.userGuess].isCorrect : false
       this.nextQuestion(wasGuessCorrect)
     }
   }
 
   nextQuestion(wasCorrect) {
-    const { setQuestion, questions, currentQuestion, submitUserGuess, updateUserScore, score } = this.props
+    const { setNewQuestion, questions, currentQuestion, submitUserGuess, updateUserScore, score } = this.props
     const question = questions.find((ques, index) => questions[index-1] === currentQuestion.question)
 
     if (wasCorrect) {
-      updateUserScore(score.total + 1)
+      updateUserScore(score + 1)
     }
 
     if (question && currentQuestion.userGuess !== null) {
       setTimeout(() => {
-        submitUserGuess(null)
-        setQuestion(question)
+        submitUserGuess(null) // reset userGuess for next question
+        setNewQuestion(question) // increment question
       }, 1000)
     }
   }
@@ -68,7 +64,7 @@ class CameraCanvas extends React.Component {
     const xPositions = [0, 266, 533, 799]
 
     return (
-      <div className="video-container">
+      <div id="video-container">
         <Diffy />
         <Webcam />
         <Stage
@@ -143,7 +139,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   submitUserGuess: guess => dispatch(submitAnswer(guess)),
-  setQuestion: question => dispatch(setCurrentQuestion(question)),
+  setNewQuestion: question => dispatch(setQuestion(question)),
   updateUserScore: score => dispatch(updateScore(score))
 })
 

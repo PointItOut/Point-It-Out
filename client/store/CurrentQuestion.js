@@ -1,15 +1,14 @@
-import axios from 'axios'
 
 // INITIAL STATE
 const initialState = {question: {}, userGuess: null}
 
 // ACTION TYPES
-const SETTING_CURRENT_QUESTION = 'SETTING_CURRENT_QUESTION'
+const SET_QUESTION = 'SET_CURRENT_QUESTION'
 const SUBMIT_ANSWER = 'SUBMIT_ANSWER'
 
 // ACTION CREATORS
-export const setCurrentQuestion = question => ({
-  type: SETTING_CURRENT_QUESTION,
+export const setQuestion = question => ({
+  type: SET_QUESTION,
   question
 })
 
@@ -21,7 +20,7 @@ export const submitAnswer = userGuess => ({
 // REDUCER
 const reducer = (state = initialState, action) => {
   switch(action.type) {
-    case SETTING_CURRENT_QUESTION:
+    case SET_QUESTION:
       return {
         ...state,
         question: action.question

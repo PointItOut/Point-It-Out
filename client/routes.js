@@ -2,11 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome } from './components'
+import { Login, Signup, UserHome, SoloMode, PartnerMode } from './components'
 import { me } from './store'
-import { Stage, Layer, Rect, Text } from 'react-konva'
-import SoloMode from './components/SoloMode';
-import PartnerMode from './components/PartnerMode'
+// import { Stage, Layer, Rect, Text } from 'react-konva'
 // import MyApp from './components/camera'
 
 /**

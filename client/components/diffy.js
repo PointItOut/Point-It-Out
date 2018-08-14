@@ -1,7 +1,7 @@
 import {create} from 'diffyjs'
 import React, {Component} from 'react'
 import socket from '../socket'
-import { publishAnswer, submitAnswer } from '../store/CurrentQuestion'
+import { publishAnswer, submitAnswer } from '../store/currentQuestion'
 import store from '../store'
 
 const diffy = create({
