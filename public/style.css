@@ -62,3 +62,12 @@ video {
   flex-grow: 1;
 }
 
+.OT_publisher {
+  display: none;
+}
+
+.OT_subscriber {
+  float: left;
+  margin-left: 1em;
+  border-radius: 50%;
+}
