@@ -62,7 +62,7 @@ class CameraCanvas extends Component {
       if (this.props.location.pathname.includes('solo')) {
         updateUserScore(score + 1, false)
       } else {
-        updateUserScore(score + 1, true, this.props.user.UserName)
+        updateUserScore(score + 1, true, this.props.user.userName)
       }
     }
 
