@@ -20,7 +20,7 @@ module.exports = io => {
     socket.on('new-score', payload => {
       const name = payload.username
       list[name] = payload.total
-      socket.broadcast.emit('new-score', list)
+      socket.emit('new-score', list)
     })
 
     socket.on('disconnect', () => {
