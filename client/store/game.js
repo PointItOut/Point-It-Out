@@ -2,20 +2,28 @@ import axios from 'axios'
 
 const CREATE_GAME = 'CREATE_GAME'
 const GOT_GAMES = 'GOT_GAMES'
+const GOT_TOKEN = 'GOT_TOKEN'
 
 // INITIAL STATE
-const initialState = []
+const initialState = { games: [], token: '' }
 
 // ACTION CREATORS
-export const createGame = newGame => ({
+export const createGame = data => ({
     type: CREATE_GAME,
-    newGame
+    newGame: data.newGame,
+    token: data.token
 })
 
 export const gotGames = games => ({
     type: GOT_GAMES,
     games
 })
+
+export const gotToken = data => ({
+    type: GOT_TOKEN,
+    token: data.token
+})
+
 
 
 // THUNK CREATORS
@@ -31,7 +39,7 @@ export const postGame = (gameName) => async dispatch => {
 export const updateGame = (gameName) => async dispatch => {
     try {
         const res = await axios.get(`/api/game/${gameName}`)
-        // dispatch(createGame(res.data))
+        dispatch(gotToken(res.data))
     } catch (err) {
         console.error(err)
     }
@@ -51,14 +59,12 @@ export const getGames = () => async dispatch => {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_GAME:
-            if (state === []) {
-                return [action.newGame]
-            }
-            else {
-                return [...state, action.newGame]
-            }
+            return { ...state, games: [...state.games, action.newGame], token: action.token }
         case GOT_GAMES: {
-            return action.games
+            return { ...state, games: action.games }
+        }
+        case GOT_TOKEN: {
+            return { ...state, token: action.token }
         }
         default:
             return state
