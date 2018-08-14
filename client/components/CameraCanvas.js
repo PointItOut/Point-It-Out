@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
-import { Stage, Layer, Rect, Text, Circle } from 'react-konva'
+import React, {Component} from 'react'
+import {Stage, Layer, Rect, Text, Circle} from 'react-konva'
 import Konva from 'konva'
 import Webcam from 'react-webcam'
 import Diffy from './diffy'
-import { withRouter } from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 
-import { connect } from 'react-redux'
-import { submitAnswer, setQuestion } from '../store/currentQuestion'
-import { updateScore } from '../store/score'
+import {connect} from 'react-redux'
+import {submitAnswer, setQuestion} from '../store/currentQuestion'
+import {updateScore} from '../store/score'
 
 class CameraCanvas extends Component {
   constructor() {
     super()
-    this.state = { loaded: false }
+    this.state = {loaded: false}
     this.nextQuestion = this.nextQuestion.bind(this)
   }
 
@@ -22,7 +22,7 @@ class CameraCanvas extends Component {
     // log Konva.Stage instance
     console.log(this.stageRef.getStage())
 
-    const { setNewQuestion, questions, submitUserGuess } = this.props
+    const {setNewQuestion, questions, submitUserGuess} = this.props
     setNewQuestion(questions[0]) // start with first question
     submitUserGuess(null) // to reset userguess to null
     this.setState({
@@ -31,7 +31,7 @@ class CameraCanvas extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { currentQuestion } = this.props
+    const {currentQuestion} = this.props
     const question = currentQuestion.question
     const options = question ? question.choices : []
     if (
@@ -59,11 +59,10 @@ class CameraCanvas extends Component {
     )
 
     if (wasCorrect) {
-      if (this.props.location.pathname.includes(solo)) {
+      if (this.props.location.pathname.includes('solo')) {
         updateUserScore(score + 1, false)
-      }
-      else {
-        updateUserScore(score + 1, true)
+      } else {
+        updateUserScore(score + 1, true, this.props.user.UserName)
       }
     }
 
@@ -76,7 +75,7 @@ class CameraCanvas extends Component {
   }
 
   render() {
-    const { currentQuestion } = this.props
+    const {currentQuestion} = this.props
     const question = currentQuestion.question
     const options = question ? question.choices : undefined
     const xPositions = [0, 266, 533, 799]
@@ -127,7 +126,7 @@ class CameraCanvas extends Component {
             />
 
             {// option text boxes
-              options &&
+            options &&
               options.map((option, index) => {
                 return (
                   <Text
@@ -143,33 +142,51 @@ class CameraCanvas extends Component {
                 )
               })}
 
-            {
-              // if we have options and the user has guessed, show feedback:
-              currentQuestion.userGuess !== null && options ? options.map((option, index) => {
-                if (currentQuestion.userGuess === index) {
-                  if (option.isCorrect) {
-                    // they got it right! add green border
-                    return <Rect x={xPositions[index]} y={10} width={200} height={75} stroke={'green'} strokeWidth={10} />
-                  } else {
-                    // they got it wrong! add red border
+            {// if we have options and the user has guessed, show feedback:
+            currentQuestion.userGuess !== null && options
+              ? options.map((option, index) => {
+                  if (currentQuestion.userGuess === index) {
+                    if (option.isCorrect) {
+                      // they got it right! add green border
+                      return (
+                        <Rect
+                          x={xPositions[index]}
+                          y={10}
+                          width={200}
+                          height={75}
+                          stroke={'green'}
+                          strokeWidth={10}
+                        />
+                      )
+                    } else {
+                      // they got it wrong! add red border
+                      return (
+                        <Rect
+                          x={xPositions[index]}
+                          y={10}
+                          width={200}
+                          height={75}
+                          stroke={'red'}
+                          strokeWidth={10}
+                        />
+                      )
+                    }
+                  } else if (option.isCorrect) {
                     return (
                       <Rect
                         x={xPositions[index]}
                         y={10}
                         width={200}
                         height={75}
-                        stroke={'red'}
+                        stroke={'green'}
                         strokeWidth={10}
                       />
                     )
+                  } else {
+                    return null
                   }
-                } else if (option.isCorrect) {
-                  return <Rect x={xPositions[index]} y={10} width={200} height={75} stroke={'green'} strokeWidth={10} />
-                } else {
-                  return null
-                }
-              }) : null
-            }
+                })
+              : null}
 
             <Rect
               x={200}
@@ -198,7 +215,8 @@ class CameraCanvas extends Component {
 
 const mapState = state => ({
   currentQuestion: state.currentQuestion,
-  score: state.score
+  score: state.score,
+  user: state.user
 })
 
 const mapDispatch = dispatch => ({

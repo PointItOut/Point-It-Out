@@ -1,11 +1,12 @@
 import axios from 'axios'
 import history from '../history'
+import socket from '../socket'
 
 //ACTION TYPES
 const GOT_QUESTIONS_FOR_CATEGORY = 'GOT_QUESTIONS_FOR_CATEGORY'
 
 // ACTION CREATORS
-const gotQuestionsForCategory = questions => ({
+export const gotQuestionsForCategory = questions => ({
   type: GOT_QUESTIONS_FOR_CATEGORY,
   questions
 })
@@ -21,10 +22,13 @@ export const getQuestions = (chosenCategory, currentMode) => async dispatch => {
     for (let i = 0; i < questionArr.length; i++) {
       questionArr[i].choices = shuffleArray(questionArr[i].choices)
     }
+    const shuffledQuestions = shuffleArray(questionArr)
     //dispatching shuffled questions
-    dispatch(gotQuestionsForCategory(shuffleArray(questionArr)))
+    dispatch(gotQuestionsForCategory(shuffledQuestions))
     if (currentMode === 'solo') {
       history.push('/solo')
+    } else {
+      socket.emit('questions', shuffledQuestions)
     }
   } catch (err) {
     console.error(err)

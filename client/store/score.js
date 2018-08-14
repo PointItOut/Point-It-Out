@@ -1,4 +1,4 @@
-import socket from '../socket';
+import socket from '../socket'
 
 // ACTION TYPES
 const UPDATE_SCORE = 'UPDATE_SCORE'
@@ -7,9 +7,9 @@ const UPDATE_SCORE = 'UPDATE_SCORE'
 const initialState = 0
 
 // ACTION CREATORS
-export const updateScore = (total, partner) => {
+export const updateScore = (total, partner, username) => {
   if (partner === true) {
-    socket.emit('new-score', total);
+    socket.emit('new-score', {total, username})
   }
   return {
     type: UPDATE_SCORE,
