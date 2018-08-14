@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { setCategory } from '../store/category'
-import { getQuestions } from '../store/questions'
+import {connect} from 'react-redux'
+import {setCategory} from '../store/category'
+import {getQuestions} from '../store/questions'
 import AddGame from './AddGame'
 import JoinGame from './JoinGame'
 
@@ -30,7 +30,7 @@ export class UserHome extends React.Component {
   }
 
   renderCategoryChoices() {
-    const { handleChooseCategory } = this
+    const {handleChooseCategory} = this
     return (
       <div>
         <button
@@ -55,7 +55,7 @@ export class UserHome extends React.Component {
   }
 
   handleChooseCategory(category) {
-    const { chooseCategory } = this.props
+    const {chooseCategory} = this.props
     chooseCategory(category)
     this.setState({
       choosingMode: true
@@ -64,19 +64,20 @@ export class UserHome extends React.Component {
 
   handleChooseMode(currentMode) {
     if (currentMode === 'partner') {
-      this.setState({ partnerMode: true })
+      this.setState({partnerMode: true})
     }
-    const { loadQuestions } = this.props
+    const {loadQuestions} = this.props
     //load questions dispatches a thunk to get the questions and  dispatch an action to put them on state and redirect the user to the play page
     loadQuestions(this.props.chosenCategory, currentMode)
     //can add more functionality here as needed
   }
 
   render() {
-    const { email } = this.props
+    const {username} = this.props
+
     return (
       <div>
-        <h3>Welcome, {email}</h3>
+        <h3>Welcome, {username}</h3>
         {!this.state.choosingCategory ? (
           <div>
             <button onClick={this.handlePlay}>Play</button>
@@ -106,9 +107,7 @@ export class UserHome extends React.Component {
             </button>
           </div>
         ) : null}
-        {this.state.partnerMode ? (
-          <AddGame />
-        ) : null}
+        {this.state.partnerMode ? <AddGame /> : null}
       </div>
     )
   }
@@ -119,8 +118,8 @@ export class UserHome extends React.Component {
  */
 const mapState = state => {
   return {
-    email: state.user.email,
-    chosenCategory: state.category
+    chosenCategory: state.category,
+    username: state.user.userName
   }
 }
 
@@ -138,5 +137,5 @@ export default connect(mapState, mapDispatch)(UserHome)
  * PROP TYPES
  */
 UserHome.propTypes = {
-  email: PropTypes.string
+  username: PropTypes.string
 }
