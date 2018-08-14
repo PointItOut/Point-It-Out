@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 
 const Scoreboard = props => {
   const opponent = props.opponent
@@ -15,8 +15,7 @@ const Scoreboard = props => {
             <h3>{opponent[name]}</h3>
           </div>
         )
-      })
-      }
+      })}
     </div>
   )
 }
