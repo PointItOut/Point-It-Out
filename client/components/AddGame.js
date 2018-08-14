@@ -74,7 +74,7 @@ const mapDispatchToProps = function (dispatch) {
 
 const mapState = state => {
     return {
-        games: state.game
+        games: state.game.games
     }
 }
 

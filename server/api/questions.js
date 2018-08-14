@@ -6,6 +6,7 @@ router.get('/', async (req, res, next) => {
     const questions = await Question.findAll({
       include: {model: Choice}
     })
+
     res.json(questions)
   } catch (err) {
     next(err)
@@ -15,7 +16,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:category', async (req, res, next) => {
   try {
     const category = req.params.category
-    const questions = await Question.findAll({
+    let questions = await Question.findAll({
       where: {category: category},
       include: {model: Choice}
     })
