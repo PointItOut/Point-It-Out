@@ -5,7 +5,6 @@ class Opentok extends React.Component {
   render() {
     const currentgame = this.props.currentgame
     const token = this.props.token
-    const user = this.props.user
     return (
       <OTSession
         apiKey="46169082"
@@ -16,8 +15,7 @@ class Opentok extends React.Component {
           properties={{
             // publishVideo,
             width: 300,
-            height: 300,
-            name: user.name
+            height: 300
           }}
         />
         <OTStreams>

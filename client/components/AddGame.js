@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { postGame, getGames } from '../store/game'
 import { withRouter } from 'react-router-dom';
+import socket from '../socket'
 
 
 class AddGame extends Component {
@@ -30,12 +31,14 @@ class AddGame extends Component {
         const gameName = this.state.newGame
         const gamesArray = this.props.games
         const existGame = gamesArray.find(game => game.name === gameName)
+        const username = this.props.user.userName
 
         if (existGame) {
             this.setState({ nameExist: true })
         }
         else {
             this.setState({ nameExist: false })
+            socket.emit('new-score', { username, total: 0 })
             await this.props.postGame(gameName);
             this.setState({ newGame: '' })
             this.props.history.push(`/game/${gameName}`)
@@ -74,7 +77,8 @@ const mapDispatchToProps = function (dispatch) {
 
 const mapState = state => {
     return {
-        games: state.game.games
+        games: state.game.games,
+        user: state.user
     }
 }
 
