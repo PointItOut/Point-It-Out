@@ -15,12 +15,13 @@ const gotQuestionsForCategory = questions => ({
 export const getQuestions = (chosenCategory, currentMode) => async dispatch => {
   try {
     const res = await axios.get(`/api/questions/${chosenCategory}`)
+
     const questionArr = res.data
     //Shuffeling the options
     for (let i = 0; i < questionArr.length; i++) {
       questionArr[i].choices = shuffleArray(questionArr[i].choices)
     }
-    console.log('SHUFFLED OPTIONS: ', questionArr)
+    //dispatching shuffled questions
     dispatch(gotQuestionsForCategory(shuffleArray(questionArr)))
     if (currentMode === 'solo') {
       history.push('/solo')
