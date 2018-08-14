@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getGames } from '../store/game'
-import Opentalk from './Opentalk'
+import { Opentalk } from './index'
 
 class PartnerMode extends Component {
     constructor() {

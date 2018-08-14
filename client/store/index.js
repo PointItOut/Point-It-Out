@@ -8,7 +8,7 @@ import questions from './questions'
 
 
 import game from './game'
-import currentQuestion from './CurrentQuestion'
+import currentQuestion from './currentQuestion'
 import score from './score'
 
 const reducer = combineReducers({ user, category, questions, currentQuestion, score, game })

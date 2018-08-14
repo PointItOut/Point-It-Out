@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
-import { render } from 'react-dom'
 import { Stage, Layer, Rect, Text, Circle } from 'react-konva'
 import Konva from 'konva'
 import Webcam from 'react-webcam'
 import Diffy from './diffy'
 
 import { connect } from 'react-redux'
-import { submitAnswer, setCurrentQuestion } from '../store/CurrentQuestion'
+import { submitAnswer, setCurrentQuestion } from '../store/currentQuestion'
 import { updateScore } from '../store/score';
 
-class CameraCanvas extends React.Component {
+class CameraCanvas extends Component {
   constructor() {
     super()
     this.state = {

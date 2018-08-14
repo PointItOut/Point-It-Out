@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import CameraCanvas from './CameraCanvas'
+import { CameraCanvas } from './index'
 
 class SoloMode extends Component {
   constructor() {
