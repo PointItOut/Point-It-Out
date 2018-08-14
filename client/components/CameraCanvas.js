@@ -64,7 +64,7 @@ class CameraCanvas extends Component {
     const xPositions = [0, 266, 533, 799]
 
     return (
-      <div className="video-container">
+      <div id="video-container">
         <Diffy />
         <Webcam />
         <Stage

@@ -46,3 +46,19 @@ video {
   -webkit-transform: rotateY(180deg); /* Safari and Chrome */
   -moz-transform: rotateY(180deg); /* Firefox */
 }
+
+.game-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#video-container {
+  flex-shrink: 0;
+  flex-basis: auto;
+}
+
+#game-sidebar {
+  flex-grow: 1;
+}
+
