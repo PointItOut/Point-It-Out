@@ -1,17 +1,18 @@
-import React, {Component} from 'react'
-import {Stage, Layer, Rect, Text, Circle} from 'react-konva'
+import React, { Component } from 'react'
+import { Stage, Layer, Rect, Text, Circle } from 'react-konva'
 import Konva from 'konva'
 import Webcam from 'react-webcam'
 import Diffy from './diffy'
+import { withRouter } from 'react-router-dom'
 
-import {connect} from 'react-redux'
-import {submitAnswer, setQuestion} from '../store/currentQuestion'
-import {updateScore} from '../store/score'
+import { connect } from 'react-redux'
+import { submitAnswer, setQuestion } from '../store/currentQuestion'
+import { updateScore } from '../store/score'
 
 class CameraCanvas extends Component {
   constructor() {
     super()
-    this.state = {loaded: false}
+    this.state = { loaded: false }
     this.nextQuestion = this.nextQuestion.bind(this)
   }
 
@@ -21,7 +22,7 @@ class CameraCanvas extends Component {
     // log Konva.Stage instance
     console.log(this.stageRef.getStage())
 
-    const {setNewQuestion, questions, submitUserGuess} = this.props
+    const { setNewQuestion, questions, submitUserGuess } = this.props
     setNewQuestion(questions[0]) // start with first question
     submitUserGuess(null) // to reset userguess to null
     this.setState({
@@ -30,7 +31,7 @@ class CameraCanvas extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {currentQuestion} = this.props
+    const { currentQuestion } = this.props
     const question = currentQuestion.question
     const options = question ? question.choices : []
     if (
@@ -58,7 +59,12 @@ class CameraCanvas extends Component {
     )
 
     if (wasCorrect) {
-      updateUserScore(score + 1)
+      if (this.props.location.pathname.includes(solo)) {
+        updateUserScore(score + 1, false)
+      }
+      else {
+        updateUserScore(score + 1, true)
+      }
     }
 
     if (question && currentQuestion.userGuess !== null) {
@@ -70,7 +76,7 @@ class CameraCanvas extends Component {
   }
 
   render() {
-    const {currentQuestion} = this.props
+    const { currentQuestion } = this.props
     const question = currentQuestion.question
     const options = question ? question.choices : undefined
     const xPositions = [0, 266, 533, 799]
@@ -121,7 +127,7 @@ class CameraCanvas extends Component {
             />
 
             {// option text boxes
-            options &&
+              options &&
               options.map((option, index) => {
                 return (
                   <Text
@@ -198,7 +204,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   submitUserGuess: guess => dispatch(submitAnswer(guess)),
   setNewQuestion: question => dispatch(setQuestion(question)),
-  updateUserScore: score => dispatch(updateScore(score))
+  updateUserScore: (score, partner) => dispatch(updateScore(score, partner))
 })
 
-export default connect(mapState, mapDispatch)(CameraCanvas)
+export default withRouter(connect(mapState, mapDispatch)(CameraCanvas))

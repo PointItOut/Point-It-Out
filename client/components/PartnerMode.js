@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {getGames} from '../store/game'
-import {Opentok} from './index'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { getGames } from '../store/game'
+import { Opentok, GameSidebar, CameraCanvas } from './index'
 
 class PartnerMode extends Component {
   constructor() {
@@ -21,13 +21,15 @@ class PartnerMode extends Component {
     return (
       <div>
         <h2>Partner Mode</h2>
+        <GameSidebar />
+        <CameraCanvas />
         <Opentok currentgame={currentgame} token={token} />
       </div>
     )
   }
 }
 
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function (dispatch) {
   return {
     updateGame: name => dispatch(updateGame(name)),
     getGames: () => dispatch(getGames())
