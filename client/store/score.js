@@ -2,7 +2,7 @@
 const UPDATE_SCORE = 'UPDATE_SCORE'
 
 // INITIAL STATE
-const initialState = { total: 0 }
+const initialState = 0
 
 // ACTION CREATORS
 export const updateScore = (total) => ({
@@ -14,7 +14,7 @@ export const updateScore = (total) => ({
 const reducer = (state = initialState, action) => {
   switch(action.type) {
     case UPDATE_SCORE:
-      return { total: action.total }
+      return action.total
     default:
       return state
   }
