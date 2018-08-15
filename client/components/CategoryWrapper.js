@@ -1,7 +1,11 @@
 import React, {Component} from 'react'
-import { connect } from 'react-redux'
-import CategoryChoices from './CategoryChoices';
-import { setCurrentCategory, retrievePrivateCategories, retrievePublicCategories } from '../store/categories'
+import {connect} from 'react-redux'
+import CategoryChoices from './CategoryChoices'
+import {
+  setCurrentCategory,
+  retrievePrivateCategories,
+  retrievePublicCategories
+} from '../store/categories'
 
 class CategoryWrapper extends Component {
   constructor() {
@@ -12,7 +16,7 @@ class CategoryWrapper extends Component {
   }
 
   componentDidMount() {
-    const { fetchPublicCategories, fetchUserCategories, user } = this.props
+    const {fetchPublicCategories, fetchUserCategories, user} = this.props
     fetchPublicCategories()
     fetchUserCategories(user.id)
     this.setState({
@@ -21,16 +25,24 @@ class CategoryWrapper extends Component {
   }
 
   render() {
-    const { categories, handleChooseCategory } = this.props
+    const {categories, handleChooseCategory} = this.props
     if (this.state.loaded) {
       return (
         <div>
-          <button>Make your own Category!</button>
+          <button type="button" className="btn btn-info">
+            Make your own Category!
+          </button>
 
           <h2>Public Categories:</h2>
-          <CategoryChoices categories={categories.public} chooseCategory={handleChooseCategory} />
+          <CategoryChoices
+            categories={categories.public}
+            chooseCategory={handleChooseCategory}
+          />
           <h2>Private Categories:</h2>
-          <CategoryChoices categories={categories.private} chooseCategory={handleChooseCategory} />
+          <CategoryChoices
+            categories={categories.private}
+            chooseCategory={handleChooseCategory}
+          />
         </div>
       )
     } else {

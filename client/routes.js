@@ -36,7 +36,10 @@ class Routes extends Component {
           {isLoggedIn && (
             <Switch>
               {/* Routes placed here are only available after logging in */}
-              <Route path="/home/:categoryId" component={CategoryOverview} />
+              <Route
+                path="/categories/:categoryId"
+                component={CategoryOverview}
+              />
               <Route path="/home" component={UserHome} />
               <Route path="/solo" component={SoloMode} />
               <Route path="/game/:name" component={PartnerMode} />

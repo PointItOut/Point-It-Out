@@ -48,10 +48,7 @@ class AddGame extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label htmlFor="newGame">
-              Create New Game{' '}
-              {this.state.nameExist && <span>name is exist</span>}
-            </label>
+            <label htmlFor="newGame">Create New Game</label>
             <input
               type="text"
               name="newGame"
@@ -59,7 +56,12 @@ class AddGame extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <button type="submit">Play</button>
+          <button type="submit" className="btn btn-info">
+            Create
+          </button>
+          {this.state.nameExist && (
+            <span>This name is in use, please choose a new name</span>
+          )}
         </form>
       </div>
     )
