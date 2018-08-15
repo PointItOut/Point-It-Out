@@ -14,50 +14,46 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         className="navbar-toggler"
         type="button"
         data-toggle="collapse"
-        data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
+        data-target="#navbarLinks"
+        aria-controls="navbarLinks"
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
         <span className="navbar-toggler-icon" />
       </button>
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <div className="collapse navbar-collapse" id="navbarLinks">
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item">Home</li>
-          <li className="nav-item">Home</li>
-          {/* {isLoggedIn ? (
-            <span>
-              <li className="nav-item">
-                {/* The navbar will show these links after you log in */}
-          {/* <Link to="/home" className="nav-link"> */}
-          {/* Home */}
-          {/* </Link> */}
-          {/* </li>
-              <li className="nav-item">
-                <a href="#" onClick={handleClick} className="nav-link">
-                  Logout
-                </a>
-              </li>
-            </span> */}
-          {/* ) : ( */}
-          {/* <span>
-              {/* The navbar will show these links before you log in */}
-          {/* <li className="nav-item">
-                <Link to="/login" className="nav-link">
-                  Login
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/signup" className="nav-link">
-                  Sign Up
-                </Link>
-              </li>
-            </span>
-          )} */}
+          {/* if user is logged in display the link to start playing otherwise link them to sign up */}
+          {isLoggedIn ? (
+            <li className="nav-item">
+              <Link to="/home" className="nav-link">
+                Play
+              </Link>
+            </li>
+          ) : (
+            <li className="nav-item">
+              <Link to="/signup" className="nav-link">
+                Sign Up
+              </Link>
+            </li>
+          )}
+          {/* if user is logged in display the link to log out otherwise link them to log in */}
+          {isLoggedIn ? (
+            <li className="nav-item">
+              <a href="#" onClick={handleClick} className="nav-link">
+                Logout
+              </a>
+            </li>
+          ) : (
+            <li className="nav-item">
+              <Link to="/login" className="nav-link">
+                Login
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </nav>
-    <hr />
   </div>
 )
 
