@@ -51,7 +51,7 @@ function shuffleArray(array) {
   let modified = [...array]
   for (let i = modified.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
-    ;[modified[i], modified[j]] = [modified[j], modified[i]]
+      ;[modified[i], modified[j]] = [modified[j], modified[i]]
   }
   return modified
 }
