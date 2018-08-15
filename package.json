@@ -43,6 +43,7 @@
     "express": "^4.16.3",
     "express-session": "^1.15.1",
     "history": "^4.6.3",
+    "jsdom": "^11.12.0",
     "konva": "^2.1.8",
     "morgan": "^1.8.1",
     "opentok": "^2.6.2",

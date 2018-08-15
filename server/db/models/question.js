@@ -6,9 +6,6 @@ const Question = db.define('questions', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {notEmpty: true}
-  },
-  category: {
-    type: Sequelize.ENUM('history', 'art', 'geography')
   }
 })
 
