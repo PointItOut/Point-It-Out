@@ -22,7 +22,7 @@ module.exports = io => {
       }
 
       socket.emit('questions', questions[Game])
-      socket.broadcast.emit('questions', questions[Game])
+      // socket.broadcast.emit('questions', questions[Game])
     })
 
 
