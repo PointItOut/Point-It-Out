@@ -9,8 +9,10 @@ import {
   SoloMode,
   PartnerMode,
   CategoryOverview,
+  Lobby,
   Splash
 } from './components'
+
 import {me} from './store'
 // import { Stage, Layer, Rect, Text } from 'react-konva'
 // import MyApp from './components/camera'
@@ -42,7 +44,9 @@ class Routes extends Component {
               />
               <Route path="/home" component={UserHome} />
               <Route path="/solo" component={SoloMode} />
-              <Route path="/game/:name" component={PartnerMode} />
+              <Route exact path="/game/:name" component={Lobby} />
+              <Route path="/game/:name/start" component={PartnerMode} />
+
               <Route component={Splash} />
             </Switch>
           )}
