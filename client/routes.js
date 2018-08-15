@@ -42,7 +42,8 @@ class Routes extends Component {
               <Route path="/home/:categoryId" component={CategoryOverview} />
               <Route path="/home" component={UserHome} />
               <Route path="/solo" component={SoloMode} />
-              <Route path="/game/:name" component={Lobby} />
+              <Route exact path="/game/:name" component={Lobby} />
+              <Route path="/game/:name/start" component={PartnerMode} />
             </Switch>
           )}
           {/* Displays our Login component as a fallback */}
