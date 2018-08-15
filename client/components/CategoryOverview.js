@@ -52,6 +52,8 @@ class CategoryOverview extends Component {
     const { categoryDisplayed } = this.state
     const { currentCategory } = this.props
 
+    console.log('**** categoryDisplayed', categoryDisplayed)
+
     if (categoryDisplayed) {
       return (
         <div>

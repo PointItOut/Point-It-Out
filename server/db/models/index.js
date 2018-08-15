@@ -3,7 +3,7 @@ const Question = require('./question')
 const Choice = require('./choice')
 const Game = require('./Game')
 const Category = require('./category')
-const User_Category = require('./user_category')
+const UserCategory = require('./user_category')
 // foreign key on Choice
 Choice.belongsTo(Question)
 Question.hasMany(Choice)
@@ -19,14 +19,14 @@ Category.hasMany(Question)
 // foreign 'authorId' key on Category
 Category.belongsTo(User, {as: 'author'})
 // join table for users subscriptions to categories
-User.belongsToMany(Category, {through: 'users_categories'})
-Category.belongsToMany(User, {through: 'users_categories'})
+User.belongsToMany(Category, {through: 'UserCategory'})
+Category.belongsToMany(User, {through: 'UserCategory'})
 
 module.exports = {
   User,
   Question,
   Choice,
   Game,
-  User_Category,
+  UserCategory,
   Category
 }
