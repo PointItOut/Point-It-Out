@@ -27,8 +27,6 @@ export const getQuestions = (chosenCategory, currentMode) => async dispatch => {
     dispatch(gotQuestionsForCategory(shuffledQuestions))
     if (currentMode === 'solo') {
       history.push('/solo')
-    } else {
-      socket.emit('questions', shuffledQuestions)
     }
   } catch (err) {
     console.error(err)

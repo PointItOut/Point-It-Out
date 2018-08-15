@@ -1,6 +1,6 @@
 module.exports = io => {
   let list = {}
-  let questions = []
+  let questions = {}
 
   io.on('connection', socket => {
     console.log(`A socket connection to the server has been made: ${socket.id}`)
@@ -15,11 +15,14 @@ module.exports = io => {
     })
 
     socket.on('questions', payload => {
-      if (questions.length === 0) {
-        questions = payload
+      const Game = payload.gameName
+      if (!questions[Game]) {
+        const currentquestions = payload.questions
+        questions[Game] = currentquestions
       }
-      socket.emit('questions', questions)
-      socket.broadcast.emit('questions', questions)
+
+      socket.emit('questions', questions[Game])
+      socket.broadcast.emit('questions', questions[Game])
     })
 
 
