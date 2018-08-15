@@ -1,3 +1,5 @@
+import socket from '../socket'
+
 // ACTION TYPES
 const UPDATE_SCORE = 'UPDATE_SCORE'
 
@@ -5,14 +7,20 @@ const UPDATE_SCORE = 'UPDATE_SCORE'
 const initialState = 0
 
 // ACTION CREATORS
-export const updateScore = (total) => ({
-  type: UPDATE_SCORE,
-  total
-})
+export const updateScore = (total, partner, username, gameName) => {
+  console.log(username)
+  if (partner === true) {
+    socket.emit('new-score', { total, username, gameName })
+  }
+  return {
+    type: UPDATE_SCORE,
+    total
+  }
+}
 
 // REDUCER
 const reducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case UPDATE_SCORE:
       return action.total
     default:

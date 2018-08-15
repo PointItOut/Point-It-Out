@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getGames} from '../store/game'
-import {Opentok} from './index'
+import {Opentok, GameSidebar, CameraCanvas} from './index'
+import {getQuestions} from '../store/questions'
 
 class PartnerMode extends Component {
   constructor() {
@@ -19,9 +20,10 @@ class PartnerMode extends Component {
     const token = this.props.token
     const currentgame = games.find(game => game.name === name)
     return (
-      <div>
-        <h2>Partner Mode</h2>
-        <Opentok currentgame={currentgame} token={token} user={user} />
+      <div className="game-wrapper">
+        <CameraCanvas questions={this.props.questions} />
+        <GameSidebar />
+        <Opentok currentgame={currentgame} token={token} />
       </div>
     )
   }
@@ -38,7 +40,8 @@ const mapState = state => {
     category: state.category,
     games: state.game.games,
     user: state.user,
-    token: state.game.token
+    token: state.game.token,
+    questions: state.questions
   }
 }
 
