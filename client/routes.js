@@ -9,10 +9,11 @@ import {
   SoloMode,
   PartnerMode,
   CategoryOverview,
-  Lobby
+  Lobby,
+  Splash
 } from './components'
-import {me} from './store'
 
+import {me} from './store'
 // import { Stage, Layer, Rect, Text } from 'react-konva'
 // import MyApp from './components/camera'
 
@@ -29,8 +30,6 @@ class Routes extends Component {
 
     return (
       <div>
-        {/* <MyApp /> */}
-        {/* <CameraCanvas /> */}
         <Switch>
           {/* Routes placed here are available to all visitors */}
 
@@ -39,15 +38,20 @@ class Routes extends Component {
           {isLoggedIn && (
             <Switch>
               {/* Routes placed here are only available after logging in */}
-              <Route path="/home/:categoryId" component={CategoryOverview} />
+              <Route
+                path="/categories/:categoryId"
+                component={CategoryOverview}
+              />
               <Route path="/home" component={UserHome} />
               <Route path="/solo" component={SoloMode} />
               <Route exact path="/game/:name" component={Lobby} />
               <Route path="/game/:name/start" component={PartnerMode} />
+
+              <Route component={Splash} />
             </Switch>
           )}
-          {/* Displays our Login component as a fallback */}
-          <Route component={Login} />
+          {/* Displays our splash page component as a fallback */}
+          <Route component={Splash} />
         </Switch>
       </div>
     )

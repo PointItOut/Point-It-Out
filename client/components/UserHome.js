@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {setCurrentCategory} from '../store/categories'
 import {getQuestions} from '../store/questions'
-import { AddGame, JoinGame, CategoryWrapper, CategoryOverview } from './index'
+import {AddGame, JoinGame, CategoryWrapper, CategoryOverview} from './index'
 
 /**
  * COMPONENT
@@ -40,7 +40,7 @@ export class UserHome extends React.Component {
   }
 
   handleChooseCategory(category) {
-    const { chooseCategory } = this.props
+    const {chooseCategory} = this.props
     chooseCategory(category)
     this.setState({
       choosingMode: true
@@ -48,24 +48,32 @@ export class UserHome extends React.Component {
   }
 
   render() {
-    const { username } = this.props
-    const { choosingCategory, choosingMode, partnerMode } = this.state
+    const {username} = this.props
+    const {choosingCategory, choosingMode, partnerMode} = this.state
 
     return (
-      <div>
+      <div className="container">
         <h3>Welcome, {username}</h3>
         {!choosingCategory ? (
           <div>
-            <button onClick={this.handlePlay}>Play</button>
+            <button
+              type="button"
+              onClick={this.handlePlay}
+              className="btn btn-info"
+            >
+              Play
+            </button>
             <JoinGame />
           </div>
         ) : null}
 
-        {!choosingMode && choosingCategory
-          ? <CategoryWrapper handleChooseCategory={this.handleChooseCategory} />
-          : null}
+        {!choosingMode && choosingCategory ? (
+          <CategoryWrapper handleChooseCategory={this.handleChooseCategory} />
+        ) : null}
 
-        {choosingMode ? <CategoryOverview chooseMode={this.handleChooseMode} /> : null}
+        {choosingMode ? (
+          <CategoryOverview chooseMode={this.handleChooseMode} />
+        ) : null}
 
         {partnerMode ? <AddGame /> : null}
       </div>
@@ -97,5 +105,5 @@ export default connect(mapState, mapDispatch)(UserHome)
  * PROP TYPES
  */
 UserHome.propTypes = {
-  username: PropTypes.string
+  username: PropTypes.string.isRequired
 }
