@@ -70,3 +70,7 @@ video {
 button {
   margin: 1em;
 }
+
+button a {
+  color: white;
+}

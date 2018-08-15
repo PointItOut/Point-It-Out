@@ -3,17 +3,17 @@ import React from 'react'
 const Instructions = props => {
   return (
     <div
-      class="modal fade"
+      className="modal fade"
       id="instructionModal"
-      tabindex="-1"
+      tabIndex="-1"
       role="dialog"
       aria-labelledby="instructionModal"
       aria-hidden="true"
     >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">
+      <div className="modal-dialog" role="document">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title" id="exampleModalLabel">
               How to Play
             </h5>
             <button

@@ -40,6 +40,7 @@ class Routes extends Component {
               <Route path="/home" component={UserHome} />
               <Route path="/solo" component={SoloMode} />
               <Route path="/game/:name" component={PartnerMode} />
+              <Route component={Splash} />
             </Switch>
           )}
           {/* Displays our splash page component as a fallback */}
