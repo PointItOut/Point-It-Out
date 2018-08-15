@@ -37,28 +37,6 @@ class CategoryOverview extends Component {
     }
   }
 
-  renderModeOptions() {
-    const {chooseMode} = this.props
-    return (
-      <div>
-        <button
-          type="button"
-          className="btn btn-info"
-          onClick={() => chooseMode('solo')}
-        >
-          Challenge Yourself!
-        </button>
-        <button
-          type="button"
-          className="btn btn-info"
-          onClick={() => chooseMode('partner')}
-        >
-          Challenge a Friend!
-        </button>
-      </div>
-    )
-  }
-
   render() {
     const {categoryDisplayed} = this.state
     const {currentCategory} = this.props
@@ -66,14 +44,16 @@ class CategoryOverview extends Component {
     if (categoryDisplayed) {
       return (
         <div>
-          {currentCategory && currentCategory.id === categoryDisplayed.id
+          {/* {currentCategory && currentCategory.id === categoryDisplayed.id
             ? this.renderModeOptions()
-            : null}
+            : null} */}
 
           {currentCategory &&
           !categoryDisplayed.public &&
           currentCategory.id !== categoryDisplayed.id ? (
-            <button>Add to my account</button>
+            <button type="button" className="btn btn-info">
+              Add to my account
+            </button>
           ) : null}
           <h1>{categoryDisplayed.name}</h1>
           <h3>{categoryDisplayed.questionTotal} questions</h3>

@@ -34,9 +34,6 @@ export class UserHome extends React.Component {
     const {loadQuestions} = this.props
     //load questions dispatches a thunk to get the questions and  dispatch an action to put them on state and redirect the user to the play page
     loadQuestions(this.props.chosenCategory, currentMode)
-    //can add more functionality here as needed
-
-    // this.props.history.push(`/${currentMode}`)
   }
 
   handleChooseCategory(category) {
