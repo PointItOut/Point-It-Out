@@ -62,6 +62,7 @@ class CameraCanvas extends Component {
       if (this.props.location.pathname.includes('solo')) {
         updateUserScore(score + 1, false)
       } else {
+        console.log('question', currentQuestion)
         const gameName = this.props.match.params.name
         updateUserScore(score + 1, true, this.props.user.userName, gameName)
       }
