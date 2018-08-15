@@ -4,34 +4,24 @@ const Choice = require('./choice')
 const Game = require('./Game')
 const Category = require('./category')
 const User_Category = require('./user_category')
-
+// foreign key on Choice
 Choice.belongsTo(Question)
 Question.hasMany(Choice)
-
+// foreign key on User
 User.belongsTo(Game)
 Game.hasMany(User)
-
-// Category.belongsTo(User, {as: 'author'})
+// foreign key on Game
+Game.belongsTo(Category, { constraints: false })
+Category.hasMany(Game, { constraints: false })
+// foreign key on Question
+Question.belongsTo(Category)
+Category.hasMany(Question)
+// foreign 'authorId' key on Category
+Category.belongsTo(User, {as: 'author'})
+// join table for users subscriptions to categories
 User.belongsToMany(Category, {through: 'users_categories'})
 Category.belongsToMany(User, {through: 'users_categories'})
 
-Game.belongsTo(Category)
-
-Question.belongsTo(Category)
-
-/**
- * If we had any associations to make, this would be a great place to put them!
- * ex. if we had another model called BlogPost, we might say:
- *
- *    BlogPost.belongsTo(User)
- */
-
-/**
- * We'll export all of our models here, so that any time a module needs a model,
- * we can just require it from 'db/models'
- * for example, we can say: const {User} = require('../db/models')
- * instead of: const User = require('../db/models/user')
- */
 module.exports = {
   User,
   Question,
