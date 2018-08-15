@@ -62,7 +62,8 @@ class CameraCanvas extends Component {
       if (this.props.location.pathname.includes('solo')) {
         updateUserScore(score + 1, false)
       } else {
-        updateUserScore(score + 1, true, this.props.user.userName)
+        const gameName = this.props.match.params.name
+        updateUserScore(score + 1, true, this.props.user.userName, gameName)
       }
     }
 
@@ -222,7 +223,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   submitUserGuess: guess => dispatch(submitAnswer(guess)),
   setNewQuestion: question => dispatch(setQuestion(question)),
-  updateUserScore: (score, partner, username) => dispatch(updateScore(score, partner, username))
+  updateUserScore: (score, partner, username, gameName) => dispatch(updateScore(score, partner, username, gameName))
 })
 
 export default withRouter(connect(mapState, mapDispatch)(CameraCanvas))

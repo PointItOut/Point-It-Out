@@ -38,7 +38,7 @@ class AddGame extends Component {
         }
         else {
             this.setState({ nameExist: false })
-            socket.emit('new-score', { username, total: 0 })
+            socket.emit('new-score', { username, total: 0, gameName })
             await this.props.postGame(gameName);
             this.setState({ newGame: '' })
             this.props.history.push(`/game/${gameName}`)
