@@ -13,11 +13,11 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:category', async (req, res, next) => {
+router.get('/:categoryId', async (req, res, next) => {
   try {
-    const category = req.params.category
+    const categoryId = req.params.categoryId
     let questions = await Question.findAll({
-      where: {category: category},
+      where: {categoryId: +categoryId},
       include: {model: Choice}
     })
     res.json(questions)

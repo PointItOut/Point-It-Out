@@ -15,7 +15,8 @@ export const gotQuestionsForCategory = questions => ({
 
 export const getQuestions = (chosenCategory, currentMode) => async dispatch => {
   try {
-    const res = await axios.get(`/api/questions/${chosenCategory}`)
+    console.log('=*= inside getQuestions thunk')
+    const res = await axios.get(`/api/questions/${chosenCategory.id}`)
 
     const questionArr = res.data
     //Shuffeling the options

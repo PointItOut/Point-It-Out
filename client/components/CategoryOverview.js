@@ -14,19 +14,36 @@ class CategoryOverview extends Component {
   }
 
   async componentDidMount() {
-    // fetch category information based on the id in the url
-    const { categoryId } = this.props.match.params
-    const { data } = await axios.get(`/api/categories/${categoryId}`)
-    this.setState({
-      categoryDisplayed: data
-    })
+    // if we are navigating from the userhome, there is no match.params so we use the 'currentcategory'
+    // if there is match.params, we know we navigated there ourselves by typing it into the url bar, so we use the id in the url
+    const { match, currentCategory } = this.props
+    const categoryId = match ? match.params.categoryId : currentCategory.id
+
+    if (categoryId) {
+      const { data } = await axios.get(`/api/categories/${categoryId}`)
+      this.setState({
+        categoryDisplayed: data
+      })
+    }
+  }
+
+  async componentDidUpdate(prevProps) {
+    // sometimes we try to componentDidMount before we have the new currentcategory
+    const { match, currentCategory } = this.props
+    if (prevProps.currentCategory !== currentCategory) {
+      const { data } = await axios.get(`/api/categories/${currentCategory.id}`)
+      this.setState({
+        categoryDisplayed: data
+      })
+    }
   }
 
   renderModeOptions() {
+    const { chooseMode } = this.props
     return (
       <div>
-        <button>Challenge Yourself!</button>
-        <button>Challenge a Friend!</button>
+        <button onClick={() => chooseMode('solo')} >Challenge Yourself!</button>
+        <button onClick={() => chooseMode('partner')}>Challenge a Friend!</button>
       </div>
     )
   }
@@ -34,6 +51,7 @@ class CategoryOverview extends Component {
   render() {
     const { categoryDisplayed } = this.state
     const { currentCategory } = this.props
+
     if (categoryDisplayed) {
       return (
         <div>
