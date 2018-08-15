@@ -37,7 +37,9 @@ class AddGame extends Component {
             this.setState({ nameExist: true })
         }
         else {
+            const questions = this.props.questions
             this.setState({ nameExist: false })
+            socket.emit('questions', { questions, gameName })
             socket.emit('new-score', { username, total: 0, gameName })
             await this.props.postGame(gameName);
             this.setState({ newGame: '' })
@@ -78,7 +80,8 @@ const mapDispatchToProps = function (dispatch) {
 const mapState = state => {
     return {
         games: state.game.games,
-        user: state.user
+        user: state.user,
+        questions: state.questions
     }
 }
 

@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
-import {gotList} from './store/opponent'
-import {gotQuestionsForCategory} from './store/questions'
+import { gotList } from './store/opponent'
+import { gotQuestionsForCategory } from './store/questions'
 const socket = io(window.location.origin)
 import store from './store'
 
@@ -25,6 +25,7 @@ socket.on('new-score', newlist => {
 })
 
 socket.on('questions', payload => {
+  console.log('im here', payload)
   store.dispatch(gotQuestionsForCategory(payload))
 })
 
