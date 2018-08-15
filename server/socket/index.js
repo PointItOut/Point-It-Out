@@ -17,11 +17,16 @@ module.exports = io => {
       socket.broadcast.emit('questions', payload)
     })
 
+
     socket.on('new-score', payload => {
+      const Game = payload.gameName
+      socket.join(Game);
       const name = payload.username
-      list[name] = payload.total
-      socket.broadcast.emit('new-score', list)
-      socket.emit('new-score', list)
+      if (!list[Game]) {
+        list[Game] = {}
+      }
+      list[Game][name] = payload.total
+      io.in(Game).emit('new-score', list[Game]);
     })
 
     socket.on('disconnect', () => {

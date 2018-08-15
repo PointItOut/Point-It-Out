@@ -7,10 +7,10 @@ const UPDATE_SCORE = 'UPDATE_SCORE'
 const initialState = 0
 
 // ACTION CREATORS
-export const updateScore = (total, partner, username) => {
+export const updateScore = (total, partner, username, gameName) => {
   console.log(username)
   if (partner === true) {
-    socket.emit('new-score', { total, username })
+    socket.emit('new-score', { total, username, gameName })
   }
   return {
     type: UPDATE_SCORE,
