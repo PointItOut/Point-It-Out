@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {setCategory} from '../store/category'
+import {setCurrentCategory} from '../store/categories'
 import {getQuestions} from '../store/questions'
-import { AddGame, JoinGame } from './index'
+import { AddGame, JoinGame, CategoryWrapper, CategoryOverview } from './index'
 
 /**
  * COMPONENT
@@ -17,47 +17,13 @@ export class UserHome extends React.Component {
       partnerMode: false
     }
     this.handlePlay = this.handlePlay.bind(this)
-    this.renderCategoryChoices = this.renderCategoryChoices.bind(this)
-    this.handleChooseCategory = this.handleChooseCategory.bind(this)
     this.handleChooseMode = this.handleChooseMode.bind(this)
+    this.handleChooseCategory = this.handleChooseCategory.bind(this)
   }
 
   handlePlay() {
     this.setState({
       choosingCategory: true
-    })
-  }
-
-  renderCategoryChoices() {
-    const {handleChooseCategory} = this
-    return (
-      <div>
-        <button
-          id="btn-geography"
-          onClick={() => handleChooseCategory('geography')}
-        >
-          geography
-        </button>
-
-        <button id="btn-art" onClick={() => handleChooseCategory('art')}>
-          art
-        </button>
-
-        <button
-          id="btn-history"
-          onClick={() => handleChooseCategory('history')}
-        >
-          history
-        </button>
-      </div>
-    )
-  }
-
-  handleChooseCategory(category) {
-    const {chooseCategory} = this.props
-    chooseCategory(category)
-    this.setState({
-      choosingMode: true
     })
   }
 
@@ -69,44 +35,39 @@ export class UserHome extends React.Component {
     //load questions dispatches a thunk to get the questions and  dispatch an action to put them on state and redirect the user to the play page
     loadQuestions(this.props.chosenCategory, currentMode)
     //can add more functionality here as needed
+
+    // this.props.history.push(`/${currentMode}`)
+  }
+
+  handleChooseCategory(category) {
+    const { chooseCategory } = this.props
+    chooseCategory(category)
+    this.setState({
+      choosingMode: true
+    })
   }
 
   render() {
-    const {username} = this.props
+    const { username } = this.props
+    const { choosingCategory, choosingMode, partnerMode } = this.state
 
     return (
       <div>
         <h3>Welcome, {username}</h3>
-        {!this.state.choosingCategory ? (
+        {!choosingCategory ? (
           <div>
             <button onClick={this.handlePlay}>Play</button>
             <JoinGame />
           </div>
         ) : null}
 
-        {!this.state.choosingMode && this.state.choosingCategory
-          ? this.renderCategoryChoices()
+        {!choosingMode && choosingCategory
+          ? <CategoryWrapper handleChooseCategory={this.handleChooseCategory} />
           : null}
 
-        {this.state.choosingMode ? (
-          <div>
-            <button
-              onClick={() => {
-                this.handleChooseMode('partner')
-              }}
-            >
-              Challenge a Friend
-            </button>
-            <button
-              onClick={() => {
-                this.handleChooseMode('solo')
-              }}
-            >
-              Challenge Yourself
-            </button>
-          </div>
-        ) : null}
-        {this.state.partnerMode ? <AddGame /> : null}
+        {choosingMode ? <CategoryOverview chooseMode={this.handleChooseMode} /> : null}
+
+        {partnerMode ? <AddGame /> : null}
       </div>
     )
   }
@@ -117,14 +78,14 @@ export class UserHome extends React.Component {
  */
 const mapState = state => {
   return {
-    chosenCategory: state.category,
+    chosenCategory: state.categories.current,
     username: state.user.userName
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    chooseCategory: category => dispatch(setCategory(category)),
+    chooseCategory: category => dispatch(setCurrentCategory(category)),
     loadQuestions: (category, currentMode) =>
       dispatch(getQuestions(category, currentMode))
   }

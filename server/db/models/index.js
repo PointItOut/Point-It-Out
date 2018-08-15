@@ -11,9 +11,13 @@ Question.hasMany(Choice)
 User.belongsTo(Game)
 Game.hasMany(User)
 
-Category.belongsTo(User, {as: 'author'})
+// Category.belongsTo(User, {as: 'author'})
 User.belongsToMany(Category, {through: 'users_categories'})
 Category.belongsToMany(User, {through: 'users_categories'})
+
+Game.belongsTo(Category)
+
+Question.belongsTo(Category)
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -32,5 +36,7 @@ module.exports = {
   User,
   Question,
   Choice,
-  Game
+  Game,
+  User_Category,
+  Category
 }
