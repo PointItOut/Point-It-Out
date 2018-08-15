@@ -34,6 +34,7 @@ class JoinGame extends Component {
       this.setState({ nameExist: false })
     } else {
       this.setState({ nameExist: true })
+      socket.emit('questions', { gameName })
       socket.emit('new-score', { username, total: 0, gameName })
       await this.props.updateGame(gameName)
       this.setState({ joinGame: '' })
