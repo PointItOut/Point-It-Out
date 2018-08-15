@@ -1,9 +1,17 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { withRouter, Route, Switch } from 'react-router-dom'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, SoloMode, PartnerMode, CategoryOverview } from './components'
-import { me } from './store'
+import {
+  Login,
+  Signup,
+  UserHome,
+  SoloMode,
+  PartnerMode,
+  CategoryOverview,
+  Splash
+} from './components'
+import {me} from './store'
 // import { Stage, Layer, Rect, Text } from 'react-konva'
 // import MyApp from './components/camera'
 
@@ -16,12 +24,10 @@ class Routes extends Component {
   }
 
   render() {
-    const { isLoggedIn } = this.props
+    const {isLoggedIn} = this.props
 
     return (
       <div>
-        {/* <MyApp /> */}
-        {/* <CameraCanvas /> */}
         <Switch>
           {/* Routes placed here are available to all visitors */}
 
@@ -36,8 +42,8 @@ class Routes extends Component {
               <Route path="/game/:name" component={PartnerMode} />
             </Switch>
           )}
-          {/* Displays our Login component as a fallback */}
-          <Route component={Login} />
+          {/* Displays our splash page component as a fallback */}
+          <Route component={Splash} />
         </Switch>
       </div>
     )

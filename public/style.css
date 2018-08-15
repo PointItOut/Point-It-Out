@@ -66,3 +66,7 @@ video {
   margin-left: 1em;
   border-radius: 50%;
 }
+
+button {
+  margin: 1em;
+}
