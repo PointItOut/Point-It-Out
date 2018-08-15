@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Category, User_Category, User} = require('../db/models')
+const {Category, User_Category, User, Question} = require('../db/models')
 
 // GET public categories
 router.get('/public', async (req, res, next) => {
@@ -30,7 +30,7 @@ router.get('/:categoryId/scores', async (req, res, next) => {
       where: {
         categoryId: +req.params.categoryId
       },
-      include: [{ model: User }]
+      // include: [{ model: User }]
     })
 
     const topTenScores = scoreInstances.sort((a, b) => {
@@ -44,6 +44,26 @@ router.get('/:categoryId/scores', async (req, res, next) => {
     }).slice(0, 10)
 
     res.json(topTenScores)
+  } catch (err) { next(err) }
+})
+
+// GET category by id
+router.get('/:categoryId', async (req, res, next) => {
+  try {
+    // want to includ the top scores, right?
+    const category = await Category.findById(+req.params.categoryId)
+    const questions = await Question.findAll({
+      where: {
+        categoryId: category.id
+      }
+    })
+    const responseObject = {
+      name: category.name,
+      id: category.id,
+      public: category.public,
+      questionTotal: questions.length
+    }
+    res.json(responseObject)
   } catch (err) { next(err) }
 })
 

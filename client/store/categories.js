@@ -1,4 +1,5 @@
 import axios from 'axios'
+import history from '../history'
 
 // ACTION TYPES
 const SET_CATEGORY = 'SET_CATEGORY'
@@ -34,6 +35,7 @@ export const setCurrentCategory = category => async dispatch => {
     // we want to return a category object with topScores on it
     const { data } = await axios.get(`/api/categories/${category.id}/scores`)
     const categoryObject = { ...category, topScores: data }
+    history.push(`/home/${category.id}`)
     dispatch(setCategory(categoryObject))
   } catch (err) { console.error(err) }
 }

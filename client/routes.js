@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, SoloMode, PartnerMode } from './components'
+import { Login, Signup, UserHome, SoloMode, PartnerMode, CategoryOverview } from './components'
 import { me } from './store'
 // import { Stage, Layer, Rect, Text } from 'react-konva'
 // import MyApp from './components/camera'
@@ -30,6 +30,7 @@ class Routes extends Component {
           {isLoggedIn && (
             <Switch>
               {/* Routes placed here are only available after logging in */}
+              <Route path="/home/:categoryId" component={CategoryOverview} />
               <Route path="/home" component={UserHome} />
               <Route path="/solo" component={SoloMode} />
               <Route path="/game/:name" component={PartnerMode} />

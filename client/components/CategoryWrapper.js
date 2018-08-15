@@ -9,6 +9,7 @@ class CategoryWrapper extends Component {
     this.state = {
       loaded: false
     }
+    this.handleChooseCategory = this.handleChooseCategory.bind(this)
   }
 
   componentDidMount() {
@@ -20,17 +21,23 @@ class CategoryWrapper extends Component {
     })
   }
 
+  handleChooseCategory(category) {
+    const { chooseCategory } = this.props
+    chooseCategory(category)
+    // history.push?
+  }
+
   render() {
-    const { categories, chooseCategory } = this.props
+    const { categories } = this.props
     if (this.state.loaded) {
       return (
         <div>
           <button>Make your own Category!</button>
 
           <h2>Public Categories:</h2>
-          <CategoryChoices categories={categories.public} chooseCategory={chooseCategory} />
+          <CategoryChoices categories={categories.public} chooseCategory={this.handleChooseCategory} />
           <h2>Private Categories:</h2>
-          <CategoryChoices categories={categories.private} chooseCategory={chooseCategory} />
+          <CategoryChoices categories={categories.private} chooseCategory={this.handleChooseCategory} />
         </div>
       )
     } else {
@@ -44,10 +51,13 @@ const mapState = state => ({
   user: state.user
 })
 
+//currently, the category gets set but it doesn't update the UserHome state...
 const mapDispatch = dispatch => ({
-  chooseCategory: category => dispatch(setCurrentCategory(category)),
+  chooseCategory: category => {
+    dispatch(setCurrentCategory(category))
+  },
   fetchPublicCategories: () => dispatch(retrievePublicCategories()),
   fetchUserCategories: userId => dispatch(retrievePrivateCategories(userId))
 })
 
-connect(mapState, mapDispatch)(CategoryWrapper)
+export default connect(mapState, mapDispatch)(CategoryWrapper)

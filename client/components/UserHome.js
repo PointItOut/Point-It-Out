@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {setCategory} from '../store/categories'
+import {setCurrentCategory} from '../store/categories'
 import {getQuestions} from '../store/questions'
-import { AddGame, JoinGame } from './index'
+import { AddGame, JoinGame, CategoryWrapper } from './index'
 
 /**
  * COMPONENT
@@ -89,7 +89,7 @@ export class UserHome extends React.Component {
         ) : null}
 
         {!this.state.choosingMode && this.state.choosingCategory
-          ? this.renderCategoryChoices()
+          ? <CategoryWrapper />
           : null}
 
         {this.state.choosingMode ? (
@@ -128,7 +128,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    chooseCategory: category => dispatch(setCategory(category)),
+    chooseCategory: category => dispatch(setCurrentCategory(category)),
     loadQuestions: (category, currentMode) =>
       dispatch(getQuestions(category, currentMode))
   }
