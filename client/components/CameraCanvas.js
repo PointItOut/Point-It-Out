@@ -222,7 +222,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   submitUserGuess: guess => dispatch(submitAnswer(guess)),
   setNewQuestion: question => dispatch(setQuestion(question)),
-  updateUserScore: (score, partner) => dispatch(updateScore(score, partner))
+  updateUserScore: (score, partner, username) => dispatch(updateScore(score, partner, username))
 })
 
 export default withRouter(connect(mapState, mapDispatch)(CameraCanvas))
