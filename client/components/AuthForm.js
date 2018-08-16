@@ -10,34 +10,26 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div className="container">
       <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
           <input name="email" type="text" />
         </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
           <input name="password" type="password" />
         </div>
         {props.name === 'signup' ? (
-          <div>
-            <label htmlFor="username">
-              <small>Username</small>
-            </label>
-            <input
-              name="username"
-              type="text"
-              placeholder="Choose a username"
-            />
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input name="username" type="text" />
           </div>
         ) : null}
         <div>
-          <button type="submit">{displayName}</button>
+          <button type="submit" className="btn btn-info">
+            {displayName}
+          </button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
@@ -48,10 +40,6 @@ const AuthForm = props => {
 
 /**
  * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
  */
 const mapLogin = state => {
   return {

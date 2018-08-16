@@ -4,6 +4,7 @@ const Choice = require('./choice')
 const Game = require('./Game')
 const Category = require('./category')
 const UserCategory = require('./user_category')
+
 // foreign key on Choice
 Choice.belongsTo(Question)
 Question.hasMany(Choice)
@@ -11,8 +12,8 @@ Question.hasMany(Choice)
 User.belongsTo(Game)
 Game.hasMany(User)
 // foreign key on Game
-Game.belongsTo(Category, { constraints: false })
-Category.hasMany(Game, { constraints: false })
+Game.belongsTo(Category, {constraints: false})
+Category.hasMany(Game, {constraints: false})
 // foreign key on Question
 Question.belongsTo(Category)
 Category.hasMany(Question)
