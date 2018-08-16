@@ -27,16 +27,20 @@ module.exports = io => {
     })
 
     socket.on('startGame', payload => {
-      const game = payload.currentgame
+      const game = payload.currentgame.name
       if (!games[game]) {
-        socket.broadcast.emit('startGame', true)
-        socket.emit('startGame', true)
         games[game] = true
       }
-    })
+      socket.join(game)
+      io.in(game).emit('startGame', games[game])
+
+
+    }
+    )
 
     socket.on('new-score', payload => {
       const Game = payload.gameName
+      console.log('new-score game', Game);
       socket.join(Game)
       const name = payload.username
       if (!list[Game]) {

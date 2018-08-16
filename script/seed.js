@@ -1,7 +1,13 @@
 'use strict'
 
 const db = require('../server/db')
-const { User, Question, Choice, Category, User_Category } = require('../server/db/models')
+const {
+  User,
+  Question,
+  Choice,
+  Category,
+  UserCategory
+} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -42,17 +48,17 @@ async function seed() {
   const categories = await Promise.all([
     Category.create({
       id: 1,
-      name: "geography",
+      name: 'geography',
       public: true
     }),
     Category.create({
       id: 2,
-      name: "history",
+      name: 'history',
       public: true
     }),
     Category.create({
       id: 3,
-      name: "art",
+      name: 'art',
       public: true
     }),
     Category.create({
@@ -67,39 +73,39 @@ async function seed() {
 
   // USERS_CATEGORIES
   const usersCategories = await Promise.all([
-    User_Category.create({
+    UserCategory.create({
       userId: 1,
       categoryId: 1,
       userHighScore: 20
     }),
-    User_Category.create({
+    UserCategory.create({
       userId: 2,
       categoryId: 1,
       userHighScore: 18
     }),
-    User_Category.create({
+    UserCategory.create({
       userId: 3,
       categoryId: 1,
       userHighScore: 12
     }),
-    User_Category.create({
+    UserCategory.create({
       userId: 4,
       categoryId: 1,
       userHighScore: 14
     }),
-    User_Category.create({
+    UserCategory.create({
       userId: 1,
       categoryId: 4
     }),
-    User_Category.create({
+    UserCategory.create({
       userId: 2,
       categoryId: 4
     }),
-    User_Category.create({
+    UserCategory.create({
       userId: 3,
       categoryId: 4
     }),
-    User_Category.create({
+    UserCategory.create({
       userId: 4,
       categoryId: 4
     })
@@ -601,11 +607,7 @@ async function seed() {
   ])
   console.log(`seeded ${choices.length} choices`)
   console.log(`seeded successfully`)
-
-
 }
-
-
 
 // We've separated the `seed` function from the `runSeed` function.
 // This way we can isolate the error handling and exit trapping.

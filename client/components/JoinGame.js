@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {getGames, updateGame} from '../store/game'
-import {withRouter} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { getGames, updateGame } from '../store/game'
+import { withRouter } from 'react-router-dom'
 import socket from '../socket'
 
 class JoinGame extends Component {
@@ -20,7 +20,7 @@ class JoinGame extends Component {
   }
 
   handleChange(evt) {
-    this.setState({joinGame: evt.target.value})
+    this.setState({ joinGame: evt.target.value })
   }
 
   async handleSubmit(evt) {
@@ -31,13 +31,13 @@ class JoinGame extends Component {
     const username = this.props.user.userName
 
     if (!existGame) {
-      this.setState({nameExist: false})
+      this.setState({ nameExist: false })
     } else {
-      this.setState({nameExist: true})
-      socket.emit('questions', {gameName})
-      socket.emit('new-score', {username, total: 0, gameName})
+      this.setState({ nameExist: true })
+      socket.emit('questions', { gameName })
+      socket.emit('new-score', { username, total: 0, gameName })
       await this.props.updateGame(gameName)
-      this.setState({joinGame: ''})
+      this.setState({ joinGame: '' })
       this.props.history.push(`/game/${gameName}`)
     }
   }
@@ -67,7 +67,7 @@ class JoinGame extends Component {
   }
 }
 
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function (dispatch) {
   return {
     updateGame: name => dispatch(updateGame(name)),
     getGames: () => dispatch(getGames())
