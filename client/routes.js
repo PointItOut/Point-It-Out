@@ -46,8 +46,9 @@ class Routes extends Component {
               />
               <Route path="/home" component={UserHome} />
               <Route path="/solo" component={SoloMode} />
-              <Route exact path="/game/:name" component={Lobby} />
-              <Route path="/game/:name/start" component={PartnerMode} />
+              {/* <Route exact path="/game/:name" component={Lobby} /> */}
+              <Route exact path="/game/:name" component={PartnerMode} />
+              {/* <Route path="/game/:name/start" component={PartnerMode} /> */}
 
               <Route component={Splash} />
             </Switch>
