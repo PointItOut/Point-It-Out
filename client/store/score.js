@@ -11,11 +11,9 @@ export const updateScore = (total, partner, username, gameName) => {
   if (partner === true) {
     socket.emit('new-score', { total, username, gameName })
   }
-  else {
-    return {
-      type: UPDATE_SCORE,
-      total
-    }
+  return {
+    type: UPDATE_SCORE,
+    total
   }
 }
 
