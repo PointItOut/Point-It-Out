@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const { User, Question, Choice, Category, User_Category } = require('../server/db/models')
+const { User, Question, Choice, Category, UserCategory } = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -67,39 +67,39 @@ async function seed() {
 
   // USERS_CATEGORIES
   const usersCategories = await Promise.all([
-    User_Category.create({
+    UserCategory.create({
       userId: 1,
       categoryId: 1,
       userHighScore: 20
     }),
-    User_Category.create({
+    UserCategory.create({
       userId: 2,
       categoryId: 1,
       userHighScore: 18
     }),
-    User_Category.create({
+    UserCategory.create({
       userId: 3,
       categoryId: 1,
       userHighScore: 12
     }),
-    User_Category.create({
+    UserCategory.create({
       userId: 4,
       categoryId: 1,
       userHighScore: 14
     }),
-    User_Category.create({
+    UserCategory.create({
       userId: 1,
       categoryId: 4
     }),
-    User_Category.create({
+    UserCategory.create({
       userId: 2,
       categoryId: 4
     }),
-    User_Category.create({
+    UserCategory.create({
       userId: 3,
       categoryId: 4
     }),
-    User_Category.create({
+    UserCategory.create({
       userId: 4,
       categoryId: 4
     })
