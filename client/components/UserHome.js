@@ -59,7 +59,10 @@ export class UserHome extends React.Component {
 
         {choosingMode ? (
           <div>
-            <ModeOptions chosenCategory={this.props.chosenCategory} />
+            <ModeOptions
+              chosenCategory={this.props.chosenCategory}
+              loadQuestions={this.props.loadQuestions}
+            />
             <CategoryOverview />
           </div>
         ) : null}

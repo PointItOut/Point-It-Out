@@ -20,20 +20,21 @@ class ModeOptions extends Component {
 
   render() {
     const {chooseMode} = this.props
+    console.log('chosen category', this.props.chosenCategory)
     return (
       <div>
-        <h2>{this.props.chosenCategory}</h2>
+        <h2>{this.props.chosenCategory.name}</h2>
         <button
           type="button"
           className="btn btn-info"
-          onClick={() => chooseMode('solo')}
+          onClick={() => this.handleChooseMode('solo')}
         >
           Challenge Yourself!
         </button>
         <button
           type="button"
           className="btn btn-info"
-          onClick={() => chooseMode('partner')}
+          onClick={() => this.handleChooseMode('partner')}
         >
           Challenge a Friend!
         </button>
