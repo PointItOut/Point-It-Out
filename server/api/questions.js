@@ -26,10 +26,26 @@ router.get('/:categoryId', async (req, res, next) => {
   }
 })
 
-// for posting question with choices?
+router.delete('/:categoryId/:questionId', async (req, res, next) => {
+  try {
+    await Question.destroy({
+      where: {
+        id: +req.params.questionId
+      }
+    })
+
+    await Choice.destroy({
+      where: {
+        questionId: +req.params.questionId
+      }
+    })
+
+    res.status(204).send()
+  } catch (err) { next(err) }
+})
+
 router.post('/', async (req, res, next) => {
   try {
-    console.log('** INSIDE POST **')
     const { question, choices } = req.body
     // question object has a categoryId!!
     const newQuestion = await Question.create(question)

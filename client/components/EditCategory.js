@@ -25,9 +25,7 @@ class EditCategory extends Component {
 
   async handleAddQuestion(evt) {
     evt.preventDefault()
-
     const { questionName, answer, choice1, choice2, choice3 } = this.state
-
     const postBody = {
       question: {
         theQuestion: questionName,
@@ -40,9 +38,7 @@ class EditCategory extends Component {
         { theChoice: choice3, isCorrect: false }
       ]
     }
-
     const { data } = await axios.post('/api/questions', postBody)
-
     this.setState(prevState => {
       return {
         questionList: [...prevState.questionList, data],
@@ -51,6 +47,16 @@ class EditCategory extends Component {
         choice1: '',
         choice2: '',
         choice3: ''
+      }
+    })
+  }
+
+  async handleDelete(questionId) {
+    const categoryId = +this.props.match.params.categoryId
+    await axios.delete(`/api/questions/${categoryId}/${questionId}`)
+    this.setState(prevState => {
+      return {
+        questionList: prevState.questionList.filter(ques => ques.id !== questionId),
       }
     })
   }
@@ -132,7 +138,14 @@ class EditCategory extends Component {
         <h4>Current Questions:</h4>
         {
           questionList.map(question => (
-            <h6 key={question.id}>{question.theQuestion}</h6>
+            <div key={question.id}>
+              <span>
+                <button onClick={() => this.handleDelete(question.id)}>
+                  x
+                </button>
+                {question.theQuestion}
+              </span>
+            </div>
           ))
         }
       </div>
