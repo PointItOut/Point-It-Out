@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Opentok } from './index'
-import { me } from '../store/user'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {Opentok} from './index'
+import {me} from '../store/user'
 import socket from '../socket'
-import { startGame } from '../store/game'
+import {startGame} from '../store/game'
 
 class Lobby extends Component {
   constructor() {
@@ -15,16 +15,18 @@ class Lobby extends Component {
     console.log('THE USER: ', this.props.user)
   }
   handleClick(currentgame) {
-    socket.emit('startGame', { currentgame })
+    socket.emit('startGame', {currentgame})
   }
+
   render() {
     const user = this.props.user
     const opponent = this.props.opponent
     const opponentNames = Object.keys(opponent)
     const games = this.props.games
     const token = this.props.token
-    const name = this.props.match.params.name
-    const currentgame = games.find(game => game.name === name)
+    // const name = this.props.match.params.name
+    const currentgame = this.props.currentgame
+    // const currentgame = games.find(game => game.name === name)
     return (
       <div>
         {user.host ? (
@@ -36,17 +38,17 @@ class Lobby extends Component {
             </button>
           </div>
         ) : (
-            <h3>Waiting for host to start the game</h3>
-          )}
+          <h3>Waiting for host to start the game</h3>
+        )}
         <div>
           {user.host && opponentNames.length === 1 ? (
             <h3> Waiting for people to join the game</h3>
           ) : null}
         </div>
-        {this.props.startGame
+        {/* {this.props.startGame
           ? this.props.history.push(`/game/${currentgame.name}/start`)
-          : null}
-        <Opentok currentgame={currentgame} token={token} />
+          : null} */}
+        {/* <Opentok currentgame={currentgame} token={token} /> */}
       </div>
     )
   }

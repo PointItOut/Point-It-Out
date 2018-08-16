@@ -1,11 +1,12 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 
 const Scoreboard = props => {
   const opponent = props.opponent
   const opponentNames = Object.keys(opponent)
   return (
     <div>
+      <h3>Scoreboard</h3>
       {/* <h3>Your score:</h3>
       <h3>{props.score}</h3> */}
       {opponentNames.map(name => {
