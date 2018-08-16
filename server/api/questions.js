@@ -29,9 +29,20 @@ router.get('/:categoryId', async (req, res, next) => {
 // for posting question with choices?
 router.post('/', async (req, res, next) => {
   try {
-    // req.body is a question object with a categoryId!!
-    const newQuestion = await Question.create(req.body)
-    res.json(newQuestion)
+    console.log('** INSIDE POST **')
+    const { question, choices } = req.body
+    // question object has a categoryId!!
+    const newQuestion = await Question.create(question)
+
+    const choiceObjects = choices.map(choice => ({
+      ...choice,
+      questionId: newQuestion.id
+    }))
+    const questionChoices = await Choice.bulkCreate(choiceObjects)
+
+    const questionWithChoices = await Question.findById(newQuestion.id, { include: {model: Choice} })
+
+    res.json(questionWithChoices)
   } catch (err) { next(err) }
 })
 

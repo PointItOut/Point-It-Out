@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
 import axios from 'axios'
 
 class EditCategory extends Component {
@@ -15,6 +14,7 @@ class EditCategory extends Component {
       choice3: ''
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleAddQuestion = this.handleAddQuestion.bind(this)
   }
 
   handleChange(evt) {
@@ -23,21 +23,36 @@ class EditCategory extends Component {
     })
   }
 
-  handleAddQuestion(evt) {
+  async handleAddQuestion(evt) {
     evt.preventDefault()
 
-    // submit new question and choices
+    const { questionName, answer, choice1, choice2, choice3 } = this.state
 
-    // clear state
-    this.setState({
-      questionName: '',
-      answer: '',
-      choice1: '',
-      choice2: '',
-      choice3: ''
+    const postBody = {
+      question: {
+        theQuestion: questionName,
+        categoryId: +this.props.match.params.categoryId
+      },
+      choices: [
+        { theChoice: answer, isCorrect: true },
+        { theChoice: choice1, isCorrect: false },
+        { theChoice: choice2, isCorrect: false },
+        { theChoice: choice3, isCorrect: false }
+      ]
+    }
+
+    const { data } = await axios.post('/api/questions', postBody)
+
+    this.setState(prevState => {
+      return {
+        questionList: [...prevState.questionList, data],
+        questionName: '',
+        answer: '',
+        choice1: '',
+        choice2: '',
+        choice3: ''
+      }
     })
-
-    // refetch category & question info from db?
   }
 
   async componentDidMount() {
@@ -50,13 +65,10 @@ class EditCategory extends Component {
     })
   }
 
-  componentDidUpdate() {
-    // re-fetch category with its updated question list?
-  }
-
   render() {
-    // will have a button to return the user to /home
+    // will have a button to return the user to /home?
     const { questionName, answer, choice1, choice2, choice3 } = this.state
+    const { history } = this.props
 
     const invalidInfo = !questionName || !answer || !choice1 || !choice2 || !choice3;
     const { categoryName, questionList } = this.state
@@ -64,10 +76,11 @@ class EditCategory extends Component {
     return (
       <div>
         <h2>{categoryName}</h2>
+          <button onClick={() => history.push('/home')}>Go home</button>
           <h3>Add a new question:</h3>
-          <form id="new-question-form">
+          <form id="new-question-form" onSubmit={this.handleAddQuestion}>
             <div className="form-group">
-              <label>Question text</label>
+              <label htmlFor="questionName" >Question text</label>
               <input
                 type="text"
                 name="questionName"
@@ -75,7 +88,7 @@ class EditCategory extends Component {
                 onChange={this.handleChange}
               />
 
-              <label>Correct choice</label>
+              <label htmlFor="answer">Correct choice</label>
               <input
                 type="text"
                 name="answer"
@@ -83,7 +96,7 @@ class EditCategory extends Component {
                 onChange={this.handleChange}
               />
 
-              <label>Choice</label>
+              <label htmlFor="choice1">Choice</label>
               <input
                 type="text"
                 name="choice1"
@@ -91,7 +104,7 @@ class EditCategory extends Component {
                 onChange={this.handleChange}
               />
 
-              <label>Choice</label>
+              <label htmlFor="choice2">Choice</label>
               <input
                 type="text"
                 name="choice2"
@@ -99,7 +112,7 @@ class EditCategory extends Component {
                 onChange={this.handleChange}
               />
 
-              <label>Choice</label>
+              <label htmlFor="choice3">Choice</label>
               <input
                 type="text"
                 name="choice3"
@@ -111,7 +124,6 @@ class EditCategory extends Component {
               type="submit"
               className="btn btn-info"
               disabled={invalidInfo}
-              onSubmit={this.handleAddQuestion}
             >
               Add Question
             </button>
