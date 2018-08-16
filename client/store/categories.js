@@ -33,10 +33,9 @@ const getPrivateCategories = privateCategories => ({
 export const setCurrentCategory = category => async dispatch => {
   try {
     // we want to return a category object with topScores on it
-    const { data } = await axios.get(`/api/categories/${category.id}/scores`)
-    const categoryObject = { ...category, topScores: data }
+    const { data } = await axios.get(`/api/categories/${category.id}`)
     // history.push(`/home/${category.id}`)
-    dispatch(setCategory(categoryObject))
+    dispatch(setCategory(data))
   } catch (err) { console.error(err) }
 }
 

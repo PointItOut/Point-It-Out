@@ -4,62 +4,10 @@ import Konva from 'konva'
 import Webcam from 'react-webcam'
 import Diffy from './diffy'
 import { withRouter } from 'react-router-dom'
-
+import { PurpleRect, GreenRect, YellowRect, RedRect } from './canvas-rects'
 import { connect } from 'react-redux'
 import { submitAnswer, setQuestion } from '../store/currentQuestion'
 import { updateScore } from '../store/score'
-
-const PurpleRect = () => {
-  return (
-    <Rect
-      x={0}
-      y={10}
-      width={200}
-      height={75}
-      fill='purple'
-      opacity={0.5}
-    />
-  )
-}
-
-const GreenRect = () => {
-  return (
-    <Rect
-      x={266}
-      y={10}
-      width={200}
-      height={75}
-      fill='green'
-      opacity={0.5}
-    />
-  )
-}
-
-const YellowRect = () => {
-  return (
-    <Rect
-      x={533}
-      y={10}
-      width={200}
-      height={75}
-      fill='yellow'
-      opacity={0.5}
-    />
-  )
-}
-
-const RedRect = () => {
-  return (
-    <Rect
-      x={799}
-      y={10}
-      width={200}
-      height={75}
-      fill='red'
-      opacity={0.5}
-    />
-  )
-}
 
 class CameraCanvas extends Component {
   constructor() {
@@ -168,7 +116,7 @@ class CameraCanvas extends Component {
               })
             }
 
-            {// option text boxes
+            { // option text boxes
               options &&
               options.map((option, index) => {
                 return (
@@ -186,7 +134,7 @@ class CameraCanvas extends Component {
               })
             }
 
-            {// if we have options and the user has guessed, show feedback:
+            { // if we have options and the user has guessed, show feedback:
               currentQuestion.userGuess !== null && options
                 ? options.map((option, index) => {
                   if (currentQuestion.userGuess === index) {

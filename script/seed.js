@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Question, Choice, Category} = require('../server/db/models')
+const { User, Question, Choice, Category, User_Category } = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -9,17 +9,35 @@ async function seed() {
 
   //USER
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123', userName: 'Cody', id: 1}),
+    User.create({
+      id: 1,
+      email: 'cody@email.com',
+      password: '123',
+      userName: 'Cody'
+    }),
     User.create({
       id: 2,
       email: 'murphy@email.com',
       password: '123',
       userName: 'Murphy'
+    }),
+    User.create({
+      id: 3,
+      email: 'bruno@email.com',
+      password: '123',
+      userName: 'Bruno'
+    }),
+    User.create({
+      id: 4,
+      email: 'fira@email.com',
+      password: '123',
+      userName: 'Fira'
     })
   ])
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
+
   // CATEGORIES
   const categories = await Promise.all([
     Category.create({
@@ -46,6 +64,48 @@ async function seed() {
   ])
   console.log(`seeded ${categories.length} categories`)
   console.log(`seeded successfully`)
+
+  // USERS_CATEGORIES
+  const usersCategories = await Promise.all([
+    User_Category.create({
+      userId: 1,
+      categoryId: 1,
+      userHighScore: 20
+    }),
+    User_Category.create({
+      userId: 2,
+      categoryId: 1,
+      userHighScore: 18
+    }),
+    User_Category.create({
+      userId: 3,
+      categoryId: 1,
+      userHighScore: 12
+    }),
+    User_Category.create({
+      userId: 4,
+      categoryId: 1,
+      userHighScore: 14
+    }),
+    User_Category.create({
+      userId: 1,
+      categoryId: 4
+    }),
+    User_Category.create({
+      userId: 2,
+      categoryId: 4
+    }),
+    User_Category.create({
+      userId: 3,
+      categoryId: 4
+    }),
+    User_Category.create({
+      userId: 4,
+      categoryId: 4
+    })
+  ])
+  console.log(`seeded ${usersCategories.length} user_category instances`)
+  console.log('seeded successfully')
 
   //QUESTIONS
   const questions = await Promise.all([
