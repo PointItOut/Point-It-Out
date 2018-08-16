@@ -9,7 +9,6 @@ class CategoryOverview extends Component {
     this.state = {
       categoryDisplayed: null
     }
-    this.renderModeOptions = this.renderModeOptions.bind(this)
   }
 
   async componentDidMount() {
@@ -41,15 +40,10 @@ class CategoryOverview extends Component {
     const {categoryDisplayed} = this.state
     const {currentCategory} = this.props
 
-
     if (categoryDisplayed) {
       console.log('**** categoryDisplayed', categoryDisplayed)
       return (
         <div>
-          {/* {currentCategory && currentCategory.id === categoryDisplayed.id
-            ? this.renderModeOptions()
-            : null} */}
-
           {currentCategory &&
           !categoryDisplayed.public &&
           currentCategory.id !== categoryDisplayed.id ? (
@@ -69,14 +63,12 @@ class CategoryOverview extends Component {
                 </tr>
               </thead>
               <tbody>
-                {
-                  categoryDisplayed.topScores.map(scoreInfo => (
-                    <tr key={scoreInfo.userId} >
-                      <th>{scoreInfo.userName}</th>
-                      <th>{scoreInfo.userHighScore}</th>
-                    </tr>
-                  ))
-                }
+                {categoryDisplayed.topScores.map(scoreInfo => (
+                  <tr key={scoreInfo.userId}>
+                    <th>{scoreInfo.userName}</th>
+                    <th>{scoreInfo.userHighScore}</th>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
