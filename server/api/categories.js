@@ -26,8 +26,24 @@ router.get('/private/:userId', async (req, res, next) => {
 // POST new category
 router.post('/', async (req, res, next) => {
   try {
-    // req.body must have category name, authorId, and public value
-    const newCategory = await Category.create(req.body)
+    // req.body must have category name, authorId, and optional public value
+    console.log('==*== inside POST request')
+    const { userId, category } = req.body
+    const categoryBody = {
+      ...category,
+      authorId: +userId
+    }
+
+    console.log('==*== category body', categoryBody)
+    const newCategory = await Category.create(categoryBody)
+    console.log('==*== after Category.create')
+
+    const userCategory = await UserCategory.create({
+      categoryId: newCategory.id,
+      userId: +userId
+    })
+    console.log('==*== after UserCategory.create')
+
     res.json(newCategory)
   } catch (err) { next(err) }
 })

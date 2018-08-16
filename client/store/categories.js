@@ -59,13 +59,12 @@ export const retrievePrivateCategories = userId => async dispatch => {
   } catch (err) { console.error(err) }
 }
 
-export const makeNewCategory = categoryInfo => async dispatch => {
+export const makeNewCategory = (category, userId) => async dispatch => {
   try {
-    const { category } = categoryInfo
-    const newCategory = await axios.post('/api/categories', category)
-    // newCategory.data.id is the category id...
-
-    // dispatch a createCategory action...
+    const reqBody = { category, userId }
+    // note: when you make a new category, user also gets associated to that category and also category gets an authorId
+    const newCategory = await axios.post('/api/categories', reqBody)
+    dispatch(createCategory(newCategory.data))
   } catch (err) { console.error(err) }
 }
 

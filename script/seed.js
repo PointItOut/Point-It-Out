@@ -16,25 +16,21 @@ async function seed() {
   //USER
   const users = await Promise.all([
     User.create({
-      id: 1,
       email: 'cody@email.com',
       password: '123',
       userName: 'Cody'
     }),
     User.create({
-      id: 2,
       email: 'murphy@email.com',
       password: '123',
       userName: 'Murphy'
     }),
     User.create({
-      id: 3,
       email: 'bruno@email.com',
       password: '123',
       userName: 'Bruno'
     }),
     User.create({
-      id: 4,
       email: 'fira@email.com',
       password: '123',
       userName: 'Fira'
@@ -47,22 +43,18 @@ async function seed() {
   // CATEGORIES
   const categories = await Promise.all([
     Category.create({
-      id: 1,
       name: 'geography',
       public: true
     }),
     Category.create({
-      id: 2,
       name: 'history',
       public: true
     }),
     Category.create({
-      id: 3,
       name: 'art',
       public: true
     }),
     Category.create({
-      id: 4,
       name: "cody's cafe",
       public: false,
       authorId: 1
