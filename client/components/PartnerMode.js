@@ -1,8 +1,10 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {getGames, startGame} from '../store/game'
-import {Opentok, GameSidebar, CameraCanvas, Lobby} from './index'
-import {getQuestions} from '../store/questions'
+
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { getGames, startGame } from '../store/game'
+import { Opentok, GameSidebar, CameraCanvas, Lobby } from './index'
+import { getQuestions } from '../store/questions'
+
 
 class PartnerMode extends Component {
   constructor() {
@@ -24,10 +26,11 @@ class PartnerMode extends Component {
         {!this.props.startGame ? (
           <Lobby currentgame={currentgame} token={token} />
         ) : (
-          <div>
-            <CameraCanvas questions={this.props.questions} />
-          </div>
-        )}
+            <div>
+              <CameraCanvas questions={this.props.questions} />
+            </div>
+          )}
+
         <GameSidebar
           currentgame={currentgame}
           token={token}
@@ -38,7 +41,7 @@ class PartnerMode extends Component {
   }
 }
 
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function (dispatch) {
   return {
     updateGame: name => dispatch(updateGame(name)),
     getGames: () => dispatch(getGames())
