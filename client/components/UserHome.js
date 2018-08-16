@@ -61,7 +61,7 @@ export class UserHome extends React.Component {
               onClick={this.handlePlay}
               className="btn btn-info"
             >
-              Play
+              New Game
             </button>
             <JoinGame />
           </div>

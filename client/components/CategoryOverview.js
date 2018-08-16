@@ -11,6 +11,7 @@ class CategoryOverview extends Component {
       categoryDisplayed: null
     }
     this.renderModeOptions = this.renderModeOptions.bind(this)
+    this.handleAddToAccount = this.handleAddToAccount.bind(this)
   }
 
   async componentDidMount() {
@@ -36,6 +37,13 @@ class CategoryOverview extends Component {
         categoryDisplayed: data
       })
     }
+  }
+
+  handleAddToAccount(){
+    const { history } = this.props
+    // we want to create a UserCategory instance
+
+    history.push('/home')
   }
 
   renderModeOptions() {
@@ -74,7 +82,7 @@ class CategoryOverview extends Component {
           {currentCategory &&
           !categoryDisplayed.public &&
           currentCategory.id !== categoryDisplayed.id ? (
-            <button>Add to my account</button>
+            <button onClick={this.handleAddToAccount}>Add to my account</button>
           ) : null}
           <h1>{categoryDisplayed.name}</h1>
           {

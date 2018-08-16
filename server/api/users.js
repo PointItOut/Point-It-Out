@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, UserCategory} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -15,3 +15,18 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+// for when a user subscribes to a category
+router.put('/:userId/categories', async (req, res, next) => {
+  try {
+    // req.body has userId and categoryId
+    const userCategory = await UserCategory.create(req.body)
+    res.json(userCategory)
+  } catch (err) { next(err) }
+})
+
+// router.delete('/:userId/categories/:categoryId', async (req, res, next) => {
+//   try {
+
+//   } catch (err) { next(err) }
+// })
