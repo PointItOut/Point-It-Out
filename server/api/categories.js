@@ -84,6 +84,7 @@ router.get('/:categoryId', async (req, res, next) => {
 
     const responseObject = {
       name: category.name,
+      authorId: category.authorId,
       id: category.id,
       public: category.public,
       questionTotal: questions.length,
