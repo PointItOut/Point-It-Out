@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import axios from 'axios'
 import AddGame from '.'
 
-class renderModeOptions extends Component {
+class ModeOptions extends Component {
   constructor() {
     super()
     this.state = {partnerMode: false}
@@ -22,6 +22,7 @@ class renderModeOptions extends Component {
     const {chooseMode} = this.props
     return (
       <div>
+        <h2>{this.props.chosenCategory}</h2>
         <button
           type="button"
           className="btn btn-info"
@@ -42,4 +43,4 @@ class renderModeOptions extends Component {
   }
 }
 
-export default renderModeOptions
+export default ModeOptions
