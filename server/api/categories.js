@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Category, UserCategory, User, Question} = require('../db/models')
+const {Category, UserCategory, User, Question, Choice} = require('../db/models')
 
 // GET public categories
 router.get('/public', async (req, res, next) => {
@@ -34,15 +34,12 @@ router.post('/', async (req, res, next) => {
       authorId: +userId
     }
 
-    console.log('==*== category body', categoryBody)
     const newCategory = await Category.create(categoryBody)
-    console.log('==*== after Category.create')
 
     const userCategory = await UserCategory.create({
       categoryId: newCategory.id,
       userId: +userId
     })
-    console.log('==*== after UserCategory.create')
 
     res.json(newCategory)
   } catch (err) { next(err) }
@@ -53,11 +50,14 @@ router.get('/:categoryId', async (req, res, next) => {
   try {
     // want to includ the top scores, right?
     const category = await Category.findById(+req.params.categoryId)
+
     const questions = await Question.findAll({
       where: {
         categoryId: category.id
-      }
+      },
+      include: {model: Choice} // problem with this?
     })
+
     const scores = await UserCategory.findAll({
       where: {
         categoryId: +req.params.categoryId
@@ -87,6 +87,7 @@ router.get('/:categoryId', async (req, res, next) => {
       id: category.id,
       public: category.public,
       questionTotal: questions.length,
+      questions,
       topScores: topTenScores
     }
 

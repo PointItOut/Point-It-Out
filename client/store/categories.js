@@ -65,6 +65,7 @@ export const makeNewCategory = (category, userId) => async dispatch => {
     // note: when you make a new category, user also gets associated to that category and also category gets an authorId
     const newCategory = await axios.post('/api/categories', reqBody)
     dispatch(createCategory(newCategory.data))
+    history.push(`/categories/${newCategory.data.id}/edit`)
   } catch (err) { console.error(err) }
 }
 
