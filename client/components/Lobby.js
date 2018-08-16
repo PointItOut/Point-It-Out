@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Opentok} from './index'
-import {me} from '../store/user'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Opentok } from './index'
+import { me } from '../store/user'
 import socket from '../socket'
-import {startGame} from '../store/game'
+import { startGame } from '../store/game'
 
 class Lobby extends Component {
   constructor() {
@@ -15,7 +15,7 @@ class Lobby extends Component {
     console.log('THE USER: ', this.props.user)
   }
   handleClick(currentgame) {
-    socket.emit('startGame', {currentgame})
+    socket.emit('startGame', { currentgame })
   }
   render() {
     const user = this.props.user
@@ -36,8 +36,8 @@ class Lobby extends Component {
             </button>
           </div>
         ) : (
-          <h3>Waiting for host to start the game</h3>
-        )}
+            <h3>Waiting for host to start the game</h3>
+          )}
         <div>
           {user.host && opponentNames.length === 1 ? (
             <h3> Waiting for people to join the game</h3>
