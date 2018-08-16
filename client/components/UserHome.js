@@ -21,8 +21,21 @@ export class UserHome extends React.Component {
 
   handlePlay() {
     this.setState({
-      choosingCategory: true
+      choosingCategory: true,
+      active: true
     })
+  }
+
+  handleChooseMode(currentMode) {
+    if (currentMode === 'partner') {
+      this.setState({partnerMode: true})
+    }
+    const {loadQuestions} = this.props
+    //load questions dispatches a thunk to get the questions and  dispatch an action to put them on state and redirect the user to the play page
+    loadQuestions(this.props.chosenCategory, currentMode)
+    //can add more functionality here as needed
+
+    // this.props.history.push(`/${currentMode}`)
   }
 
   handleChooseCategory(category) {
@@ -35,7 +48,7 @@ export class UserHome extends React.Component {
 
   render() {
     const {username} = this.props
-    const {choosingCategory, choosingMode} = this.state
+    const {choosingCategory, choosingMode, partnerMode} = this.state
 
     return (
       <div className="container">

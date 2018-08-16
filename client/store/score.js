@@ -8,7 +8,6 @@ const initialState = 0
 
 // ACTION CREATORS
 export const updateScore = (total, partner, username, gameName) => {
-  console.log(username)
   if (partner === true) {
     socket.emit('new-score', { total, username, gameName })
   }
