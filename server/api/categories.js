@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Category, UserCategory, User, Question} = require('../db/models')
+const {Category, UserCategory, User, Question, Choice} = require('../db/models')
 
 // GET public categories
 router.get('/public', async (req, res, next) => {
@@ -23,16 +23,41 @@ router.get('/private/:userId', async (req, res, next) => {
   } catch (err) { next(err) }
 })
 
+// POST new category
+router.post('/', async (req, res, next) => {
+  try {
+    // req.body must have category name, authorId, and optional public value
+    console.log('==*== inside POST request')
+    const { userId, category } = req.body
+    const categoryBody = {
+      ...category,
+      authorId: +userId
+    }
+
+    const newCategory = await Category.create(categoryBody)
+
+    const userCategory = await UserCategory.create({
+      categoryId: newCategory.id,
+      userId: +userId
+    })
+
+    res.json(newCategory)
+  } catch (err) { next(err) }
+})
+
 // GET category by id
 router.get('/:categoryId', async (req, res, next) => {
   try {
     // want to includ the top scores, right?
     const category = await Category.findById(+req.params.categoryId)
+
     const questions = await Question.findAll({
       where: {
         categoryId: category.id
-      }
+      },
+      include: {model: Choice} // problem with this?
     })
+
     const scores = await UserCategory.findAll({
       where: {
         categoryId: +req.params.categoryId
@@ -59,9 +84,11 @@ router.get('/:categoryId', async (req, res, next) => {
 
     const responseObject = {
       name: category.name,
+      authorId: category.authorId,
       id: category.id,
       public: category.public,
       questionTotal: questions.length,
+      questions,
       topScores: topTenScores
     }
 
