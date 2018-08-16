@@ -1,5 +1,28 @@
+:root {
+  --bg-color: rgb(253, 255, 252);
+  --accent-color: rgb(144, 85, 162);
+  --button-color: rgb(0, 150, 204);
+  --button-hover: rgb(0, 86, 117);
+  --dark-text: rgb(35, 31, 31);
+  --light-text: rgb(253, 255, 252);
+}
+
 body {
+  background-color: var(--bg-color);
   font-family: sans-serif;
+  color: var(--dark-text);
+}
+
+.navbar {
+  background-color: var(--button-color);
+  color: var(--light-text);
+}
+.navbar a {
+  color: var(--light-text);
+}
+
+.navbar a:hover {
+  background-color: var(--button-hover);
 }
 
 a {
@@ -72,12 +95,20 @@ video {
 button {
   margin: 1em;
 }
+.btn-info {
+  background-color: var(--button-color);
+  color: var(--light-text);
+}
+
+.btn-info:hover {
+  background-color: var(--button-hover);
+  color: var(--light-text);
+}
 
 button a {
   color: white;
 }
 
 .clock {
-  font-size: 40px
+  font-size: 40px;
 }
-
