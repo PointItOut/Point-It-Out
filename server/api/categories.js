@@ -23,6 +23,15 @@ router.get('/private/:userId', async (req, res, next) => {
   } catch (err) { next(err) }
 })
 
+// POST new category
+router.post('/', async (req, res, next) => {
+  try {
+    // req.body must have category name, authorId, and public value
+    const newCategory = await Category.create(req.body)
+    res.json(newCategory)
+  } catch (err) { next(err) }
+})
+
 // GET category by id
 router.get('/:categoryId', async (req, res, next) => {
   try {

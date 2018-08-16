@@ -26,4 +26,13 @@ router.get('/:categoryId', async (req, res, next) => {
   }
 })
 
+// for posting question with choices?
+router.post('/', async (req, res, next) => {
+  try {
+    // req.body is a question object with a categoryId!!
+    const newQuestion = await Question.create(req.body)
+    res.json(newQuestion)
+  } catch (err) { next(err) }
+})
+
 module.exports = router

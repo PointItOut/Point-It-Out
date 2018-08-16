@@ -5,6 +5,7 @@ import history from '../history'
 const SET_CATEGORY = 'SET_CATEGORY'
 const GET_PUBLIC_CATEGORIES = 'GET_PUBLIC_CATEGORIES'
 const GET_PRIVATE_CATEGORIES = 'GET_PRIVATE_CATEGORIES'
+const CREATE_CATEGORY = 'CREATE_CATEGORY'
 
 // INITIAL STATE
 const initialState = {
@@ -27,6 +28,11 @@ const getPublicCategories = publicCategories => ({
 const getPrivateCategories = privateCategories => ({
   type: GET_PRIVATE_CATEGORIES,
   privateCategories
+})
+
+const createCategory = category => ({
+  type: CREATE_CATEGORY,
+  category
 })
 
 // THUNK CREATORS
@@ -53,6 +59,16 @@ export const retrievePrivateCategories = userId => async dispatch => {
   } catch (err) { console.error(err) }
 }
 
+export const makeNewCategory = categoryInfo => async dispatch => {
+  try {
+    const { category } = categoryInfo
+    const newCategory = await axios.post('/api/categories', category)
+    // newCategory.data.id is the category id...
+
+    // dispatch a createCategory action...
+  } catch (err) { console.error(err) }
+}
+
 // REDUCER
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -62,6 +78,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, public: action.publicCategories }
     case GET_PRIVATE_CATEGORIES:
       return { ...state, private: action.privateCategories }
+    case CREATE_CATEGORY:
+      return { ...state, private: [...state.private, action.category]}
     default:
       return state
   }

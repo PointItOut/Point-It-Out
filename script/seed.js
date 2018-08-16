@@ -1,9 +1,6 @@
 'use strict'
 
 const db = require('../server/db')
-<<<<<<< HEAD
-const { User, Question, Choice, Category, UserCategory } = require('../server/db/models')
-=======
 const {
   User,
   Question,
@@ -11,7 +8,6 @@ const {
   Category,
   UserCategory
 } = require('../server/db/models')
->>>>>>> master
 
 async function seed() {
   await db.sync({force: true})
