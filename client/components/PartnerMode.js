@@ -26,7 +26,6 @@ class PartnerMode extends Component {
         ) : (
           <div>
             <CameraCanvas questions={this.props.questions} />
-            {/* <GameSidebar currentgame={currentgame} token={token} /> */}
           </div>
         )}
         <GameSidebar
@@ -34,7 +33,6 @@ class PartnerMode extends Component {
           token={token}
           startGame={this.props.startGame}
         />
-        {/* <Opentok currentgame={currentgame} token={token} /> */}
       </div>
     )
   }
