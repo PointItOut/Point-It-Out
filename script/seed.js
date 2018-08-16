@@ -1,7 +1,17 @@
 'use strict'
 
 const db = require('../server/db')
+<<<<<<< HEAD
 const { User, Question, Choice, Category, UserCategory } = require('../server/db/models')
+=======
+const {
+  User,
+  Question,
+  Choice,
+  Category,
+  UserCategory
+} = require('../server/db/models')
+>>>>>>> master
 
 async function seed() {
   await db.sync({force: true})
@@ -42,17 +52,17 @@ async function seed() {
   const categories = await Promise.all([
     Category.create({
       id: 1,
-      name: "geography",
+      name: 'geography',
       public: true
     }),
     Category.create({
       id: 2,
-      name: "history",
+      name: 'history',
       public: true
     }),
     Category.create({
       id: 3,
-      name: "art",
+      name: 'art',
       public: true
     }),
     Category.create({
@@ -601,11 +611,7 @@ async function seed() {
   ])
   console.log(`seeded ${choices.length} choices`)
   console.log(`seeded successfully`)
-
-
 }
-
-
 
 // We've separated the `seed` function from the `runSeed` function.
 // This way we can isolate the error handling and exit trapping.
