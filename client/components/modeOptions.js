@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
-import AddGame from '.'
+import {AddGame} from '.'
 
 class ModeOptions extends Component {
   constructor() {
