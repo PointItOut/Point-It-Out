@@ -10,11 +10,8 @@ class CategoryOverview extends Component {
     this.state = {
       categoryDisplayed: null
     }
-<<<<<<< HEAD
     this.renderModeOptions = this.renderModeOptions.bind(this)
     this.handleAddToAccount = this.handleAddToAccount.bind(this)
-=======
->>>>>>> master
   }
 
   async componentDidMount() {
