@@ -41,7 +41,9 @@ class CategoryOverview extends Component {
     const {categoryDisplayed} = this.state
     const {currentCategory} = this.props
 
+
     if (categoryDisplayed) {
+      console.log('**** categoryDisplayed', categoryDisplayed)
       return (
         <div>
           {/* {currentCategory && currentCategory.id === categoryDisplayed.id
@@ -59,7 +61,24 @@ class CategoryOverview extends Component {
           <h3>{categoryDisplayed.questionTotal} questions</h3>
           <div>
             <h4>Leaderboard:</h4>
-            {/* still need to get and display leaderboard */}
+            <table>
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  categoryDisplayed.topScores.map(scoreInfo => (
+                    <tr key={scoreInfo.userId} >
+                      <th>{scoreInfo.userName}</th>
+                      <th>{scoreInfo.userHighScore}</th>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
           </div>
         </div>
       )
