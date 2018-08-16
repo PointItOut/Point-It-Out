@@ -8,10 +8,12 @@ const GameSidebar = props => {
   return (
     <div id="game-sidebar">
       {/* we will add styling so it is positioned to the right of the webcame */}
-      {startGame ? <Scoreboard /> : null}
+      {startGame || props.isSolo ? <Scoreboard isSolo={props.isSolo} /> : null}
 
       {/* <Scoreboard /> */}
-      <Opentok currentgame={currentgame} token={token} />
+      {!props.isSolo ? (
+        <Opentok currentgame={currentgame} token={token} />
+      ) : null}
     </div>
   )
 }
