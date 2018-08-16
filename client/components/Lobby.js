@@ -24,32 +24,22 @@ class Lobby extends Component {
 
     return (
       <div>
-        {
-          user.host ? (
-            <div>
-              <h3>You are the host</h3>
-
-              <button type="button" onClick={() => this.handleClick(currentgame)}>
-                Start game!
+        {user.host ? (
+          <div>
+            <h3>You are the host</h3>
+            <button type="button" onClick={() => this.handleClick(currentgame)}>
+              Start game!
             </button>
-            </div>
-          ) : (
-              <h3>Waiting for host to start the game</h3>
-            )
-        }
-        < div >
-          {
-            user.host && opponentNames.length === 1 ? (
-              <h3> Waiting for people to join the game</h3>
-            ) : null
-          }
-        </div >
-        {
-          this.props.startGame
-            ? this.props.history.push(`/game/${currentgame.name}/start`)
-            : null
-        }
-      </div >
+          </div>
+        ) : (
+            <h3>Waiting for host to start the game</h3>
+          )}
+        <div>
+          {user.host && opponentNames.length === 1 ? (
+            <h3> Waiting for people to join the game</h3>
+          ) : null}
+        </div>
+      </div>
     )
   }
 }

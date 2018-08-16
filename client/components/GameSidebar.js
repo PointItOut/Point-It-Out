@@ -2,6 +2,8 @@ import React from 'react'
 import Countdown from 'react-countdown-now';
 import AddConfetti from './AddConfetti'
 import { Scoreboard, Opentok } from './index'
+import { withRouter } from 'react-router-dom'
+
 
 const GameSidebar = props => {
   const renderer = ({ minutes, seconds, completed }) => {
@@ -16,8 +18,7 @@ const GameSidebar = props => {
   const startGame = props.startGame
   return (
     <div id="game-sidebar">
-      < Countdown date={Date.now() + 60000} renderer={renderer} />
-      {startGame || props.isSolo ? <Scoreboard isSolo={props.isSolo} /> : null}
+      {startGame || props.isSolo ? <div>< Countdown date={Date.now() + 60000} renderer={renderer} /> <Scoreboard isSolo={props.isSolo} /> </div> : null}
 
       {!props.isSolo ? (
         <Opentok currentgame={currentgame} token={token} />
