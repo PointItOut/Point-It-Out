@@ -113,7 +113,7 @@ async function seed() {
       categoryId: 1
     }),
     Question.create({
-      theQuestion: 'Which ocean lies on the east of the United States?',
+      theQuestion: 'Which ocean lies to the east of the United States?',
       categoryId: 1
     }),
     Question.create({
@@ -129,11 +129,11 @@ async function seed() {
       categoryId: 1
     }),
     Question.create({
-      theQuestion: 'Which US state is the Grand Canyon located in?',
+      theQuestion: 'In which US state is the Grand Canyon located?',
       categoryId: 1
     }),
     Question.create({
-      theQuestion: 'Which is the longest river in the world',
+      theQuestion: 'Which is the longest river in the world?',
       categoryId: 1
     }),
     Question.create({
@@ -158,25 +158,25 @@ async function seed() {
       categoryId: 3
     }),
     Question.create({
-      theQuestion: `Click on purple square`,
+      theQuestion: `Touch the word PURPLE`,
       categoryId: 3
     }),
     Question.create({
-      theQuestion: `Click on yellow square`,
+      theQuestion: `Touch the word YELLOW`,
       categoryId: 3
     }),
     Question.create({
-      theQuestion: `Click on green square`,
+      theQuestion: `Touch the word GREEN`,
       categoryId: 3
     }),
     Question.create({
-      theQuestion: `Click on red square`,
+      theQuestion: `Touch the word RED`,
       categoryId: 3
     }),
 
     // CODY
     Question.create({
-      theQuestion: "What is cody's favorite beverage?",
+      theQuestion: "What is Cody's favorite beverage?",
       categoryId: 4
     })
   ])
@@ -184,6 +184,7 @@ async function seed() {
   console.log(`seeded successfully`)
 
   //CHOICES
+
   const choices = await Promise.all([
     //Geography
     Choice.create({
@@ -218,7 +219,7 @@ async function seed() {
       questionId: 2
     }),
     Choice.create({
-      theChoice: 'Arctic Ociean',
+      theChoice: 'Arctic Ocean',
       isCorrect: false,
 
       questionId: 2
@@ -318,7 +319,7 @@ async function seed() {
       questionId: 6
     }),
     Choice.create({
-      theChoice: 'New-Mexico',
+      theChoice: 'New Mexico',
       isCorrect: false,
 
       questionId: 6
@@ -476,7 +477,7 @@ async function seed() {
       questionId: 12
     }),
     Choice.create({
-      theChoice: 'Yello',
+      theChoice: 'Yellow',
       isCorrect: false,
       picture:
         'https://commons.wikimedia.org/wiki/File:Color_icon_yellow.svg#/media/File:Color_icon_yellow.svg',
@@ -504,7 +505,7 @@ async function seed() {
       questionId: 13
     }),
     Choice.create({
-      theChoice: 'Yello',
+      theChoice: 'Yellow',
       isCorrect: true,
 
       questionId: 13
@@ -529,7 +530,7 @@ async function seed() {
       questionId: 14
     }),
     Choice.create({
-      theChoice: 'Yello',
+      theChoice: 'Yellow',
       isCorrect: false,
 
       questionId: 14
@@ -554,7 +555,7 @@ async function seed() {
       questionId: 15
     }),
     Choice.create({
-      theChoice: 'Yello',
+      theChoice: 'Yellow',
       isCorrect: false,
 
       questionId: 15
