@@ -18,7 +18,7 @@ const GameSidebar = props => {
   const startGame = props.startGame
   return (
     <div id="game-sidebar">
-      {startGame || props.isSolo ? <div><Countdown date={Date.now() + 60000} renderer={renderer} /> <Scoreboard isSolo={props.isSolo} /> </div> : null}
+      {startGame || props.isSolo ? <div><Countdown date={Date.now() + 10000} renderer={renderer} /> <Scoreboard isSolo={props.isSolo} /> </div> : null}
 
       {!props.isSolo ? (
         <Opentok currentgame={currentgame} token={token} />
