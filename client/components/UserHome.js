@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {setCurrentCategory} from '../store/categories'
-import {getQuestions} from '../store/questions'
-import {AddGame, JoinGame, CategoryWrapper, CategoryOverview} from './index'
+import { connect } from 'react-redux'
+import { setCurrentCategory } from '../store/categories'
+import { getQuestions } from '../store/questions'
+import { AddGame, JoinGame, CategoryWrapper, CategoryOverview } from './index'
+
+
 
 /**
  * COMPONENT
@@ -23,15 +25,16 @@ export class UserHome extends React.Component {
 
   handlePlay() {
     this.setState({
-      choosingCategory: true
+      choosingCategory: true,
+      active: true
     })
   }
 
   handleChooseMode(currentMode) {
     if (currentMode === 'partner') {
-      this.setState({partnerMode: true})
+      this.setState({ partnerMode: true })
     }
-    const {loadQuestions} = this.props
+    const { loadQuestions } = this.props
     //load questions dispatches a thunk to get the questions and  dispatch an action to put them on state and redirect the user to the play page
     loadQuestions(this.props.chosenCategory, currentMode)
     //can add more functionality here as needed
@@ -40,7 +43,7 @@ export class UserHome extends React.Component {
   }
 
   handleChooseCategory(category) {
-    const {chooseCategory} = this.props
+    const { chooseCategory } = this.props
     chooseCategory(category)
     this.setState({
       choosingMode: true
@@ -48,8 +51,8 @@ export class UserHome extends React.Component {
   }
 
   render() {
-    const {username} = this.props
-    const {choosingCategory, choosingMode, partnerMode} = this.state
+    const { username } = this.props
+    const { choosingCategory, choosingMode, partnerMode } = this.state
 
     return (
       <div className="container">
