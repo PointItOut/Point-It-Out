@@ -27,7 +27,6 @@ router.get('/private/:userId', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     // req.body must have category name, authorId, and optional public value
-    console.log('==*== inside POST request')
     const { userId, category } = req.body
     const categoryBody = {
       ...category,
