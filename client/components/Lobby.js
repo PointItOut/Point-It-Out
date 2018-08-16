@@ -17,6 +17,7 @@ class Lobby extends Component {
   handleClick(currentgame) {
     socket.emit('startGame', { currentgame })
   }
+
   render() {
     const user = this.props.user
     const opponent = this.props.opponent
@@ -27,27 +28,33 @@ class Lobby extends Component {
     const currentgame = games.find(game => game.name === name)
     return (
       <div>
-        {user.host ? (
-          <div>
-            <h3>You are the host</h3>
+        {
+          user.host ? (
+            <div>
+              <h3>You are the host</h3>
 
-            <button type="button" onClick={() => this.handleClick(currentgame)}>
-              Start game!
+              <button type="button" onClick={() => this.handleClick(currentgame)}>
+                Start game!
             </button>
-          </div>
-        ) : (
-            <h3>Waiting for host to start the game</h3>
-          )}
-        <div>
-          {user.host && opponentNames.length === 1 ? (
-            <h3> Waiting for people to join the game</h3>
-          ) : null}
-        </div>
-        {this.props.startGame
-          ? this.props.history.push(`/game/${currentgame.name}/start`)
-          : null}
-        <Opentok currentgame={currentgame} token={token} />
-      </div>
+            </div>
+          ) : (
+              <h3>Waiting for host to start the game</h3>
+            )
+        }
+        < div >
+          {
+            user.host && opponentNames.length === 1 ? (
+              <h3> Waiting for people to join the game</h3>
+            ) : null
+          }
+        </div >
+        {
+          this.props.startGame
+            ? this.props.history.push(`/game/${currentgame.name}/start`)
+            : null
+        }
+        < Opentok currentgame={currentgame} token={token} />
+      </div >
     )
   }
 }

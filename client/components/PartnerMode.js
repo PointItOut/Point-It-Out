@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {getGames} from '../store/game'
-import {Opentok, GameSidebar, CameraCanvas} from './index'
-import {getQuestions} from '../store/questions'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { getGames } from '../store/game'
+import { Opentok, GameSidebar, CameraCanvas } from './index'
+import { getQuestions } from '../store/questions'
 
 class PartnerMode extends Component {
   constructor() {
@@ -29,7 +29,7 @@ class PartnerMode extends Component {
   }
 }
 
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function (dispatch) {
   return {
     updateGame: name => dispatch(updateGame(name)),
     getGames: () => dispatch(getGames())

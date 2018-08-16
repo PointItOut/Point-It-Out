@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {OTSession, OTPublisher, OTStreams, OTSubscriber} from 'opentok-react'
+import React, { Component } from 'react'
+import { OTSession, OTPublisher, OTStreams, OTSubscriber } from 'opentok-react'
 
 class Opentok extends React.Component {
   render() {

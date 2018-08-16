@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {Stage, Layer, Rect, Text, Circle, Image} from 'react-konva'
+import React, { Component } from 'react'
+import { Stage, Layer, Rect, Text, Circle, Image } from 'react-konva'
 import Konva from 'konva'
 import Webcam from 'react-webcam'
 import Diffy from './diffy'
@@ -8,6 +8,7 @@ import { PurpleRect, GreenRect, YellowRect, RedRect } from './canvas-rects'
 import { connect } from 'react-redux'
 import { submitAnswer, setQuestion } from '../store/currentQuestion'
 import { updateScore } from '../store/score'
+
 
 class CameraCanvas extends Component {
   constructor() {

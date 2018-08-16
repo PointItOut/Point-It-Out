@@ -38,8 +38,10 @@ video {
   width: 1000px;
   height: 750px;
   transform: rotateY(180deg);
-  -webkit-transform: rotateY(180deg); /* Safari and Chrome */
-  -moz-transform: rotateY(180deg); /* Firefox */
+  -webkit-transform: rotateY(180deg);
+  /* Safari and Chrome */
+  -moz-transform: rotateY(180deg);
+  /* Firefox */
 }
 
 .game-wrapper {
@@ -73,4 +75,8 @@ button {
 
 button a {
   color: white;
+}
+
+.clock {
+  font-size: 40px
 }

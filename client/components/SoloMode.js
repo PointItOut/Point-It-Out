@@ -1,6 +1,7 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { CameraCanvas, GameSidebar } from './index'
+
 
 const SoloMode = props => {
   const questions = props.questions
