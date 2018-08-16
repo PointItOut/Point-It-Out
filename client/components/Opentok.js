@@ -6,27 +6,29 @@ class Opentok extends React.Component {
     const currentgame = this.props.currentgame
     const token = this.props.token
     return (
-      <OTSession
-        apiKey="46169082"
-        sessionId={currentgame.sessionId}
-        token={token}
-      >
-        <OTPublisher
-          properties={{
-            // publishVideo,
-            width: 300,
-            height: 300
-          }}
-        />
-        <OTStreams>
-          <OTSubscriber
+      <div className="opentokContainer">
+        <OTSession
+          apiKey="46169082"
+          sessionId={currentgame.sessionId}
+          token={token}
+        >
+          <OTPublisher
             properties={{
-              width: 200,
-              height: 200
+              // publishVideo,
+              width: 300,
+              height: 300
             }}
           />
-        </OTStreams>
-      </OTSession>
+          <OTStreams>
+            <OTSubscriber
+              properties={{
+                width: 200,
+                height: 200
+              }}
+            />
+          </OTStreams>
+        </OTSession>
+      </div>
     )
   }
 }

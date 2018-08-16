@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Opentok } from './index'
 import { me } from '../store/user'
 import socket from '../socket'
-import { startGame } from '../store/game'
 
 class Lobby extends Component {
   constructor() {
@@ -22,10 +20,8 @@ class Lobby extends Component {
     const user = this.props.user
     const opponent = this.props.opponent
     const opponentNames = Object.keys(opponent)
-    const games = this.props.games
-    const token = this.props.token
-    const name = this.props.match.params.name
-    const currentgame = games.find(game => game.name === name)
+    const currentgame = this.props.currentgame
+
     return (
       <div>
         {
@@ -53,7 +49,6 @@ class Lobby extends Component {
             ? this.props.history.push(`/game/${currentgame.name}/start`)
             : null
         }
-        < Opentok currentgame={currentgame} token={token} />
       </div >
     )
   }
@@ -61,8 +56,6 @@ class Lobby extends Component {
 
 const mapState = state => ({
   opponent: state.opponent,
-  token: state.game.token,
-  games: state.game.games,
   user: state.user,
   startGame: state.game.startGame
 })
