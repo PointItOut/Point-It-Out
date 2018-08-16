@@ -16,7 +16,13 @@ export {default as GameSidebar} from './GameSidebar'
 export {default as Scoreboard} from './Scoreboard'
 export {default as CategoryWrapper} from './CategoryWrapper'
 export {default as CategoryOverview} from './CategoryOverview'
+export {default as CategoryChoices} from './CategoryChoices'
 export {default as Lobby} from './Lobby'
 export {default as Splash} from './Splash'
 export {default as Instructions} from './Instructions'
+<<<<<<< HEAD
 export {default as ModeOptions} from './ModeOptions'
+=======
+export {default as AddCategory} from './AddCategory'
+export {default as EditCategory} from './EditCategory'
+>>>>>>> master

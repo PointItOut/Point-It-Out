@@ -10,7 +10,8 @@ import {
   PartnerMode,
   CategoryOverview,
   Lobby,
-  Splash
+  Splash,
+  EditCategory
 } from './components'
 
 import {me} from './store'
@@ -38,6 +39,7 @@ class Routes extends Component {
           {isLoggedIn && (
             <Switch>
               {/* Routes placed here are only available after logging in */}
+              <Route path="/categories/:categoryId/edit" component={EditCategory} />
               <Route
                 path="/categories/:categoryId"
                 component={CategoryOverview}

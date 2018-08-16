@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 class CategoryOverview extends Component {
   constructor() {
@@ -38,10 +39,13 @@ class CategoryOverview extends Component {
 
   render() {
     const {categoryDisplayed} = this.state
+<<<<<<< HEAD
     const {currentCategory} = this.props
+=======
+    const {currentCategory, user} = this.props
+>>>>>>> master
 
     if (categoryDisplayed) {
-      console.log('**** categoryDisplayed', categoryDisplayed)
       return (
         <div>
           {currentCategory &&
@@ -52,6 +56,9 @@ class CategoryOverview extends Component {
             </button>
           ) : null}
           <h1>{categoryDisplayed.name}</h1>
+          {
+            user.id === categoryDisplayed.authorId ? <Link to={`/categories/${categoryDisplayed.id}/edit`}>Edit</Link> : null
+          }
           <h3>{categoryDisplayed.questionTotal} questions</h3>
           <div>
             <h4>Leaderboard:</h4>
@@ -81,7 +88,8 @@ class CategoryOverview extends Component {
 }
 
 const mapState = state => ({
-  currentCategory: state.categories.current
+  currentCategory: state.categories.current,
+  user: state.user
 })
 
 export default connect(mapState)(CategoryOverview)

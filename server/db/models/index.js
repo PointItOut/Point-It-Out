@@ -20,8 +20,8 @@ Category.hasMany(Question)
 // foreign 'authorId' key on Category
 Category.belongsTo(User, {as: 'author'})
 // join table for users subscriptions to categories
-User.belongsToMany(Category, {through: 'UserCategory'})
-Category.belongsToMany(User, {through: 'UserCategory'})
+User.belongsToMany(Category, {through: { model: 'UserCategory', unique: false}})
+Category.belongsToMany(User, {through: { model: 'UserCategory', unique: false}})
 
 module.exports = {
   User,
