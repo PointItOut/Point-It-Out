@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 class CategoryOverview extends Component {
   constructor() {
@@ -10,7 +10,6 @@ class CategoryOverview extends Component {
     this.state = {
       categoryDisplayed: null
     }
-    this.renderModeOptions = this.renderModeOptions.bind(this)
   }
 
   async componentDidMount() {
@@ -38,28 +37,6 @@ class CategoryOverview extends Component {
     }
   }
 
-  renderModeOptions() {
-    const {chooseMode} = this.props
-    return (
-      <div>
-        <button
-          type="button"
-          className="btn btn-info"
-          onClick={() => chooseMode('solo')}
-        >
-          Challenge Yourself!
-        </button>
-        <button
-          type="button"
-          className="btn btn-info"
-          onClick={() => chooseMode('partner')}
-        >
-          Challenge a Friend!
-        </button>
-      </div>
-    )
-  }
-
   render() {
     const {categoryDisplayed} = this.state
     const {currentCategory, user} = this.props
@@ -67,19 +44,17 @@ class CategoryOverview extends Component {
     if (categoryDisplayed) {
       return (
         <div>
-          {currentCategory && currentCategory.id === categoryDisplayed.id
-            ? this.renderModeOptions()
-            : null}
-
           {currentCategory &&
           !categoryDisplayed.public &&
           currentCategory.id !== categoryDisplayed.id ? (
-            <button>Add to my account</button>
+            <button type="button" className="btn btn-info">
+              Add to my account
+            </button>
           ) : null}
           <h1>{categoryDisplayed.name}</h1>
-          {
-            user.id === categoryDisplayed.authorId ? <Link to={`/categories/${categoryDisplayed.id}/edit`}>Edit</Link> : null
-          }
+          {user.id === categoryDisplayed.authorId ? (
+            <Link to={`/categories/${categoryDisplayed.id}/edit`}>Edit</Link>
+          ) : null}
           <h3>{categoryDisplayed.questionTotal} questions</h3>
           <div>
             <h4>Leaderboard:</h4>
@@ -91,14 +66,12 @@ class CategoryOverview extends Component {
                 </tr>
               </thead>
               <tbody>
-                {
-                  categoryDisplayed.topScores.map(scoreInfo => (
-                    <tr key={scoreInfo.userId} >
-                      <th>{scoreInfo.userName}</th>
-                      <th>{scoreInfo.userHighScore}</th>
-                    </tr>
-                  ))
-                }
+                {categoryDisplayed.topScores.map(scoreInfo => (
+                  <tr key={scoreInfo.userId}>
+                    <th>{scoreInfo.userName}</th>
+                    <th>{scoreInfo.userHighScore}</th>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

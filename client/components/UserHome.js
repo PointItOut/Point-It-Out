@@ -1,11 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { setCurrentCategory } from '../store/categories'
-import { getQuestions } from '../store/questions'
-import { AddGame, JoinGame, CategoryWrapper, CategoryOverview } from './index'
-
-
+import {connect} from 'react-redux'
+import {setCurrentCategory} from '../store/categories'
+import {getQuestions} from '../store/questions'
+import {JoinGame, CategoryWrapper, CategoryOverview, ModeOptions} from './index'
 
 /**
  * COMPONENT
@@ -15,11 +13,9 @@ export class UserHome extends React.Component {
     super()
     this.state = {
       choosingMode: false,
-      choosingCategory: false,
-      partnerMode: false
+      choosingCategory: false
     }
     this.handlePlay = this.handlePlay.bind(this)
-    this.handleChooseMode = this.handleChooseMode.bind(this)
     this.handleChooseCategory = this.handleChooseCategory.bind(this)
   }
 
@@ -32,9 +28,9 @@ export class UserHome extends React.Component {
 
   handleChooseMode(currentMode) {
     if (currentMode === 'partner') {
-      this.setState({ partnerMode: true })
+      this.setState({partnerMode: true})
     }
-    const { loadQuestions } = this.props
+    const {loadQuestions} = this.props
     //load questions dispatches a thunk to get the questions and  dispatch an action to put them on state and redirect the user to the play page
     loadQuestions(this.props.chosenCategory, currentMode)
     //can add more functionality here as needed
@@ -43,7 +39,7 @@ export class UserHome extends React.Component {
   }
 
   handleChooseCategory(category) {
-    const { chooseCategory } = this.props
+    const {chooseCategory} = this.props
     chooseCategory(category)
     this.setState({
       choosingMode: true
@@ -51,8 +47,8 @@ export class UserHome extends React.Component {
   }
 
   render() {
-    const { username } = this.props
-    const { choosingCategory, choosingMode, partnerMode } = this.state
+    const {username} = this.props
+    const {choosingCategory, choosingMode, partnerMode} = this.state
 
     return (
       <div className="container">
@@ -75,10 +71,14 @@ export class UserHome extends React.Component {
         ) : null}
 
         {choosingMode ? (
-          <CategoryOverview chooseMode={this.handleChooseMode} />
+          <div>
+            <ModeOptions
+              chosenCategory={this.props.chosenCategory}
+              loadQuestions={this.props.loadQuestions}
+            />
+            <CategoryOverview />
+          </div>
         ) : null}
-
-        {partnerMode ? <AddGame /> : null}
       </div>
     )
   }
