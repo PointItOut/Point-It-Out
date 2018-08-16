@@ -1,12 +1,17 @@
 import React from 'react'
-import { Scoreboard } from './index'
+import {Scoreboard, Opentok} from './index'
 
-const GameSidebar = () => {
+const GameSidebar = props => {
+  const token = props.token
+  const currentgame = props.currentgame
+  const startGame = props.startGame
   return (
     <div id="game-sidebar">
-    {/* we will add styling so it is positioned to the right of the webcame */}
-      This is the game sidebar!
-      <Scoreboard />
+      {startGame || props.isSolo ? <Scoreboard isSolo={props.isSolo} /> : null}
+
+      {!props.isSolo ? (
+        <Opentok currentgame={currentgame} token={token} />
+      ) : null}
     </div>
   )
 }
