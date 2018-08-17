@@ -36,7 +36,7 @@ const GameSidebar = props => {
     <div id="game-sidebar">
       {startGame || props.isSolo ? (
         <div>
-          <Countdown date={Date.now() + 10000} renderer={renderer} />
+          <Countdown date={Date.now() + 60000} renderer={renderer} />
           <Scoreboard isSolo={props.isSolo} />
         </div>
       ) : null}
