@@ -47,7 +47,7 @@ class JoinGame extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label htmlFor="joinGame">Join A Game</label>
+            <label htmlFor="joinGame">Join Existing Game</label>
             <input
               type="text"
               name="joinGame"
