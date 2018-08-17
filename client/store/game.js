@@ -1,12 +1,15 @@
 import axios from 'axios'
+import socket from '../socket'
+import history from '../history'
 
 const CREATE_GAME = 'CREATE_GAME'
 const GOT_GAMES = 'GOT_GAMES'
 const GOT_TOKEN = 'GOT_TOKEN'
 const START_GAME = 'START_GAME'
+const FILTERS_GAMES = 'FILTERS_GAMES'
 
 // INITIAL STATE
-const initialState = {games: [], token: '', startGame: false, gameCountdown: 3}
+const initialState = { games: [], token: '', startGame: false, gameCountdown: 3 }
 
 // ACTION CREATORS
 export const createGame = data => ({
@@ -29,10 +32,15 @@ export const startGame = start => ({
   start
 })
 
+export const filterGames = game => ({
+  type: FILTERS_GAMES,
+  game
+})
+
 // THUNK CREATORS
 export const postGame = gameName => async dispatch => {
   try {
-    const res = await axios.post('/api/game', {name: gameName})
+    const res = await axios.post('/api/game', { name: gameName })
     dispatch(createGame(res.data))
   } catch (err) {
     console.error(err)
@@ -57,6 +65,20 @@ export const getGames = () => async dispatch => {
   }
 }
 
+export const deleteGame = (gameName, correntmode) => async dispatch => {
+  try {
+    const res = await axios.delete(`/api/game/${gameName}`)
+    if (correntmode) {
+      // socket.emit('redirect', gameName)
+      socket.emit('delete-game', gameName)
+      // history.push('/home')
+    }
+    // dispatch(filterGames(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 // REDUCER
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -67,17 +89,21 @@ const reducer = (state = initialState, action) => {
         token: action.token
       }
     case GOT_GAMES: {
-      return {...state, games: action.games}
+      return { ...state, games: action.games }
     }
     case GOT_TOKEN: {
-      return {...state, token: action.token}
+      return { ...state, token: action.token }
     }
     case START_GAME: {
-      return {
-        ...state,
-        startGame: action.start,
-        gameCountdown: Date.now() + 3000
-      }
+      return { ...state, startGame: action.start, gameCountdown: Date.now() + 3000 }
+    }
+    case FILTERS_GAMES: {
+      const gameName = action.game
+      console.log('gameName', gameName.gameName)
+      const newGames = state.games.filter(game => game.name !== gameName.gameName)
+
+      return { ...state, games: newGames }
+
     }
     default:
       return state

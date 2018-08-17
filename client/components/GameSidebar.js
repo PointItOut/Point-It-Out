@@ -1,11 +1,13 @@
 import React from 'react'
 import Countdown from 'react-countdown-now'
 import AddConfetti from './AddConfetti'
-import {Scoreboard, Opentok} from './index'
-import {withRouter} from 'react-router-dom'
+import { Scoreboard, Opentok } from './index'
+import { connect } from 'react-redux'
+import { deleteGame } from '../store/game'
+import { withRouter } from 'react-router-dom'
 
 const GameSidebar = props => {
-  const renderer = ({minutes, seconds, completed}) => {
+  const renderer = ({ minutes, seconds, completed }) => {
     if (completed) {
       return <AddConfetti />
     } else {
@@ -19,6 +21,8 @@ const GameSidebar = props => {
   const token = props.token
   const currentgame = props.currentgame
   const startGame = props.startGame
+  const deleteGame = props.deleteGame
+  const Mode = 'partner'
   return (
     <div id="game-sidebar">
       {startGame || props.isSolo ? (
@@ -30,9 +34,22 @@ const GameSidebar = props => {
 
       {!props.isSolo ? (
         <Opentok currentgame={currentgame} token={token} />
-      ) : null}
+      ) : <button type='button' onClick={() => { props.history.push('/home') }}>Exit</button>}
+      {startGame && props.user.host ?
+        <button type='button' onClick={() => { deleteGame(currentgame.name, Mode) }}>Exit</button>
+        : null}
     </div>
   )
 }
 
-export default GameSidebar
+const mapDispatchToProps = function (dispatch) {
+  return {
+    deleteGame: (gamename, mode) => dispatch(deleteGame(gamename, mode))
+  }
+}
+
+const mapState = state => ({
+  user: state.user
+})
+
+export default withRouter(connect(mapState, mapDispatchToProps)(GameSidebar))
