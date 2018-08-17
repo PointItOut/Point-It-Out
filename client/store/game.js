@@ -6,7 +6,7 @@ const GOT_TOKEN = 'GOT_TOKEN'
 const START_GAME = 'START_GAME'
 
 // INITIAL STATE
-const initialState = {games: [], token: '', startGame: false}
+const initialState = {games: [], token: '', startGame: false, gameCountdown: 3}
 
 // ACTION CREATORS
 export const createGame = data => ({
