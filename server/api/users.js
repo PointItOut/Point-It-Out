@@ -25,14 +25,21 @@ router.put('/:userId/categories', async (req, res, next) => {
       categoryId: +req.body.categoryId
     }
 
-    const userCategory = await UserCategory.create(body)
+    const userCategory = await UserCategory.findOrCreate({
+      where: { userId: +req.params.userId, categoryId: +req.body.categoryId }
+    })
     res.json(userCategory)
   } catch (err) { next(err) }
 })
 
 router.delete('/:userId/categories/:categoryId', async (req, res, next) => {
   try {
-    // we will delete the usercategory instance
-    res.send('inside unsubscribe from category...')
+    await UserCategory.destroy({
+      where: {
+        userId: +req.params.userId,
+        categoryId: +req.params.categoryId
+      }
+    })
+    res.status(204).send()
   } catch (err) { next(err) }
 })

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
-import { removeCategory } from '../store/categories';
+import { authorRemoveCategory, userUnsubscribeFromCategory } from '../store/categories';
 
 class CategoryOverview extends Component {
   constructor() {
@@ -14,6 +14,7 @@ class CategoryOverview extends Component {
     this.renderModeOptions = this.renderModeOptions.bind(this)
     this.handleAddToAccount = this.handleAddToAccount.bind(this)
     this.handleDeleteCategory = this.handleDeleteCategory.bind(this)
+    this.handleUnsubscribe = this.handleUnsubscribe.bind(this)
   }
 
   async componentDidMount() {
@@ -42,10 +43,11 @@ class CategoryOverview extends Component {
   }
 
   async handleAddToAccount(){
-    const { history, user } = this.props
+    const { user, history } = this.props
     const { categoryDisplayed } = this.state
     // update user categories subscription by creating a UserCategory instance
     const { data } = await axios.put(`/api/users/${user.id}/categories`, { categoryId: categoryDisplayed.id })
+    history.push('/home')
   }
 
   renderModeOptions() {
@@ -77,6 +79,13 @@ class CategoryOverview extends Component {
     resetCategory()
   }
 
+  handleUnsubscribe() {
+    const { unsubscribe, resetCategory, user } = this.props
+    const { categoryDisplayed } = this.state
+    unsubscribe(categoryDisplayed, user.id)
+    resetCategory()
+  }
+
   render() {
     const {categoryDisplayed} = this.state
     const { currentCategory, user, match } = this.props
@@ -97,7 +106,8 @@ class CategoryOverview extends Component {
           }
 
           { // if you are looking at a private category you are subscribed to (i.e. no match.params) and it is NOT a category you made, you can unsubscribe from the category
-            !categoryDisplayed.public && !match && (categoryDisplayed.authorId !== user.id) ? <button>Unsubscribe from Category</button> : null
+            !categoryDisplayed.public && !match && (categoryDisplayed.authorId !== user.id) ? (
+            <button onClick={this.handleUnsubscribe} >Unsubscribe from Category</button>) : null
           }
 
           {user.id === categoryDisplayed.authorId ? (
@@ -138,7 +148,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  removeUsersCategory: category => dispatch(removeCategory(category))
+  removeUsersCategory: category => dispatch(authorRemoveCategory(category)),
+  unsubscribe: (category, userId) => dispatch(userUnsubscribeFromCategory(category, userId))
 })
 
 export default connect(mapState, mapDispatch)(CategoryOverview)
