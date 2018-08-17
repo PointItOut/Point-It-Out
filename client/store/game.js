@@ -73,7 +73,11 @@ const reducer = (state = initialState, action) => {
       return {...state, token: action.token}
     }
     case START_GAME: {
-      return {...state, startGame: action.start}
+      return {
+        ...state,
+        startGame: action.start,
+        gameCountdown: Date.now() + 3000
+      }
     }
     default:
       return state
