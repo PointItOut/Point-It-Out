@@ -6,6 +6,8 @@ const SET_CATEGORY = 'SET_CATEGORY'
 const GET_PUBLIC_CATEGORIES = 'GET_PUBLIC_CATEGORIES'
 const GET_PRIVATE_CATEGORIES = 'GET_PRIVATE_CATEGORIES'
 const CREATE_CATEGORY = 'CREATE_CATEGORY'
+const DELETE_CATEGORY = 'DELETE_CATEGORY'
+const UNSUBSCRIBE_FROM_CATEGORY = 'UNSUBSCRIBE_FROM_CATEGORY'
 
 // INITIAL STATE
 const initialState = {
@@ -32,6 +34,16 @@ const getPrivateCategories = privateCategories => ({
 
 const createCategory = category => ({
   type: CREATE_CATEGORY,
+  category
+})
+
+const authorDeleteCategory = category => ({
+  type: DELETE_CATEGORY,
+  category
+})
+
+const unsubscribeFromCategory = category => ({
+  type: UNSUBSCRIBE_FROM_CATEGORY,
   category
 })
 
@@ -69,6 +81,20 @@ export const makeNewCategory = (category, userId) => async dispatch => {
   } catch (err) { console.error(err) }
 }
 
+export const authorRemoveCategory = category => async dispatch => {
+  try {
+    await axios.delete(`/api/categories/${category.id}`)
+    dispatch(authorDeleteCategory(category))
+  } catch (err) { console.error(err) }
+}
+
+export const userUnsubscribeFromCategory = (category, userId) => async dispatch => {
+  try {
+    await axios.delete(`/api/users/${userId}/categories/${category.id}`)
+    dispatch(unsubscribeFromCategory(category))
+  } catch (err) { console.error(err) }
+}
+
 // REDUCER
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -80,6 +106,10 @@ const reducer = (state = initialState, action) => {
       return { ...state, private: action.privateCategories }
     case CREATE_CATEGORY:
       return { ...state, private: [...state.private, action.category]}
+    case DELETE_CATEGORY:
+      return { ...state, private: state.private.filter(category => category.id !== action.category.id)}
+    case UNSUBSCRIBE_FROM_CATEGORY:
+      return { ...state, private: state.private.filter(category => category.id !== action.category.id)}
     default:
       return state
   }
