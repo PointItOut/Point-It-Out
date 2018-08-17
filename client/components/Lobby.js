@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { me } from '../store/user'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {me} from '../store/user'
 import socket from '../socket'
 
 class Lobby extends Component {
@@ -13,7 +13,7 @@ class Lobby extends Component {
     console.log('THE USER: ', this.props.user)
   }
   handleClick(currentgame) {
-    socket.emit('startGame', { currentgame })
+    socket.emit('startGame', {currentgame})
   }
 
   render() {
@@ -21,7 +21,7 @@ class Lobby extends Component {
     const opponent = this.props.opponent
     const opponentNames = Object.keys(opponent)
     const currentgame = this.props.currentgame
-
+    console.log('Rendering lobby')
     return (
       <div>
         {user.host ? (
@@ -32,8 +32,8 @@ class Lobby extends Component {
             </button>
           </div>
         ) : (
-            <h3>Waiting for host to start the game</h3>
-          )}
+          <h3>Waiting for host to start the game</h3>
+        )}
         <div>
           {user.host && opponentNames.length === 1 ? (
             <h3> Waiting for people to join the game</h3>

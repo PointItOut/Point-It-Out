@@ -81,3 +81,6 @@ button a {
   font-size: 40px
 }
 
+.no-interaction {
+  pointer-events: none;
+}

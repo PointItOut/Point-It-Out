@@ -14,6 +14,34 @@ module.exports = io => {
     socket.on('webcam', payload => {
       socket.broadcast.emit('webcam', payload)
     })
+    // socket.on('redirect', payload => {
+    //   io.in(game).emit('redirect', 'history')
+    // })
+
+    socket.on('delete-game', gameName => {
+      console.log('gameName', gameName);
+      io.in(gameName).emit('redirect', 'home')
+      let newGames = {}
+      let newquestions = {}
+      let newlist = {}
+      for (let game in games) {
+        if (game !== gameName) {
+          newGames[game] = games[game]
+          newquestions[game] = questions[game]
+          newlist[game] = list[game]
+        }
+      }
+      questions = newquestions
+      games = newGames
+      list = newlist
+
+      io.of('/').in(gameName).clients((error, socketIds) => {
+        console.log('error = ' + error + ', socketIds = ' + socketIds);
+        if (error) throw error;
+        socketIds.forEach(socketId => io.sockets.sockets[socketId].leave(gameName));
+      });
+      console.log('================>', list, games, questions)
+    })
 
     socket.on('questions', payload => {
       const Game = payload.gameName
