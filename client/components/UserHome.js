@@ -18,6 +18,7 @@ export class UserHome extends React.Component {
     }
     this.handlePlay = this.handlePlay.bind(this)
     this.handleChooseCategory = this.handleChooseCategory.bind(this)
+    this.resetCategory = this.resetCategory.bind(this)
   }
 
   handlePlay() {
@@ -47,6 +48,13 @@ export class UserHome extends React.Component {
     })
   }
 
+  resetCategory() {
+    this.setState({
+      choosingCategory: false,
+      choosingMode: false
+    })
+  }
+
   render() {
     const {username} = this.props
     const {choosingCategory, choosingMode, partnerMode} = this.state
@@ -61,7 +69,7 @@ export class UserHome extends React.Component {
               onClick={this.handlePlay}
               className="btn btn-info"
             >
-              Play
+              New Game
             </button>
             <JoinGame />
           </div>
@@ -77,7 +85,7 @@ export class UserHome extends React.Component {
               chosenCategory={this.props.chosenCategory}
               loadQuestions={this.props.loadQuestions}
             />
-            <CategoryOverview />
+            <CategoryOverview resetCategory={this.resetCategory} />
           </div>
         ) : null}
       </div>
