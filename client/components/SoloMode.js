@@ -20,7 +20,11 @@ const SoloMode = props => {
   }
   return (
     <div>
-      <Countdown date={Date.now() + 3000} renderer={renderer} />
+      <Countdown
+        date={Date.now() + 3000}
+        renderer={renderer}
+        zeroPadLength={1}
+      />
     </div>
   )
 }
