@@ -6,6 +6,7 @@ const SET_CATEGORY = 'SET_CATEGORY'
 const GET_PUBLIC_CATEGORIES = 'GET_PUBLIC_CATEGORIES'
 const GET_PRIVATE_CATEGORIES = 'GET_PRIVATE_CATEGORIES'
 const CREATE_CATEGORY = 'CREATE_CATEGORY'
+const DELETE_CATEGORY = 'DELETE_CATEGORY'
 
 // INITIAL STATE
 const initialState = {
@@ -32,6 +33,11 @@ const getPrivateCategories = privateCategories => ({
 
 const createCategory = category => ({
   type: CREATE_CATEGORY,
+  category
+})
+
+const deleteCategory = category => ({
+  type: DELETE_CATEGORY,
   category
 })
 
@@ -69,6 +75,13 @@ export const makeNewCategory = (category, userId) => async dispatch => {
   } catch (err) { console.error(err) }
 }
 
+export const removeCategory = category => async dispatch => {
+  try {
+    await axios.delete(`/api/categories/${category.id}`)
+    dispatch(deleteCategory(category))
+  } catch (err) { console.error(err) }
+}
+
 // REDUCER
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -80,6 +93,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, private: action.privateCategories }
     case CREATE_CATEGORY:
       return { ...state, private: [...state.private, action.category]}
+    case DELETE_CATEGORY:
+      return { ...state, private: state.private.filter(category => category.id !== action.category.id)}
     default:
       return state
   }

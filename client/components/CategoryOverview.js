@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import { removeCategory } from '../store/categories';
 
 class CategoryOverview extends Component {
   constructor() {
@@ -12,6 +13,7 @@ class CategoryOverview extends Component {
     }
     this.renderModeOptions = this.renderModeOptions.bind(this)
     this.handleAddToAccount = this.handleAddToAccount.bind(this)
+    this.handleDeleteCategory = this.handleDeleteCategory.bind(this)
   }
 
   async componentDidMount() {
@@ -44,7 +46,6 @@ class CategoryOverview extends Component {
     const { categoryDisplayed } = this.state
     // update user categories subscription by creating a UserCategory instance
     const { data } = await axios.put(`/api/users/${user.id}/categories`, { categoryId: categoryDisplayed.id })
-    history.push('/home')
   }
 
   renderModeOptions() {
@@ -69,9 +70,16 @@ class CategoryOverview extends Component {
     )
   }
 
+  handleDeleteCategory() {
+    const { removeUsersCategory, resetCategory } = this.props
+    const { categoryDisplayed } = this.state
+    removeUsersCategory(categoryDisplayed)
+    resetCategory()
+  }
+
   render() {
     const {categoryDisplayed} = this.state
-    const {currentCategory, user, match} = this.props
+    const { currentCategory, user, match } = this.props
 
     if (categoryDisplayed) {
       return (
@@ -83,7 +91,9 @@ class CategoryOverview extends Component {
           <h1>{categoryDisplayed.name}</h1>
 
           { // if you are looking at a category you made, you can delete the category from the database
-            !categoryDisplayed.public && categoryDisplayed.authorId === user.id ? <button>Delete Category</button> : null
+            !categoryDisplayed.public && categoryDisplayed.authorId === user.id ? (
+              <button onClick={this.handleDeleteCategory} >Delete Category</button>
+            ) : null
           }
 
           { // if you are looking at a private category you are subscribed to (i.e. no match.params) and it is NOT a category you made, you can unsubscribe from the category
@@ -127,4 +137,8 @@ const mapState = state => ({
   user: state.user
 })
 
-export default connect(mapState)(CategoryOverview)
+const mapDispatch = dispatch => ({
+  removeUsersCategory: category => dispatch(removeCategory(category))
+})
+
+export default connect(mapState, mapDispatch)(CategoryOverview)

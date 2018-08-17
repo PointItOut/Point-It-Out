@@ -95,4 +95,21 @@ router.get('/:categoryId', async (req, res, next) => {
   } catch (err) { next(err) }
 })
 
+router.delete('/:categoryId', async (req, res, next) => {
+  try {
+    // delete the category automatically deletes the UserCategory instances
+    // questions associated with the category do not get deleted... and their choices do not either...
+    const categoryId = +req.params.categoryId
+    await Promise.all([
+      Category.destroy({ where: { id: categoryId }}),
+      Question.destroy({ where: { categoryId }})
+    ])
+    // choices don't automatically delete, but their questionId will get set to null...
+    await Choice.destroy({
+      where: { questionId: null }
+    })
+    res.status(204).send()
+  } catch (err) { next(err) }
+})
+
 module.exports = router

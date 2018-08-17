@@ -30,8 +30,9 @@ router.put('/:userId/categories', async (req, res, next) => {
   } catch (err) { next(err) }
 })
 
-// router.delete('/:userId/categories/:categoryId', async (req, res, next) => {
-//   try {
-
-//   } catch (err) { next(err) }
-// })
+router.delete('/:userId/categories/:categoryId', async (req, res, next) => {
+  try {
+    // we will delete the usercategory instance
+    res.send('inside unsubscribe from category...')
+  } catch (err) { next(err) }
+})

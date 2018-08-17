@@ -17,6 +17,7 @@ export class UserHome extends React.Component {
     }
     this.handlePlay = this.handlePlay.bind(this)
     this.handleChooseCategory = this.handleChooseCategory.bind(this)
+    this.resetCategory = this.resetCategory.bind(this)
   }
 
   handlePlay() {
@@ -43,6 +44,13 @@ export class UserHome extends React.Component {
     chooseCategory(category)
     this.setState({
       choosingMode: true
+    })
+  }
+
+  resetCategory() {
+    this.setState({
+      choosingCategory: false,
+      choosingMode: false
     })
   }
 
@@ -76,7 +84,7 @@ export class UserHome extends React.Component {
               chosenCategory={this.props.chosenCategory}
               loadQuestions={this.props.loadQuestions}
             />
-            <CategoryOverview />
+            <CategoryOverview resetCategory={this.resetCategory} />
           </div>
         ) : null}
       </div>
