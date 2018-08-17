@@ -5,7 +5,6 @@ import {setCurrentCategory} from '../store/categories'
 import {getQuestions} from '../store/questions'
 import {JoinGame, CategoryWrapper, CategoryOverview, ModeOptions} from './index'
 
-
 /**
  * COMPONENT
  */
@@ -61,33 +60,35 @@ export class UserHome extends React.Component {
 
     return (
       <div className="container">
-        <h3>Welcome, {username}</h3>
-        {!choosingCategory ? (
-          <div>
-            <button
-              type="button"
-              onClick={this.handlePlay}
-              className="btn btn-info"
-            >
-              New Game
-            </button>
-            <JoinGame />
-          </div>
-        ) : null}
+        <div className="main-container  col-sm-12 col-md-8 offset-md-2">
+          <h3>Welcome, {username}</h3>
+          {!choosingCategory ? (
+            <div>
+              <button
+                type="button"
+                onClick={this.handlePlay}
+                className="btn btn-info"
+              >
+                New Game
+              </button>
+              <JoinGame />
+            </div>
+          ) : null}
 
-        {!choosingMode && choosingCategory ? (
-          <CategoryWrapper handleChooseCategory={this.handleChooseCategory} />
-        ) : null}
+          {!choosingMode && choosingCategory ? (
+            <CategoryWrapper handleChooseCategory={this.handleChooseCategory} />
+          ) : null}
 
-        {choosingMode ? (
-          <div>
-            <ModeOptions
-              chosenCategory={this.props.chosenCategory}
-              loadQuestions={this.props.loadQuestions}
-            />
-            <CategoryOverview resetCategory={this.resetCategory} />
-          </div>
-        ) : null}
+          {choosingMode ? (
+            <div>
+              <ModeOptions
+                chosenCategory={this.props.chosenCategory}
+                loadQuestions={this.props.loadQuestions}
+              />
+              <CategoryOverview resetCategory={this.resetCategory} />
+            </div>
+          ) : null}
+        </div>
       </div>
     )
   }
