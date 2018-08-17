@@ -9,7 +9,7 @@ const START_GAME = 'START_GAME'
 const FILTERS_GAMES = 'FILTERS_GAMES'
 
 // INITIAL STATE
-const initialState = { games: [], token: '', startGame: false }
+const initialState = { games: [], token: '', startGame: false, gameCountdown: 3 }
 
 // ACTION CREATORS
 export const createGame = data => ({
@@ -95,7 +95,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, token: action.token }
     }
     case START_GAME: {
-      return { ...state, startGame: action.start }
+      return { ...state, startGame: action.start, gameCountdown: Date.now() + 3000 }
     }
     case FILTERS_GAMES: {
       const gameName = action.game
@@ -103,6 +103,7 @@ const reducer = (state = initialState, action) => {
       const newGames = state.games.filter(game => game.name !== gameName.gameName)
 
       return { ...state, games: newGames }
+
     }
     default:
       return state
