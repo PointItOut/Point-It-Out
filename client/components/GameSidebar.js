@@ -6,10 +6,13 @@ import { connect } from 'react-redux'
 import { deleteGame } from '../store/game'
 import { withRouter } from 'react-router-dom'
 
+
 const GameSidebar = props => {
   const renderer = ({ minutes, seconds, completed }) => {
     if (completed) {
-      return <AddConfetti />
+      return (
+        <AddConfetti />
+      )
     } else {
       return (
         <span className="clock">

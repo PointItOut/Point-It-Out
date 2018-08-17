@@ -4,11 +4,16 @@ import socket from '../socket'
 
 //ACTION TYPES
 const GOT_QUESTIONS_FOR_CATEGORY = 'GOT_QUESTIONS_FOR_CATEGORY'
+const DELETE_QUESTIONS = 'DELETE_QUESTIONS'
 
 // ACTION CREATORS
 export const gotQuestionsForCategory = questions => ({
   type: GOT_QUESTIONS_FOR_CATEGORY,
   questions
+})
+
+export const deleteQuestions = () => ({
+  type: DELETE_QUESTIONS
 })
 
 //THUNK CREATORS
@@ -39,6 +44,9 @@ const reducer = (state = [], action) => {
   switch (action.type) {
     case GOT_QUESTIONS_FOR_CATEGORY:
       return action.questions
+    case DELETE_QUESTIONS: {
+      return []
+    }
     default:
       return state
   }

@@ -7,9 +7,10 @@ const GOT_GAMES = 'GOT_GAMES'
 const GOT_TOKEN = 'GOT_TOKEN'
 const START_GAME = 'START_GAME'
 const FILTERS_GAMES = 'FILTERS_GAMES'
+const SET_TIME_OVER = 'SET_TIME_OVER'
 
 // INITIAL STATE
-const initialState = { games: [], token: '', startGame: false, gameCountdown: 3 }
+const initialState = { games: [], token: '', startGame: false, gameCountdown: 3, timeover: false }
 
 // ACTION CREATORS
 export const createGame = data => ({
@@ -36,6 +37,15 @@ export const filterGames = game => ({
   type: FILTERS_GAMES,
   game
 })
+
+export const setTimeOver = (timeover) => {
+  console.log('===========>', timeover)
+
+  return {
+    type: SET_TIME_OVER,
+    timeover
+  }
+}
 
 // THUNK CREATORS
 export const postGame = gameName => async dispatch => {
@@ -104,6 +114,9 @@ const reducer = (state = initialState, action) => {
 
       return { ...state, games: newGames }
 
+    }
+    case SET_TIME_OVER: {
+      return { ...state, timeover: action.timeover }
     }
     default:
       return state
