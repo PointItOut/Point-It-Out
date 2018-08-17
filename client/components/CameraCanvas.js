@@ -1,18 +1,18 @@
-import React, {Component} from 'react'
-import {Stage, Layer, Rect, Text, Circle, Image} from 'react-konva'
+import React, { Component } from 'react'
+import { Stage, Layer, Rect, Text, Circle, Image } from 'react-konva'
 import Konva from 'konva'
 import Webcam from 'react-webcam'
 import Diffy from './diffy'
-import {withRouter} from 'react-router-dom'
-import {PurpleRect, GreenRect, YellowRect, RedRect} from './canvas-rects'
-import {connect} from 'react-redux'
-import {submitAnswer, setQuestion} from '../store/currentQuestion'
-import {updateScore} from '../store/score'
+import { withRouter } from 'react-router-dom'
+import { PurpleRect, GreenRect, YellowRect, RedRect } from './canvas-rects'
+import { connect } from 'react-redux'
+import { submitAnswer, setQuestion } from '../store/currentQuestion'
+import { updateScore } from '../store/score'
 
 class CameraCanvas extends Component {
   constructor() {
     super()
-    this.state = {loaded: false}
+    this.state = { loaded: false }
     this.nextQuestion = this.nextQuestion.bind(this)
   }
 
@@ -22,7 +22,7 @@ class CameraCanvas extends Component {
     // log Konva.Stage instance
     console.log(this.stageRef.getStage())
 
-    const {setNewQuestion, questions, submitUserGuess} = this.props
+    const { setNewQuestion, questions, submitUserGuess } = this.props
 
     setNewQuestion(questions[0]) // start with first question
     submitUserGuess(null) // to reset userguess to null
@@ -32,7 +32,7 @@ class CameraCanvas extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {currentQuestion} = this.props
+    const { currentQuestion } = this.props
     const question = currentQuestion.question
     const options = question ? question.choices : []
     if (
@@ -78,7 +78,7 @@ class CameraCanvas extends Component {
   }
 
   render() {
-    const {currentQuestion} = this.props
+    const { currentQuestion } = this.props
     const question = currentQuestion.question
     const options = question ? question.choices : undefined
     const xPositions = [0, 266, 533, 799]
@@ -101,11 +101,11 @@ class CameraCanvas extends Component {
             <RedRect />
 
             {// option images
-            options &&
+              options &&
               options.map((option, index) => {
                 if (option.picture) {
                   const imageObj = new window.Image()
-                  imageObj.onload = () => {}
+                  imageObj.onload = () => { }
                   imageObj.src = option.picture
                   return (
                     <Image
@@ -124,7 +124,7 @@ class CameraCanvas extends Component {
               })}
 
             {// option text boxes
-            options &&
+              options &&
               options.map((option, index) => {
                 return (
                   <Text
@@ -141,8 +141,8 @@ class CameraCanvas extends Component {
               })}
 
             {// if we have options and the user has guessed, show feedback:
-            currentQuestion.userGuess !== null && options
-              ? options.map((option, index) => {
+              currentQuestion.userGuess !== null && options
+                ? options.map((option, index) => {
                   if (currentQuestion.userGuess === index) {
                     if (option.isCorrect) {
                       // they got it right! add green border
@@ -184,7 +184,7 @@ class CameraCanvas extends Component {
                     return null
                   }
                 })
-              : null}
+                : null}
 
             <Rect
               x={200}
