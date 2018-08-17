@@ -11,29 +11,32 @@ const AuthForm = props => {
 
   return (
     <div className="container">
-      <form onSubmit={handleSubmit} name={name}>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input name="email" type="text" />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input name="password" type="password" />
-        </div>
-        {props.name === 'signup' ? (
+      <div className="main-container  col-sm-12 col-md-8 offset-md-2">
+        <form onSubmit={handleSubmit} name={name}>
+          <h2 className="text-center">{name.toUpperCase()}</h2>
           <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input name="username" type="text" />
+            <label htmlFor="email">Email</label>
+            <input name="email" type="text" />
           </div>
-        ) : null}
-        <div>
-          <button type="submit" className="btn btn-info">
-            {displayName}
-          </button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input name="password" type="password" />
+          </div>
+          {props.name === 'signup' ? (
+            <div className="form-group">
+              <label htmlFor="username">Username</label>
+              <input name="username" type="text" />
+            </div>
+          ) : null}
+          <div>
+            <button type="submit" className="btn btn-main">
+              {displayName}
+            </button>
+          </div>
+          {error && error.response && <div> {error.response.data} </div>}
+        </form>
+        {/* <a href="/auth/google">{displayName} with Google</a> */}
+      </div>
     </div>
   )
 }
