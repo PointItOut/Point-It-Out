@@ -91,6 +91,7 @@ video {
 
 #game-sidebar {
   flex-grow: 1;
+  background-color: var(--box-color);
 }
 
 .OT_publisher {
