@@ -5,11 +5,20 @@ import { Scoreboard, Opentok } from './index'
 import { connect } from 'react-redux'
 import { deleteGame } from '../store/game'
 import { withRouter } from 'react-router-dom'
+import { setTimeOver } from '../store/game'
+
 
 const GameSidebar = props => {
+  console.log('=============>', props.setTimeOver)
+  const dispatchsetTimeOver = props.setTimeOver
   const renderer = ({ minutes, seconds, completed }) => {
     if (completed) {
-      return <AddConfetti />
+      dispatchsetTimeOver(true)
+      return (
+        <div>
+          <AddConfetti />
+        </div>
+      )
     } else {
       return (
         <span className="clock">
@@ -44,7 +53,8 @@ const GameSidebar = props => {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    deleteGame: (gamename, mode) => dispatch(deleteGame(gamename, mode))
+    deleteGame: (gamename, mode) => dispatch(deleteGame(gamename, mode)),
+    setTimeOver: (logic) => dispatch(setTimeOver(logic))
   }
 }
 
