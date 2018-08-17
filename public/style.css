@@ -112,3 +112,7 @@ button a {
 .clock {
   font-size: 40px;
 }
+
+.no-interaction {
+  pointer-events: none;
+}
