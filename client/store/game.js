@@ -6,7 +6,7 @@ const GOT_TOKEN = 'GOT_TOKEN'
 const START_GAME = 'START_GAME'
 
 // INITIAL STATE
-const initialState = {games: [], token: '', startGame: false}
+const initialState = {games: [], token: '', startGame: false, gameCountdown: 3}
 
 // ACTION CREATORS
 export const createGame = data => ({
@@ -73,7 +73,11 @@ const reducer = (state = initialState, action) => {
       return {...state, token: action.token}
     }
     case START_GAME: {
-      return {...state, startGame: action.start}
+      return {
+        ...state,
+        startGame: action.start,
+        gameCountdown: Date.now() + 3000
+      }
     }
     default:
       return state
