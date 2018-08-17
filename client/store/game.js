@@ -39,8 +39,6 @@ export const filterGames = game => ({
 })
 
 export const setTimeOver = (timeover) => {
-  console.log('===========>', timeover)
-
   return {
     type: SET_TIME_OVER,
     timeover
