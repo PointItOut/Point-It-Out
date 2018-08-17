@@ -39,10 +39,11 @@ class CategoryOverview extends Component {
     }
   }
 
-  handleAddToAccount(){
-    const { history } = this.props
-    // we want to create a UserCategory instance
-
+  async handleAddToAccount(){
+    const { history, user } = this.props
+    const { categoryDisplayed } = this.state
+    // update user categories subscription by creating a UserCategory instance
+    const { data } = await axios.put(`/api/users/${user.id}/categories`, { categoryId: categoryDisplayed.id })
     history.push('/home')
   }
 
@@ -70,22 +71,29 @@ class CategoryOverview extends Component {
 
   render() {
     const {categoryDisplayed} = this.state
-    const {currentCategory, user} = this.props
+    const {currentCategory, user, match} = this.props
+    console.log('do we have the match?', match.params)
 
     if (categoryDisplayed) {
       return (
         <div>
-          {currentCategory &&
+          {/* {currentCategory &&
           !categoryDisplayed.public &&
           currentCategory.id !== categoryDisplayed.id ? (
             <button type="button" className="btn btn-info" onClick={this.handleAddToAccount}>
               Add to my account
             </button>
-          ) : null}
+          ) : null} */}
+          { !categoryDisplayed.public && match.params.categoryId ? (<button type="button" className="btn btn-info" onClick={this.handleAddToAccount}>
+              Add to my account
+            </button>) : null }
+
           <h1>{categoryDisplayed.name}</h1>
+
           {user.id === categoryDisplayed.authorId ? (
             <Link to={`/categories/${categoryDisplayed.id}/edit`}>Edit</Link>
           ) : null}
+
           <h3>{categoryDisplayed.questionTotal} questions</h3>
           <div>
             <h4>Leaderboard:</h4>

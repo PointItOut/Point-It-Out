@@ -19,8 +19,13 @@ router.get('/', async (req, res, next) => {
 // for when a user subscribes to a category
 router.put('/:userId/categories', async (req, res, next) => {
   try {
-    // req.body has userId and categoryId
-    const userCategory = await UserCategory.create(req.body)
+    // req.body has a categoryId
+    const body = {
+      userId: +req.params.userId,
+      categoryId: +req.body.categoryId
+    }
+
+    const userCategory = await UserCategory.create(body)
     res.json(userCategory)
   } catch (err) { next(err) }
 })

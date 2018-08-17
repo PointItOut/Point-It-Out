@@ -43,22 +43,18 @@ async function seed() {
   // CATEGORIES
   const categories = await Promise.all([
     Category.create({
-      id: 1,
       name: 'geography',
       public: true
     }),
     Category.create({
-      id: 2,
       name: 'history',
       public: true
     }),
     Category.create({
-      id: 3,
       name: 'art',
       public: true
     }),
     Category.create({
-      id: 4,
       name: "cody's cafe",
       public: false,
       authorId: 1
