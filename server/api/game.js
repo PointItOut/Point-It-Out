@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Game, User} = require('../db/models')
+const { Game, User } = require('../db/models')
 const OpenTok = require('opentok')
 
 router.get('/', async (req, res, next) => {
@@ -19,13 +19,13 @@ router.get('/:name', async (req, res, next) => {
     )
     const gameName = req.params.name
     const existgame = await Game.findOne({
-      where: {name: gameName}
+      where: { name: gameName }
     })
     let token = opentok.generateToken(existgame.sessionId)
 
-    await User.update({gameId: existgame.id, token}, {where: {id: req.user.id}})
+    await User.update({ gameId: existgame.id, token }, { where: { id: req.user.id } })
 
-    res.json({token})
+    res.json({ token })
   } catch (err) {
     next(err)
   }
@@ -38,10 +38,10 @@ router.post('/', async (req, res, next) => {
       process.env.OPENTOK_SECRET
     )
 
-    opentok.createSession({mediaMode: 'routed'}, async function(err, session) {
+    opentok.createSession({ mediaMode: 'routed' }, async function (err, session) {
       if (err) {
         console.log(err)
-        res.status(500).send({error: 'createSession error: ', err})
+        res.status(500).send({ error: 'createSession error: ', err })
         return
       }
 
@@ -50,14 +50,26 @@ router.post('/', async (req, res, next) => {
       const newGame = await Game.create(req.body)
       let token = opentok.generateToken(newGame.sessionId)
       await User.update(
-        {gameId: newGame.id, host: true, token},
-        {where: {id: req.user.id}}
+        { gameId: newGame.id, host: true, token },
+        { where: { id: req.user.id } }
       )
-      res.json({newGame, token})
+      res.json({ newGame, token })
     })
   } catch (err) {
     next(err)
   }
 })
+
+
+router.delete('/:game', async (req, res, next) => {
+  try {
+    const gameName = req.params.game;
+    await Game.destroy({ where: { name: gameName } });
+
+    res.json({ gameName })
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router

@@ -4,6 +4,7 @@ import { gotQuestionsForCategory } from './store/questions'
 const socket = io(window.location.origin)
 import store from './store'
 import { startGame } from './store/game'
+import history from './history'
 
 socket.on('connect', () => {
   console.log('Connected!')
@@ -15,6 +16,12 @@ socket.on('new-connection', payload => {
 
 socket.on('purple', payload => {
   console.log(payload)
+})
+
+
+socket.on('redirect', payload => {
+  store.dispatch(startGame(false))
+  history.push('/home')
 })
 
 socket.on('webcam', payload => {
