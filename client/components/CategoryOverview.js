@@ -72,23 +72,23 @@ class CategoryOverview extends Component {
   render() {
     const {categoryDisplayed} = this.state
     const {currentCategory, user, match} = this.props
-    console.log('do we have the match?', match.params)
 
     if (categoryDisplayed) {
       return (
         <div>
-          {/* {currentCategory &&
-          !categoryDisplayed.public &&
-          currentCategory.id !== categoryDisplayed.id ? (
-            <button type="button" className="btn btn-info" onClick={this.handleAddToAccount}>
-              Add to my account
-            </button>
-          ) : null} */}
-          { !categoryDisplayed.public && match.params.categoryId ? (<button type="button" className="btn btn-info" onClick={this.handleAddToAccount}>
+          { !categoryDisplayed.public && match ? (<button type="button" className="btn btn-info" onClick={this.handleAddToAccount}>
               Add to my account
             </button>) : null }
 
           <h1>{categoryDisplayed.name}</h1>
+
+          { // if you are looking at a category you made, you can delete the category from the database
+            !categoryDisplayed.public && categoryDisplayed.authorId === user.id ? <button>Delete Category</button> : null
+          }
+
+          { // if you are looking at a private category you are subscribed to (i.e. no match.params) and it is NOT a category you made, you can unsubscribe from the category
+            !categoryDisplayed.public && !match && (categoryDisplayed.authorId !== user.id) ? <button>Unsubscribe from Category</button> : null
+          }
 
           {user.id === categoryDisplayed.authorId ? (
             <Link to={`/categories/${categoryDisplayed.id}/edit`}>Edit</Link>
