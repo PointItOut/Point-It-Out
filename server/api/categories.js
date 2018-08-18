@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Category, UserCategory, User, Question, Choice} = require('../db/models')
+const { userMatchesParam } = require('../../secureHelpers')
 
 // GET public categories
 router.get('/public', async (req, res, next) => {
@@ -14,7 +15,7 @@ router.get('/public', async (req, res, next) => {
 })
 
 // GET user's personal categories
-router.get('/private/:userId', async (req, res, next) => {
+router.get('/private/:userId', userMatchesParam, async (req, res, next) => {
   try {
     const user = await User.findById(+req.params.userId)
     const userCategories = await user.getCategories()

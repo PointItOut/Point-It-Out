@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {User, UserCategory} = require('../db/models')
+const { userMatchesParam } = require('../../secureHelpers')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -17,7 +18,7 @@ router.get('/', async (req, res, next) => {
 })
 
 // for when a user subscribes to a category
-router.put('/:userId/categories', async (req, res, next) => {
+router.put('/:userId/categories', userMatchesParam, async (req, res, next) => {
   try {
     // req.body has a categoryId
     const body = {
@@ -32,7 +33,7 @@ router.put('/:userId/categories', async (req, res, next) => {
   } catch (err) { next(err) }
 })
 
-router.delete('/:userId/categories/:categoryId', async (req, res, next) => {
+router.delete('/:userId/categories/:categoryId', userMatchesParam, async (req, res, next) => {
   try {
     await UserCategory.destroy({
       where: {
