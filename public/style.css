@@ -6,6 +6,7 @@
   --button-hover: rgb(0, 86, 117);
   --dark-text: rgb(35, 31, 31);
   --light-text: white;
+  --primary: #0096cc;
 }
 
 body {

@@ -9,12 +9,8 @@ import {setTimeOver} from '../store/game'
 
 const GameSidebar = props => {
   const dispatchsetTimeOver = props.setTimeOver
-<<<<<<< HEAD
-  const renderer = ({minutes, seconds, completed}) => {
-=======
 
-  const renderer = ({ minutes, seconds, completed }) => {
->>>>>>> master
+  const renderer = ({minutes, seconds, completed}) => {
     if (completed) {
       dispatchsetTimeOver(true)
       return (
@@ -24,9 +20,16 @@ const GameSidebar = props => {
       )
     } else {
       return (
-        <span className="clock">
-          {minutes}:{seconds}
-        </span>
+        <div className="card">
+          <div className="card-header blue-header">
+            <h4>TIME REMAINING</h4>
+          </div>
+          <div>
+            <span className="clock text-center">
+              {minutes}:{seconds}
+            </span>
+          </div>
+        </div>
       )
     }
   }
@@ -39,18 +42,7 @@ const GameSidebar = props => {
     <div id="game-sidebar" className="container">
       {startGame || props.isSolo ? (
         <div>
-<<<<<<< HEAD
-          {/* <div className="card">
-            <div className="card-header blue-header">
-              <h4>TIME REMAINING</h4>
-            </div>
-            <div className="card-body"> */}
-          <Countdown date={Date.now() + 60000} renderer={renderer} />
-          {/* </div>
-          </div> */}
-=======
           <Countdown date={Date.now() + 10000} renderer={renderer} />
->>>>>>> master
           <Scoreboard isSolo={props.isSolo} />
         </div>
       ) : null}
@@ -70,6 +62,7 @@ const GameSidebar = props => {
       )}
       {startGame && props.user.host ? (
         <button
+          className="btn btn-primary"
           type="button"
           onClick={() => {
             deleteGame(currentgame.name, Mode)
