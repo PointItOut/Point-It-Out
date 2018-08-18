@@ -8,9 +8,9 @@ const Scoreboard = props => {
   return (
     <div className="card">
       <div className="card-header blue-header">
-        <h3>SCOREBOARD</h3>
+        <h4>SCOREBOARD</h4>
       </div>
-      <div class="card-body">
+      <div className="card-body">
         {props.isSolo ? (
           <div className="scoreboard">
             <h4>YOU</h4>

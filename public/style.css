@@ -76,6 +76,10 @@ form div {
   width: 1000px; */
 }
 
+.card {
+  margin: 2em;
+}
+
 canvas {
   position: absolute;
   top: 0;
@@ -128,7 +132,7 @@ button {
 .btn-main {
   background-color: var(--button-color);
   color: var(--light-text);
-  border-radius: 5%;
+  border-radius: 10%;
   font-size: 1em;
 }
 
