@@ -101,7 +101,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         games: [...state.games, action.newGame],
-        token: action.token
+        token: action.token,
+        startGame: false
       }
     case GOT_GAMES: {
       return {...state, games: action.games}
