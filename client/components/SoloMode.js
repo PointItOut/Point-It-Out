@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { CameraCanvas, GameSidebar } from './index'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {CameraCanvas, GameSidebar} from './index'
 import Countdown from 'react-countdown-now'
-import { setTimeOver } from '../store/game'
-
+import {setTimeOver} from '../store/game'
 
 class SoloMode extends Component {
-
   // async componentDidMount() {
   //   await this.props.setTimeOver(false)
   // }
@@ -14,8 +12,7 @@ class SoloMode extends Component {
   render() {
     const questions = this.props.questions
     const timeover = this.props.timeover
-    const renderer = ({ seconds, completed }) => {
-
+    const renderer = ({seconds, completed}) => {
       if (completed) {
         return (
           <div className="game-wrapper">
@@ -32,7 +29,7 @@ class SoloMode extends Component {
       // (!timeover) ?
       <div>
         <Countdown
-          date={Date.now() + 3000}
+          date={this.props.gameCountdown}
           renderer={renderer.bind(this)}
           zeroPadLength={1}
         />
@@ -50,11 +47,12 @@ const mapState = state => {
   return {
     category: state.category,
     questions: state.questions,
-    timeover: state.game.timeover
+    timeover: state.game.timeover,
+    gameCountdown: state.game.gameCountdown
   }
 }
 
-const mapDispatchToProps = function (dispatch) {
+const mapDispatchToProps = function(dispatch) {
   return {
     setTimeOver: logic => dispatch(setTimeOver(logic))
   }

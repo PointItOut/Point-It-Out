@@ -10,7 +10,13 @@ const FILTERS_GAMES = 'FILTERS_GAMES'
 const SET_TIME_OVER = 'SET_TIME_OVER'
 
 // INITIAL STATE
-const initialState = { games: [], token: '', startGame: false, gameCountdown: 3, timeover: false }
+const initialState = {
+  games: [],
+  token: '',
+  startGame: false,
+  gameCountdown: 3,
+  timeover: false
+}
 
 // ACTION CREATORS
 export const createGame = data => ({
@@ -28,6 +34,7 @@ export const gotToken = data => ({
   type: GOT_TOKEN,
   token: data.token
 })
+
 export const startGame = start => ({
   type: START_GAME,
   start
@@ -38,7 +45,7 @@ export const filterGames = game => ({
   game
 })
 
-export const setTimeOver = (timeover) => {
+export const setTimeOver = timeover => {
   return {
     type: SET_TIME_OVER,
     timeover
@@ -48,7 +55,7 @@ export const setTimeOver = (timeover) => {
 // THUNK CREATORS
 export const postGame = gameName => async dispatch => {
   try {
-    const res = await axios.post('/api/game', { name: gameName })
+    const res = await axios.post('/api/game', {name: gameName})
     dispatch(createGame(res.data))
   } catch (err) {
     console.error(err)
@@ -94,27 +101,34 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         games: [...state.games, action.newGame],
-        token: action.token
+        token: action.token,
+        startGame: false
       }
     case GOT_GAMES: {
-      return { ...state, games: action.games }
+      return {...state, games: action.games}
     }
     case GOT_TOKEN: {
-      return { ...state, token: action.token }
+      return {...state, token: action.token}
     }
     case START_GAME: {
-      return { ...state, startGame: action.start, gameCountdown: Date.now() + 3000 }
+      return {
+        ...state,
+        startGame: action.start,
+        gameCountdown: Date.now() + 3000,
+        timeover: false
+      }
     }
     case FILTERS_GAMES: {
       const gameName = action.game
       console.log('gameName', gameName.gameName)
-      const newGames = state.games.filter(game => game.name !== gameName.gameName)
+      const newGames = state.games.filter(
+        game => game.name !== gameName.gameName
+      )
 
-      return { ...state, games: newGames }
-
+      return {...state, games: newGames}
     }
     case SET_TIME_OVER: {
-      return { ...state, timeover: action.timeover }
+      return {...state, timeover: action.timeover}
     }
     default:
       return state
