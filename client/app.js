@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Navbar} from './components'
+import {Navbar, Footer} from './components'
 import Routes from './routes'
 import {withRouter} from 'react-router-dom'
 
@@ -12,6 +12,7 @@ const App = props => {
         <Navbar />
       )}
       <Routes />
+      <Footer />
     </div>
   )
 }
