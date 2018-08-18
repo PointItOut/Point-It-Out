@@ -83,66 +83,101 @@ class EditCategory extends Component {
     const {categoryName, questionList} = this.state
 
     return (
-      <div>
-        <h2>{categoryName}</h2>
-        <button onClick={() => history.push('/home')}>Go home</button>
-        <h3>Add a new question:</h3>
-        <form id="new-question-form" onSubmit={this.handleAddQuestion}>
-          <div className="form-group">
-            <label htmlFor="questionName">Question text</label>
-            <input
-              type="text"
-              name="questionName"
-              value={this.state.questionName}
-              onChange={this.handleChange}
-            />
+      <div className="container">
+        <div className="row">
+          <div className="main-container col-sm-12 col-md-8">
+            <h2 className="text-center">{categoryName.toUpperCase()}</h2>
 
-            <label htmlFor="answer">Correct choice</label>
-            <input
-              type="text"
-              name="answer"
-              value={this.state.answer}
-              onChange={this.handleChange}
-            />
-
-            <label htmlFor="choice1">Choice</label>
-            <input
-              type="text"
-              name="choice1"
-              value={this.state.choice1}
-              onChange={this.handleChange}
-            />
-
-            <label htmlFor="choice2">Choice</label>
-            <input
-              type="text"
-              name="choice2"
-              value={this.state.choice2}
-              onChange={this.handleChange}
-            />
-
-            <label htmlFor="choice3">Choice</label>
-            <input
-              type="text"
-              name="choice3"
-              value={this.state.choice3}
-              onChange={this.handleChange}
-            />
+            <h3>Create a new question</h3>
+            <form id="new-question-form" onSubmit={this.handleAddQuestion}>
+              <div className="form-group row">
+                <div className="col-sm-12">
+                  <label htmlFor="questionName">Question text</label>
+                  <input
+                    type="text"
+                    name="questionName"
+                    className="form-control"
+                    value={this.state.questionName}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="col-sm-12">
+                  <label htmlFor="answer">Correct choice</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="answer"
+                    value={this.state.answer}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="col-sm-12">
+                  <label htmlFor="choice1">Choice</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="choice1"
+                    value={this.state.choice1}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="col-sm-12">
+                  <label htmlFor="choice2">Choice</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="choice2"
+                    value={this.state.choice2}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="col-sm-12">
+                  <label htmlFor="choice3">Choice</label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    name="choice3"
+                    value={this.state.choice3}
+                    onChange={this.handleChange}
+                  />
+                </div>
+              </div>
+              <button
+                type="submit"
+                className="btn btn-main"
+                disabled={invalidInfo}
+              >
+                Add Question
+              </button>
+            </form>
           </div>
-          <button type="submit" className="btn btn-main" disabled={invalidInfo}>
-            Add Question
-          </button>
-        </form>
-
-        <h4>Current Questions:</h4>
-        {questionList.map(question => (
-          <div key={question.id}>
-            <span>
-              <button onClick={() => this.handleDelete(question.id)}>x</button>
-              {question.theQuestion}
-            </span>
+          <div className="col-md-4">
+            <div className="card">
+              <div className="card-header blue-header">
+                <h4>Current Questions</h4>
+              </div>
+              <div className="card-body">
+                {questionList.map(question => (
+                  <div key={question.id}>
+                    <span>
+                      <i
+                        onClick={() => this.handleDelete(question.id)}
+                        className="fas fa-trash-alt"
+                      />&nbsp;
+                      {question.theQuestion}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <button
+              className="btn btn-main"
+              onClick={() => history.push('/home')}
+            >
+              Return Home
+            </button>
           </div>
-        ))}
+        </div>
       </div>
     )
   }

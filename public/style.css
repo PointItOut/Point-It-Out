@@ -54,11 +54,11 @@ footer a {
 }
 footer {
   padding: 1em;
-  position: absolute;
-  bottom: 0;
+  left: 0;
   width: 100%;
   background-color: var(--button-color);
   color: var(--light-text);
+  margin-top: 1em;
 }
 
 .navbar a:hover {
@@ -91,7 +91,7 @@ form div {
 }
 
 .card {
-  margin: 2em;
+  margin-bottom: 2em;
 }
 
 canvas {
@@ -175,6 +175,15 @@ button {
 .no-interaction {
   pointer-events: none;
 }
-i {
+footer i {
   color: var(--light-text);
+  font-size: 2em;
+}
+
+.mainPage {
+  min-height: calc(100vh - 12em);
+}
+
+i {
+  cursor: pointer;
 }

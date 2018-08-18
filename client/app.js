@@ -11,7 +11,9 @@ const App = props => {
       props.location.pathname.includes('game') ? null : (
         <Navbar />
       )}
-      <Routes />
+      <div className="mainPage">
+        <Routes />
+      </div>
       <Footer />
     </div>
   )
