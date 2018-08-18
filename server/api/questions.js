@@ -1,5 +1,6 @@
 const router = require('express').Router()
-const {Choice, Question} = require('../db/models')
+const {Choice, Question, Category} = require('../db/models')
+const {userOwnsCategory} = require('../../secureHelpers')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -26,8 +27,9 @@ router.get('/:categoryId', async (req, res, next) => {
   }
 })
 
-router.delete('/:categoryId/:questionId', async (req, res, next) => {
+router.delete('/:categoryId/:questionId', userOwnsCategory, async (req, res, next) => {
   try {
+
     await Question.destroy({
       where: {
         id: +req.params.questionId
