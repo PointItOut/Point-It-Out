@@ -64,8 +64,11 @@ router.post('/', async (req, res, next) => {
 router.delete('/:game', async (req, res, next) => {
   try {
     const gameName = req.params.game;
+    await User.update(
+      { host: false },
+      { where: { id: req.user.id } }
+    )
     await Game.destroy({ where: { name: gameName } });
-
     res.json({ gameName })
   } catch (err) {
     next(err);

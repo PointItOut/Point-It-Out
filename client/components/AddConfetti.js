@@ -5,6 +5,8 @@ import sizeMe from 'react-sizeme'
 import Confetti from 'react-confetti'
 import { updateScore } from '../store/score'
 import { connect } from 'react-redux'
+import { deleteQuestions } from '../store/questions'
+import { setTimeOver } from '../store/game'
 
 const AddConfetti = sizeMe({
     monitorHeight: true,
@@ -16,16 +18,22 @@ const AddConfetti = sizeMe({
             height: PropTypes.number,
         }),
     }
-    componentDidMount() {
-        this.props.updateScore(0)
-    }
+    // componentDidMount() {
+
+    //     // this.props.setTimeOver(true)
+
+    //     // this.props.deleteQuestions()
+    //     // this.props.updateScore(0)
+
+
+    // }
     render() {
         return (
             <div
                 className="no-interaction" style={{
                     position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'
                 }}>
-                < Confetti {...this.props.size} />
+                <Confetti {...this.props.size} confettiSource={{ x: 100, y: 0, w: 1000, h: 0 }} />
             </div >
         )
     }
@@ -34,6 +42,8 @@ const AddConfetti = sizeMe({
 const mapDispatchToProps = function (dispatch) {
     return {
         updateScore: (score) => dispatch(updateScore(score)),
+        deleteQuestions: () => dispatch(deleteQuestions()),
+        setTimeOver: (logic) => dispatch(setTimeOver(logic))
     }
 }
 
