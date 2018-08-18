@@ -33,7 +33,7 @@ const AddConfetti = sizeMe({
                 className="no-interaction" style={{
                     position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'
                 }}>
-                < Confetti {...this.props.size} />
+                <Confetti {...this.props.size} confettiSource={{ x: 100, y: 0, w: 1000, h: 0 }} />
             </div >
         )
     }
