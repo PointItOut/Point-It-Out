@@ -7,7 +7,7 @@ const CategoryChoices = props => {
       {categories.map(category => (
         <button
           type="button"
-          className="btn btn-info"
+          className="btn btn-main"
           key={category.id}
           onClick={() => chooseCategory(category)}
         >

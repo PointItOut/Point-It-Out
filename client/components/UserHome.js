@@ -67,7 +67,7 @@ export class UserHome extends React.Component {
               <button
                 type="button"
                 onClick={this.handlePlay}
-                className="btn btn-info"
+                className="btn btn-main"
               >
                 New Game
               </button>
