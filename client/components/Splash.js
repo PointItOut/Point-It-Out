@@ -34,7 +34,7 @@ const Splash = ({isLoggedIn}) => {
             data-target="#instructionModal"
           >
             How to Play
-          </button>f
+          </button>
         </div>
       </div>
       <Instructions />

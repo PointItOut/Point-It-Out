@@ -13,9 +13,9 @@ const Instructions = props => {
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title" id="exampleModalLabel">
+            <h3 className="text-center" id="instructionModalLabel">
               Game Play
-            </h1>
+            </h3>
             <button
               type="button"
               className="close"
@@ -32,11 +32,11 @@ const Instructions = props => {
               <li>Each correct answer is worth 1 point</li>
               <li>Whoever gets the most points wins the round!</li>
             </ol>
-            <h2>Tips for Success</h2>
+            <h4>Tips</h4>
             <ol>
               <li>Stand with the top of your head below the row of answers</li>
               <li>Make sure you are well lit</li>
-              <li>Tap the card with the answer vigorously</li>
+              <li>Tap the card with your choice vigorously</li>
             </ol>
           </div>
         </div>

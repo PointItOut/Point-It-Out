@@ -23,6 +23,25 @@ body {
   border-radius: 2%;
 }
 
+.blue-header {
+  background-color: var(--button-color);
+  color: var(--light-text);
+}
+.scoreboard {
+  color: var(--accent-color);
+  font-weight: bold;
+  text-align: center;
+}
+
+.score {
+  font-size: 5em;
+}
+
+.navbar,
+.btn-main {
+  font-size: 1.5em;
+}
+
 .navbar {
   background-color: var(--button-color);
   color: var(--light-text);
@@ -91,7 +110,6 @@ video {
 
 #game-sidebar {
   flex-grow: 1;
-  background-color: var(--box-color);
 }
 
 .OT_publisher {

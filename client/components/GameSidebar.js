@@ -32,7 +32,7 @@ const GameSidebar = props => {
   const deleteGame = props.deleteGame
   const Mode = 'partner'
   return (
-    <div id="game-sidebar">
+    <div id="game-sidebar" className="container">
       {startGame || props.isSolo ? (
         <div>
           <Countdown date={Date.now() + 60000} renderer={renderer} />
@@ -45,6 +45,7 @@ const GameSidebar = props => {
       ) : (
         <button
           type="button"
+          className="btn btn-main"
           onClick={() => {
             props.history.push('/home')
           }}
