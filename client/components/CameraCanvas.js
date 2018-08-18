@@ -78,6 +78,30 @@ class CameraCanvas extends Component {
   }
 
   render() {
+    const opponent = this.props.opponent
+    const opponentNames = Object.keys(opponent).sort((name1, name2) => {
+      const score1 = opponent[name1]
+      const score2 = opponent[name2]
+      if (score1 < score2) {
+        return 1
+      }
+      else if (score1 > score2) {
+        return -1
+      }
+      else {
+        return 0
+      }
+    })
+
+    const scores = Object.values(opponent)
+    const maxscore = Math.max(...scores)
+    const winner = opponentNames.filter(name => opponent[name] === maxscore)
+    let chkwinner = false
+    if (winner.length === 1) {
+      chkwinner = true
+    }
+    const pathname = this.props.location.pathname
+
     const { currentQuestion } = this.props
     const question = currentQuestion.question
     const options = question ? question.choices : undefined
@@ -95,10 +119,51 @@ class CameraCanvas extends Component {
           height={750}
         >
           <Layer>
+
             <PurpleRect />
             <GreenRect />
             <YellowRect />
             <RedRect />
+            {(this.props.timeover && chkwinner && (!pathname.includes('solo'))) ?
+              <Text
+                text={`The winner is ${winner[0]}
+                `}
+                x={250}
+                y={280}
+                fontSize={50}
+                fill={'blue'}
+                align={'center'}
+                width={500}
+              />
+              : null}
+
+            {(this.props.timeover && !chkwinner && (!pathname.includes('solo'))) ?
+              <Text
+                text={`It's a draw`}
+                x={250}
+                y={280}
+                fontSize={50}
+                fill={'blue'}
+                align={'center'}
+                width={400}
+              />
+              : null}
+
+            {(this.props.timeover && (!pathname.includes('solo'))) ?
+              opponentNames.map((name, index) => {
+                return (
+                  <Text
+                    text={`${name}: ${opponent[name]}`}
+                    x={250}
+                    y={350 + index * 50}
+                    fontSize={50}
+                    fill={'blue'}
+                    align={'center'}
+                    width={300}
+                  />
+                )
+              })
+              : null}
 
             {// option images
               options &&
@@ -204,6 +269,7 @@ class CameraCanvas extends Component {
               align={'center'}
               width={500}
             />
+
           </Layer>
         </Stage>
       </div>
@@ -214,7 +280,9 @@ class CameraCanvas extends Component {
 const mapState = state => ({
   currentQuestion: state.currentQuestion,
   score: state.score,
-  user: state.user
+  user: state.user,
+  opponent: state.opponent,
+  timeover: state.game.timeover
 })
 
 const mapDispatch = dispatch => ({

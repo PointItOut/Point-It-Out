@@ -8,9 +8,13 @@ import {withRouter} from 'react-router-dom'
 import {setTimeOver} from '../store/game'
 
 const GameSidebar = props => {
-  console.log('=============>', props.setTimeOver)
   const dispatchsetTimeOver = props.setTimeOver
+<<<<<<< HEAD
   const renderer = ({minutes, seconds, completed}) => {
+=======
+
+  const renderer = ({ minutes, seconds, completed }) => {
+>>>>>>> master
     if (completed) {
       dispatchsetTimeOver(true)
       return (
@@ -35,6 +39,7 @@ const GameSidebar = props => {
     <div id="game-sidebar" className="container">
       {startGame || props.isSolo ? (
         <div>
+<<<<<<< HEAD
           {/* <div className="card">
             <div className="card-header blue-header">
               <h4>TIME REMAINING</h4>
@@ -43,6 +48,9 @@ const GameSidebar = props => {
           <Countdown date={Date.now() + 60000} renderer={renderer} />
           {/* </div>
           </div> */}
+=======
+          <Countdown date={Date.now() + 10000} renderer={renderer} />
+>>>>>>> master
           <Scoreboard isSolo={props.isSolo} />
         </div>
       ) : null}

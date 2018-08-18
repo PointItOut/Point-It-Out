@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 const Scoreboard = props => {
   const opponent = props.opponent
   const opponentNames = Object.keys(opponent)
-  console.log('CONSOLE LOG =>', props.isSolo)
+
   return (
     <div className="card">
       <div className="card-header blue-header">
