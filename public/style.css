@@ -48,7 +48,16 @@ body {
   color: var(--light-text);
   margin-bottom: 2em;
 }
-.navbar a {
+.navbar a,
+footer a {
+  color: var(--light-text);
+}
+footer {
+  padding: 1em;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--button-color);
   color: var(--light-text);
 }
 
@@ -58,6 +67,10 @@ body {
 
 a {
   text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+  color: var(--light-text);
 }
 
 label {
@@ -161,4 +174,7 @@ button {
 
 .no-interaction {
   pointer-events: none;
+}
+i {
+  color: var(--light-text);
 }
