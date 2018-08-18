@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { postGame, getGames } from '../store/game'
-import { withRouter } from 'react-router-dom'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {postGame, getGames} from '../store/game'
+import {withRouter} from 'react-router-dom'
 import socket from '../socket'
-import { setTimeOver } from '../store/game'
+import {setTimeOver} from '../store/game'
 
 class AddGame extends Component {
   constructor() {
@@ -22,7 +22,7 @@ class AddGame extends Component {
   }
 
   handleChange(evt) {
-    this.setState({ newGame: evt.target.value })
+    this.setState({newGame: evt.target.value})
   }
 
   async handleSubmit(evt) {
@@ -33,14 +33,14 @@ class AddGame extends Component {
     const username = this.props.user.userName
 
     if (existGame) {
-      this.setState({ nameExist: true })
+      this.setState({nameExist: true})
     } else {
       const questions = this.props.questions
-      this.setState({ nameExist: false })
-      socket.emit('questions', { questions, gameName })
-      socket.emit('new-score', { username, total: 0, gameName })
+      this.setState({nameExist: false})
+      socket.emit('questions', {questions, gameName})
+      socket.emit('new-score', {username, total: 0, gameName})
       await this.props.postGame(gameName)
-      this.setState({ newGame: '' })
+      this.setState({newGame: ''})
       this.props.history.push(`/game/${gameName}`)
     }
   }
@@ -58,7 +58,7 @@ class AddGame extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <button type="submit" className="btn btn-info">
+          <button type="submit" className="btn btn-main">
             Create
           </button>
           {this.state.nameExist && (
@@ -70,11 +70,11 @@ class AddGame extends Component {
   }
 }
 
-const mapDispatchToProps = function (dispatch) {
+const mapDispatchToProps = function(dispatch) {
   return {
     postGame: name => dispatch(postGame(name)),
     getGames: () => dispatch(getGames()),
-    setTimeOver: (logic) => dispatch(setTimeOver(logic))
+    setTimeOver: logic => dispatch(setTimeOver(logic))
   }
 }
 

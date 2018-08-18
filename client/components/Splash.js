@@ -10,7 +10,6 @@ const Splash = ({isLoggedIn}) => {
         <div className="main-container text-center col-sm-12 col-md-8 offset-md-2">
           <h1 className="display-1">Point It Out</h1>
           <h2>A fast paced trivia game for the whole family!</h2>
-
           {/* if they are signed in show a play button
       otherwise display a signup or login button */}
           {isLoggedIn ? (
@@ -36,10 +35,9 @@ const Splash = ({isLoggedIn}) => {
           >
             How to Play
           </button>
-
-          <Instructions />
         </div>
       </div>
+      <Instructions />
     </div>
   )
 }

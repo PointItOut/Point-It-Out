@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { makeNewCategory } from '../store/categories'
+import {makeNewCategory} from '../store/categories'
 
 class AddCategory extends Component {
   constructor() {
@@ -14,7 +14,7 @@ class AddCategory extends Component {
   }
 
   handleChange(evt) {
-    const { categories } = this.props
+    const {categories} = this.props
     const publicNames = categories.public.map(category => category.name)
     const privateNames = categories.private.map(category => category.name)
     const categoryNames = [...publicNames, privateNames]
@@ -24,7 +24,8 @@ class AddCategory extends Component {
         newCategoryName: evt.target.value,
         invalidName: false
       })
-    } else { // the name is already in use
+    } else {
+      // the name is already in use
       this.setState({
         newCategoryName: evt.target.value,
         invalidName: true
@@ -34,15 +35,15 @@ class AddCategory extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    const { submitNewCategory, user } = this.props
-    const { newCategoryName } = this.state
-    submitNewCategory({ name: newCategoryName }, user.id)
+    const {submitNewCategory, user} = this.props
+    const {newCategoryName} = this.state
+    submitNewCategory({name: newCategoryName}, user.id)
     // redirect to new view for editing that category?
   }
 
   render() {
-    const { handleSubmit, handleChange } = this
-    const { newCategoryName, invalidName } = this.state
+    const {handleSubmit, handleChange} = this
+    const {newCategoryName, invalidName} = this.state
 
     return (
       <div>
@@ -56,12 +57,12 @@ class AddCategory extends Component {
               onChange={handleChange}
             />
           </div>
-          <button type="submit" className="btn btn-info" disabled={invalidName}>
+          <button type="submit" className="btn btn-main" disabled={invalidName}>
             Submit
           </button>
-          {
-            invalidName ? <span>This name is in use, please choose a new name</span> : null
-          }
+          {invalidName ? (
+            <span>This name is in use, please choose a new name</span>
+          ) : null}
         </form>
       </div>
     )
@@ -77,7 +78,8 @@ const mapState = state => {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    submitNewCategory: (category, userId) => dispatch(makeNewCategory(category, userId))
+    submitNewCategory: (category, userId) =>
+      dispatch(makeNewCategory(category, userId))
   }
 }
 

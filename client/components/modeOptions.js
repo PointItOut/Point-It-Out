@@ -26,14 +26,14 @@ class ModeOptions extends Component {
         <h2>{this.props.chosenCategory.name}</h2>
         <button
           type="button"
-          className="btn btn-info"
+          className="btn btn-main"
           onClick={() => this.handleChooseMode('solo')}
         >
           Challenge Yourself!
         </button>
         <button
           type="button"
-          className="btn btn-info"
+          className="btn btn-main"
           onClick={() => this.handleChooseMode('partner')}
         >
           Challenge a Friend!

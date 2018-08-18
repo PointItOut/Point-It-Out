@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { AddCategory, CategoryChoices } from './index'
+import {AddCategory, CategoryChoices} from './index'
 import {
   setCurrentCategory,
   retrievePrivateCategories,
@@ -34,17 +34,19 @@ class CategoryWrapper extends Component {
 
   render() {
     const {categories, handleChooseCategory} = this.props
-    const { loaded, makeNewCategory } = this.state
+    const {loaded, makeNewCategory} = this.state
     if (loaded) {
       return (
         <div>
-          <button type="button" className="btn btn-info" onClick={this.handleMakeCategory}>
+          <button
+            type="button"
+            className="btn btn-main"
+            onClick={this.handleMakeCategory}
+          >
             Make your own Category!
           </button>
 
-          {
-            makeNewCategory ? <AddCategory /> : null
-          }
+          {makeNewCategory ? <AddCategory /> : null}
 
           <h2>Public Categories:</h2>
           <CategoryChoices
