@@ -7,7 +7,9 @@ const Footer = () => (
         Gilad
       </div>
       <div className="col-sm-12 col-md-2">
-        <a href="https://github.com/PointItOut/Point-It-Out">Github</a>
+        <a href="https://github.com/PointItOut/Point-It-Out">
+          <i className="fab fa-github" />
+        </a>
       </div>
     </div>
   </footer>
