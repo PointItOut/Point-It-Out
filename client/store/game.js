@@ -113,7 +113,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         startGame: action.start,
-        gameCountdown: Date.now() + 3000
+        gameCountdown: Date.now() + 3000,
+        timeover: false
       }
     }
     case FILTERS_GAMES: {
