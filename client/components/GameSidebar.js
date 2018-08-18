@@ -9,8 +9,8 @@ import { setTimeOver } from '../store/game'
 
 
 const GameSidebar = props => {
-  console.log('=============>', props.setTimeOver)
   const dispatchsetTimeOver = props.setTimeOver
+
   const renderer = ({ minutes, seconds, completed }) => {
     if (completed) {
       dispatchsetTimeOver(true)
@@ -36,7 +36,7 @@ const GameSidebar = props => {
     <div id="game-sidebar">
       {startGame || props.isSolo ? (
         <div>
-          <Countdown date={Date.now() + 60000} renderer={renderer} />
+          <Countdown date={Date.now() + 10000} renderer={renderer} />
           <Scoreboard isSolo={props.isSolo} />
         </div>
       ) : null}
