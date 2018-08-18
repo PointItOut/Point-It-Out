@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {me} from '../store/user'
 import socket from '../socket'
+import {isScreenLarge, tooSmallToast} from '../canPlay'
 
 class Lobby extends Component {
   constructor() {
@@ -22,6 +23,7 @@ class Lobby extends Component {
     const opponentNames = Object.keys(opponent)
     const currentgame = this.props.currentgame
     console.log('Rendering lobby')
+
     return (
       <div>
         {user.host ? (

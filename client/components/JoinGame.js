@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {getGames, updateGame} from '../store/game'
 import {withRouter} from 'react-router-dom'
 import socket from '../socket'
-import {isScreenSmall, noPlay} from '../canPlay'
+import {isScreenLarge, tooSmallToast, noCamera} from '../canPlay'
 
 class JoinGame extends Component {
   constructor() {
@@ -30,7 +30,7 @@ class JoinGame extends Component {
     const gamesArray = this.props.games
     const existGame = gamesArray.find(game => game.name === gameName)
     const username = this.props.user.userName
-    if (isScreenSmall() === false) {
+    if (isScreenLarge()) {
       if (!existGame) {
         this.setState({nameExist: false})
       } else {
@@ -42,7 +42,7 @@ class JoinGame extends Component {
         this.props.history.push(`/game/${gameName}`)
       }
     } else {
-      noPlay()
+      tooSmallToast()
     }
   }
 
