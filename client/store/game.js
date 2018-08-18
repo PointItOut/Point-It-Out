@@ -6,7 +6,6 @@ const CREATE_GAME = 'CREATE_GAME'
 const GOT_GAMES = 'GOT_GAMES'
 const GOT_TOKEN = 'GOT_TOKEN'
 const START_GAME = 'START_GAME'
-const START_SOLO_GAME = 'START_SOLO_GAME'
 const FILTERS_GAMES = 'FILTERS_GAMES'
 const SET_TIME_OVER = 'SET_TIME_OVER'
 
@@ -35,6 +34,7 @@ export const gotToken = data => ({
   type: GOT_TOKEN,
   token: data.token
 })
+
 export const startGame = start => ({
   type: START_GAME,
   start
