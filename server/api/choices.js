@@ -1,11 +1,19 @@
 const router = require('express').Router()
-const {Choice} = require('../db/models')
+const {Choice, Question, Category} = require('../db/models')
 
 router.post('/', async (req, res, next) => {
-  // assume we get 4 choices at a time?
   try {
     const { choices, questionId } = req.body
-    const choiceInstances = await Promise.all(choices.map(choice => Choice.create({...choice, questionId})))
+
+    // make sure the question we're adding choices to belongs to this req.user
+    const question = await Question.findById(questionId)
+    const category = await Category.findById(question.categoryId)
+    if (req.user.id !== category.authorId) {
+      const err = new Error('Not authorized')
+      next(err)
+    }
+
+    const choiceInstances = await Promise.all(choices.map(choice => Choice.create({theChoice: choice.theChoice, questionId})))
     res.json(choiceInstances)
   } catch (err) { next(err) }
 })
