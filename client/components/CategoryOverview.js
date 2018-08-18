@@ -3,7 +3,10 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
-import { authorRemoveCategory, userUnsubscribeFromCategory } from '../store/categories';
+import {
+  authorRemoveCategory,
+  userUnsubscribeFromCategory
+} from '../store/categories'
 
 class CategoryOverview extends Component {
   constructor() {
@@ -42,11 +45,13 @@ class CategoryOverview extends Component {
     }
   }
 
-  async handleAddToAccount(){
-    const { user, history } = this.props
-    const { categoryDisplayed } = this.state
+  async handleAddToAccount() {
+    const {user, history} = this.props
+    const {categoryDisplayed} = this.state
     // update user categories subscription by creating a UserCategory instance
-    const { data } = await axios.put(`/api/users/${user.id}/categories`, { categoryId: categoryDisplayed.id })
+    const {data} = await axios.put(`/api/users/${user.id}/categories`, {
+      categoryId: categoryDisplayed.id
+    })
     history.push('/home')
   }
 
@@ -56,14 +61,14 @@ class CategoryOverview extends Component {
       <div>
         <button
           type="button"
-          className="btn btn-info"
+          className="btn btn-main"
           onClick={() => chooseMode('solo')}
         >
           Challenge Yourself!
         </button>
         <button
           type="button"
-          className="btn btn-info"
+          className="btn btn-main"
           onClick={() => chooseMode('partner')}
         >
           Challenge a Friend!
@@ -73,42 +78,52 @@ class CategoryOverview extends Component {
   }
 
   handleDeleteCategory() {
-    const { removeUsersCategory, resetCategory } = this.props
-    const { categoryDisplayed } = this.state
+    const {removeUsersCategory, resetCategory} = this.props
+    const {categoryDisplayed} = this.state
     removeUsersCategory(categoryDisplayed)
     resetCategory()
   }
 
   handleUnsubscribe() {
-    const { unsubscribe, resetCategory, user } = this.props
-    const { categoryDisplayed } = this.state
+    const {unsubscribe, resetCategory, user} = this.props
+    const {categoryDisplayed} = this.state
     unsubscribe(categoryDisplayed, user.id)
     resetCategory()
   }
 
   render() {
     const {categoryDisplayed} = this.state
-    const { currentCategory, user, match } = this.props
+    const {currentCategory, user, match} = this.props
 
     if (categoryDisplayed) {
       return (
         <div>
-          { !categoryDisplayed.public && match ? (<button type="button" className="btn btn-info" onClick={this.handleAddToAccount}>
+          {!categoryDisplayed.public && match ? (
+            <button
+              type="button"
+              className="btn btn-main"
+              onClick={this.handleAddToAccount}
+            >
               Add to my account
-            </button>) : null }
+            </button>
+          ) : null}
 
           <h1>{categoryDisplayed.name}</h1>
 
-          { // if you are looking at a category you made, you can delete the category from the database
-            !categoryDisplayed.public && categoryDisplayed.authorId === user.id ? (
-              <button onClick={this.handleDeleteCategory} >Delete Category</button>
-            ) : null
-          }
+          {// if you are looking at a category you made, you can delete the category from the database
+          !categoryDisplayed.public &&
+          categoryDisplayed.authorId === user.id ? (
+            <button onClick={this.handleDeleteCategory}>Delete Category</button>
+          ) : null}
 
-          { // if you are looking at a private category you are subscribed to (i.e. no match.params) and it is NOT a category you made, you can unsubscribe from the category
-            !categoryDisplayed.public && !match && (categoryDisplayed.authorId !== user.id) ? (
-            <button onClick={this.handleUnsubscribe} >Unsubscribe from Category</button>) : null
-          }
+          {// if you are looking at a private category you are subscribed to (i.e. no match.params) and it is NOT a category you made, you can unsubscribe from the category
+          !categoryDisplayed.public &&
+          !match &&
+          categoryDisplayed.authorId !== user.id ? (
+            <button onClick={this.handleUnsubscribe}>
+              Unsubscribe from Category
+            </button>
+          ) : null}
 
           {user.id === categoryDisplayed.authorId ? (
             <Link to={`/categories/${categoryDisplayed.id}/edit`}>Edit</Link>
@@ -149,7 +164,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   removeUsersCategory: category => dispatch(authorRemoveCategory(category)),
-  unsubscribe: (category, userId) => dispatch(userUnsubscribeFromCategory(category, userId))
+  unsubscribe: (category, userId) =>
+    dispatch(userUnsubscribeFromCategory(category, userId))
 })
 
 export default connect(mapState, mapDispatch)(CategoryOverview)

@@ -13,9 +13,9 @@ const Instructions = props => {
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel">
-              How to Play
-            </h5>
+            <h3 className="text-center" id="instructionModalLabel">
+              Game Play
+            </h3>
             <button
               type="button"
               className="close"
@@ -26,7 +26,18 @@ const Instructions = props => {
             </button>
           </div>
           <div className="modal-body">
-            Instructions go here (can be images, text, video etc)
+            <ol>
+              <li>Each round is 30 seconds long</li>
+              <li>Once you guess, you may move on to the next question </li>
+              <li>Each correct answer is worth 1 point</li>
+              <li>Whoever gets the most points wins the round!</li>
+            </ol>
+            <h4>Tips</h4>
+            <ol>
+              <li>Stand with the top of your head below the row of answers</li>
+              <li>Make sure you are well lit</li>
+              <li>Tap the card with your choice vigorously</li>
+            </ol>
           </div>
         </div>
       </div>

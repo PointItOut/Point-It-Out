@@ -6,6 +6,7 @@
   --button-hover: rgb(0, 86, 117);
   --dark-text: rgb(35, 31, 31);
   --light-text: white;
+  --primary: #0096cc;
 }
 
 body {
@@ -13,7 +14,7 @@ body {
   font-family: museo-sans, sans-serif;
   font-style: normal;
   font-weight: 100;
-  font-size: 1.5em;
+  font-size: 1em;
   color: var(--dark-text);
 }
 
@@ -21,6 +22,25 @@ body {
   background-color: var(--box-color);
   padding: 2em;
   border-radius: 2%;
+}
+
+.blue-header {
+  background-color: var(--button-color);
+  color: var(--light-text);
+}
+.scoreboard {
+  color: var(--accent-color);
+  font-weight: bold;
+  text-align: center;
+}
+
+.score {
+  font-size: 5em;
+}
+
+.navbar,
+.btn-main {
+  font-size: 1.5em;
 }
 
 .navbar {
@@ -55,6 +75,10 @@ form div {
   left: 0;
   /* margin: 0px auto;
   width: 1000px; */
+}
+
+.card {
+  margin: 2em;
 }
 
 canvas {
@@ -109,7 +133,7 @@ button {
 .btn-main {
   background-color: var(--button-color);
   color: var(--light-text);
-  border-radius: 5%;
+  border-radius: 10%;
   font-size: 1em;
 }
 
@@ -128,7 +152,11 @@ button {
 }
 
 .clock {
-  font-size: 40px;
+  font-family: museo-sans, sans-serif !important;
+  font-style: normal;
+  font-size: 5em;
+  color: var(--accent-color);
+  text-align: center;
 }
 
 .no-interaction {
