@@ -46,8 +46,9 @@ router.post('/', async (req, res, next) => {
       }
 
       let sessionId = session.sessionId
-      req.body.sessionId = sessionId
-      const newGame = await Game.create(req.body)
+      const newGame = await Game.create({name: req.body.name, sessionId})
+
+
       let token = opentok.generateToken(newGame.sessionId)
       await User.update(
         { gameId: newGame.id, host: true, token },
