@@ -17,6 +17,14 @@ export const updateScore = (total, partner, username, gameName) => {
   }
 }
 
+export const setHighScore = (category, score) => async dispatch => {
+  try {
+    const res = await axios.put('/api/users/score', { score: score, category: category })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 // REDUCER
 const reducer = (state = initialState, action) => {
   switch (action.type) {

@@ -1,16 +1,16 @@
 import React from 'react'
 import Countdown from 'react-countdown-now'
 import AddConfetti from './AddConfetti'
-import {Scoreboard, Opentok} from './index'
-import {connect} from 'react-redux'
-import {deleteGame} from '../store/game'
-import {withRouter} from 'react-router-dom'
-import {setTimeOver} from '../store/game'
+import { Scoreboard, Opentok } from './index'
+import { connect } from 'react-redux'
+import { deleteGame } from '../store/game'
+import { withRouter } from 'react-router-dom'
+import { setTimeOver } from '../store/game'
 
 const GameSidebar = props => {
   const dispatchsetTimeOver = props.setTimeOver
 
-  const renderer = ({minutes, seconds, completed}) => {
+  const renderer = ({ minutes, seconds, completed }) => {
     if (completed) {
       dispatchsetTimeOver(true)
       return (
@@ -42,7 +42,7 @@ const GameSidebar = props => {
     <div id="game-sidebar" className="container">
       {startGame || props.isSolo ? (
         <div>
-          <Countdown date={Date.now() + 10000} renderer={renderer} />
+          <Countdown date={Date.now() + 60000} renderer={renderer} />
           <Scoreboard isSolo={props.isSolo} />
         </div>
       ) : null}
@@ -50,16 +50,16 @@ const GameSidebar = props => {
       {!props.isSolo ? (
         <Opentok currentgame={currentgame} token={token} />
       ) : (
-        <button
-          type="button"
-          className="btn btn-main"
-          onClick={() => {
-            props.history.push('/home')
-          }}
-        >
-          Exit
+          <button
+            type="button"
+            className="btn btn-main"
+            onClick={() => {
+              props.history.push('/home')
+            }}
+          >
+            Exit
         </button>
-      )}
+        )}
       {startGame && props.user.host ? (
         <button
           className="btn btn-primary"
@@ -75,7 +75,7 @@ const GameSidebar = props => {
   )
 }
 
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function (dispatch) {
   return {
     deleteGame: (gamename, mode) => dispatch(deleteGame(gamename, mode)),
     setTimeOver: logic => dispatch(setTimeOver(logic))
