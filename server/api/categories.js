@@ -19,7 +19,6 @@ router.get('/private/:userId', userMatchesParam, async (req, res, next) => {
   try {
     const user = await User.findById(+req.params.userId)
     const userCategories = await user.getCategories()
-    // if getCategories doesn't work, get all and include the join table and filter...
     res.json(userCategories.filter(category => !category.public))
   } catch (err) { next(err) }
 })
@@ -27,7 +26,6 @@ router.get('/private/:userId', userMatchesParam, async (req, res, next) => {
 // POST new category
 router.post('/', async (req, res, next) => {
   try {
-    // req.body must have category name, authorId
     const { userId, category } = req.body
 
     if (req.user.id !== userId) {
@@ -51,10 +49,9 @@ router.post('/', async (req, res, next) => {
   } catch (err) { next(err) }
 })
 
-// GET category by id
+// GET category by id (along with its top scores)
 router.get('/:categoryId', async (req, res, next) => {
   try {
-    // want to includ the top scores, right?
     const category = await Category.findById(+req.params.categoryId)
 
     const questions = await Question.findAll({

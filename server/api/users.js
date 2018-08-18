@@ -20,12 +20,6 @@ router.get('/', async (req, res, next) => {
 // for when a user subscribes to a category
 router.put('/:userId/categories', userMatchesParam, async (req, res, next) => {
   try {
-    // req.body has a categoryId
-    const body = {
-      userId: +req.params.userId,
-      categoryId: +req.body.categoryId
-    }
-
     const userCategory = await UserCategory.findOrCreate({
       where: { userId: +req.params.userId, categoryId: +req.body.categoryId }
     })
@@ -33,6 +27,7 @@ router.put('/:userId/categories', userMatchesParam, async (req, res, next) => {
   } catch (err) { next(err) }
 })
 
+// for when a user unsubscribes from a category
 router.delete('/:userId/categories/:categoryId', userMatchesParam, async (req, res, next) => {
   try {
     await UserCategory.destroy({

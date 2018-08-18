@@ -27,6 +27,7 @@ const userOwnsCategory = async (req, res, next) => {
 
   } else {
     const err = new Error('You must be logged in')
+    next(err)
   }
 }
 
