@@ -3,10 +3,10 @@ import Countdown from 'react-countdown-now'
 import AddConfetti from './AddConfetti'
 import {Scoreboard, Opentok} from './index'
 import {connect} from 'react-redux'
-import {deleteGame} from '../store/game'
 import {withRouter} from 'react-router-dom'
-import {setTimeOver} from '../store/game'
-import {setHighScore} from '../store/score'
+import {setTimeOver, startGame, deleteGame} from '../store/game'
+import socket from '../socket'
+import {setHighScore, updateScore} from '../store/score'
 
 class GameSidebar extends Component {
   constructor() {
@@ -74,26 +74,45 @@ class GameSidebar extends Component {
         {!this.props.isSolo ? (
           <Opentok currentgame={currentgame} token={token} />
         ) : (
-          <button
-            type="button"
-            className="btn btn-main"
-            onClick={() => {
-              this.props.history.push('/home')
-            }}
-          >
-            Exit
-          </button>
+          <div>
+            <button
+              type="button"
+              className="btn btn-main"
+              onClick={() => {
+                this.props.history.push('/home')
+              }}
+            >
+              Exit
+            </button>
+            <button
+              type="button"
+              className="btn btn-main"
+              onClick={() => this.props.restartGame()}
+            >
+              Play Again
+            </button>
+          </div>
         )}
-        {startGame && this.props.user.host ? (
-          <button
-            className="btn btn-primary"
-            type="button"
-            onClick={() => {
-              deleteGame(currentgame.name, Mode)
-            }}
-          >
-            Exit
-          </button>
+        {startGame && this.props.user.host && !this.props.isSolo ? (
+          <div>
+            <button
+              className="btn btn-primary"
+              type="button"
+              onClick={() => {
+                deleteGame(currentgame.name, Mode)
+              }}
+            >
+              Exit
+            </button>
+
+            <button
+              type="button"
+              className="btn btn-main"
+              onClick={() => socket.emit('rematch', {currentgame})}
+            >
+              Rematch
+            </button>
+          </div>
         ) : null}
       </div>
     )
@@ -104,7 +123,11 @@ const mapDispatchToProps = function(dispatch) {
   return {
     deleteGame: (gamename, mode) => dispatch(deleteGame(gamename, mode)),
     setTimeOver: logic => dispatch(setTimeOver(logic)),
-    setHighScore: (score, category) => dispatch(setHighScore(score, category))
+    setHighScore: (score, category) => dispatch(setHighScore(score, category)),
+    restartGame: () => {
+      dispatch(startGame())
+      dispatch(updateScore(0))
+    }
   }
 }
 
