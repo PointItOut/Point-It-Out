@@ -187,3 +187,8 @@ footer i {
 i {
   cursor: pointer;
 }
+
+.lobby {
+  min-height: calc(100vh - 4em);
+  width: 100%;
+}
