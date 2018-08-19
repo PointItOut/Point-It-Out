@@ -27,8 +27,10 @@ const Instructions = props => {
           </div>
           <div className="modal-body">
             <ol>
-              <li>Each round is 30 seconds long</li>
-              <li>Once you guess, you may move on to the next question </li>
+              <li>Each round is 60 seconds long</li>
+              <li>Once you guess, you will see the correct answer in green </li>
+              <li>If you guessed incorrectly, you will also see your answer in red</li>
+              <li>The game will automatically move on to the next question</li>
               <li>Each correct answer is worth 1 point</li>
               <li>Whoever gets the most points wins the round!</li>
             </ol>
