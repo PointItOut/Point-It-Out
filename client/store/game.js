@@ -46,9 +46,9 @@ export const setTimeOver = (timeover) => {
 }
 
 // THUNK CREATORS
-export const postGame = gameName => async dispatch => {
+export const postGame = (gameName, current) => async dispatch => {
   try {
-    const res = await axios.post('/api/game', { name: gameName })
+    const res = await axios.post('/api/game', { name: gameName, category: current })
     dispatch(createGame(res.data))
   } catch (err) {
     console.error(err)

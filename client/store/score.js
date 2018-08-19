@@ -1,4 +1,5 @@
 import socket from '../socket'
+import axios from 'axios'
 
 // ACTION TYPES
 const UPDATE_SCORE = 'UPDATE_SCORE'
@@ -17,9 +18,9 @@ export const updateScore = (total, partner, username, gameName) => {
   }
 }
 
-export const setHighScore = (category, score) => async dispatch => {
+export const setHighScore = (score) => async dispatch => {
   try {
-    const res = await axios.put('/api/users/score', { score: score, category: category })
+    const res = await axios.put('/api/users/score', { score: score })
   } catch (err) {
     console.error(err)
   }
