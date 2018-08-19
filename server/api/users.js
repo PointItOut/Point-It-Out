@@ -29,6 +29,8 @@ router.put('/:userId/categories', userMatchesParam, async (req, res, next) => {
 
 router.put('/score', async (req, res, next) => {
   try {
+    console.log('req.user=====>', req.user)
+    console.log('req.body', req.body)
     let currentscore = req.body.score
     let category = ''
     if (!req.body.category) {
@@ -42,8 +44,8 @@ router.put('/score', async (req, res, next) => {
     if (usercategory) {
       if (currentscore > usercategory.userHighScore) {
         await UserCategory.update(
-          { highScore: currentscore },
-          { where: { userId: req.user.id } }
+          { userHighScore: currentscore },
+          { where: { userId: req.user.id, categoryId: category.id } }
         )
       }
     } else {
