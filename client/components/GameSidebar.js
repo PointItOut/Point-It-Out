@@ -37,7 +37,7 @@ class GameSidebar extends Component {
         return (
           <div className="card">
             <div className="card-header blue-header">
-              <h4>TIME REMAINING</h4>
+              <h4>TIME LEFT</h4>
             </div>
             <div>
               <span className="clock text-center">
@@ -58,34 +58,37 @@ class GameSidebar extends Component {
 
     return (
       <div id="game-sidebar" className="container">
-        {startGame || this.props.isSolo ? (
-          <div>
-            <Countdown
-              date={this.state.timer}
-              renderer={renderer}
-              onComplete={() => {
-                this.handleScores(score)
-              }}
-            />
-            <Scoreboard isSolo={this.props.isSolo} />
+        <div className="row">
+          <div className="col-md-6">
+            {startGame || this.props.isSolo ? (
+              <div>
+                <Countdown
+                  date={this.state.timer}
+                  renderer={renderer}
+                  onComplete={() => {
+                    this.handleScores(score)
+                  }}
+                />
+                <Scoreboard isSolo={this.props.isSolo} />
+              </div>
+            ) : null}
           </div>
-        ) : null}
 
-        {!this.props.isSolo ? (
-          <div>
-            Your Opponents<Opentok currentgame={currentgame} token={token} />
-          </div>
-        ) : (
-          <button
-            type="button"
-            className="btn btn-main"
-            onClick={() => {
-              this.props.history.push('/home')
-            }}
-          >
-            Exit
-          </button>
-        )}
+        <div className="col-md-5">
+          {!this.props.isSolo ? (
+            <Opentok currentgame={currentgame} token={token} />
+          ) : (
+            <button
+              type="button"
+              className="btn btn-main"
+              onClick={() => {
+                this.props.history.push('/home')
+              }}
+            >
+              Exit
+            </button>
+          )}
+        </div></div>
         {startGame && this.props.user.host ? (
           <button
             className="btn btn-primary"
