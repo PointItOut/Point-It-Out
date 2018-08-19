@@ -4,6 +4,7 @@ import {getGames, startGame, updateGame} from '../store/game'
 import {Opentok, GameSidebar, CameraCanvas, Lobby} from './index'
 import {getQuestions} from '../store/questions'
 import Countdown from '../../node_modules/react-countdown-now'
+import {withRouter} from 'react-router-dom'
 
 class PartnerMode extends Component {
   constructor() {
@@ -16,8 +17,12 @@ class PartnerMode extends Component {
   }
 
   render() {
-    const { games, user, token, match } = this.props
-    const { name } = match.params
+    if (!this.props.games.length) {
+      this.props.history.push('/home')
+      return null
+    }
+    const {games, user, token, match} = this.props
+    const {name} = match.params
 
     const currentgame = games.find(game => game.name === name)
     const renderer = ({seconds, completed}) => {
@@ -78,4 +83,4 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState, mapDispatchToProps)(PartnerMode)
+export default withRouter(connect(mapState, mapDispatchToProps)(PartnerMode))
