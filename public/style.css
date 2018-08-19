@@ -134,6 +134,10 @@ video {
   flex-grow: 1;
 }
 
+#tutorial-sidebar {
+  flex-grow: 1;
+}
+
 .OT_publisher {
   display: none;
 }
