@@ -48,7 +48,8 @@ const mapState = state => {
     questions: state.questions,
     timeover: state.game.timeover,
     gameCountdown: state.game.gameCountdown,
-    startGame: state.game.startGame
+    startGame: state.game.startGame,
+    games: state.game.games
   }
 }
 
