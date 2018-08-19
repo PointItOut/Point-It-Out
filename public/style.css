@@ -36,7 +36,7 @@ body {
 }
 
 .score {
-  font-size: 5em;
+  font-size: 3em;
 }
 
 .navbar,
@@ -141,7 +141,6 @@ video {
 .OT_subscriber {
   float: left;
   margin-left: 1em;
-
 }
 
 button {

@@ -123,7 +123,8 @@ const mapDispatchToProps = function(dispatch) {
   return {
     deleteGame: (gamename, mode) => dispatch(deleteGame(gamename, mode)),
     setTimeOver: logic => dispatch(setTimeOver(logic)),
-    setHighScore: (score, category) => dispatch(setHighScore(score, category))
+    setHighScore: (score, category) => dispatch(setHighScore(score, category)),
+    restartGame: () => dispatch(startGame())
   }
 }
 
