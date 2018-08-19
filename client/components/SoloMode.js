@@ -5,10 +5,6 @@ import Countdown from 'react-countdown-now'
 import {setTimeOver} from '../store/game'
 
 class SoloMode extends Component {
-  // async componentDidMount() {
-  //   await this.props.setTimeOver(false)
-  // }
-
   render() {
     const questions = this.props.questions
     const timeover = this.props.timeover
@@ -26,20 +22,16 @@ class SoloMode extends Component {
     }
 
     return (
-      // (!timeover) ?
       <div>
         <Countdown
-          key={this.props.gameCountdown} //force componentDidmount when this changes.
+          //force componentDidmount(CDM) when this changes
+          //Countdown does a setInterval only in CDM.
+          key={this.props.gameCountdown}
           date={this.props.gameCountdown}
           renderer={renderer.bind(this)}
           zeroPadLength={1}
         />
       </div>
-      // :
-      // <div className="game-wrapper" >
-      //   <CameraCanvas questions={questions} />
-      //   <GameSidebar isSolo={this.props.match.path === '/solo'} />
-      // </div>
     )
   }
 }
