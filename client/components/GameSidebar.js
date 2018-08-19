@@ -38,7 +38,7 @@ const GameSidebar = props => {
   const startGame = props.startGame
   const deleteGame = props.deleteGame
   const Mode = 'partner'
-  console.log('SOLOSOLOSOLOSOLO>>>>>>>', props.isSolo)
+
   return (
     <div id="game-sidebar" className="container">
       {startGame || props.isSolo ? (
