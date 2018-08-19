@@ -93,7 +93,7 @@ class GameSidebar extends Component {
         {startGame && user.host && !isSolo ? (
           <div>
             <button
-              className="btn btn-primary"
+              className="btn btn-main"
               type="button"
               onClick={() => {
                 deleteGame(currentgame.name, Mode)

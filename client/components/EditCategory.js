@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faTrash} from '@fortawesome/free-solid-svg-icons'
 
 class EditCategory extends Component {
   constructor() {
@@ -160,10 +162,12 @@ class EditCategory extends Component {
                 {questionList.map(question => (
                   <div key={question.id}>
                     <span>
-                      <i
+                      <FontAwesomeIcon
+                        className="pointer"
+                        icon={faTrash}
                         onClick={() => this.handleDelete(question.id)}
-                        className="fas fa-trash-alt"
-                      />&nbsp;
+                      />
+                      &nbsp;
                       {question.theQuestion}
                     </span>
                   </div>
