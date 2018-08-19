@@ -42,7 +42,7 @@ const Instructions = props => {
               <li>Tap the card with your choice vigorously</li>
             </ol>
           </div>
-          <Link to='/tutorial'>Practice!</Link>
+          <button onClick={props.handleClick} data-dismiss="modal">Practice!</button>
         </div>
       </div>
     </div>

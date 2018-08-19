@@ -23,10 +23,9 @@ class ModeOptions extends Component {
 
   render() {
     const {chooseMode} = this.props
-    console.log('chosen category', this.props.chosenCategory)
     return (
       <div>
-        <h2>{this.props.chosenCategory.name}</h2>
+        {/* <h2>{this.props.chosenCategory.name}</h2> */}
         <button
           type="button"
           className="btn btn-main"

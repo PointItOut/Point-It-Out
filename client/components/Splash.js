@@ -3,7 +3,12 @@ import {Link} from 'react-router-dom'
 import {Instructions} from './index'
 import {connect} from 'react-redux'
 
-const Splash = ({isLoggedIn}) => {
+const Splash = ({isLoggedIn, history}) => {
+
+  const handlePractice = () => {
+    history.push('/tutorial')
+  }
+
   return (
     <div className="container">
       <div className="row">
@@ -37,7 +42,7 @@ const Splash = ({isLoggedIn}) => {
           </button>
         </div>
       </div>
-      <Instructions />
+      <Instructions handleClick={handlePractice}/>
     </div>
   )
 }
