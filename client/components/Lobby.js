@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {me} from '../store/user'
 import socket from '../socket'
 import {Navbar} from '.'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faSpinner} from '@fortawesome/free-solid-svg-icons'
 
 class Lobby extends Component {
   constructor() {
@@ -29,9 +31,6 @@ class Lobby extends Component {
         <div className="col-sm-12 col-md-8 offset-md-2">
           {user.host ? (
             <div>
-              {/* <h2 className="text-center">
-                GAME: {currentgame.name.toUpperCase()}
-              </h2> */}
               <button
                 className="btn btn-main"
                 type="button"
@@ -42,15 +41,15 @@ class Lobby extends Component {
             </div>
           ) : (
             <p>
-              <i className="fas fa-spinner fa-spin" />&nbsp;Waiting for host to
-              start the game
+              <FontAwesomeIcon icon={faSpinner} spin />
+              &nbsp;Waiting for host to start the game
             </p>
           )}
           <div>
             {user.host && opponentNames.length === 1 ? (
               <p>
-                <i className="fas fa-spinner fa-spin" />&nbsp;Waiting for people
-                to join the game
+                <FontAwesomeIcon icon={faSpinner} spin />&nbsp;Waiting for
+                people to join the game
               </p>
             ) : null}
           </div>
