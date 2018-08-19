@@ -30,8 +30,14 @@ router.put('/:userId/categories', userMatchesParam, async (req, res, next) => {
 router.put('/score', async (req, res, next) => {
   try {
     let currentscore = req.body.score
-    const game = await Game.findOne({ where: { id: req.user.gameId } })
-    const category = await Category.findOne({ where: { id: game.categoryId } })
+    let category = ''
+    if (!req.body.category) {
+      const game = await Game.findOne({ where: { id: req.user.gameId } })
+      category = await Category.findOne({ where: { id: game.categoryId } })
+    }
+    else {
+      category = req.body.category
+    }
     const usercategory = await UserCategory.findOne({ where: { userId: req.user.id, categoryId: category.id } })
     if (usercategory) {
       if (currentscore > usercategory.userHighScore) {
