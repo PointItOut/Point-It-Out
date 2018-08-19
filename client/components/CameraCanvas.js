@@ -189,11 +189,11 @@ class CameraCanvas extends Component {
 
             {// option text boxes
               options &&
-              options.map((option, index) => {
+              options.map((choice, index) => {
                 return (
                   <Text
-                    key={option.id}
-                    text={option.theChoice}
+                    key={choice.id}
+                    text={choice.text}
                     x={xPositions[index]}
                     y={20}
                     fontSize={20}
@@ -260,7 +260,7 @@ class CameraCanvas extends Component {
             />
 
             <Text
-              text={question ? question.theQuestion : ''}
+              text={question ? question.text : ''}
               x={250}
               y={700}
               fontSize={20}
