@@ -2,61 +2,61 @@
 const tutorialQuestions = [{
   theQuestion: 'Touch the red square',
   choices: [{
-    theChoice: 'Not me',
+    theChoice: 'Purple',
     isCorrect: false
   }, {
-    theChoice: 'Not me',
+    theChoice: 'Green',
     isCorrect: false
   }, {
-    theChoice: 'Not me',
+    theChoice: 'Yellow',
     isCorrect: false
   }, {
-    theChoice: 'Touch me!',
+    theChoice: 'RED!',
     isCorrect: true
   }]
 }, {
   theQuestion: 'Touch the purple square',
   choices: [{
-    theChoice: 'Touch me!',
+    theChoice: 'PURPLE!',
     isCorrect: true
   }, {
-    theChoice: 'Not me',
+    theChoice: 'Green',
     isCorrect: false
   }, {
-    theChoice: 'Not me',
+    theChoice: 'Yellow',
     isCorrect: false
   }, {
-    theChoice: 'Not me',
+    theChoice: 'Red',
     isCorrect: false
   }]
 }, {
   theQuestion: 'Touch the yellow square',
   choices: [{
-    theChoice: 'Not me',
+    theChoice: 'Purple',
     isCorrect: false
   }, {
-    theChoice: 'Not me',
+    theChoice: 'Green',
     isCorrect: false
   }, {
-    theChoice: 'Touch me!',
+    theChoice: 'YELLOW!',
     isCorrect: true
   }, {
-    theChoice: 'Not me',
+    theChoice: 'Red',
     isCorrect: false
   }]
 }, {
   theQuestion: 'Touch the green square',
   choices: [{
-    theChoice: 'Not me',
+    theChoice: 'Purple',
     isCorrect: false
   }, {
-    theChoice: 'Touch me!',
+    theChoice: 'GREEN!',
     isCorrect: true
   }, {
-    theChoice: 'Not me',
+    theChoice: 'Yellow',
     isCorrect: false
   }, {
-    theChoice: 'Not me',
+    theChoice: 'Red',
     isCorrect: false
   }]
 }]
