@@ -8,7 +8,7 @@ const Scoreboard = props => {
   return (
     <div className="card">
       <div className="card-header blue-header">
-        <h4>SCOREBOARD</h4>
+        <h4>SCORE</h4>
       </div>
       <div className="card-body">
         {props.isSolo ? (

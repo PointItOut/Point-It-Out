@@ -42,11 +42,7 @@ class PartnerMode extends Component {
           </div>
         )
       } else {
-        return (
-          <div className="mainPage">
-            <span className="clock">{seconds}</span>
-          </div>
-        )
+        return <span className="clock">{seconds}</span>
       }
     }
 
