@@ -78,9 +78,9 @@ router.get('/:categoryId', async (req, res, next) => {
     })
 
     const topTenScores = scoresObjects.sort((a, b) => {
-      if (a.score < b.score) {
+      if (a.userHighScore < b.userHighScore) {
         return 1
-      } else if (b.score < a.score) {
+      } else if (b.userHighScore < a.userHighScore) {
         return -1
       } else { return 0 }
     }).slice(0, 10)
