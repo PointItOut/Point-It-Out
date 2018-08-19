@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import Countdown from 'react-countdown-now'
 import AddConfetti from './AddConfetti'
 import {Scoreboard, Opentok} from './index'
@@ -16,11 +17,11 @@ class GameSidebar extends Component {
   }
 
   handleScores(score) {
-    const { user, current, isSolo, setHighScore, setTimeOver } = this.props
-
+    const { user, currentCategory, isSolo, setHighScore, setTimeOver } = this.props
+    // current is category, but where does that come from...
     setTimeOver(true)
     if (isSolo) {
-      setHighScore(score, current, user)
+      setHighScore(score, currentCategory, user)
     } else {
       setHighScore(score, undefined, user)
     }
@@ -131,7 +132,21 @@ const mapDispatchToProps = function(dispatch) {
 const mapState = state => ({
   user: state.user,
   score: state.score,
-  current: state.categories.current
+  currentCategory: state.categories.current
 })
 
 export default withRouter(connect(mapState, mapDispatchToProps)(GameSidebar))
+
+GameSidebar.propTypes = {
+  user: PropTypes.object,
+  score: PropTypes.number,
+  currentCategory: PropTypes.object,
+  deleteGame: PropTypes.func,
+  setTimeOver: PropTypes.func,
+  setHighScore: PropTypes.func,
+  restartGame: PropTypes.func,
+  currentgame: PropTypes.object,
+  isSolo: PropTypes.bool,
+  token: PropTypes.string,
+  startGame: PropTypes.bool
+}

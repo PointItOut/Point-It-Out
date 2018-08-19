@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 
 const Instructions = props => {
@@ -50,3 +51,8 @@ const Instructions = props => {
 }
 
 export default Instructions
+
+// PROP TYPES
+Instructions.propTypes = {
+  handleClick: PropTypes.func
+}

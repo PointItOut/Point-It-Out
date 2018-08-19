@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import axios from 'axios'
 import {AddGame} from '.'
 import {isScreenLarge, tooSmallToast} from '../canPlay'
@@ -47,3 +48,9 @@ class ModeOptions extends Component {
 }
 
 export default ModeOptions
+
+// PROP TYPES
+ModeOptions.propTypes = {
+  chooseMode: PropTypes.func,
+  chosenCategory: PropTypes.object
+}

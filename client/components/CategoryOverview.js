@@ -151,3 +151,11 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(CategoryOverview)
+
+
+CategoryOverview.propTypes = {
+  currentCategory: PropTypes.object,
+  user: PropTypes.object,
+  removeUsersCategory: PropTypes.func,
+  unsubscribe: PropTypes.func
+}

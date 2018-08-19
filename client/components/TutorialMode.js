@@ -1,16 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import { getTutorialQuestions, deleteQuestions } from '../store/questions'
 import { setQuestion } from '../store/currentQuestion'
 import { updateScore } from '../store/score'
 import { CameraCanvas } from './index'
-
-// tutorial component must use webcam and canvas...
-// how to use diffy though?
-// do we need a special tutorial sidebar?
-// make sure we reset everything at the end of the 'game'...
-// have a button in the tutorial sidebar for 'go home'?
-
 
 class TutorialMode extends Component {
   constructor() {
@@ -31,7 +25,6 @@ class TutorialMode extends Component {
   }
 
   handleExit() {
-    console.log('handling exit')
     const { history, clearCurrentQuestion, clearQuestions, resetScore } = this.props
     clearCurrentQuestion()
     clearQuestions()
@@ -76,3 +69,14 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(TutorialMode)
+
+// PROP TYPES
+TutorialMode.propTypes = {
+  questions: PropTypes.array,
+  currentQuestion: PropTypes.object,
+  fetchTutorialQuestions: PropTypes.func,
+  setInitialQuestion: PropTypes.func,
+  clearCurrentQuestion: PropTypes.func,
+  clearQuestions: PropTypes.func,
+  resetScore: PropTypes.func
+}

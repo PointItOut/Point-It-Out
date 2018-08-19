@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 class UserTopScores extends React.Component {
@@ -59,3 +60,8 @@ const mapState = state => ({
 })
 
 export default connect(mapState)(UserTopScores)
+
+// PROP TYPES
+UserTopScores.propTypes = {
+  user: PropTypes.object
+}

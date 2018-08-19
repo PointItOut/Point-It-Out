@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import {me} from '../store/user'
 import socket from '../socket'
 import {Navbar} from '.'
@@ -20,10 +21,9 @@ class Lobby extends Component {
   }
 
   render() {
-    const user = this.props.user
-    const opponent = this.props.opponent
+    const { user, opponent, currentgame } = this.props
     const opponentNames = Object.keys(opponent)
-    const currentgame = this.props.currentgame
+
     // console.log('current game is', currentgame.name)
 
     return (
@@ -70,3 +70,12 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(Lobby)
+
+// PROP TYPES
+Lobby.propTypes = {
+  user: PropTypes.object,
+  opponent: PropTypes.object,
+  currentgame: PropTypes.object,
+  startGame: PropTypes.bool,
+  me: PropTypes.func
+}

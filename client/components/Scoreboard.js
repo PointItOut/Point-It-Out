@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
 const Scoreboard = props => {
@@ -39,3 +40,9 @@ const mapState = state => ({
 })
 
 export default connect(mapState)(Scoreboard)
+
+// PROP TYPES
+Scoreboard.propTypes = {
+  score: PropTypes.number,
+  opponent: PropTypes.object
+}

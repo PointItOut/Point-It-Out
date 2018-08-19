@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import {getGames, startGame, updateGame} from '../store/game'
 import {Opentok, GameSidebar, CameraCanvas, Lobby} from './index'
 import {getQuestions} from '../store/questions'
@@ -73,7 +74,6 @@ const mapDispatchToProps = function(dispatch) {
 }
 const mapState = state => {
   return {
-    category: state.category,
     games: state.game.games,
     user: state.user,
     token: state.game.token,
@@ -84,3 +84,14 @@ const mapState = state => {
 }
 
 export default withRouter(connect(mapState, mapDispatchToProps)(PartnerMode))
+
+PartnerMode.propTypes = {
+  games: PropTypes.array,
+  user: PropTypes.object,
+  token: PropTypes.string,
+  questions: PropTypes.array,
+  startGame: PropTypes.bool,
+  gameCountdown: PropTypes.number,
+  updateGame: PropTypes.func,
+  getGames: PropTypes.func
+}

@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {CameraCanvas, GameSidebar} from './index'
 import Countdown from 'react-countdown-now'
@@ -12,8 +13,8 @@ class SoloMode extends Component {
     }
   }
   render() {
-    const questions = this.props.questions
-    const timeover = this.props.timeover
+    const { questions, timeover } = this.props
+
     const renderer = ({seconds, completed}) => {
       if (completed) {
         return (
@@ -44,7 +45,6 @@ class SoloMode extends Component {
 
 const mapState = state => {
   return {
-    category: state.category,
     questions: state.questions,
     timeover: state.game.timeover,
     gameCountdown: state.game.gameCountdown,
@@ -60,3 +60,13 @@ const mapDispatchToProps = function(dispatch) {
 }
 
 export default withRouter(connect(mapState, mapDispatchToProps)(SoloMode))
+
+// PROP TYPES
+SoloMode.propTypes = {
+  questions: PropTypes.array,
+  timeover: PropTypes.bool,
+  gameCountdown: PropTypes.number,
+  startGame: PropTypes.bool,
+  games: PropTypes.array,
+  setTimeOver: PropTypes.func
+}

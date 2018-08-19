@@ -4,6 +4,7 @@ import Konva from 'konva'
 import Webcam from 'react-webcam'
 import Diffy from './diffy'
 import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import { PurpleRect, GreenRect, YellowRect, RedRect } from './canvas-rects'
 import { connect } from 'react-redux'
 import { submitAnswer, setQuestion } from '../store/currentQuestion'
@@ -290,3 +291,11 @@ const mapDispatch = dispatch => ({
 })
 
 export default withRouter(connect(mapState, mapDispatch)(CameraCanvas))
+
+// PROP TYPES
+CameraCanvas.propTypes = {
+  currentQuestion: PropTypes.object,
+  score: PropTypes.number,
+  user: PropTypes.object,
+  timeover: PropTypes.bool
+}
