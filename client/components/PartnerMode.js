@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { getGames, startGame } from '../store/game'
-import { Opentok, GameSidebar, CameraCanvas, Lobby } from './index'
-import { getQuestions } from '../store/questions'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {getGames, startGame} from '../store/game'
+import {Opentok, GameSidebar, CameraCanvas, Lobby} from './index'
+import {getQuestions} from '../store/questions'
 import Countdown from '../../node_modules/react-countdown-now'
 
 class PartnerMode extends Component {
@@ -21,18 +21,18 @@ class PartnerMode extends Component {
     const name = this.props.match.params.name
     const token = this.props.token
     const currentgame = games.find(game => game.name === name)
-    const renderer = ({ seconds, completed }) => {
-      console.log({ seconds, completed })
+    const renderer = ({seconds, completed}) => {
+      console.log({seconds, completed})
       if (completed) {
         return (
           <div className="game-wrapper">
             {!this.props.startGame ? (
               <Lobby currentgame={currentgame} token={token} />
             ) : (
-                <div>
-                  <CameraCanvas questions={this.props.questions} />
-                </div>
-              )}
+              <div>
+                <CameraCanvas questions={this.props.questions} />
+              </div>
+            )}
 
             <GameSidebar
               currentgame={currentgame}
@@ -49,6 +49,9 @@ class PartnerMode extends Component {
     return (
       <div>
         <Countdown
+          //force componentDidmount(CDM) when this changes
+          //Countdown does a setInterval only in CDM.
+          // key={this.props.gameCountdown}
           date={this.props.gameCountdown}
           renderer={renderer.bind(this)}
           zeroPadLength={1}
@@ -58,7 +61,7 @@ class PartnerMode extends Component {
   }
 }
 
-const mapDispatchToProps = function (dispatch) {
+const mapDispatchToProps = function(dispatch) {
   return {
     updateGame: name => dispatch(updateGame(name)),
     getGames: () => dispatch(getGames())

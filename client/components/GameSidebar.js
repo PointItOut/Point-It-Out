@@ -65,7 +65,7 @@ const GameSidebar = props => {
           <button
             type="button"
             className="btn btn-main"
-            onClick={() => props.startGame()}
+            onClick={() => props.restartGame()}
           >
             Play Again
           </button>
@@ -96,7 +96,7 @@ const mapDispatchToProps = function(dispatch) {
   return {
     deleteGame: (gamename, mode) => dispatch(deleteGame(gamename, mode)),
     setTimeOver: logic => dispatch(setTimeOver(logic)),
-    startGame: () => dispatch(startGame(true))
+    restartGame: () => dispatch(startGame(true))
   }
 }
 
