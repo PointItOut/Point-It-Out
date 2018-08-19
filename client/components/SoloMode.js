@@ -3,8 +3,14 @@ import {connect} from 'react-redux'
 import {CameraCanvas, GameSidebar} from './index'
 import Countdown from 'react-countdown-now'
 import {setTimeOver} from '../store/game'
+import {withRouter} from 'react-router-dom'
 
 class SoloMode extends Component {
+  componentDidMount() {
+    if (!this.props.startGame) {
+      this.props.history.push('/home')
+    }
+  }
   render() {
     const questions = this.props.questions
     const timeover = this.props.timeover
@@ -41,7 +47,8 @@ const mapState = state => {
     category: state.category,
     questions: state.questions,
     timeover: state.game.timeover,
-    gameCountdown: state.game.gameCountdown
+    gameCountdown: state.game.gameCountdown,
+    startGame: state.game.startGame
   }
 }
 
@@ -51,4 +58,4 @@ const mapDispatchToProps = function(dispatch) {
   }
 }
 
-export default connect(mapState, mapDispatchToProps)(SoloMode)
+export default withRouter(connect(mapState, mapDispatchToProps)(SoloMode))
