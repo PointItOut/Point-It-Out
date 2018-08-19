@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {me} from '../store/user'
 import socket from '../socket'
-import {isScreenLarge, tooSmallToast} from '../canPlay'
+import {Navbar} from '.'
 
 class Lobby extends Component {
   constructor() {
@@ -25,11 +25,15 @@ class Lobby extends Component {
     console.log('Rendering lobby')
 
     return (
-      <div>
+      <div className="lobby">
         {user.host ? (
-          <div>
+          <div className="main-container">
             <h3>You are the host</h3>
-            <button type="button" onClick={() => this.handleClick(currentgame)}>
+            <button
+              className="btn btn-main"
+              type="button"
+              onClick={() => this.handleClick(currentgame)}
+            >
               Start game!
             </button>
           </div>
