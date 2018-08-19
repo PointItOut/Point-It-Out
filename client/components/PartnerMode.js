@@ -48,6 +48,9 @@ class PartnerMode extends Component {
     return (
       <div>
         <Countdown
+          //force componentDidmount(CDM) when this changes
+          //Countdown does a setInterval only in CDM.
+          key={this.props.gameCountdown}
           date={this.props.gameCountdown}
           renderer={renderer.bind(this)}
           zeroPadLength={1}
