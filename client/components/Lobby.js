@@ -22,7 +22,7 @@ class Lobby extends Component {
     const opponent = this.props.opponent
     const opponentNames = Object.keys(opponent)
     const currentgame = this.props.currentgame
-    console.log('current game is', currentgame.name)
+    // console.log('current game is', currentgame.name)
 
     return (
       <div className="lobby">

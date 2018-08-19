@@ -10,7 +10,7 @@ const App = props => {
   return (
     <div>
       {props.location.pathname.includes('solo') ||
-      props.location.pathname.includes('game') ? null : (
+      props.location.pathname.includes('game') || props.location.pathname.includes('tutorial') ? null : (
         <Navbar />
       )}
       <div className="mainPage">
