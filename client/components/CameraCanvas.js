@@ -8,6 +8,7 @@ import {PurpleRect, GreenRect, YellowRect, RedRect} from './canvas-rects'
 import {connect} from 'react-redux'
 import {submitAnswer, setQuestion} from '../store/currentQuestion'
 import {updateScore} from '../store/score'
+import {noMediaStream} from '../canPlay'
 
 class CameraCanvas extends Component {
   constructor() {
@@ -108,7 +109,7 @@ class CameraCanvas extends Component {
     return (
       <div id="video-container">
         <Diffy />
-        <Webcam />
+        <Webcam onUserMediaError={noMediaStream} />
         <Stage
           ref={ref => {
             this.stageRef = ref
