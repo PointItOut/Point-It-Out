@@ -193,7 +193,7 @@ footer i {
   min-height: calc(100vh - 12em);
 }
 
-i {
+.pointer {
   cursor: pointer;
 }
 
