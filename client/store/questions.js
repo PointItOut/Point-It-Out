@@ -28,7 +28,6 @@ const gotTutorialQuestions = questions => ({
 
 export const getQuestions = (chosenCategory, currentMode) => async dispatch => {
   try {
-    console.log('=*= inside getQuestions thunk')
     const res = await axios.get(`/api/questions/${chosenCategory.id}`)
 
     const questionArr = res.data

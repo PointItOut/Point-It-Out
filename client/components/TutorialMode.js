@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { getTutorialQuestions } from '../store/questions'
+import { getTutorialQuestions, deleteQuestions } from '../store/questions'
 import { setQuestion } from '../store/currentQuestion'
+import { updateScore } from '../store/score'
 import { CameraCanvas } from './index'
 
 // tutorial component must use webcam and canvas...
@@ -14,6 +15,7 @@ import { CameraCanvas } from './index'
 class TutorialMode extends Component {
   constructor() {
     super()
+    this.handleExit = this.handleExit.bind(this)
   }
 
   componentDidMount() {
@@ -22,29 +24,38 @@ class TutorialMode extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // we want to know somehow if we have finished the tutorial...
-    // setCurrentQuestion needs to be called here once we have questions...
     if (prevProps.questions !== this.props.questions) {
       const { setInitialQuestion, questions } = this.props
       setInitialQuestion(questions[0])
     }
   }
 
+  handleExit() {
+    console.log('handling exit')
+    const { history, clearCurrentQuestion, clearQuestions, resetScore } = this.props
+    clearCurrentQuestion()
+    clearQuestions()
+    resetScore()
+    history.push('/')
+  }
+
   render() {
     const { questions, currentQuestion } = this.props
     const endOfTutorial = (questions.indexOf(currentQuestion.question) === questions.length - 1) && (currentQuestion.userGuess !== null)
-
-    console.log('endOfTutorial', endOfTutorial)
 
     return (
     <div className="tutorial game-wrapper">
       <CameraCanvas questions={questions} />
       <div className="container" id="tutorial-sidebar">
         <h3>TUTORIAL:</h3>
+        <h4>Touch the box with the correct answer</h4>
+        <h4>If your answer is wrong, you will see it in red</h4>
+        <h4>The correct answer will be shown in green</h4>
+        <h4>Good luck!</h4>
+        <button onClick={this.handleExit} >Exit Tutorial</button>
         {
-          endOfTutorial ? <h4>You have completed this tutorial. Click the exit button to return to the main page</h4> : null
+          endOfTutorial ? <h5>You have completed this tutorial. Click the exit button to return to the main page and start playing!</h5> : null
         }
-        <button>Exit Tutorial</button>
       </div>
     </div>
     )
@@ -58,7 +69,10 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   fetchTutorialQuestions: () => dispatch(getTutorialQuestions()),
-  setInitialQuestion: (question) => dispatch(setQuestion(question))
+  setInitialQuestion: (question) => dispatch(setQuestion(question)),
+  clearCurrentQuestion: () => dispatch(setQuestion({})),
+  clearQuestions: () => dispatch(deleteQuestions()),
+  resetScore: () => dispatch(updateScore(0))
 })
 
 export default connect(mapState, mapDispatch)(TutorialMode)
