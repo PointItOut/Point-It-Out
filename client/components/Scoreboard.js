@@ -17,10 +17,10 @@ const Scoreboard = props => {
             <h4 className="score">{props.score}</h4>
           </div>
         ) : (
-          <div className="row">
+          <div>
             {opponentNames.map(name => {
               return (
-                <div className="scoreboard col-sm-12 col-md-6">
+                <div className="scoreboard">
                   <h4>{name.toUpperCase()}</h4>
                   <h4 className="score">{opponent[name]}</h4>
                 </div>
