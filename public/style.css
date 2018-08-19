@@ -39,7 +39,8 @@ body {
   font-size: 5em;
 }
 
-.navbar, .btn-main {
+.navbar,
+.btn-main {
   font-size: 1.5em;
 }
 
@@ -49,7 +50,8 @@ body {
   margin-bottom: 2em;
 }
 
-.navbar a, footer a {
+.navbar a,
+footer a {
   color: var(--light-text);
 }
 
@@ -139,7 +141,7 @@ video {
 .OT_subscriber {
   float: left;
   margin-left: 1em;
-  border-radius: 50%;
+
 }
 
 button {
@@ -190,13 +192,10 @@ footer i {
 
 i {
   cursor: pointer;
-
 }
 
 .lobby {
-  min-height: calc(100vh - 4em);
+  margin-top: 3em;
+  min-height: calc(100vh - 7em);
   width: 100%;
 }
-
-
-
