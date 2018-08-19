@@ -5,7 +5,7 @@ import {Scoreboard, Opentok} from './index'
 import {connect} from 'react-redux'
 import {deleteGame} from '../store/game'
 import {withRouter} from 'react-router-dom'
-import {setTimeOver} from '../store/game'
+import {setTimeOver, startGame} from '../store/game'
 
 const GameSidebar = props => {
   const dispatchsetTimeOver = props.setTimeOver
@@ -38,6 +38,7 @@ const GameSidebar = props => {
   const startGame = props.startGame
   const deleteGame = props.deleteGame
   const Mode = 'partner'
+  console.log('SOLOSOLOSOLOSOLO>>>>>>>', props.isSolo)
   return (
     <div id="game-sidebar" className="container">
       {startGame || props.isSolo ? (
@@ -50,26 +51,42 @@ const GameSidebar = props => {
       {!props.isSolo ? (
         <Opentok currentgame={currentgame} token={token} />
       ) : (
-        <button
-          type="button"
-          className="btn btn-main"
-          onClick={() => {
-            props.history.push('/home')
-          }}
-        >
-          Exit
-        </button>
+        <div>
+          <button
+            type="button"
+            className="btn btn-main"
+            onClick={() => {
+              props.history.push('/home')
+            }}
+          >
+            Exit
+          </button>
+
+          <button
+            type="button"
+            className="btn btn-main"
+            onClick={() => props.startGame()}
+          >
+            Play Again
+          </button>
+        </div>
       )}
-      {startGame && props.user.host ? (
-        <button
-          className="btn btn-primary"
-          type="button"
-          onClick={() => {
-            deleteGame(currentgame.name, Mode)
-          }}
-        >
-          Exit
-        </button>
+      {startGame && props.user.host && !props.isSolo ? (
+        <div>
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={() => {
+              deleteGame(currentgame.name, Mode)
+            }}
+          >
+            Exit
+          </button>
+
+          <button type="button" className="btn btn-main">
+            Rematch
+          </button>
+        </div>
       ) : null}
     </div>
   )
@@ -78,7 +95,8 @@ const GameSidebar = props => {
 const mapDispatchToProps = function(dispatch) {
   return {
     deleteGame: (gamename, mode) => dispatch(deleteGame(gamename, mode)),
-    setTimeOver: logic => dispatch(setTimeOver(logic))
+    setTimeOver: logic => dispatch(setTimeOver(logic)),
+    startGame: () => dispatch(startGame(true))
   }
 }
 

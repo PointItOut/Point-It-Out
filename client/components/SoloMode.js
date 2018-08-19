@@ -29,6 +29,7 @@ class SoloMode extends Component {
       // (!timeover) ?
       <div>
         <Countdown
+          key={this.props.gameCountdown} //force componentDidmount when this changes.
           date={this.props.gameCountdown}
           renderer={renderer.bind(this)}
           zeroPadLength={1}
