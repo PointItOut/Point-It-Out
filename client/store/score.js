@@ -8,9 +8,16 @@ const UPDATE_SCORE = 'UPDATE_SCORE'
 const initialState = 0
 
 // ACTION CREATORS
+export const resetScore = () => {
+  return {
+    type: UPDATE_SCORE,
+    total: 0
+  }
+}
+
 export const updateScore = (total, partner, username, gameName) => {
   if (partner === true) {
-    socket.emit('new-score', { total, username, gameName })
+    socket.emit('new-score', {total, username, gameName})
   }
   return {
     type: UPDATE_SCORE,
@@ -20,7 +27,10 @@ export const updateScore = (total, partner, username, gameName) => {
 
 export const setHighScore = (score, current) => async dispatch => {
   try {
-    const res = await axios.put('/api/users/score', { score: score, category: current })
+    const res = await axios.put('/api/users/score', {
+      score: score,
+      category: current
+    })
   } catch (err) {
     console.error(err)
   }

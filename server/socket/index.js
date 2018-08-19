@@ -73,6 +73,11 @@ module.exports = io => {
       console.log('USER REQUESTED A REMATCH FOR GAME ', game)
 
       socket.join(game)
+
+      for (let player in list[game]) {
+        list[game][player] = 0
+      }
+      io.in(game).emit('new-score', list[game])
       io.in(game).emit('rematch', games[game])
     })
 
