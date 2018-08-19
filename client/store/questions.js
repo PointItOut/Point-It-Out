@@ -1,6 +1,8 @@
 import axios from 'axios'
 import history from '../history'
 import socket from '../socket'
+import {startGame} from './game'
+import {updateScore} from './score'
 
 //ACTION TYPES
 const GOT_QUESTIONS_FOR_CATEGORY = 'GOT_QUESTIONS_FOR_CATEGORY'
@@ -38,6 +40,8 @@ export const getQuestions = (chosenCategory, currentMode) => async dispatch => {
     //dispatching shuffled questions
     dispatch(gotQuestionsForCategory(shuffledQuestions))
     if (currentMode === 'solo') {
+      dispatch(startGame(true))
+      dispatch(updateScore(0))
       history.push('/solo')
     }
   } catch (err) {
@@ -72,7 +76,7 @@ function shuffleArray(array) {
   let modified = [...array]
   for (let i = modified.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
-      ;[modified[i], modified[j]] = [modified[j], modified[i]]
+    ;[modified[i], modified[j]] = [modified[j], modified[i]]
   }
   return modified
 }

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Category, UserCategory, User, Question, Choice} = require('../db/models')
+const { Category, UserCategory, User, Question, Choice } = require('../db/models')
 const { userMatchesParam, userOwnsCategory } = require('../../secureHelpers')
 
 // GET public categories
@@ -58,7 +58,7 @@ router.get('/:categoryId', async (req, res, next) => {
       where: {
         categoryId: category.id
       },
-      include: {model: Choice}
+      include: { model: Choice }
     })
 
     const scores = await UserCategory.findAll({
@@ -105,8 +105,8 @@ router.delete('/:categoryId', userOwnsCategory, async (req, res, next) => {
     // questions associated with the category do not get deleted... and their choices do not either
     const categoryId = +req.params.categoryId
     await Promise.all([
-      Category.destroy({ where: { id: categoryId }}),
-      Question.destroy({ where: { categoryId }})
+      Category.destroy({ where: { id: categoryId } }),
+      Question.destroy({ where: { categoryId } })
     ])
     // choices don't automatically delete, but their questionId will get set to null
     await Choice.destroy({

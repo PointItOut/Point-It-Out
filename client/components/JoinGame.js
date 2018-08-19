@@ -1,8 +1,9 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {getGames, updateGame} from '../store/game'
-import {withRouter} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { getGames, updateGame } from '../store/game'
+import { withRouter } from 'react-router-dom'
 import socket from '../socket'
+import { isScreenLarge, tooSmallToast, noCamera } from '../canPlay'
 
 class JoinGame extends Component {
   constructor() {
@@ -15,30 +16,30 @@ class JoinGame extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  async componentDidMount() {
-    await this.props.getGames()
-  }
-
   handleChange(evt) {
-    this.setState({joinGame: evt.target.value})
+    this.setState({ joinGame: evt.target.value })
   }
 
   async handleSubmit(evt) {
     evt.preventDefault()
+    await this.props.getGames()
     const gameName = this.state.joinGame
     const gamesArray = this.props.games
     const existGame = gamesArray.find(game => game.name === gameName)
     const username = this.props.user.userName
-
-    if (!existGame) {
-      this.setState({nameExist: false})
+    if (isScreenLarge()) {
+      if (!existGame) {
+        this.setState({ nameExist: false })
+      } else {
+        this.setState({ nameExist: true })
+        socket.emit('questions', { gameName })
+        socket.emit('new-score', { username, total: 0, gameName })
+        await this.props.updateGame(gameName)
+        this.setState({ joinGame: '' })
+        this.props.history.push(`/game/${gameName}`)
+      }
     } else {
-      this.setState({nameExist: true})
-      socket.emit('questions', {gameName})
-      socket.emit('new-score', {username, total: 0, gameName})
-      await this.props.updateGame(gameName)
-      this.setState({joinGame: ''})
-      this.props.history.push(`/game/${gameName}`)
+      tooSmallToast()
     }
   }
 
@@ -67,7 +68,7 @@ class JoinGame extends Component {
   }
 }
 
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function (dispatch) {
   return {
     updateGame: name => dispatch(updateGame(name)),
     getGames: () => dispatch(getGames())

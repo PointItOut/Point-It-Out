@@ -28,6 +28,7 @@ body {
   background-color: var(--button-color);
   color: var(--light-text);
 }
+
 .scoreboard {
   color: var(--accent-color);
   font-weight: bold;
@@ -35,7 +36,7 @@ body {
 }
 
 .score {
-  font-size: 5em;
+  font-size: 3em;
 }
 
 .navbar,
@@ -48,8 +49,19 @@ body {
   color: var(--light-text);
   margin-bottom: 2em;
 }
-.navbar a {
+
+.navbar a,
+footer a {
   color: var(--light-text);
+}
+
+footer {
+  padding: 1em;
+  left: 0;
+  width: 100%;
+  background-color: var(--button-color);
+  color: var(--light-text);
+  margin-top: 1em;
 }
 
 .navbar a:hover {
@@ -58,6 +70,11 @@ body {
 
 a {
   text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+  color: var(--light-text);
 }
 
 label {
@@ -78,7 +95,7 @@ form div {
 }
 
 .card {
-  margin: 2em;
+  margin-bottom: 2em;
 }
 
 canvas {
@@ -124,12 +141,12 @@ video {
 .OT_subscriber {
   float: left;
   margin-left: 1em;
-  border-radius: 50%;
 }
 
 button {
   margin: 1em;
 }
+
 .btn-main {
   background-color: var(--button-color);
   color: var(--light-text);
@@ -161,4 +178,23 @@ button {
 
 .no-interaction {
   pointer-events: none;
+}
+
+footer i {
+  color: var(--light-text);
+  font-size: 2em;
+}
+
+.mainPage {
+  min-height: calc(100vh - 12em);
+}
+
+i {
+  cursor: pointer;
+}
+
+.lobby {
+  margin-top: 3em;
+  min-height: calc(100vh - 7em);
+  width: 100%;
 }

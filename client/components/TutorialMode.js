@@ -22,9 +22,10 @@ class TutorialMode extends Component {
 
 
   render() {
+    const { questions } = this.props
     return (
     <div>
-      <CameraCanvas />
+      <CameraCanvas questions={questions} />
     </div>
     )
   }
