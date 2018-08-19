@@ -16,12 +16,13 @@ class GameSidebar extends Component {
   }
 
   handleScores(score) {
-    const current = this.props.current
-    this.props.setTimeOver(true)
-    if (this.props.isSolo) {
-      this.props.setHighScore(score, current)
+    const { user, current, isSolo, setHighScore, setTimeOver } = this.props
+
+    setTimeOver(true)
+    if (isSolo) {
+      setHighScore(score, current, user)
     } else {
-      this.props.setHighScore(score)
+      setHighScore(score, undefined, user)
     }
   }
 
@@ -49,16 +50,12 @@ class GameSidebar extends Component {
       }
     }
 
-    const token = this.props.token
-    const currentgame = this.props.currentgame
-    const startGame = this.props.startGame
-    const deleteGame = this.props.deleteGame
+    const { token, currentgame, startGame, deleteGame, score, isSolo, user } = this.props
     const Mode = 'partner'
-    const score = this.props.score
 
     return (
       <div id="game-sidebar" className="container">
-        {startGame || this.props.isSolo ? (
+        {startGame || isSolo ? (
           <div>
             <Countdown
               date={this.state.timer}
@@ -67,7 +64,7 @@ class GameSidebar extends Component {
                 this.handleScores(score)
               }}
             />
-            <Scoreboard isSolo={this.props.isSolo} />
+            <Scoreboard isSolo={isSolo} />
           </div>
         ) : null}
 
@@ -93,7 +90,7 @@ class GameSidebar extends Component {
             </button>
           </div>
         )}
-        {startGame && this.props.user.host && !this.props.isSolo ? (
+        {startGame && user.host && !isSolo ? (
           <div>
             <button
               className="btn btn-primary"
@@ -123,7 +120,7 @@ const mapDispatchToProps = function(dispatch) {
   return {
     deleteGame: (gamename, mode) => dispatch(deleteGame(gamename, mode)),
     setTimeOver: logic => dispatch(setTimeOver(logic)),
-    setHighScore: (score, category) => dispatch(setHighScore(score, category)),
+    setHighScore: (score, category, user) => dispatch(setHighScore(score, category, user)),
     restartGame: () => {
       dispatch(startGame())
       dispatch(updateScore(0))

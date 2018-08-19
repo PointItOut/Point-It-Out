@@ -27,7 +27,17 @@ router.put('/:userId/categories', userMatchesParam, async (req, res, next) => {
   } catch (err) { next(err) }
 })
 
-router.put('/score', async (req, res, next) => {
+router.get('/:userId/scores', userMatchesParam, async (req, res, next) => {
+  try {
+    const topScores = await UserCategory.findAll({
+      where: { userId: +req.params.userId}
+    })
+    res.json(topScores)
+  } catch (err) { next(err) }
+})
+
+
+router.put('/:userId/scores', userMatchesParam, async (req, res, next) => {
   try {
     console.log('req.user=====>', req.user)
     console.log('req.body', req.body)
