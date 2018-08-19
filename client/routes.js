@@ -11,7 +11,8 @@ import {
   CategoryOverview,
   Lobby,
   Splash,
-  EditCategory
+  EditCategory,
+  TutorialMode
 } from './components'
 
 import {me} from './store'
@@ -36,6 +37,7 @@ class Routes extends Component {
 
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
+          <Route path="/tutorial" component={TutorialMode}/>
           {isLoggedIn && (
             <Switch>
               {/* Routes placed here are only available after logging in */}
@@ -49,7 +51,6 @@ class Routes extends Component {
               {/* <Route exact path="/game/:name" component={Lobby} /> */}
               <Route exact path="/game/:name" component={PartnerMode} />
               {/* <Route path="/game/:name/start" component={PartnerMode} /> */}
-
               <Route component={Splash} />
             </Switch>
           )}

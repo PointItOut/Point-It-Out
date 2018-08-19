@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const Instructions = props => {
   return (
@@ -41,6 +42,7 @@ const Instructions = props => {
               <li>Tap the card with your choice vigorously</li>
             </ol>
           </div>
+          <Link to='/tutorial'>Practice!</Link>
         </div>
       </div>
     </div>
