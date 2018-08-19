@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import {AddGame} from '.'
+import {isScreenLarge, tooSmallToast} from '../canPlay'
 
 class ModeOptions extends Component {
   constructor() {
@@ -10,12 +11,14 @@ class ModeOptions extends Component {
     this.handleChooseMode = this.handleChooseMode.bind(this)
   }
   handleChooseMode(currentMode) {
-    if (currentMode === 'partner') {
-      this.setState({partnerMode: true})
-    }
-    const {loadQuestions} = this.props
-    //load questions dispatches a thunk to get the questions and  dispatch an action to put them on state and redirect the user to the play page
-    loadQuestions(this.props.chosenCategory, currentMode)
+    if (isScreenLarge()) {
+      if (currentMode === 'partner') {
+        this.setState({partnerMode: true})
+      }
+      const {loadQuestions} = this.props
+      //load questions dispatches a thunk to get the questions and  dispatch an action to put them on state and redirect the user to the play page
+      loadQuestions(this.props.chosenCategory, currentMode)
+    } else tooSmallToast()
   }
 
   render() {
