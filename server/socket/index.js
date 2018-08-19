@@ -19,7 +19,7 @@ module.exports = io => {
     // })
 
     socket.on('delete-game', gameName => {
-      console.log('gameName', gameName);
+      console.log('gameName', gameName)
       io.in(gameName).emit('redirect', 'home')
       let newGames = {}
       let newquestions = {}
@@ -35,11 +35,16 @@ module.exports = io => {
       games = newGames
       list = newlist
 
-      io.of('/').in(gameName).clients((error, socketIds) => {
-        console.log('error = ' + error + ', socketIds = ' + socketIds);
-        if (error) throw error;
-        socketIds.forEach(socketId => io.sockets.sockets[socketId].leave(gameName));
-      });
+      io
+        .of('/')
+        .in(gameName)
+        .clients((error, socketIds) => {
+          console.log('error = ' + error + ', socketIds = ' + socketIds)
+          if (error) throw error
+          socketIds.forEach(socketId =>
+            io.sockets.sockets[socketId].leave(gameName)
+          )
+        })
       console.log('================>', list, games, questions)
     })
 
@@ -61,14 +66,19 @@ module.exports = io => {
       }
       socket.join(game)
       io.in(game).emit('startGame', games[game])
+    })
 
+    socket.on('rematch', payload => {
+      const game = payload.currentgame.name
+      console.log('USER REQUESTED A REMATCH FOR GAME ', game)
 
-    }
-    )
+      socket.join(game)
+      io.in(game).emit('rematch', games[game])
+    })
 
     socket.on('new-score', payload => {
       const Game = payload.gameName
-      console.log('new-score game', Game);
+      console.log('new-score game', Game)
       socket.join(Game)
       const name = payload.username
       if (!list[Game]) {

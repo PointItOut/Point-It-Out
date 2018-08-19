@@ -5,6 +5,7 @@ import {Scoreboard, Opentok} from './index'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {setTimeOver, startGame, deleteGame} from '../store/game'
+import socket from '../socket'
 
 const GameSidebar = props => {
   const dispatchsetTimeOver = props.setTimeOver
@@ -82,7 +83,11 @@ const GameSidebar = props => {
             Exit
           </button>
 
-          <button type="button" className="btn btn-main">
+          <button
+            type="button"
+            className="btn btn-main"
+            onClick={() => socket.emit('rematch', {currentgame})}
+          >
             Rematch
           </button>
         </div>
