@@ -5,6 +5,7 @@ const socket = io(window.location.origin)
 import store from './store'
 import {startGame} from './store/game'
 import history from './history'
+import {resetScore} from './store/score'
 
 socket.on('connect', () => {
   console.log('Connected!')
@@ -42,6 +43,7 @@ socket.on('startGame', payload => {
 
 socket.on('rematch', payload => {
   store.dispatch(startGame(payload))
+  store.dispatch(resetScore())
 })
 
 export default socket
