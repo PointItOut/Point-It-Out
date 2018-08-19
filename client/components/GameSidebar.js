@@ -1,37 +1,32 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Countdown from 'react-countdown-now'
 import AddConfetti from './AddConfetti'
-import { Scoreboard, Opentok } from './index'
-import { connect } from 'react-redux'
-import { deleteGame } from '../store/game'
-import { withRouter } from 'react-router-dom'
-import { setTimeOver } from '../store/game'
-import { setHighScore } from '../store/score'
-
-
+import {Scoreboard, Opentok} from './index'
+import {connect} from 'react-redux'
+import {deleteGame} from '../store/game'
+import {withRouter} from 'react-router-dom'
+import {setTimeOver} from '../store/game'
+import {setHighScore} from '../store/score'
 
 class GameSidebar extends Component {
-
   constructor() {
     super()
     this.handleScores = this.handleScores.bind(this)
-    this.state = { timer: Date.now() + 60000 };
+    this.state = {timer: Date.now() + 60000}
   }
-
 
   handleScores(score) {
     const current = this.props.current
     this.props.setTimeOver(true)
     if (this.props.isSolo) {
       this.props.setHighScore(score, current)
-    }
-    else {
+    } else {
       this.props.setHighScore(score)
     }
   }
 
   render() {
-    const renderer = ({ minutes, seconds, completed }) => {
+    const renderer = ({minutes, seconds, completed}) => {
       if (completed) {
         return (
           <div>
@@ -65,7 +60,13 @@ class GameSidebar extends Component {
       <div id="game-sidebar" className="container">
         {startGame || this.props.isSolo ? (
           <div>
-            <Countdown date={this.state.timer} renderer={renderer} onComplete={() => { this.handleScores(score) }} />
+            <Countdown
+              date={this.state.timer}
+              renderer={renderer}
+              onComplete={() => {
+                this.handleScores(score)
+              }}
+            />
             <Scoreboard isSolo={this.props.isSolo} />
           </div>
         ) : null}
@@ -73,16 +74,16 @@ class GameSidebar extends Component {
         {!this.props.isSolo ? (
           <Opentok currentgame={currentgame} token={token} />
         ) : (
-            <button
-              type="button"
-              className="btn btn-main"
-              onClick={() => {
-                this.props.history.push('/home')
-              }}
-            >
-              Exit
-        </button>
-          )}
+          <button
+            type="button"
+            className="btn btn-main"
+            onClick={() => {
+              this.props.history.push('/home')
+            }}
+          >
+            Exit
+          </button>
+        )}
         {startGame && this.props.user.host ? (
           <button
             className="btn btn-primary"
@@ -92,14 +93,14 @@ class GameSidebar extends Component {
             }}
           >
             Exit
-        </button>
+          </button>
         ) : null}
       </div>
     )
   }
 }
 
-const mapDispatchToProps = function (dispatch) {
+const mapDispatchToProps = function(dispatch) {
   return {
     deleteGame: (gamename, mode) => dispatch(deleteGame(gamename, mode)),
     setTimeOver: logic => dispatch(setTimeOver(logic)),
