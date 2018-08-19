@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {setTimeOver, startGame, deleteGame} from '../store/game'
 import socket from '../socket'
-import {setHighScore} from '../store/score'
+import {setHighScore, updateScore} from '../store/score'
 
 class GameSidebar extends Component {
   constructor() {
@@ -124,7 +124,10 @@ const mapDispatchToProps = function(dispatch) {
     deleteGame: (gamename, mode) => dispatch(deleteGame(gamename, mode)),
     setTimeOver: logic => dispatch(setTimeOver(logic)),
     setHighScore: (score, category) => dispatch(setHighScore(score, category)),
-    restartGame: () => dispatch(startGame())
+    restartGame: () => {
+      dispatch(startGame())
+      dispatch(updateScore(0))
+    }
   }
 }
 
