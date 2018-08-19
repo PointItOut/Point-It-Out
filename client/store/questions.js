@@ -5,6 +5,7 @@ import socket from '../socket'
 //ACTION TYPES
 const GOT_QUESTIONS_FOR_CATEGORY = 'GOT_QUESTIONS_FOR_CATEGORY'
 const DELETE_QUESTIONS = 'DELETE_QUESTIONS'
+const GOT_TUTORIAL_QUESTIONS = 'GOT_TUTORIAL_QUESTIONS'
 
 // ACTION CREATORS
 export const gotQuestionsForCategory = questions => ({
@@ -14,6 +15,11 @@ export const gotQuestionsForCategory = questions => ({
 
 export const deleteQuestions = () => ({
   type: DELETE_QUESTIONS
+})
+
+const gotTutorialQuestions = questions => ({
+  type: GOT_TUTORIAL_QUESTIONS,
+  questions
 })
 
 //THUNK CREATORS
@@ -39,14 +45,22 @@ export const getQuestions = (chosenCategory, currentMode) => async dispatch => {
   }
 }
 
+export const getTutorialQuestions = () => async dispatch => {
+  try {
+    const { data } = await axios.get('/api/tutorial')
+    dispatch(gotTutorialQuestions(data.questions))
+  } catch (err) { console.error(err) }
+}
+
 //REDUCER
 const reducer = (state = [], action) => {
   switch (action.type) {
     case GOT_QUESTIONS_FOR_CATEGORY:
       return action.questions
-    case DELETE_QUESTIONS: {
+    case DELETE_QUESTIONS:
       return []
-    }
+    case GOT_TUTORIAL_QUESTIONS:
+      return action.questions
     default:
       return state
   }

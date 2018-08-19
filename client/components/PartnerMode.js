@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getGames, startGame } from '../store/game'
+import { getGames, startGame, updateGame } from '../store/game'
 import { Opentok, GameSidebar, CameraCanvas, Lobby } from './index'
 import { getQuestions } from '../store/questions'
 import Countdown from '../../node_modules/react-countdown-now'
@@ -16,10 +16,9 @@ class PartnerMode extends Component {
   }
 
   render() {
-    const games = this.props.games
-    const user = this.props.user
-    const name = this.props.match.params.name
-    const token = this.props.token
+    const { games, user, token, match } = this.props
+    const { name } = match.params
+
     const currentgame = games.find(game => game.name === name)
     const renderer = ({ seconds, completed }) => {
       console.log({ seconds, completed })

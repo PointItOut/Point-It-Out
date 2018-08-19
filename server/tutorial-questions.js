@@ -1,4 +1,3 @@
-import React, {Component} from 'react'
 
 const tutorialQuestions = [{
   theQuestion: 'Touch the red square',
@@ -62,20 +61,4 @@ const tutorialQuestions = [{
   }]
 }]
 
-
-// tutorial component must use webcam and canvas...
-// how to use diffy though?
-
-class Tutorial extends Component {
-  constructor() {
-    super()
-    this.state = {
-      currentQuestion: 0
-    }
-  }
-  render() {
-    return <div>This is the tutorial component</div>
-  }
-}
-
-export default Tutorial
+module.exports = tutorialQuestions

@@ -12,10 +12,10 @@ The command 'npm run start-dev' will run the app in development mode on your loc
 All test files end with .spec.js. The command 'npm test' will run all tests for the project. You must have a database named pointItOut-test in order to run the test files.
 
 ## AUTHORS:
-Alexandra Ash, 
-Amy Berg, 
-Kate Dubitski Kopitchinski, 
-Sivan Gilad
+Alexandra Ash,
+Amy Berg,
+Kate Dubitski Kopitchinski,
+Sivan Gilead
 
 ## Built with:
 Node, Express, Sequelize, PostgreSQL, React, Redux, React-Redux, React-Router, React-Konva, Opentak
