@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {setCurrentCategory} from '../store/categories'
 import {getQuestions} from '../store/questions'
-import {JoinGame, CategoryWrapper, CategoryOverview, ModeOptions} from './index'
+import {JoinGame, CategoryWrapper, CategoryOverview, ModeOptions, UserTopScores} from './index'
 
 /**
  * COMPONENT
@@ -55,7 +55,7 @@ export class UserHome extends React.Component {
   }
 
   render() {
-    const {username} = this.props
+    const {username, categories, user} = this.props
     const {choosingCategory, choosingMode, partnerMode} = this.state
 
     return (
@@ -72,6 +72,7 @@ export class UserHome extends React.Component {
                 New Game
               </button>
               <JoinGame />
+              <UserTopScores />
             </div>
           ) : null}
 
@@ -88,6 +89,7 @@ export class UserHome extends React.Component {
               <CategoryOverview resetCategory={this.resetCategory} />
             </div>
           ) : null}
+
         </div>
       </div>
     )
@@ -100,7 +102,9 @@ export class UserHome extends React.Component {
 const mapState = state => {
   return {
     chosenCategory: state.categories.current,
-    username: state.user.userName
+    username: state.user.userName,
+    categories: state.categories,
+    user: state.user
   }
 }
 

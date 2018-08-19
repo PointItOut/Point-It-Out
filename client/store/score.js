@@ -25,9 +25,9 @@ export const updateScore = (total, partner, username, gameName) => {
   }
 }
 
-export const setHighScore = (score, current) => async dispatch => {
+export const setHighScore = (score, current, user) => async dispatch => {
   try {
-    const res = await axios.put('/api/users/score', {
+    const res = await axios.put(`/api/users/${user.id}/scores`, {
       score: score,
       category: current
     })
