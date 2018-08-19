@@ -3,9 +3,8 @@ import Countdown from 'react-countdown-now'
 import AddConfetti from './AddConfetti'
 import {Scoreboard, Opentok} from './index'
 import {connect} from 'react-redux'
-import {deleteGame} from '../store/game'
 import {withRouter} from 'react-router-dom'
-import {setTimeOver, startGame} from '../store/game'
+import {setTimeOver, startGame, deleteGame} from '../store/game'
 
 const GameSidebar = props => {
   const dispatchsetTimeOver = props.setTimeOver
