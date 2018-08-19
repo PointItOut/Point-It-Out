@@ -35,7 +35,7 @@ router.get('/:userId/scores', async (req, res, next) => {
 
     const categories = await Promise.all(topScores.map(userCategory => Category.findById(userCategory.categoryId)))
 
-    const responseBody = topScores.map((topScore, index) => {
+    const resBody = topScores.map((topScore, index) => {
       return {
         userId: topScore.userId,
         category: {
@@ -46,7 +46,17 @@ router.get('/:userId/scores', async (req, res, next) => {
       }
     })
 
-    res.json(responseBody)
+    const sortedResBody = resBody.sort((a, b) => {
+      if (a.userHighScore > b.userHighScore) {
+        return -1
+      } else if (a.userHighScore < b.userHighScore) {
+        return 1
+      } else {
+        return 0
+      }
+    })
+
+    res.json(sortedResBody)
   } catch (err) { next(err) }
 })
 
