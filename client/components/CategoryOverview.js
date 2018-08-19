@@ -7,7 +7,7 @@ import {
   authorRemoveCategory,
   userUnsubscribeFromCategory
 } from '../store/categories'
-
+import {Leaderboard} from '.'
 class CategoryOverview extends Component {
   constructor() {
     super()
@@ -130,25 +130,7 @@ class CategoryOverview extends Component {
           ) : null}
 
           <h3>{categoryDisplayed.questionTotal} questions</h3>
-          <div>
-            <h4>Leaderboard:</h4>
-            <table>
-              <thead>
-                <tr>
-                  <th>User</th>
-                  <th>Score</th>
-                </tr>
-              </thead>
-              <tbody>
-                {categoryDisplayed.topScores.map(scoreInfo => (
-                  <tr key={scoreInfo.userId}>
-                    <th>{scoreInfo.userName}</th>
-                    <th>{scoreInfo.userHighScore}</th>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <Leaderboard categoryDisplayed={categoryDisplayed} />
         </div>
       )
     } else {
