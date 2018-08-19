@@ -20,9 +20,14 @@ class GameSidebar extends Component {
 
 
   handleScores(score) {
-    console.log('im hereee')
+    const current = this.props.current
     this.props.setTimeOver(true)
-    this.props.setHighScore(score)
+    if (this.props.isSolo) {
+      this.props.setHighScore(score, current)
+    }
+    else {
+      this.props.setHighScore(score)
+    }
   }
 
   render() {
@@ -98,13 +103,14 @@ const mapDispatchToProps = function (dispatch) {
   return {
     deleteGame: (gamename, mode) => dispatch(deleteGame(gamename, mode)),
     setTimeOver: logic => dispatch(setTimeOver(logic)),
-    setHighScore: score => dispatch(setHighScore(score))
+    setHighScore: (score, category) => dispatch(setHighScore(score, category))
   }
 }
 
 const mapState = state => ({
   user: state.user,
-  score: state.score
+  score: state.score,
+  current: state.categories.current
 })
 
 export default withRouter(connect(mapState, mapDispatchToProps)(GameSidebar))
