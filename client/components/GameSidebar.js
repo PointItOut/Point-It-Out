@@ -49,12 +49,8 @@ class GameSidebar extends Component {
       }
     }
 
-    const token = this.props.token
-    const currentgame = this.props.currentgame
-    const startGame = this.props.startGame
-    const deleteGame = this.props.deleteGame
+    const {token, currentgame, startGame, deleteGame, score} = this.props
     const Mode = 'partner'
-    const score = this.props.score
 
     return (
       <div id="game-sidebar" className="container">

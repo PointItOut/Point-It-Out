@@ -1,7 +1,7 @@
 import { create } from 'diffyjs'
-import React, { Component } from 'react'
+import React from 'react'
 import socket from '../socket'
-import { publishAnswer, submitAnswer } from '../store/currentQuestion'
+import { submitAnswer } from '../store/currentQuestion'
 import store from '../store'
 
 const diffy = create({
@@ -18,22 +18,17 @@ const diffy = create({
     const red = [matrix[12][0], matrix[13][0], matrix[14][0]]
     if ((store.getState().currentQuestion.question !== '') && (!store.getState().game.timeover)) {
       if (purple.some(dot => dot < 200)) {
-        socket.emit('purple', 'Someone else touched the purple rectangle!')
-        console.log('You touched the purple rectangle!')
         store.dispatch(submitAnswer(0))
       }
       if (green.some(dot => dot < 200)) {
-        console.log('You touched the green rectangle!')
         store.dispatch(submitAnswer(1))
       }
 
       if (yellow.some(dot => dot < 200)) {
-        console.log('You touched the yellow rectangle!')
         store.dispatch(submitAnswer(2))
       }
 
       if (red.some(dot => dot < 200)) {
-        console.log('You touched the red rectangle!')
         store.dispatch(submitAnswer(3))
       }
     }
