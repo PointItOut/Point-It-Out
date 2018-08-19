@@ -28,6 +28,7 @@ body {
   background-color: var(--button-color);
   color: var(--light-text);
 }
+
 .scoreboard {
   color: var(--accent-color);
   font-weight: bold;
@@ -38,8 +39,7 @@ body {
   font-size: 5em;
 }
 
-.navbar,
-.btn-main {
+.navbar, .btn-main {
   font-size: 1.5em;
 }
 
@@ -48,10 +48,11 @@ body {
   color: var(--light-text);
   margin-bottom: 2em;
 }
-.navbar a,
-footer a {
+
+.navbar a, footer a {
   color: var(--light-text);
 }
+
 footer {
   padding: 1em;
   left: 0;
@@ -68,6 +69,7 @@ footer {
 a {
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: none;
   color: var(--light-text);
@@ -143,6 +145,7 @@ video {
 button {
   margin: 1em;
 }
+
 .btn-main {
   background-color: var(--button-color);
   color: var(--light-text);
@@ -175,6 +178,7 @@ button {
 .no-interaction {
   pointer-events: none;
 }
+
 footer i {
   color: var(--light-text);
   font-size: 2em;
@@ -186,9 +190,13 @@ footer i {
 
 i {
   cursor: pointer;
+
 }
 
 .lobby {
   min-height: calc(100vh - 4em);
   width: 100%;
 }
+
+
+

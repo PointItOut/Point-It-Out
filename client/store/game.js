@@ -53,9 +53,9 @@ export const setTimeOver = timeover => {
 }
 
 // THUNK CREATORS
-export const postGame = gameName => async dispatch => {
+export const postGame = (gameName, current) => async dispatch => {
   try {
-    const res = await axios.post('/api/game', {name: gameName})
+    const res = await axios.post('/api/game', { name: gameName, category: current })
     dispatch(createGame(res.data))
   } catch (err) {
     console.error(err)
@@ -105,10 +105,10 @@ const reducer = (state = initialState, action) => {
         startGame: false
       }
     case GOT_GAMES: {
-      return {...state, games: action.games}
+      return { ...state, games: action.games }
     }
     case GOT_TOKEN: {
-      return {...state, token: action.token}
+      return { ...state, token: action.token }
     }
     case START_GAME: {
       return {
@@ -125,10 +125,10 @@ const reducer = (state = initialState, action) => {
         game => game.name !== gameName.gameName
       )
 
-      return {...state, games: newGames}
+      return { ...state, games: newGames }
     }
     case SET_TIME_OVER: {
-      return {...state, timeover: action.timeover}
+      return { ...state, timeover: action.timeover }
     }
     default:
       return state

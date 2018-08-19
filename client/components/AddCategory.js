@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {makeNewCategory} from '../store/categories'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { makeNewCategory } from '../store/categories'
 
 class AddCategory extends Component {
   constructor() {
@@ -14,7 +14,7 @@ class AddCategory extends Component {
   }
 
   handleChange(evt) {
-    const {categories} = this.props
+    const { categories } = this.props
     const publicNames = categories.public.map(category => category.name)
     const privateNames = categories.private.map(category => category.name)
     const categoryNames = [...publicNames, privateNames]
@@ -35,15 +35,15 @@ class AddCategory extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    const {submitNewCategory, user} = this.props
-    const {newCategoryName} = this.state
-    submitNewCategory({name: newCategoryName}, user.id)
+    const { submitNewCategory, user } = this.props
+    const { newCategoryName } = this.state
+    submitNewCategory({ name: newCategoryName }, user.id)
     // redirect to new view for editing that category?
   }
 
   render() {
-    const {handleSubmit, handleChange} = this
-    const {newCategoryName, invalidName} = this.state
+    const { handleSubmit, handleChange } = this
+    const { newCategoryName, invalidName } = this.state
 
     return (
       <div>
@@ -76,7 +76,7 @@ const mapState = state => {
   }
 }
 
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function (dispatch) {
   return {
     submitNewCategory: (category, userId) =>
       dispatch(makeNewCategory(category, userId))
