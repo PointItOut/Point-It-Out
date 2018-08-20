@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import {Instructions} from './index'
 import {connect} from 'react-redux'
+import FacebookLoginButton from './FacebookLoginButton'
 
 const Splash = ({isLoggedIn, history}) => {
-
   const handlePractice = () => {
     history.push('/tutorial')
   }
@@ -43,7 +43,7 @@ const Splash = ({isLoggedIn, history}) => {
           </button>
         </div>
       </div>
-      <Instructions handleClick={handlePractice}/>
+      <Instructions handleClick={handlePractice} />
     </div>
   )
 }
