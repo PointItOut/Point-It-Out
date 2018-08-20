@@ -72,6 +72,7 @@
     "react-router-dom": "^4.3.1",
     "react-sizeme": "^2.5.2",
     "react-webcam": "^1.0.1",
+    "recharts": "^1.1.0",
     "redux": "^3.6.0",
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.3.0",
