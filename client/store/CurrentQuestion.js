@@ -23,9 +23,9 @@ const reducer = (state = initialState, action) => {
     case SET_QUESTION:
       return {
         ...state,
-        text: action.question.text,
-        choices: action.question.choices,
-        id: action.question.id
+        text: action.question ? action.question.text : '',
+        choices: action.question ? action.question.choices : [],
+        id: action.question ? action.question.id : 0
       }
     case SUBMIT_ANSWER:
       return {

@@ -53,12 +53,12 @@ export const RedRect = () => {
   )
 }
 
-export const ChoiceTextBox = ({choice, index, xPositions}) => {
+export const ChoiceTextBox = ({choiceText, id, xPosition}) => {
   return (
     <Text
-      key={choice.id}
-      text={choice.text}
-      x={xPositions[index]}
+      key={id}
+      text={choiceText}
+      x={xPosition}
       y={20}
       fontSize={20}
       width={200}
@@ -68,7 +68,7 @@ export const ChoiceTextBox = ({choice, index, xPositions}) => {
   )
 }
 
-export const QuestionText = questionText => {
+export const QuestionText = ({questionText}) => {
   return (
       <Text
         text={questionText}

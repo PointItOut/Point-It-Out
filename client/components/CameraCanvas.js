@@ -46,21 +46,14 @@ class CameraCanvas extends Component {
   }
 
   nextQuestion(wasCorrect) {
-    const {
-      setNewQuestion,
-      questions,
-      currentQuestion,
-      submitUserGuess,
-      updateUserScore,
-      score,
-      location,
-      match,
-      user
-    } = this.props
+    const {setNewQuestion, questions, currentQuestion, submitUserGuess, updateUserScore, score, location, match, user} = this.props
 
     const question = questions.find(
-      (ques, index) => questions[index - 1].id === currentQuestion.id
+      (ques, index) => {
+        return questions[index - 1] ? questions[index - 1].id === currentQuestion.id : false
+      }
     )
+    console.log('=== did we increment the question???', currentQuestion, question)
 
     if (wasCorrect) {
       if (location.pathname.includes('solo')) {
@@ -126,8 +119,7 @@ class CameraCanvas extends Component {
 
             {timeover && chkwinner && !pathname.includes('solo') ? (
               <Text
-                text={`The winner is ${winner[0]}
-                `}
+                text={`The winner is ${winner[0]}`}
                 x={250}
                 y={280}
                 fontSize={50}
@@ -150,8 +142,7 @@ class CameraCanvas extends Component {
             ) : null}
 
             {timeover && !pathname.includes('solo')
-              ? opponentNames.map((name, index) => {
-                return (
+              ? opponentNames.map((name, index) => (
                   <Text
                     text={`${name}: ${opponent[name]}`}
                     x={250}
@@ -161,14 +152,12 @@ class CameraCanvas extends Component {
                     align={'center'}
                     width={800}
                   />
-                )
-              })
+                ))
               : null}
 
             {// option text boxes
-              choices.length &&
               choices.map((choice, index) => (
-                <ChoiceTextBox choice={choice} index={index} xPositions={xPositions}/>
+                <ChoiceTextBox id={choice.id} choiceText={choice.text} xPosition={xPositions[index]}/>
               ))}
 
             {// if we have options and the user has guessed, show feedback:
@@ -177,10 +166,8 @@ class CameraCanvas extends Component {
                   if (choice.isCorrect) {
                     return <GreenBorder xPosition={xPositions[index]}/>
                   } else if (currentQuestion.userGuess === index) {
-                    // we know it isn't the correct answer, because we're in the 'else if' case
                     return <RedBorder xPosition={xPositions[index]}/>
                   } else {
-                    // it's not the correct guess or the user guess
                     return null
                   }
                 })
@@ -217,5 +204,6 @@ CameraCanvas.propTypes = {
   currentQuestion: PropTypes.object,
   score: PropTypes.number,
   user: PropTypes.object,
-  timeover: PropTypes.bool
+  timeover: PropTypes.bool,
+  questions: PropTypes.array
 }

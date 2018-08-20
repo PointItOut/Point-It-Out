@@ -1,6 +1,7 @@
 
 const tutorialQuestions = [{
   text: 'Touch the red square',
+  id: 1,
   choices: [{
     text: 'Purple',
     isCorrect: false
@@ -16,6 +17,7 @@ const tutorialQuestions = [{
   }]
 }, {
   text: 'Touch the purple square',
+  id: 2,
   choices: [{
     text: 'PURPLE!',
     isCorrect: true
@@ -31,6 +33,7 @@ const tutorialQuestions = [{
   }]
 }, {
   text: 'Touch the yellow square',
+  id: 3,
   choices: [{
     text: 'Purple',
     isCorrect: false
@@ -46,6 +49,7 @@ const tutorialQuestions = [{
   }]
 }, {
   text: 'Touch the green square',
+  id: 4,
   choices: [{
     text: 'Purple',
     isCorrect: false
