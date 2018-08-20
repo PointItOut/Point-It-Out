@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 import { PurpleRect, GreenRect, YellowRect, RedRect, ChoiceTextBox, QuestionText, QuestionBox, RedBorder, GreenBorder } from './canvas-rects'
 import { connect } from 'react-redux'
 import { submitAnswerIndex, setQuestion } from '../store/currentQuestion'
-import { updateScore } from '../store/score'
+import { updateScore, evaluateAnswer } from '../store/score'
 import { noMediaStream } from '../canPlay'
 
 class CameraCanvas extends Component {
@@ -34,18 +34,18 @@ class CameraCanvas extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { currentQuestion } = this.props
-    const { text, choices, userGuess } = currentQuestion
+    const { currentQuestion, checkAnswer, user, location, match } = this.props
+    const { text, choices, userGuessIndex } = currentQuestion
     // if we have a currentQuestion and if the new userGuess is different from the previous userGuess
-    if ((userGuess !== prevProps.currentQuestion.userGuess) && (text !== '')) {
-      const wasGuessCorrect = choices[userGuess]
-        ? choices[userGuess].isCorrect
-        : false
-      this.nextQuestion(wasGuessCorrect)
+    if ((userGuessIndex !== prevProps.currentQuestion.userGuessIndex) && (text !== '')) {
+      const isPartnerMode = !location.pathname.includes('solo')
+      const gameName = match.params.name ? match.params.name : undefined
+      checkAnswer(choices[userGuessIndex], user.id, isPartnerMode, user.userName, gameName) // this deals with incrementing the score for us
+      this.nextQuestion()
     }
   }
 
-  nextQuestion(wasCorrect) {
+  nextQuestion() {
     const {setNewQuestion, questions, currentQuestion, submitUserGuess, updateUserScore, score, location, match, user} = this.props
 
     const question = questions.find(
@@ -53,16 +53,16 @@ class CameraCanvas extends Component {
         return questions[index - 1] ? questions[index - 1].id === currentQuestion.id : false
       }
     )
-    console.log('=== did we increment the question???', currentQuestion, question)
+    // something with sockets???
+    // if (wasCorrect) {
+    //   if (location.pathname.includes('solo')) {
+    //     updateUserScore(score + 1, false)
+    //   } else {
+    //     const gameName = match.params.name
+    //     updateUserScore(score + 1, true, user.userName, gameName)
+    //   }
+    // }
 
-    if (wasCorrect) {
-      if (location.pathname.includes('solo')) {
-        updateUserScore(score + 1, false)
-      } else {
-        const gameName = match.params.name
-        updateUserScore(score + 1, true, user.userName, gameName)
-      }
-    }
     // if we have another question remaining and the user has made a guess
     if (question && currentQuestion.userGuess !== null) {
       setTimeout(() => {
@@ -161,11 +161,11 @@ class CameraCanvas extends Component {
               ))}
 
             {// if we have options and the user has guessed, show feedback:
-              currentQuestion.userGuess !== null && choices.length
+              currentQuestion.userGuessIndex !== null && choices.length
                 ? choices.map((choice, index) => {
                   if (choice.isCorrect) {
                     return <GreenBorder xPosition={xPositions[index]}/>
-                  } else if (currentQuestion.userGuess === index) {
+                  } else if (currentQuestion.userGuessIndex === index) {
                     return <RedBorder xPosition={xPositions[index]}/>
                   } else {
                     return null
@@ -193,6 +193,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   submitUserGuess: guess => dispatch(submitAnswerIndex(guess)),
   setNewQuestion: question => dispatch(setQuestion(question)),
+  checkAnswer: (choiceObj, userId) => dispatch(evaluateAnswer(choiceObj, userId)),
   updateUserScore: (score, partner, username, gameName) =>
     dispatch(updateScore(score, partner, username, gameName))
 })

@@ -16,26 +16,30 @@ export const resetScore = () => {
   }
 }
 
-export const updateScore = (total, partner, username, gameName) => {
-  if (partner === true) {
-    socket.emit('new-score', {total, username, gameName})
-  }
-  return {
-    type: UPDATE_SCORE,
-    total
-  }
-}
+// export const updateScore = (total, partner, username, gameName) => {
+//   if (partner === true) {
+//     socket.emit('new-score', {total, username, gameName})
+//   }
+//   return {
+//     type: UPDATE_SCORE,
+//     total
+//   }
+// }
 
 const incrementScore = () => ({
   type: INCREMENT_SCORE
 })
 
 // THUNK CREATORS
-export const evaluateAnswer = (choiceObj, userId) => async dispatch => {
+export const evaluateAnswer = (choiceObj, userId, total, partnerMode, username, gameName) => async dispatch => {
   try {
     const { data } = await axios.post(`/api/game/guess/${userId}`)
     if (data === 'correct') {
       dispatch(incrementScore())
+      if (partnerMode === true) {
+        socket.emit('new-score', {total, username, gameName})
+      }
+
     } // else they got it wrong
 
   } catch (err) { console.error(err) }

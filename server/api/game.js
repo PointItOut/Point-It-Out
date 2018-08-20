@@ -17,15 +17,15 @@ router.post('/guess/:userId', userMatchesParam, async (req, res, next) => {
     // post request must have choice id and questionId
     const userGuess = await Choice.findById(+req.body.id)
     const currentQuestion = await Question.findById(userGuess.questionId)
-    const { correctAnswers, incorrectAnswers } = currentQuestion
+    const { correctGuesses, incorrectGuesses } = currentQuestion
 
     if (userGuess.isCorrect) {
       // increment question.correctanswers
-      await currentQuestion.update({ correctAnswers: correctAnswers + 1})
+      await currentQuestion.update({ correctGuesses: correctGuesses + 1})
       res.json('correct')
     } else {
       // increment question.incorrectanswers
-      await currentQuestion.update({ incorrectAnswers: incorrectAnswers + 1})
+      await currentQuestion.update({ incorrectGuesses: incorrectGuesses + 1})
       res.json('incorrect')
     }
 
