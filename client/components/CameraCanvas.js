@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Stage, Layer, Rect, Text, Circle, Image } from 'react-konva'
+import { Stage, Layer, Text } from 'react-konva'
 import Konva from 'konva'
 import Webcam from 'react-webcam'
 import Diffy from './diffy'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { PurpleRect, GreenRect, YellowRect, RedRect } from './canvas-rects'
+import { PurpleRect, GreenRect, YellowRect, RedRect, ChoiceTextBox, QuestionText, QuestionBox, RedBorder, GreenBorder } from './canvas-rects'
 import { connect } from 'react-redux'
 import { submitAnswer, setQuestion } from '../store/currentQuestion'
 import { updateScore } from '../store/score'
@@ -35,14 +35,11 @@ class CameraCanvas extends Component {
 
   componentDidUpdate(prevProps) {
     const { currentQuestion } = this.props
-    const question = currentQuestion.question
-    const options = question ? question.choices : []
-    if (
-      currentQuestion.userGuess !== prevProps.currentQuestion.userGuess &&
-      this.props.currentQuestion !== null
-    ) {
-      const wasGuessCorrect = options[currentQuestion.userGuess]
-        ? options[currentQuestion.userGuess].isCorrect
+    const { text, choices, userGuess } = currentQuestion
+    // if we have a currentQuestion and if the new userGuess is different from the previous userGuess
+    if ((userGuess !== prevProps.currentQuestion.userGuess) && (text !== '')) {
+      const wasGuessCorrect = choices[userGuess]
+        ? choices[userGuess].isCorrect
         : false
       this.nextQuestion(wasGuessCorrect)
     }
@@ -55,22 +52,25 @@ class CameraCanvas extends Component {
       currentQuestion,
       submitUserGuess,
       updateUserScore,
-      score
+      score,
+      location,
+      match,
+      user
     } = this.props
+
     const question = questions.find(
-      (ques, index) => questions[index - 1] === currentQuestion.question
+      (ques, index) => questions[index - 1].id === currentQuestion.id
     )
 
     if (wasCorrect) {
-      if (this.props.location.pathname.includes('solo')) {
+      if (location.pathname.includes('solo')) {
         updateUserScore(score + 1, false)
       } else {
-        console.log('question', currentQuestion)
-        const gameName = this.props.match.params.name
-        updateUserScore(score + 1, true, this.props.user.userName, gameName)
+        const gameName = match.params.name
+        updateUserScore(score + 1, true, user.userName, gameName)
       }
     }
-
+    // if we have another question remaining and the user has made a guess
     if (question && currentQuestion.userGuess !== null) {
       setTimeout(() => {
         submitUserGuess(null) // reset userGuess for next question
@@ -80,7 +80,8 @@ class CameraCanvas extends Component {
   }
 
   render() {
-    const opponent = this.props.opponent
+    const {opponent, location, currentQuestion, timeover} = this.props
+
     const opponentNames = Object.keys(opponent).sort((name1, name2) => {
       const score1 = opponent[name1]
       const score2 = opponent[name2]
@@ -100,11 +101,10 @@ class CameraCanvas extends Component {
     if (winner.length === 1) {
       chkwinner = true
     }
-    const pathname = this.props.location.pathname
+    const pathname = location.pathname
 
-    const { currentQuestion } = this.props
-    const question = currentQuestion.question
-    const options = question ? question.choices : undefined
+    const { choices } = currentQuestion
+
     const xPositions = [0, 266, 533, 799]
 
     return (
@@ -123,7 +123,8 @@ class CameraCanvas extends Component {
             <GreenRect />
             <YellowRect />
             <RedRect />
-            {this.props.timeover && chkwinner && !pathname.includes('solo') ? (
+
+            {timeover && chkwinner && !pathname.includes('solo') ? (
               <Text
                 text={`The winner is ${winner[0]}
                 `}
@@ -136,7 +137,7 @@ class CameraCanvas extends Component {
               />
             ) : null}
 
-            {this.props.timeover && !chkwinner && !pathname.includes('solo') ? (
+            {timeover && !chkwinner && !pathname.includes('solo') ? (
               <Text
                 text={`It's a draw`}
                 x={250}
@@ -148,7 +149,7 @@ class CameraCanvas extends Component {
               />
             ) : null}
 
-            {this.props.timeover && !pathname.includes('solo')
+            {timeover && !pathname.includes('solo')
               ? opponentNames.map((name, index) => {
                 return (
                   <Text
@@ -164,110 +165,29 @@ class CameraCanvas extends Component {
               })
               : null}
 
-            {// option images
-              options &&
-              options.map((option, index) => {
-                if (option.picture) {
-                  const imageObj = new window.Image()
-                  imageObj.onload = () => { }
-                  imageObj.src = option.picture
-                  return (
-                    <Image
-                      x={xPositions[index]}
-                      y={85}
-                      image={imageObj}
-                      width="200"
-                      ref={ref => {
-                        this.stageRef = ref
-                      }}
-                    />
-                  )
-                } else {
-                  return null
-                }
-              })}
-
             {// option text boxes
-              options &&
-              options.map((choice, index) => {
-                return (
-                  <Text
-                    key={choice.id}
-                    text={choice.text}
-                    x={xPositions[index]}
-                    y={20}
-                    fontSize={20}
-                    width={200}
-                    align={'center'}
-                    fill={'black'}
-                  />
-                )
-              })}
+              choices.length &&
+              choices.map((choice, index) => (
+                <ChoiceTextBox choice={choice} index={index} xPositions={xPositions}/>
+              ))}
 
             {// if we have options and the user has guessed, show feedback:
-              currentQuestion.userGuess !== null && options
-                ? options.map((option, index) => {
-                  if (currentQuestion.userGuess === index) {
-                    if (option.isCorrect) {
-                      // they got it right! add green border
-                      return (
-                        <Rect
-                          x={xPositions[index]}
-                          y={10}
-                          width={200}
-                          height={75}
-                          stroke={'green'}
-                          strokeWidth={10}
-                        />
-                      )
-                    } else {
-                      // they got it wrong! add red border
-                      return (
-                        <Rect
-                          x={xPositions[index]}
-                          y={10}
-                          width={200}
-                          height={75}
-                          stroke={'red'}
-                          strokeWidth={10}
-                        />
-                      )
-                    }
-                  } else if (option.isCorrect) {
-                    return (
-                      <Rect
-                        x={xPositions[index]}
-                        y={10}
-                        width={200}
-                        height={75}
-                        stroke={'green'}
-                        strokeWidth={10}
-                      />
-                    )
+              currentQuestion.userGuess !== null && choices.length
+                ? choices.map((choice, index) => {
+                  if (choice.isCorrect) {
+                    return <GreenBorder xPosition={xPositions[index]}/>
+                  } else if (currentQuestion.userGuess === index) {
+                    // we know it isn't the correct answer, because we're in the 'else if' case
+                    return <RedBorder xPosition={xPositions[index]}/>
                   } else {
+                    // it's not the correct guess or the user guess
                     return null
                   }
                 })
                 : null}
 
-            <Rect
-              x={200}
-              y={680}
-              width={600}
-              height={75}
-              fill={'blue'}
-              opacity={0.5}
-            />
-
-            <Text
-              text={question ? question.text : ''}
-              x={250}
-              y={700}
-              fontSize={20}
-              fill={'white'}
-              align={'center'}
-              width={500}
-            />
+            <QuestionBox />
+            <QuestionText questionText={currentQuestion.text}/>
           </Layer>
         </Stage>
       </div>

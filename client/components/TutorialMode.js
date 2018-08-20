@@ -34,7 +34,7 @@ class TutorialMode extends Component {
 
   render() {
     const { questions, currentQuestion } = this.props
-    const endOfTutorial = (questions.indexOf(currentQuestion.question) === questions.length - 1) && (currentQuestion.userGuess !== null)
+    const endOfTutorial = (currentQuestion.text === 'Touch the green square') && (currentQuestion.userGuess !== null)
 
     return (
     <div className="tutorial game-wrapper">
@@ -63,7 +63,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   fetchTutorialQuestions: () => dispatch(getTutorialQuestions()),
   setInitialQuestion: (question) => dispatch(setQuestion(question)),
-  clearCurrentQuestion: () => dispatch(setQuestion({})),
+  clearCurrentQuestion: () => dispatch(setQuestion({text: '', choices: [], userGuess: null})),
   clearQuestions: () => dispatch(deleteQuestions()),
   resetScore: () => dispatch(updateScore(0))
 })
