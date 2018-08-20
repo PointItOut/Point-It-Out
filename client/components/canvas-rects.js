@@ -8,8 +8,8 @@ export const PurpleRect = () => {
       y={10}
       width={200}
       height={75}
-      fill='purple'
-      opacity={0.5}
+      fill='#E84EDD'
+      // opacity={0.5}
     />
   )
 }
@@ -21,8 +21,8 @@ export const GreenRect = () => {
       y={10}
       width={200}
       height={75}
-      fill='green'
-      opacity={0.5}
+      fill='#26AF2F'
+      // opacity={0.5}
     />
   )
 }
@@ -34,8 +34,8 @@ export const YellowRect = () => {
       y={10}
       width={200}
       height={75}
-      fill='yellow'
-      opacity={0.5}
+      fill='#FFBB28'
+      // opacity={0.5}
     />
   )
 }
@@ -47,8 +47,8 @@ export const RedRect = () => {
       y={10}
       width={200}
       height={75}
-      fill='red'
-      opacity={0.5}
+      fill='#FF8042'
+      // opacity={0.5}
     />
   )
 }

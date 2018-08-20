@@ -207,5 +207,5 @@ CameraCanvas.propTypes = {
   user: PropTypes.object,
   timeover: PropTypes.bool,
   questions: PropTypes.array,
-  tutorialMode: PropTypes
+  tutorialMode: PropTypes.bool
 }
