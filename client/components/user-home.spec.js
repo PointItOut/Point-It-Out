@@ -1,13 +1,13 @@
 /* global describe beforeEach it */
 
-import {expect} from 'chai'
+import { expect } from 'chai'
 import React from 'react'
-import enzyme, {shallow} from 'enzyme'
+import enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import {UserHome} from './UserHome'
+import { UserHome } from './UserHome'
 
 const adapter = new Adapter()
-enzyme.configure({adapter})
+enzyme.configure({ adapter })
 
 describe('UserHome', () => {
   let userHome
@@ -29,7 +29,7 @@ describe('UserHome', () => {
     userHome.setProps({
       chooseCategory: () => console.log('=*= fake chooseCategory called =*=')
     })
-    userHome.setState({choosingCategory: true, choosingMode: false})
+    userHome.setState({ choosingCategory: true, choosingMode: false })
     userHome.find('#btn-geography').simulate('click')
     expect(userHome.state('choosingMode')).to.be.equal(true)
     expect(userHome.find('button')).to.have.length(2) // two buttons for choosing mode
