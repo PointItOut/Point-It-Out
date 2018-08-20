@@ -19,19 +19,19 @@ export class UserHome extends React.Component {
     super()
     this.state = {
       choosingMode: false,
-      choosingCategory: false
+      choosingCategory: true
     }
-    this.handlePlay = this.handlePlay.bind(this)
+    // this.handlePlay = this.handlePlay.bind(this)
     this.handleChooseCategory = this.handleChooseCategory.bind(this)
     this.resetCategory = this.resetCategory.bind(this)
   }
 
-  handlePlay() {
-    this.setState({
-      choosingCategory: true,
-      active: true
-    })
-  }
+  // handlePlay() {
+  //   this.setState({
+  //     choosingCategory: true,
+  //     active: true
+  //   })
+  // }
 
   handleChooseMode(currentMode) {
     if (currentMode === 'partner') {
@@ -55,7 +55,7 @@ export class UserHome extends React.Component {
 
   resetCategory() {
     this.setState({
-      choosingCategory: false,
+      choosingCategory: true,
       choosingMode: false
     })
   }
@@ -68,20 +68,9 @@ export class UserHome extends React.Component {
       <div className="container">
         <div className="row">
           <div className="main-container  col-sm-12 col-md-8">
-            <h2 className="text-center">YOUR DASHBOARD</h2>
+            <h2 className="text-center">START NEW GAME</h2>
+            {/* move this to nav bar */}
             <p className="text-right">Logged in as {user.userName}</p>
-            {!choosingCategory ? (
-              <div>
-                <button
-                  type="button"
-                  onClick={this.handlePlay}
-                  className="btn btn-main"
-                >
-                  New Game
-                </button>
-              </div>
-            ) : null}
-
             {!choosingMode && choosingCategory ? (
               <CategoryWrapper
                 handleChooseCategory={this.handleChooseCategory}

@@ -26,7 +26,6 @@ class ModeOptions extends Component {
     const {chooseMode} = this.props
     return (
       <div>
-        {/* <h2>{this.props.chosenCategory.name}</h2> */}
         <button
           type="button"
           className="btn btn-main"
