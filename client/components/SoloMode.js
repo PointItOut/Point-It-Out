@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {CameraCanvas, GameSidebar} from './index'
+import { connect } from 'react-redux'
+import { CameraCanvas, GameSidebar } from './index'
 import Countdown from 'react-countdown-now'
-import {setTimeOver} from '../store/game'
-import {withRouter} from 'react-router-dom'
+import { setTimeOver } from '../store/game'
+import { withRouter } from 'react-router-dom'
 
 class SoloMode extends Component {
   componentDidMount() {
@@ -12,10 +12,12 @@ class SoloMode extends Component {
       this.props.history.push('/home')
     }
   }
+
+
   render() {
     const { questions, timeover } = this.props
 
-    const renderer = ({seconds, completed}) => {
+    const renderer = ({ seconds, completed }) => {
       if (completed) {
         return (
           <div className="game-wrapper">
@@ -53,7 +55,7 @@ const mapState = state => {
   }
 }
 
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function (dispatch) {
   return {
     setTimeOver: logic => dispatch(setTimeOver(logic))
   }
