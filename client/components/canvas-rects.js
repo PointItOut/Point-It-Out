@@ -59,8 +59,8 @@ export const ChoiceTextBox = ({choiceText, id, xPosition}) => {
       key={id}
       text={choiceText}
       x={xPosition}
-      y={20}
-      fontSize={20}
+      y={30}
+      fontSize={25}
       width={200}
       align='center'
       fill='black'
@@ -72,12 +72,12 @@ export const QuestionText = ({questionText}) => {
   return (
       <Text
         text={questionText}
-        x={250}
+        x={150}
         y={700}
-        fontSize={20}
+        fontSize={35}
         fill='white'
         align='center'
-        width={500}
+        width={700}
     />
   )
 }
@@ -85,9 +85,9 @@ export const QuestionText = ({questionText}) => {
 export const QuestionBox = () => {
   return (
     <Rect
-      x={200}
+      x={100}
       y={680}
-      width={600}
+      width={800}
       height={75}
       fill='blue'
       opacity={0.5}

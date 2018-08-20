@@ -16,7 +16,7 @@ const diffy = create({
     const green = [matrix[4][0], matrix[5][0], matrix[6][0]]
     const yellow = [matrix[8][0], matrix[9][0], matrix[10][0]]
     const red = [matrix[12][0], matrix[13][0], matrix[14][0]]
-    if ((store.getState().currentQuestion.text !== '') && (!store.getState().game.timeover)) {
+    if ((store.getState().currentQuestion.text !== '') && (!store.getState().game.timeover) && (store.getState().currentQuestion.userGuess === null)) {
       if (purple.some(dot => dot < 200)) {
         store.dispatch(submitAnswer(0))
       }
