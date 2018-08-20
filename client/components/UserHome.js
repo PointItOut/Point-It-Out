@@ -79,8 +79,6 @@ export class UserHome extends React.Component {
                 >
                   New Game
                 </button>
-                <JoinGame />
-                <UserTopScores />
               </div>
             ) : null}
 
@@ -99,6 +97,10 @@ export class UserHome extends React.Component {
                 <CategoryOverview resetCategory={this.resetCategory} />
               </div>
             ) : null}
+          </div>
+          <div className="col-md-4">
+            <JoinGame />
+            <UserTopScores />
           </div>
         </div>
       </div>

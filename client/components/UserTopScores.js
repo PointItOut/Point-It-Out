@@ -25,33 +25,37 @@ class UserTopScores extends React.Component {
     const {topScores, loaded} = this.state
     if (loaded) {
       return (
-        <div className="main-container">
-          <h4 className="text-center">YOUR TOP SCORES</h4>
-          <div className="table-responsive-sm">
-            <table className="table table-hover">
-              <thead className="blue-header">
-                <tr>
-                  <th scope="column">Category</th>
-                  <th scope="column" className="text-right">
-                    High Score
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {topScores.map(scoreInfo => {
-                  return (
-                    <tr key={scoreInfo.category.id}>
-                      <th scope="row">
-                        {scoreInfo.category.name.toUpperCase()}
-                      </th>
-                      <th scope="row" className="text-right">
-                        {scoreInfo.userHighScore}
-                      </th>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
+        <div className="card">
+          <div className="card-header blue-header">
+            <h4 className="text-center">YOUR TOP SCORES</h4>
+          </div>
+          <div className="card-body">
+            <div className="table-responsive-sm">
+              <table className="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="column">Category</th>
+                    <th scope="column" className="text-right">
+                      Top Score
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {topScores.map(scoreInfo => {
+                    return (
+                      <tr key={scoreInfo.category.id}>
+                        <th scope="row">
+                          {scoreInfo.category.name.toUpperCase()}
+                        </th>
+                        <th scope="row" className="text-right">
+                          {scoreInfo.userHighScore}
+                        </th>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       )

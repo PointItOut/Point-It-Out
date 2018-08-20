@@ -46,15 +46,15 @@ class JoinGame extends Component {
 
   render() {
     return (
-      <div className="col-md-4">
+      <div>
         <div className="card">
           <div className="card-header blue-header">
-            <h4>Join Existing Game</h4>
+            <h4 className="text-center">Join Existing Game</h4>
           </div>
           <div className="card-body">
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <label htmlFor="joinGame">Game name</label>
+                <label htmlFor="joinGame">Enter game name</label>
                 <input
                   type="text"
                   name="joinGame"
