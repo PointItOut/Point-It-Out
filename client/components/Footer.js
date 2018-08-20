@@ -1,6 +1,6 @@
 import React from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faCode} from '@fortawesome/free-solid-svg-icons'
+import {faGithub} from '@fortawesome/free-brands-svg-icons'
 const Footer = () => (
   <footer className="container-fluid">
     <div className="row">
@@ -10,7 +10,7 @@ const Footer = () => (
       </div>
       <div className="col-sm-12 col-md-2">
         <a href="https://github.com/PointItOut/Point-It-Out">
-          <FontAwesomeIcon icon={faCode} />
+          <FontAwesomeIcon icon={faGithub} size="2x" />
         </a>
       </div>
     </div>

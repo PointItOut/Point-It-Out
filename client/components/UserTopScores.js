@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 
 class UserTopScores extends React.Component {
   constructor() {
@@ -13,8 +13,8 @@ class UserTopScores extends React.Component {
   }
 
   async componentDidMount() {
-    const { user } = this.props
-    const { data } = await axios.get(`/api/users/${user.id}/scores`)
+    const {user} = this.props
+    const {data} = await axios.get(`/api/users/${user.id}/scores`)
     this.setState({
       topScores: data,
       loaded: true
@@ -22,31 +22,41 @@ class UserTopScores extends React.Component {
   }
 
   render() {
-    const { topScores, loaded } = this.state
+    const {topScores, loaded} = this.state
     if (loaded) {
       return (
-        <div>
-          <h4>Your top scores:</h4>
-          <table>
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                topScores.map(scoreInfo => {
-                  return (
-                  <tr key={scoreInfo.category.id}>
-                    <th>{scoreInfo.category.name}</th>
-                    <th>{scoreInfo.userHighScore}</th>
+        <div className="card">
+          <div className="card-header blue-header">
+            <h4 className="text-center">YOUR TOP SCORES</h4>
+          </div>
+          <div className="card-body">
+            <div className="table-responsive-sm">
+              <table className="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="column">Category</th>
+                    <th scope="column" className="text-right">
+                      Top Score
+                    </th>
                   </tr>
-                  )
-                })
-              }
-            </tbody>
-          </table>
+                </thead>
+                <tbody>
+                  {topScores.map(scoreInfo => {
+                    return (
+                      <tr key={scoreInfo.category.id}>
+                        <th scope="row">
+                          {scoreInfo.category.name.toUpperCase()}
+                        </th>
+                        <th scope="row" className="text-right">
+                          {scoreInfo.userHighScore}
+                        </th>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       )
     } else {

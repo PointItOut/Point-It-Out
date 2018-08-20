@@ -5,7 +5,6 @@ import {Instructions} from './index'
 import {connect} from 'react-redux'
 
 const Splash = ({isLoggedIn, history}) => {
-
   const handlePractice = () => {
     history.push('/tutorial')
   }
@@ -43,7 +42,7 @@ const Splash = ({isLoggedIn, history}) => {
           </button>
         </div>
       </div>
-      <Instructions handleClick={handlePractice}/>
+      <Instructions handleClick={handlePractice} />
     </div>
   )
 }
