@@ -12,19 +12,23 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.post('/guess/:userId', userMatchesParam, async (req, res, next) => {
+router.post('/guess/:userId/:choiceId', async (req, res, next) => {
   try {
-    // post request must have choice id and questionId
-    const userGuess = await Choice.findById(+req.body.id)
+
+    const userGuess = await Choice.findById(+req.params.choiceId)
     const currentQuestion = await Question.findById(userGuess.questionId)
+
+    console.log('does currentQuestion have correctGuesses and incorrectGuesses on it?', currentQuestion)
     const { correctGuesses, incorrectGuesses } = currentQuestion
 
     if (userGuess.isCorrect) {
       // increment question.correctanswers
+      console.log('before update')
       await currentQuestion.update({ correctGuesses: correctGuesses + 1})
       res.json('correct')
     } else {
       // increment question.incorrectanswers
+      console.log('before update')
       await currentQuestion.update({ incorrectGuesses: incorrectGuesses + 1})
       res.json('incorrect')
     }

@@ -36,7 +36,7 @@ class CameraCanvas extends Component {
   componentDidUpdate(prevProps) {
     const { currentQuestion, checkAnswer, user, location, match } = this.props
     const { text, choices, userGuessIndex } = currentQuestion
-    // if we have a currentQuestion and if the new userGuess is different from the previous userGuess
+    // if we have a currentQuestion and if there is a new userGuessIndex
     if ((userGuessIndex !== prevProps.currentQuestion.userGuessIndex) && (text !== '')) {
       const isPartnerMode = !location.pathname.includes('solo')
       const gameName = match.params.name ? match.params.name : undefined
@@ -46,22 +46,12 @@ class CameraCanvas extends Component {
   }
 
   nextQuestion() {
-    const {setNewQuestion, questions, currentQuestion, submitUserGuess, updateUserScore, score, location, match, user} = this.props
-
+    const {setNewQuestion, questions, currentQuestion, submitUserGuess} = this.props
     const question = questions.find(
       (ques, index) => {
         return questions[index - 1] ? questions[index - 1].id === currentQuestion.id : false
       }
     )
-    // something with sockets???
-    // if (wasCorrect) {
-    //   if (location.pathname.includes('solo')) {
-    //     updateUserScore(score + 1, false)
-    //   } else {
-    //     const gameName = match.params.name
-    //     updateUserScore(score + 1, true, user.userName, gameName)
-    //   }
-    // }
 
     // if we have another question remaining and the user has made a guess
     if (question && currentQuestion.userGuess !== null) {
@@ -95,9 +85,7 @@ class CameraCanvas extends Component {
       chkwinner = true
     }
     const pathname = location.pathname
-
     const { choices } = currentQuestion
-
     const xPositions = [0, 266, 533, 799]
 
     return (
