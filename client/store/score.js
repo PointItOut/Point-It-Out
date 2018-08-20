@@ -31,16 +31,19 @@ const incrementScore = () => ({
 })
 
 // THUNK CREATORS
-export const evaluateAnswer = (choiceObj, userId, total, partnerMode, username, gameName) => async dispatch => {
+export const evaluateAnswer = (choiceObj, gameObj) => async dispatch => {
   try {
-    const { data } = await axios.post(`/api/game/guess/${userId}/${choiceObj.id}`, { userId, choiceId: choiceObj.id})
+    console.log('==*== inside EVALUATE-ANSWER')
+    const { tutorialMode, partnerMode, oldTotal, userId, username, gameName } = gameObj
+
+    const { data } = await axios.post(`/api/game/guess/${choiceObj.id}`, { userId, tutorialMode })
+
     if (data === 'correct') {
       dispatch(incrementScore())
       if (partnerMode === true) {
-        socket.emit('new-score', {total, username, gameName})
+        socket.emit('new-score', {total: oldTotal + 1, username, gameName})
       }
-
-    } // else they got it wrong
+    }
 
   } catch (err) { console.error(err) }
 }

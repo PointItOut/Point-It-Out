@@ -19,25 +19,25 @@ const diffy = create({
 
     const isQuestion = store.getState().currentQuestion.text !== ''
     const stillTime = !store.getState().game.timeover
-    const needGuess = store.getState().currentQuestion.userGuess === null
+    const needGuess = store.getState().currentQuestion.userGuessIndex === null
 
     if (isQuestion && stillTime && needGuess) {
       if (purple.some(dot => dot < 200)) {
-        console.log('YOU TOUCHED PURPLE!')
+        console.log('YOU TOUCHED 0!')
         store.dispatch(submitAnswerIndex(0))
       }
       if (green.some(dot => dot < 200)) {
-        console.log('YOU TOUCHED SOMETHING!')
+        console.log('YOU TOUCHED 1!')
         store.dispatch(submitAnswerIndex(1))
       }
 
       if (yellow.some(dot => dot < 200)) {
-        console.log('YOU TOUCHED SOMETHING')
+        console.log('YOU TOUCHED 2')
         store.dispatch(submitAnswerIndex(2))
       }
 
       if (red.some(dot => dot < 200)) {
-        console.log('YOU TOUCHED SOMETHING')
+        console.log('YOU TOUCHED 3')
         store.dispatch(submitAnswerIndex(3))
       }
     }

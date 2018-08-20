@@ -14,7 +14,9 @@ import { noMediaStream } from '../canPlay'
 class CameraCanvas extends Component {
   constructor() {
     super()
-    this.state = { loaded: false }
+    this.state = {
+      loaded: false
+    }
     this.nextQuestion = this.nextQuestion.bind(this)
   }
 
@@ -34,13 +36,23 @@ class CameraCanvas extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { currentQuestion, checkAnswer, user, location, match } = this.props
+    const { currentQuestion, checkAnswer, user, location, match, tutorialMode, score } = this.props
     const { text, choices, userGuessIndex } = currentQuestion
-    // if we have a currentQuestion and if there is a new userGuessIndex
+
     if ((userGuessIndex !== prevProps.currentQuestion.userGuessIndex) && (text !== '')) {
-      const isPartnerMode = !location.pathname.includes('solo')
+      const partnerMode = !location.pathname.includes('solo')
       const gameName = match.params.name ? match.params.name : undefined
-      checkAnswer(choices[userGuessIndex], user.id, isPartnerMode, user.userName, gameName) // this deals with incrementing the score for us
+
+      const gameObj = {
+        tutorialMode,
+        partnerMode,
+        oldTotal: score,
+        userId: user.id,
+        username: user.username,
+        gameName
+      }
+      console.log('==*== userGuessIndex has been updated, so time to check answer:', gameObj)
+      checkAnswer(choices[userGuessIndex], gameObj)
       this.nextQuestion()
     }
   }
@@ -194,5 +206,6 @@ CameraCanvas.propTypes = {
   score: PropTypes.number,
   user: PropTypes.object,
   timeover: PropTypes.bool,
-  questions: PropTypes.array
+  questions: PropTypes.array,
+  tutorialMode: PropTypes
 }
