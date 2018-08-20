@@ -8,7 +8,18 @@ router.get('/', async (req, res, next) => {
       include: {model: Choice}
     })
 
-    res.json(questions)
+    const responseBody = questions.map(question => {
+      return {
+        id: question.id,
+        text: question.text,
+        categoryId: question.categoryId,
+        correctGuesses: question.correctGuesses,
+        incorrectGuesses: question.incorrectGuesses,
+        choices: question.choices.map(choice => ({id: choice.id, text: choice.text}))
+      }
+    })
+
+    res.json(responseBody)
   } catch (err) {
     next(err)
   }
@@ -17,11 +28,23 @@ router.get('/', async (req, res, next) => {
 router.get('/:categoryId', async (req, res, next) => {
   try {
     const categoryId = req.params.categoryId
-    let questions = await Question.findAll({
+    const questions = await Question.findAll({
       where: {categoryId: +categoryId},
       include: {model: Choice}
     })
-    res.json(questions)
+
+    const responseBody = questions.map(question => {
+      return {
+        id: question.id,
+        text: question.text,
+        categoryId: question.categoryId,
+        correctGuesses: question.correctGuesses,
+        incorrectGuesses: question.incorrectGuesses,
+        choices: question.choices.map(choice => ({id: choice.id, text: choice.text}))
+      }
+    })
+
+    res.json(responseBody)
   } catch (err) {
     next(err)
   }

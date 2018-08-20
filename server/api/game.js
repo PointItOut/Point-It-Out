@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.post('/guess/:userId/:choiceId', async (req, res, next) => {
+router.post('/guess/:userId/:choiceId', userMatchesParam, async (req, res, next) => {
   try {
 
     const userGuess = await Choice.findById(+req.params.choiceId)
