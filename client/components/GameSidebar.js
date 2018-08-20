@@ -17,7 +17,13 @@ class GameSidebar extends Component {
   }
 
   handleScores(score) {
-    const { user, currentCategory, isSolo, setHighScore, setTimeOver } = this.props
+    const {
+      user,
+      currentCategory,
+      isSolo,
+      setHighScore,
+      setTimeOver
+    } = this.props
     // current is category, but where does that come from...
     setTimeOver(true)
     if (isSolo) {
@@ -51,7 +57,15 @@ class GameSidebar extends Component {
       }
     }
 
-    const { token, currentgame, startGame, deleteGame, score, isSolo, user } = this.props
+    const {
+      token,
+      currentgame,
+      startGame,
+      deleteGame,
+      score,
+      isSolo,
+      user
+    } = this.props
     const Mode = 'partner'
 
     return (
@@ -112,6 +126,18 @@ class GameSidebar extends Component {
             </button>
           </div>
         ) : null}
+
+        {!user.host && !isSolo ? (
+          <button
+            type="button"
+            className="btn btn-main"
+            onClick={() => {
+              this.props.history.push('/home')
+            }}
+          >
+            Exit
+          </button>
+        ) : null}
       </div>
     )
   }
@@ -121,7 +147,8 @@ const mapDispatchToProps = function(dispatch) {
   return {
     deleteGame: (gamename, mode) => dispatch(deleteGame(gamename, mode)),
     setTimeOver: logic => dispatch(setTimeOver(logic)),
-    setHighScore: (score, category, user) => dispatch(setHighScore(score, category, user)),
+    setHighScore: (score, category, user) =>
+      dispatch(setHighScore(score, category, user)),
     restartGame: () => {
       dispatch(startGame())
       dispatch(updateScore(0))
