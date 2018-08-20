@@ -3,13 +3,9 @@ import FacebookLogin from 'react-facebook-login'
 
 class FacebookLoginButton extends React.Component {
   responseFacebook(response) {
-    console.log(response)
+    console.log('facebook responce', response)
   }
-  componentWillMount() {
-    getLoginStatus(function(response) {
-      statusChangeCallback(response)
-    })
-  }
+  componentWillMount() {}
   render() {
     return (
       <FacebookLogin
