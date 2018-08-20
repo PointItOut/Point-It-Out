@@ -1,62 +1,66 @@
 
 const tutorialQuestions = [{
-  theQuestion: 'Touch the red square',
+  text: 'Touch the red square',
+  id: 1,
   choices: [{
-    theChoice: 'Purple',
+    text: 'Purple',
     isCorrect: false
   }, {
-    theChoice: 'Green',
+    text: 'Green',
     isCorrect: false
   }, {
-    theChoice: 'Yellow',
+    text: 'Yellow',
     isCorrect: false
   }, {
-    theChoice: 'RED!',
+    text: 'RED!',
     isCorrect: true
   }]
 }, {
-  theQuestion: 'Touch the purple square',
+  text: 'Touch the purple square',
+  id: 2,
   choices: [{
-    theChoice: 'PURPLE!',
+    text: 'PURPLE!',
     isCorrect: true
   }, {
-    theChoice: 'Green',
+    text: 'Green',
     isCorrect: false
   }, {
-    theChoice: 'Yellow',
+    text: 'Yellow',
     isCorrect: false
   }, {
-    theChoice: 'Red',
+    text: 'Red',
     isCorrect: false
   }]
 }, {
-  theQuestion: 'Touch the yellow square',
+  text: 'Touch the yellow square',
+  id: 3,
   choices: [{
-    theChoice: 'Purple',
+    text: 'Purple',
     isCorrect: false
   }, {
-    theChoice: 'Green',
+    text: 'Green',
     isCorrect: false
   }, {
-    theChoice: 'YELLOW!',
+    text: 'YELLOW!',
     isCorrect: true
   }, {
-    theChoice: 'Red',
+    text: 'Red',
     isCorrect: false
   }]
 }, {
-  theQuestion: 'Touch the green square',
+  text: 'Touch the green square',
+  id: 4,
   choices: [{
-    theChoice: 'Purple',
+    text: 'Purple',
     isCorrect: false
   }, {
-    theChoice: 'GREEN!',
+    text: 'GREEN!',
     isCorrect: true
   }, {
-    theChoice: 'Yellow',
+    text: 'Yellow',
     isCorrect: false
   }, {
-    theChoice: 'Red',
+    text: 'Red',
     isCorrect: false
   }]
 }]

@@ -83,154 +83,154 @@ async function seed() {
 
   const questions = await Promise.all([
     Question.create({
-      theQuestion: 'What is the capital of Alabama?'
+      text: 'What is the capital of Alabama?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Alaska?'
+      text: 'What is the capital of Alaska?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Arizona?'
+      text: 'What is the capital of Arizona?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Arkansas?'
+      text: 'What is the capital of Arkansas?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of California?'
+      text: 'What is the capital of California?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Colorado?'
+      text: 'What is the capital of Colorado?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Connecticut?'
+      text: 'What is the capital of Connecticut?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Delaware?'
+      text: 'What is the capital of Delaware?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Florida?'
+      text: 'What is the capital of Florida?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Georgia?'
+      text: 'What is the capital of Georgia?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Hawaii?'
+      text: 'What is the capital of Hawaii?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Idaho?'
+      text: 'What is the capital of Idaho?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Illinois?'
+      text: 'What is the capital of Illinois?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Indiana?'
+      text: 'What is the capital of Indiana?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Iowa?'
+      text: 'What is the capital of Iowa?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Kansas?'
+      text: 'What is the capital of Kansas?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Kentucky?'
+      text: 'What is the capital of Kentucky?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Louisiana?'
+      text: 'What is the capital of Louisiana?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Maine?'
+      text: 'What is the capital of Maine?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Maryland?'
+      text: 'What is the capital of Maryland?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Massachusetts?'
+      text: 'What is the capital of Massachusetts?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Michigan?'
+      text: 'What is the capital of Michigan?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Minnesota?'
+      text: 'What is the capital of Minnesota?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Mississippi?'
+      text: 'What is the capital of Mississippi?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Missouri?'
+      text: 'What is the capital of Missouri?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Montana?'
+      text: 'What is the capital of Montana?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Nebraska?'
+      text: 'What is the capital of Nebraska?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Nevada?'
+      text: 'What is the capital of Nevada?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of New Hampshire?'
+      text: 'What is the capital of New Hampshire?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of New Jersey?'
+      text: 'What is the capital of New Jersey?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of New Mexico?'
+      text: 'What is the capital of New Mexico?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of New York?'
+      text: 'What is the capital of New York?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of North Dakota?'
+      text: 'What is the capital of North Dakota?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of North Carolina?'
+      text: 'What is the capital of North Carolina?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Ohio?'
+      text: 'What is the capital of Ohio?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Oklahoma?'
+      text: 'What is the capital of Oklahoma?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Oregon?'
+      text: 'What is the capital of Oregon?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Pennsylvania?'
+      text: 'What is the capital of Pennsylvania?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Rhode Island?'
+      text: 'What is the capital of Rhode Island?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of South Carolina?'
+      text: 'What is the capital of South Carolina?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of South Dakota?'
+      text: 'What is the capital of South Dakota?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Tennessee?'
+      text: 'What is the capital of Tennessee?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Texas?'
+      text: 'What is the capital of Texas?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Utah?'
+      text: 'What is the capital of Utah?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Vermont?'
+      text: 'What is the capital of Vermont?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Virginia?'
+      text: 'What is the capital of Virginia?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Washington?'
+      text: 'What is the capital of Washington?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of West Virginia?'
+      text: 'What is the capital of West Virginia?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Wisconsin?'
+      text: 'What is the capital of Wisconsin?'
     }),
     Question.create({
-      theQuestion: 'What is the capital of Wyoming?'
+      text: 'What is the capital of Wyoming?'
     })
   ])
 
@@ -296,17 +296,17 @@ async function seed() {
   //CHOICES
   const alabamaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Montgomery',
+      text: 'Montgomery',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Mobile'
+      text: 'Mobile'
     }),
     Choice.create({
-      theChoice: 'Selma'
+      text: 'Selma'
     }),
     Choice.create({
-      theChoice: 'Birmingham'
+      text: 'Birmingham'
     })
   ])
 
@@ -314,17 +314,17 @@ async function seed() {
 
   const alaskaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Juneau',
+      text: 'Juneau',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Anchorage'
+      text: 'Anchorage'
     }),
     Choice.create({
-      theChoice: 'Fairbanks'
+      text: 'Fairbanks'
     }),
     Choice.create({
-      theChoice: 'Dawson'
+      text: 'Dawson'
     })
   ])
 
@@ -332,17 +332,17 @@ async function seed() {
 
   const arizonaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Phoenix',
+      text: 'Phoenix',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Flagstaff'
+      text: 'Flagstaff'
     }),
     Choice.create({
-      theChoice: 'Scottsdale'
+      text: 'Scottsdale'
     }),
     Choice.create({
-      theChoice: 'Tuscon'
+      text: 'Tuscon'
     })
   ])
 
@@ -350,17 +350,17 @@ async function seed() {
 
   const arkansasChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Little Rock',
+      text: 'Little Rock',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Harrison'
+      text: 'Harrison'
     }),
     Choice.create({
-      theChoice: 'Clarksville'
+      text: 'Clarksville'
     }),
     Choice.create({
-      theChoice: 'Newport'
+      text: 'Newport'
     })
   ])
 
@@ -368,17 +368,17 @@ async function seed() {
 
   const californiaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Sacramento',
+      text: 'Sacramento',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Los Angeles'
+      text: 'Los Angeles'
     }),
     Choice.create({
-      theChoice: 'San Francisco'
+      text: 'San Francisco'
     }),
     Choice.create({
-      theChoice: 'San Diego'
+      text: 'San Diego'
     })
   ])
 
@@ -386,17 +386,17 @@ async function seed() {
 
   const coloradoChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Denver',
+      text: 'Denver',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Boulder'
+      text: 'Boulder'
     }),
     Choice.create({
-      theChoice: 'Aspen'
+      text: 'Aspen'
     }),
     Choice.create({
-      theChoice: 'Grover'
+      text: 'Grover'
     })
   ])
 
@@ -404,17 +404,17 @@ async function seed() {
 
   const connecticutChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Hartford',
+      text: 'Hartford',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Bridgeport'
+      text: 'Bridgeport'
     }),
     Choice.create({
-      theChoice: 'New Haven'
+      text: 'New Haven'
     }),
     Choice.create({
-      theChoice: 'Stamford'
+      text: 'Stamford'
     })
   ])
 
@@ -422,17 +422,17 @@ async function seed() {
 
   const delawareChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Dover',
+      text: 'Dover',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Wilmington'
+      text: 'Wilmington'
     }),
     Choice.create({
-      theChoice: 'Kenton'
+      text: 'Kenton'
     }),
     Choice.create({
-      theChoice: 'Bridgeville'
+      text: 'Bridgeville'
     })
   ])
 
@@ -440,17 +440,17 @@ async function seed() {
 
   const floridaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Tallahassee',
+      text: 'Tallahassee',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Fort Lauderdale'
+      text: 'Fort Lauderdale'
     }),
     Choice.create({
-      theChoice: 'Orlando'
+      text: 'Orlando'
     }),
     Choice.create({
-      theChoice: 'Tampa'
+      text: 'Tampa'
     })
   ])
 
@@ -458,17 +458,17 @@ async function seed() {
 
   const georgiaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Atlanta',
+      text: 'Atlanta',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Clayton'
+      text: 'Clayton'
     }),
     Choice.create({
-      theChoice: 'Decatur'
+      text: 'Decatur'
     }),
     Choice.create({
-      theChoice: 'Douglas'
+      text: 'Douglas'
     })
   ])
 
@@ -476,17 +476,17 @@ async function seed() {
 
   const hawaiiChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Honolulu',
+      text: 'Honolulu',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Oahu'
+      text: 'Oahu'
     }),
     Choice.create({
-      theChoice: 'Maui'
+      text: 'Maui'
     }),
     Choice.create({
-      theChoice: 'Waikiki'
+      text: 'Waikiki'
     })
   ])
 
@@ -494,17 +494,17 @@ async function seed() {
 
   const idahoChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Boise',
+      text: 'Boise',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Idaho Falls'
+      text: 'Idaho Falls'
     }),
     Choice.create({
-      theChoice: 'Fairfield'
+      text: 'Fairfield'
     }),
     Choice.create({
-      theChoice: 'Rigby'
+      text: 'Rigby'
     })
   ])
 
@@ -512,17 +512,17 @@ async function seed() {
 
   const illinoisChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Springfield',
+      text: 'Springfield',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Chicago'
+      text: 'Chicago'
     }),
     Choice.create({
-      theChoice: 'Bloomington'
+      text: 'Bloomington'
     }),
     Choice.create({
-      theChoice: 'Hillsboro'
+      text: 'Hillsboro'
     })
   ])
 
@@ -530,17 +530,17 @@ async function seed() {
 
   const indianaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Indianapolis',
+      text: 'Indianapolis',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Gary'
+      text: 'Gary'
     }),
     Choice.create({
-      theChoice: 'Fort Wayne'
+      text: 'Fort Wayne'
     }),
     Choice.create({
-      theChoice: 'Evansville'
+      text: 'Evansville'
     })
   ])
 
@@ -548,17 +548,17 @@ async function seed() {
 
   const iowaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Des Moines',
+      text: 'Des Moines',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Ames'
+      text: 'Ames'
     }),
     Choice.create({
-      theChoice: 'Clinton'
+      text: 'Clinton'
     }),
     Choice.create({
-      theChoice: 'Council Bluffs'
+      text: 'Council Bluffs'
     })
   ])
 
@@ -566,17 +566,17 @@ async function seed() {
 
   const kansasChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Topkea',
+      text: 'Topkea',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Kansas City'
+      text: 'Kansas City'
     }),
     Choice.create({
-      theChoice: 'Lawrence'
+      text: 'Lawrence'
     }),
     Choice.create({
-      theChoice: 'Wichita'
+      text: 'Wichita'
     })
   ])
 
@@ -584,17 +584,17 @@ async function seed() {
 
   const kentuckyChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Frankfort',
+      text: 'Frankfort',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Independence'
+      text: 'Independence'
     }),
     Choice.create({
-      theChoice: 'Liberty'
+      text: 'Liberty'
     }),
     Choice.create({
-      theChoice: 'Irvine'
+      text: 'Irvine'
     })
   ])
 
@@ -602,17 +602,17 @@ async function seed() {
 
   const louisianaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Baton Rouge',
+      text: 'Baton Rouge',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'New Orleans'
+      text: 'New Orleans'
     }),
     Choice.create({
-      theChoice: 'Arcadia'
+      text: 'Arcadia'
     }),
     Choice.create({
-      theChoice: 'Columbia'
+      text: 'Columbia'
     })
   ])
 
@@ -620,17 +620,17 @@ async function seed() {
 
   const maineChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Augusta',
+      text: 'Augusta',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Portland'
+      text: 'Portland'
     }),
     Choice.create({
-      theChoice: 'Ellsworth'
+      text: 'Ellsworth'
     }),
     Choice.create({
-      theChoice: 'Bangor'
+      text: 'Bangor'
     })
   ])
 
@@ -638,17 +638,17 @@ async function seed() {
 
   const marylandChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Annapolis',
+      text: 'Annapolis',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Baltimore'
+      text: 'Baltimore'
     }),
     Choice.create({
-      theChoice: 'Rockville'
+      text: 'Rockville'
     }),
     Choice.create({
-      theChoice: 'Cambridge'
+      text: 'Cambridge'
     })
   ])
 
@@ -656,17 +656,17 @@ async function seed() {
 
   const massachusettsChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Boston',
+      text: 'Boston',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Salem'
+      text: 'Salem'
     }),
     Choice.create({
-      theChoice: 'Worcester'
+      text: 'Worcester'
     }),
     Choice.create({
-      theChoice: 'Springfield'
+      text: 'Springfield'
     })
   ])
 
@@ -674,17 +674,17 @@ async function seed() {
 
   const michiganChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Lansing',
+      text: 'Lansing',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Dearborn'
+      text: 'Dearborn'
     }),
     Choice.create({
-      theChoice: 'Grand Rapids'
+      text: 'Grand Rapids'
     }),
     Choice.create({
-      theChoice: 'Ann Arbor'
+      text: 'Ann Arbor'
     })
   ])
 
@@ -692,17 +692,17 @@ async function seed() {
 
   const minnesotaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Saint Paul',
+      text: 'Saint Paul',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Minneapolis'
+      text: 'Minneapolis'
     }),
     Choice.create({
-      theChoice: 'Duluth'
+      text: 'Duluth'
     }),
     Choice.create({
-      theChoice: 'Rochester'
+      text: 'Rochester'
     })
   ])
 
@@ -710,17 +710,17 @@ async function seed() {
 
   const mississippiChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Jackson',
+      text: 'Jackson',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Biloxi'
+      text: 'Biloxi'
     }),
     Choice.create({
-      theChoice: 'Columbus'
+      text: 'Columbus'
     }),
     Choice.create({
-      theChoice: 'Louisville'
+      text: 'Louisville'
     })
   ])
 
@@ -728,17 +728,17 @@ async function seed() {
 
   const missouriChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Jefferson City',
+      text: 'Jefferson City',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Kansas City'
+      text: 'Kansas City'
     }),
     Choice.create({
-      theChoice: 'St. Louis'
+      text: 'St. Louis'
     }),
     Choice.create({
-      theChoice: 'Columbia'
+      text: 'Columbia'
     })
   ])
 
@@ -746,17 +746,17 @@ async function seed() {
 
   const montanaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Helena',
+      text: 'Helena',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Billings'
+      text: 'Billings'
     }),
     Choice.create({
-      theChoice: 'Bozeman'
+      text: 'Bozeman'
     }),
     Choice.create({
-      theChoice: 'Missoula'
+      text: 'Missoula'
     })
   ])
 
@@ -764,17 +764,17 @@ async function seed() {
 
   const nebraskaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Lincoln',
+      text: 'Lincoln',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Omaha'
+      text: 'Omaha'
     }),
     Choice.create({
-      theChoice: 'Fremont'
+      text: 'Fremont'
     }),
     Choice.create({
-      theChoice: 'Columbus'
+      text: 'Columbus'
     })
   ])
 
@@ -782,17 +782,17 @@ async function seed() {
 
   const nevadaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Carson City',
+      text: 'Carson City',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Las Vegas'
+      text: 'Las Vegas'
     }),
     Choice.create({
-      theChoice: 'Ely'
+      text: 'Ely'
     }),
     Choice.create({
-      theChoice: 'Reno'
+      text: 'Reno'
     })
   ])
 
@@ -800,17 +800,17 @@ async function seed() {
 
   const newHampshireChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Concord',
+      text: 'Concord',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Dover'
+      text: 'Dover'
     }),
     Choice.create({
-      theChoice: 'Manchester'
+      text: 'Manchester'
     }),
     Choice.create({
-      theChoice: 'Nashua'
+      text: 'Nashua'
     })
   ])
 
@@ -818,17 +818,17 @@ async function seed() {
 
   const newJerseyChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Trenton',
+      text: 'Trenton',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Camden'
+      text: 'Camden'
     }),
     Choice.create({
-      theChoice: 'Newark'
+      text: 'Newark'
     }),
     Choice.create({
-      theChoice: 'Jersey City'
+      text: 'Jersey City'
     })
   ])
 
@@ -836,17 +836,17 @@ async function seed() {
 
   const newMexicoChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Santa Fe',
+      text: 'Santa Fe',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'El Paso'
+      text: 'El Paso'
     }),
     Choice.create({
-      theChoice: 'Albuquerque'
+      text: 'Albuquerque'
     }),
     Choice.create({
-      theChoice: 'Carlsbad'
+      text: 'Carlsbad'
     })
   ])
 
@@ -854,17 +854,17 @@ async function seed() {
 
   const newYorkChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Albany',
+      text: 'Albany',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Rochester'
+      text: 'Rochester'
     }),
     Choice.create({
-      theChoice: 'New York'
+      text: 'New York'
     }),
     Choice.create({
-      theChoice: 'Buffalo'
+      text: 'Buffalo'
     })
   ])
 
@@ -872,17 +872,17 @@ async function seed() {
 
   const northDakotaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Bismarck',
+      text: 'Bismarck',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Fargo'
+      text: 'Fargo'
     }),
     Choice.create({
-      theChoice: 'Grand Forks'
+      text: 'Grand Forks'
     }),
     Choice.create({
-      theChoice: 'Minot'
+      text: 'Minot'
     })
   ])
 
@@ -890,17 +890,17 @@ async function seed() {
 
   const northCarolinaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Raleigh',
+      text: 'Raleigh',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Charlotte'
+      text: 'Charlotte'
     }),
     Choice.create({
-      theChoice: 'Chapel Hill'
+      text: 'Chapel Hill'
     }),
     Choice.create({
-      theChoice: 'Greensboro'
+      text: 'Greensboro'
     })
   ])
 
@@ -908,17 +908,17 @@ async function seed() {
 
   const ohioChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Columbus',
+      text: 'Columbus',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Cleveland'
+      text: 'Cleveland'
     }),
     Choice.create({
-      theChoice: 'Cincinnati'
+      text: 'Cincinnati'
     }),
     Choice.create({
-      theChoice: 'Canton'
+      text: 'Canton'
     })
   ])
 
@@ -926,17 +926,17 @@ async function seed() {
 
   const oklahomaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Oklahoma City',
+      text: 'Oklahoma City',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Tulsa'
+      text: 'Tulsa'
     }),
     Choice.create({
-      theChoice: 'Norman'
+      text: 'Norman'
     }),
     Choice.create({
-      theChoice: 'Claremore'
+      text: 'Claremore'
     })
   ])
 
@@ -944,17 +944,17 @@ async function seed() {
 
   const oregonChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Salem',
+      text: 'Salem',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Portland'
+      text: 'Portland'
     }),
     Choice.create({
-      theChoice: 'Eugene'
+      text: 'Eugene'
     }),
     Choice.create({
-      theChoice: 'Oregon City'
+      text: 'Oregon City'
     })
   ])
 
@@ -962,17 +962,17 @@ async function seed() {
 
   const pennsylvaniaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Harrisburg',
+      text: 'Harrisburg',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Philadelphia'
+      text: 'Philadelphia'
     }),
     Choice.create({
-      theChoice: 'Pittsburgh'
+      text: 'Pittsburgh'
     }),
     Choice.create({
-      theChoice: 'Erie'
+      text: 'Erie'
     })
   ])
 
@@ -980,17 +980,17 @@ async function seed() {
 
   const rhodeIslandChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Providence',
+      text: 'Providence',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Newport'
+      text: 'Newport'
     }),
     Choice.create({
-      theChoice: 'Warwick'
+      text: 'Warwick'
     }),
     Choice.create({
-      theChoice: 'Cranston'
+      text: 'Cranston'
     })
   ])
 
@@ -998,17 +998,17 @@ async function seed() {
 
   const southCarolinaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Columbia',
+      text: 'Columbia',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Charleston'
+      text: 'Charleston'
     }),
     Choice.create({
-      theChoice: 'Greenville'
+      text: 'Greenville'
     }),
     Choice.create({
-      theChoice: 'Marion'
+      text: 'Marion'
     })
   ])
 
@@ -1016,17 +1016,17 @@ async function seed() {
 
   const southDakotaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Pierre',
+      text: 'Pierre',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Sioux Falls'
+      text: 'Sioux Falls'
     }),
     Choice.create({
-      theChoice: 'Rapid City'
+      text: 'Rapid City'
     }),
     Choice.create({
-      theChoice: 'Alexandria'
+      text: 'Alexandria'
     })
   ])
 
@@ -1034,17 +1034,17 @@ async function seed() {
 
   const tennesseeChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Nashville',
+      text: 'Nashville',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Chattanooga'
+      text: 'Chattanooga'
     }),
     Choice.create({
-      theChoice: 'Greeneville'
+      text: 'Greeneville'
     }),
     Choice.create({
-      theChoice: 'Knoxville'
+      text: 'Knoxville'
     })
   ])
 
@@ -1052,17 +1052,17 @@ async function seed() {
 
   const texasChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Austin',
+      text: 'Austin',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Dallas'
+      text: 'Dallas'
     }),
     Choice.create({
-      theChoice: 'Houston'
+      text: 'Houston'
     }),
     Choice.create({
-      theChoice: 'Galveston'
+      text: 'Galveston'
     })
   ])
 
@@ -1070,17 +1070,17 @@ async function seed() {
 
   const utahChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Salt Lake City',
+      text: 'Salt Lake City',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Farmington'
+      text: 'Farmington'
     }),
     Choice.create({
-      theChoice: 'Fillmore'
+      text: 'Fillmore'
     }),
     Choice.create({
-      theChoice: 'St. George'
+      text: 'St. George'
     })
   ])
 
@@ -1088,17 +1088,17 @@ async function seed() {
 
   const vermontChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Montpelier',
+      text: 'Montpelier',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Burlington'
+      text: 'Burlington'
     }),
     Choice.create({
-      theChoice: 'Bennington'
+      text: 'Bennington'
     }),
     Choice.create({
-      theChoice: 'Newport'
+      text: 'Newport'
     })
   ])
 
@@ -1106,17 +1106,17 @@ async function seed() {
 
   const virginiaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Richmond',
+      text: 'Richmond',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Jamestown'
+      text: 'Jamestown'
     }),
     Choice.create({
-      theChoice: 'Williamsburg'
+      text: 'Williamsburg'
     }),
     Choice.create({
-      theChoice: 'Salem'
+      text: 'Salem'
     })
   ])
 
@@ -1124,17 +1124,17 @@ async function seed() {
 
   const washingtonChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Olympia',
+      text: 'Olympia',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Seattle'
+      text: 'Seattle'
     }),
     Choice.create({
-      theChoice: 'Tacoma'
+      text: 'Tacoma'
     }),
     Choice.create({
-      theChoice: 'Vancouver'
+      text: 'Vancouver'
     })
   ])
 
@@ -1142,17 +1142,17 @@ async function seed() {
 
   const westVirginiaChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Charleston',
+      text: 'Charleston',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Huntington'
+      text: 'Huntington'
     }),
     Choice.create({
-      theChoice: 'Fairmont'
+      text: 'Fairmont'
     }),
     Choice.create({
-      theChoice: 'Clarksburg'
+      text: 'Clarksburg'
     })
   ])
 
@@ -1160,17 +1160,17 @@ async function seed() {
 
   const wisconsinChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Madison',
+      text: 'Madison',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Milwaukee'
+      text: 'Milwaukee'
     }),
     Choice.create({
-      theChoice: 'Green Bay'
+      text: 'Green Bay'
     }),
     Choice.create({
-      theChoice: 'Eau Claire'
+      text: 'Eau Claire'
     })
   ])
 
@@ -1178,17 +1178,17 @@ async function seed() {
 
   const wyomingChoices = await Promise.all([
     Choice.create({
-      theChoice: 'Cheyenne',
+      text: 'Cheyenne',
       isCorrect: true
     }),
     Choice.create({
-      theChoice: 'Jackson'
+      text: 'Jackson'
     }),
     Choice.create({
-      theChoice: 'Casper'
+      text: 'Casper'
     }),
     Choice.create({
-      theChoice: 'Rock Springs'
+      text: 'Rock Springs'
     })
   ])
 

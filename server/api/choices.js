@@ -13,7 +13,7 @@ router.post('/', async (req, res, next) => {
       next(err)
     }
 
-    const choiceInstances = await Promise.all(choices.map(choice => Choice.create({theChoice: choice.theChoice, questionId})))
+    const choiceInstances = await Promise.all(choices.map(choice => Choice.create({text: choice.text, questionId})))
     res.json(choiceInstances)
   } catch (err) { next(err) }
 })

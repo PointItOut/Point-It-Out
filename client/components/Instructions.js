@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 
 const Instructions = props => {
@@ -33,16 +34,18 @@ const Instructions = props => {
               <li>If you guessed incorrectly, you will also see your answer in red</li>
               <li>The game will automatically move on to the next question</li>
               <li>Each correct answer is worth 1 point</li>
+              <li>Play by yourself or with friends</li>
               <li>Whoever gets the most points wins the round!</li>
             </ol>
             <h4>Tips</h4>
             <ol>
-              <li>Stand with the top of your head below the row of answers</li>
+              <li>Place your computer on a stable surface</li>
+              <li>Position yourself so you are below the row of answers</li>
               <li>Make sure you are well lit</li>
-              <li>Tap the card with your choice vigorously</li>
+              <li>Tap the box of your choice decisively!</li>
             </ol>
           </div>
-          <Link to='/tutorial'>Practice!</Link>
+          <button onClick={props.handleClick} data-dismiss="modal">Practice!</button>
         </div>
       </div>
     </div>
@@ -50,3 +53,8 @@ const Instructions = props => {
 }
 
 export default Instructions
+
+// PROP TYPES
+Instructions.propTypes = {
+  handleClick: PropTypes.func
+}

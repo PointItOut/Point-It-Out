@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import {AddCategory, CategoryChoices} from './index'
 import {
   setCurrentCategory,
@@ -78,3 +79,12 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(CategoryWrapper)
+
+// PROP TYPES
+CategoryWrapper.propTypes = {
+  categories: PropTypes.object,
+  user: PropTypes.object,
+  fetchPublicCategories: PropTypes.func,
+  fetchUserCategories: PropTypes.func,
+  handleChooseCategory: PropTypes.func
+}

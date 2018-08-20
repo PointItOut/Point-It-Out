@@ -30,14 +30,14 @@ class EditCategory extends Component {
     const {questionName, answer, choice1, choice2, choice3} = this.state
     const postBody = {
       question: {
-        theQuestion: questionName,
+        text: questionName,
         categoryId: +this.props.match.params.categoryId
       },
       choices: [
-        {theChoice: answer, isCorrect: true},
-        {theChoice: choice1, isCorrect: false},
-        {theChoice: choice2, isCorrect: false},
-        {theChoice: choice3, isCorrect: false}
+        {text: answer, isCorrect: true},
+        {text: choice1, isCorrect: false},
+        {text: choice2, isCorrect: false},
+        {text: choice3, isCorrect: false}
       ]
     }
     const {data} = await axios.post('/api/questions', postBody)
@@ -168,7 +168,7 @@ class EditCategory extends Component {
                         onClick={() => this.handleDelete(question.id)}
                       />
                       &nbsp;
-                      {question.theQuestion}
+                      {question.text}
                     </span>
                   </div>
                 ))}

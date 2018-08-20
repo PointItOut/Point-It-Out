@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import axios from 'axios'
 import {AddGame} from '.'
 import {isScreenLarge, tooSmallToast} from '../canPlay'
@@ -23,10 +24,9 @@ class ModeOptions extends Component {
 
   render() {
     const {chooseMode} = this.props
-    console.log('chosen category', this.props.chosenCategory)
     return (
       <div>
-        <h2>{this.props.chosenCategory.name}</h2>
+        {/* <h2>{this.props.chosenCategory.name}</h2> */}
         <button
           type="button"
           className="btn btn-main"
@@ -48,3 +48,9 @@ class ModeOptions extends Component {
 }
 
 export default ModeOptions
+
+// PROP TYPES
+ModeOptions.propTypes = {
+  chooseMode: PropTypes.func,
+  chosenCategory: PropTypes.object
+}
