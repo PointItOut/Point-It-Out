@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import FacebookLoginButton from './FacebookLoginButton'
 
 /**
  * COMPONENT
@@ -29,6 +30,7 @@ const AuthForm = props => {
             </div>
           ) : null}
           <div>
+            <FacebookLoginButton />
             <button type="submit" className="btn btn-main">
               {displayName}
             </button>
