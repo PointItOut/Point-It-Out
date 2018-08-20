@@ -1,11 +1,10 @@
-import axios from 'axios'
 
 // INITIAL STATE
-const initialState = {text: '', choices: [], id: 0, userGuess: null}
+const initialState = {text: '', choices: [], id: 0, userGuessIndex: null}
 
 // ACTION TYPES
 const SET_QUESTION = 'SET_CURRENT_QUESTION'
-const GOT_ANSWER = 'GOT_ANSWER'
+const SUBMIT_ANSWER = 'SUBMIT_ANSWER'
 
 // ACTION CREATORS
 export const setQuestion = question => ({
@@ -13,20 +12,10 @@ export const setQuestion = question => ({
   question
 })
 
-// userGuess now will be string of 'correct' or 'incorrect'
-export const gotAnswer = userGuess => ({
-  type: GOT_ANSWER,
-  userGuess
+export const submitAnswer = userGuessIndex => ({
+  type: SUBMIT_ANSWER,
+  userGuessIndex
 })
-
-// THUNK CREATORS
-export const submitAnswer = (choiceObj, userId) => async dispatch => {
-  try {
-    const { data } = await axios.post(`/api/game/guess/${userId}`, { id: choiceObj.id, questionId: choiceObj.questionId })
-    // data should be a string of 'correct' or 'incorrect'
-    dispatch(gotAnswer(data))
-  } catch (err) { console.error(err) }
-}
 
 // REDUCER
 const reducer = (state = initialState, action) => {
@@ -38,10 +27,10 @@ const reducer = (state = initialState, action) => {
         choices: action.question ? action.question.choices : [],
         id: action.question ? action.question.id : 0
       }
-    case GOT_ANSWER:
+    case SUBMIT_ANSWER:
       return {
         ...state,
-        userGuess: state.userGuess === null || action.userGuess === null ? action.userGuess : state.userGuess
+        userGuessIndex: state.userGuessIndex === null || action.userGuessIndex === null ? action.userGuessIndex : state.userGuessIndex
       }
     default:
       return state
