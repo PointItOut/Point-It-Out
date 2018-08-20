@@ -19,7 +19,7 @@ const diffy = create({
 
     const isQuestion = store.getState().currentQuestion.text !== ''
     const stillTime = !store.getState().game.timeover
-    const needGuess = store.getState().currentQuestion.userGuess === null || store.getState().currentQuestion.userGuess === undefined
+    const needGuess = store.getState().currentQuestion.userGuess === null
 
     if (isQuestion && stillTime && needGuess) {
       if (purple.some(dot => dot < 200)) {
