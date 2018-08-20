@@ -62,7 +62,7 @@ const reducer = (state = initialState, action) => {
     case UPDATE_SCORE:
       return action.total
     case INCREMENT_SCORE:
-      return state.total + 1
+      return state + 1
     default:
       return state
   }
