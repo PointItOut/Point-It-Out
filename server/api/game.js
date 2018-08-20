@@ -1,6 +1,7 @@
 const router = require('express').Router()
-const { Game, User } = require('../db/models')
+const { Game, User, Choice, Question } = require('../db/models')
 const OpenTok = require('opentok')
+const { userMatchesParam } = require('../../secureHelpers')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -9,6 +10,26 @@ router.get('/', async (req, res, next) => {
   } catch (err) {
     next(err)
   }
+})
+
+router.post('/guess/:userId', userMatchesParam, async (req, res, next) => {
+  try {
+    // post request must have choice id and questionId
+    const userGuess = await Choice.findById(+req.body.id)
+    const currentQuestion = await Question.findById(userGuess.questionId)
+    const { correctAnswers, incorrectAnswers } = currentQuestion
+
+    if (userGuess.isCorrect) {
+      // increment question.correctanswers
+      await currentQuestion.update({ correctAnswers: correctAnswers + 1})
+      res.json('correct')
+    } else {
+      // increment question.incorrectanswers
+      await currentQuestion.update({ incorrectAnswers: incorrectAnswers + 1})
+      res.json('incorrect')
+    }
+
+  } catch (err) { next(err) }
 })
 
 router.get('/:name', async (req, res, next) => {
