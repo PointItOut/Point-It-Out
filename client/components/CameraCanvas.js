@@ -51,7 +51,7 @@ class CameraCanvas extends Component {
         username: user.username,
         gameName
       }
-      console.log('==*== userGuessIndex has been updated, so time to check answer:', gameObj)
+
       checkAnswer(choices[userGuessIndex], gameObj)
       this.nextQuestion()
     }

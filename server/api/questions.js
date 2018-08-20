@@ -8,6 +8,7 @@ router.get('/', async (req, res, next) => {
       include: {model: Choice}
     })
 
+    /*
     const responseBody = questions.map(question => {
       return {
         id: question.id,
@@ -18,8 +19,9 @@ router.get('/', async (req, res, next) => {
         choices: question.choices.map(choice => ({id: choice.id, text: choice.text}))
       }
     })
+    */
 
-    res.json(responseBody)
+    res.json(questions)
   } catch (err) {
     next(err)
   }
@@ -33,18 +35,18 @@ router.get('/:categoryId', async (req, res, next) => {
       include: {model: Choice}
     })
 
-    const responseBody = questions.map(question => {
-      return {
-        id: question.id,
-        text: question.text,
-        categoryId: question.categoryId,
-        correctGuesses: question.correctGuesses,
-        incorrectGuesses: question.incorrectGuesses,
-        choices: question.choices.map(choice => ({id: choice.id, text: choice.text}))
-      }
-    })
+    // const responseBody = questions.map(question => {
+    //   return {
+    //     id: question.id,
+    //     text: question.text,
+    //     categoryId: question.categoryId,
+    //     correctGuesses: question.correctGuesses,
+    //     incorrectGuesses: question.incorrectGuesses,
+    //     choices: question.choices.map(choice => ({id: choice.id, text: choice.text}))
+    //   }
+    // })
 
-    res.json(responseBody)
+    res.json(questions)
   } catch (err) {
     next(err)
   }
