@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import {Instructions} from './index'
 import {connect} from 'react-redux'
-import FacebookLoginButton from './FacebookLoginButton'
 
 const Splash = ({isLoggedIn, history}) => {
   const handlePractice = () => {
