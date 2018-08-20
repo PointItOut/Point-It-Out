@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { makeNewCategory } from '../store/categories'
 
 class AddCategory extends Component {
@@ -84,3 +85,10 @@ const mapDispatchToProps = function (dispatch) {
 }
 
 export default connect(mapState, mapDispatchToProps)(AddCategory)
+
+// PROP TYPES
+AddCategory.propTypes = {
+  categories: PropTypes.object,
+  user: PropTypes.object,
+  submitNewCategory: PropTypes.func
+}

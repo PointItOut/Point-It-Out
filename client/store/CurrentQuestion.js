@@ -1,6 +1,6 @@
 
 // INITIAL STATE
-const initialState = {question: {}, userGuess: null}
+const initialState = {text: '', choices: [], id: 0, userGuess: null}
 
 // ACTION TYPES
 const SET_QUESTION = 'SET_CURRENT_QUESTION'
@@ -23,7 +23,9 @@ const reducer = (state = initialState, action) => {
     case SET_QUESTION:
       return {
         ...state,
-        question: action.question
+        text: action.question ? action.question.text : '',
+        choices: action.question ? action.question.choices : [],
+        id: action.question ? action.question.id : 0
       }
     case SUBMIT_ANSWER:
       return {

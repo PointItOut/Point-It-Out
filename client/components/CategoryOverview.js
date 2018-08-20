@@ -8,6 +8,7 @@ import {
   userUnsubscribeFromCategory
 } from '../store/categories'
 import {Leaderboard} from '.'
+
 class CategoryOverview extends Component {
   constructor() {
     super()
@@ -35,7 +36,6 @@ class CategoryOverview extends Component {
   }
 
   async componentDidUpdate(prevProps) {
-    // sometimes we try to componentDidMount before we have the new currentcategory
     const {match, currentCategory} = this.props
     if (prevProps.currentCategory !== currentCategory) {
       const {data} = await axios.get(`/api/categories/${currentCategory.id}`)
@@ -151,3 +151,11 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(CategoryOverview)
+
+
+CategoryOverview.propTypes = {
+  currentCategory: PropTypes.object,
+  user: PropTypes.object,
+  removeUsersCategory: PropTypes.func,
+  unsubscribe: PropTypes.func
+}

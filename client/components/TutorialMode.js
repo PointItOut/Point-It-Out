@@ -1,16 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import { getTutorialQuestions, deleteQuestions } from '../store/questions'
 import { setQuestion } from '../store/currentQuestion'
 import { updateScore } from '../store/score'
 import { CameraCanvas } from './index'
-
-// tutorial component must use webcam and canvas...
-// how to use diffy though?
-// do we need a special tutorial sidebar?
-// make sure we reset everything at the end of the 'game'...
-// have a button in the tutorial sidebar for 'go home'?
-
 
 class TutorialMode extends Component {
   constructor() {
@@ -31,7 +25,6 @@ class TutorialMode extends Component {
   }
 
   handleExit() {
-    console.log('handling exit')
     const { history, clearCurrentQuestion, clearQuestions, resetScore } = this.props
     clearCurrentQuestion()
     clearQuestions()
@@ -41,7 +34,7 @@ class TutorialMode extends Component {
 
   render() {
     const { questions, currentQuestion } = this.props
-    const endOfTutorial = (questions.indexOf(currentQuestion.question) === questions.length - 1) && (currentQuestion.userGuess !== null)
+    const endOfTutorial = (currentQuestion.text === 'Touch the green square') && (currentQuestion.userGuess !== null)
 
     return (
     <div className="tutorial game-wrapper">
@@ -70,9 +63,20 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   fetchTutorialQuestions: () => dispatch(getTutorialQuestions()),
   setInitialQuestion: (question) => dispatch(setQuestion(question)),
-  clearCurrentQuestion: () => dispatch(setQuestion({})),
+  clearCurrentQuestion: () => dispatch(setQuestion({text: '', choices: [], userGuess: null})),
   clearQuestions: () => dispatch(deleteQuestions()),
   resetScore: () => dispatch(updateScore(0))
 })
 
 export default connect(mapState, mapDispatch)(TutorialMode)
+
+// PROP TYPES
+TutorialMode.propTypes = {
+  questions: PropTypes.array,
+  currentQuestion: PropTypes.object,
+  fetchTutorialQuestions: PropTypes.func,
+  setInitialQuestion: PropTypes.func,
+  clearCurrentQuestion: PropTypes.func,
+  clearQuestions: PropTypes.func,
+  resetScore: PropTypes.func
+}

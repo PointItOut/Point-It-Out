@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {OTSession, OTPublisher, OTStreams, OTSubscriber} from 'opentok-react'
 
 class Opentok extends React.Component {
   render() {
-    const currentgame = this.props.currentgame
-    const token = this.props.token
+    const { currentgame, token } = this.props
+
     return (
       <div className="card">
         <div className="card-header blue-header">
@@ -39,3 +40,9 @@ class Opentok extends React.Component {
 }
 
 export default Opentok
+
+// PROP TYPES
+Opentok.propTypes = {
+  currentgame: PropTypes.object,
+  token: PropTypes.string
+}

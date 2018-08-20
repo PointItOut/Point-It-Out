@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { getGames, updateGame } from '../store/game'
 import { withRouter } from 'react-router-dom'
 import socket from '../socket'
@@ -86,3 +87,11 @@ const ConnectJoinGame = withRouter(
   connect(mapState, mapDispatchToProps)(JoinGame)
 )
 export default ConnectJoinGame
+
+// PROP TYPES
+JoinGame.propTypes = {
+  games: PropTypes.array,
+  user: PropTypes.object,
+  updateGame: PropTypes.func,
+  getGames: PropTypes.func
+}

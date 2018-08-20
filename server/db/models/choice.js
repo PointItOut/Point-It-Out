@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Choice = db.define('choices', {
-  theChoice: {
+  text: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {notEmpty: true}

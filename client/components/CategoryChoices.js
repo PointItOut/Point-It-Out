@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const CategoryChoices = props => {
   const {categories, chooseCategory} = props
@@ -19,3 +20,9 @@ const CategoryChoices = props => {
 }
 
 export default CategoryChoices
+
+// PROP TYPES
+CategoryChoices.propTypes = {
+  categories: PropTypes.object,
+  chooseCategory: PropTypes.func
+}

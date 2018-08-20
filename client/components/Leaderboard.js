@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faTrophy} from '@fortawesome/free-solid-svg-icons'
 
@@ -64,3 +65,9 @@ const mapState = state => ({
   currentCategory: state.categories.current
 })
 export default connect(mapState)(Leaderboard)
+
+// PROP TYPES
+Leaderboard.propTypes = {
+  currentCategory: PropTypes.object,
+  categoryDisplayed: PropTypes.object
+}
