@@ -33,7 +33,6 @@ const incrementScore = () => ({
 // THUNK CREATORS
 export const evaluateAnswer = (choiceObj, gameObj) => async dispatch => {
   try {
-    console.log('==*== inside EVALUATE-ANSWER')
     const { tutorialMode, partnerMode, oldTotal, userId, username, gameName } = gameObj
 
     const { data } = await axios.post(`/api/game/guess/${choiceObj.id}`, { userId, tutorialMode })
