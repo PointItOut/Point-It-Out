@@ -21,7 +21,7 @@ const Leaderboard = props => {
   if (sortedScores[2]) sortedScores[2].color = '#cd7f32'
 
   return (
-    <div className="main-container col-sm-12 col-md-8 offset-md-2">
+    <div className="main-container">
       <h2 className="text-center">
         {categoryDisplayed.name.toUpperCase()} CHAMPIONS
       </h2>
@@ -32,7 +32,9 @@ const Leaderboard = props => {
             <tr>
               <th scope="column">Place</th>
               <th scope="column">User</th>
-              <th scope="column">Score</th>
+              <th scope="column" className="text-right">
+                Score
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -51,7 +53,9 @@ const Leaderboard = props => {
                   </span>
                 </th>
                 <th scope="row">{scoreInfo.userName}</th>
-                <th scope="row">{scoreInfo.userHighScore}</th>
+                <th scope="row" className="text-right">
+                  {scoreInfo.userHighScore}
+                </th>
               </tr>
             ))}
           </tbody>

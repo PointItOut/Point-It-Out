@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import { getGames, updateGame } from '../store/game'
-import { withRouter } from 'react-router-dom'
+import {getGames, updateGame} from '../store/game'
+import {withRouter} from 'react-router-dom'
 import socket from '../socket'
-import { isScreenLarge, tooSmallToast, noCamera } from '../canPlay'
+import {isScreenLarge, tooSmallToast, noCamera} from '../canPlay'
 
 class JoinGame extends Component {
   constructor() {
@@ -18,7 +18,7 @@ class JoinGame extends Component {
   }
 
   handleChange(evt) {
-    this.setState({ joinGame: evt.target.value })
+    this.setState({joinGame: evt.target.value})
   }
 
   async handleSubmit(evt) {
@@ -30,13 +30,13 @@ class JoinGame extends Component {
     const username = this.props.user.userName
     if (isScreenLarge()) {
       if (!existGame) {
-        this.setState({ nameExist: false })
+        this.setState({nameExist: false})
       } else {
-        this.setState({ nameExist: true })
-        socket.emit('questions', { gameName })
-        socket.emit('new-score', { username, total: 0, gameName })
+        this.setState({nameExist: true})
+        socket.emit('questions', {gameName})
+        socket.emit('new-score', {username, total: 0, gameName})
         await this.props.updateGame(gameName)
-        this.setState({ joinGame: '' })
+        this.setState({joinGame: ''})
         this.props.history.push(`/game/${gameName}`)
       }
     } else {
@@ -46,30 +46,37 @@ class JoinGame extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="joinGame">Join Existing Game</label>
-            <input
-              type="text"
-              name="joinGame"
-              value={this.state.joinGame}
-              onChange={this.handleChange}
-            />
+      <div className="col-md-4">
+        <div className="card">
+          <div className="card-header blue-header">
+            <h4>Join Existing Game</h4>
           </div>
-          <button type="submit" className="btn btn-main">
-            Join
-          </button>
-          {!this.state.nameExist && (
-            <span>Game does not exist, please try again</span>
-          )}
-        </form>
+          <div className="card-body">
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="joinGame">Game name</label>
+                <input
+                  type="text"
+                  name="joinGame"
+                  value={this.state.joinGame}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <button type="submit" className="btn btn-main">
+                Join
+              </button>
+              {!this.state.nameExist && (
+                <span>Game does not exist, please try again</span>
+              )}
+            </form>
+          </div>
+        </div>
       </div>
     )
   }
 }
 
-const mapDispatchToProps = function (dispatch) {
+const mapDispatchToProps = function(dispatch) {
   return {
     updateGame: name => dispatch(updateGame(name)),
     getGames: () => dispatch(getGames())
