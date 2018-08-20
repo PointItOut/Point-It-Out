@@ -3,12 +3,22 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faHandPointUp} from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
     <nav className="navbar navbar-expand-lg">
       <div className="navbar-brand">
-        <Link to="/">Point It Out</Link>
+        <Link to="/">
+          Point It Out{' '}
+          <FontAwesomeIcon
+            icon={faHandPointUp}
+            size="lg"
+            transform="up-2"
+            flip="horizontal"
+          />
+        </Link>
       </div>
       <button
         className="navbar-toggler"
