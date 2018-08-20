@@ -11,13 +11,12 @@ const Navbar = ({handleClick, isLoggedIn}) => (
     <nav className="navbar navbar-expand-lg">
       <div className="navbar-brand">
         <Link to="/">
-          Point It Out{' '}
           <FontAwesomeIcon
             icon={faHandPointUp}
             size="lg"
             transform="up-2"
             flip="horizontal"
-          />
+          />&nbsp;Point It Out
         </Link>
       </div>
       <button
