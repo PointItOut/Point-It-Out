@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { PurpleRect, GreenRect, YellowRect, RedRect, ChoiceTextBox, QuestionText, QuestionBox, RedBorder, GreenBorder } from './canvas-rects'
 import { connect } from 'react-redux'
-import { submitAnswer, setQuestion } from '../store/currentQuestion'
+import { submitAnswerIndex, setQuestion } from '../store/currentQuestion'
 import { updateScore } from '../store/score'
 import { noMediaStream } from '../canPlay'
 
@@ -191,7 +191,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  submitUserGuess: guess => dispatch(submitAnswer(guess)),
+  submitUserGuess: guess => dispatch(submitAnswerIndex(guess)),
   setNewQuestion: question => dispatch(setQuestion(question)),
   updateUserScore: (score, partner, username, gameName) =>
     dispatch(updateScore(score, partner, username, gameName))

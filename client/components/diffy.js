@@ -1,7 +1,7 @@
 import { create } from 'diffyjs'
 import React from 'react'
 import socket from '../socket'
-import { submitAnswer } from '../store/currentQuestion'
+import { submitAnswerIndex } from '../store/currentQuestion'
 import store from '../store'
 
 const diffy = create({
@@ -18,18 +18,18 @@ const diffy = create({
     const red = [matrix[12][0], matrix[13][0], matrix[14][0]]
     if ((store.getState().currentQuestion.text !== '') && (!store.getState().game.timeover) && (store.getState().currentQuestion.userGuess === null)) {
       if (purple.some(dot => dot < 200)) {
-        store.dispatch(submitAnswer(0))
+        store.dispatch(submitAnswerIndex(0))
       }
       if (green.some(dot => dot < 200)) {
-        store.dispatch(submitAnswer(1))
+        store.dispatch(submitAnswerIndex(1))
       }
 
       if (yellow.some(dot => dot < 200)) {
-        store.dispatch(submitAnswer(2))
+        store.dispatch(submitAnswerIndex(2))
       }
 
       if (red.some(dot => dot < 200)) {
-        store.dispatch(submitAnswer(3))
+        store.dispatch(submitAnswerIndex(3))
       }
     }
   }

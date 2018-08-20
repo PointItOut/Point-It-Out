@@ -4,7 +4,7 @@ const initialState = {text: '', choices: [], id: 0, userGuessIndex: null}
 
 // ACTION TYPES
 const SET_QUESTION = 'SET_CURRENT_QUESTION'
-const SUBMIT_ANSWER = 'SUBMIT_ANSWER'
+const SUBMIT_ANSWER_INDEX = 'SUBMIT_ANSWER'
 
 // ACTION CREATORS
 export const setQuestion = question => ({
@@ -12,7 +12,7 @@ export const setQuestion = question => ({
   question
 })
 
-export const submitAnswer = userGuessIndex => ({
+export const submitAnswerIndex = userGuessIndex => ({
   type: SUBMIT_ANSWER,
   userGuessIndex
 })
@@ -27,7 +27,7 @@ const reducer = (state = initialState, action) => {
         choices: action.question ? action.question.choices : [],
         id: action.question ? action.question.id : 0
       }
-    case SUBMIT_ANSWER:
+    case SUBMIT_ANSWER_INDEX:
       return {
         ...state,
         userGuessIndex: state.userGuessIndex === null || action.userGuessIndex === null ? action.userGuessIndex : state.userGuessIndex
