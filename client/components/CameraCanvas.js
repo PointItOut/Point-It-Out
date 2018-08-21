@@ -152,8 +152,12 @@ class CameraCanvas extends Component {
               currentQuestion.userGuessIndex !== null && choices.length
                 ? choices.map((choice, index) => {
                   if (choice.isCorrect) {
+                    if (currentQuestion.userGuessIndex === index) {
+                      soundsObject.giggle.play()
+                    }
                     return <GreenBorder xPosition={xPositions[index]} />
                   } else if (currentQuestion.userGuessIndex === index) {
+                    soundsObject.wrongHorn.play()
                     return <RedBorder xPosition={xPositions[index]} />
                   } else {
                     return null
