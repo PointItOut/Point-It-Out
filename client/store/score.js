@@ -16,15 +16,15 @@ export const resetScore = () => {
   }
 }
 
-// const updateScore = (total, partner, username, gameName) => {
-//   if (partner === true) {
-//     socket.emit('new-score', { total, username, gameName })
-//   }
-//   return {
-//     type: UPDATE_SCORE,
-//     total
-//   }
-// }
+export const updateScore = (total, partner, username, gameName) => {
+  if (partner === true) {
+    socket.emit('new-score', { total, username, gameName })
+  }
+  return {
+    type: UPDATE_SCORE,
+    total
+  }
+}
 
 const incrementScore = () => ({
   type: INCREMENT_SCORE
