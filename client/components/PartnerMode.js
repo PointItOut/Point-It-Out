@@ -12,8 +12,10 @@ class PartnerMode extends Component {
   constructor() {
     super()
     this.state = {
-      ticker: null
+      ticker: null,
+      restarting: false
     }
+    this.handleRestart = this.handleRestart.bind(this)
   }
 
   async componentDidMount() {
@@ -21,20 +23,29 @@ class PartnerMode extends Component {
     await this.props.getGames()
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.gameCountdown !== this.props.gameCountdown && !prevProps.timeover && this.props.startGame) {
+  componentDidUpdate(prevProps, prevState) {
+    const restartingTheGame = prevState.restarting === false && this.state.restarting === true
+
+    if ((prevProps.gameCountdown !== this.props.gameCountdown && !prevProps.timeover && this.props.startGame) || restartingTheGame) {
       soundsObject.tick.play()
-      const ticker = setInterval(function(){
+      const ticker = setInterval(function() {
         soundsObject.tick.play()
       }, 1000)
       this.setState({
-        ticker: ticker
+        ticker: ticker,
+        restarting: false
       })
     }
   }
 
   componentWillUnmount() {
     clearInterval(this.state.ticker)
+  }
+
+  handleRestart() {
+    this.setState({
+      restarting: true
+    })
   }
 
   render() {
@@ -67,7 +78,7 @@ class PartnerMode extends Component {
           </div>
         )
       } else {
-        return <span className="clock">{seconds}</span>
+        return <span className="clock countdown">{seconds}</span>
       }
     }
 

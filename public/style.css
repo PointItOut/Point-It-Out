@@ -267,3 +267,10 @@ footer i {
   flex-basis: 200px;
   align-self: flex-end;
 }
+
+.countdown {
+  padding-left: 45%;
+  margin-top: 10%;
+  position: absolute;
+  font-size: 15em;
+}
