@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom'
 import { setTimeOver, startGame, deleteGame } from '../store/game'
 import socket from '../socket'
 import { setHighScore, updateScore } from '../store/score'
+import FaceRecognition from './FaceRecognition'
 
 class GameSidebar extends Component {
   constructor() {
@@ -38,6 +39,7 @@ class GameSidebar extends Component {
       if (completed) {
         return (
           <div>
+            <FaceRecognition />
             <AddConfetti />
           </div>
         )
