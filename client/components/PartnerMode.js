@@ -22,9 +22,13 @@ class PartnerMode extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.gameCountdown !== this.props.gameCountdown && !prevProps.timeover && this.props.startGame) {
+    if (
+      prevProps.gameCountdown !== this.props.gameCountdown &&
+      !prevProps.timeover &&
+      this.props.startGame
+    ) {
       soundsObject.tick.play()
-      const ticker = setInterval(function(){
+      const ticker = setInterval(function() {
         soundsObject.tick.play()
       }, 1000)
       this.setState({
@@ -67,7 +71,7 @@ class PartnerMode extends Component {
           </div>
         )
       } else {
-        return <span className="clock">{seconds}</span>
+        return <span className="clock countdown">{seconds}</span>
       }
     }
 
