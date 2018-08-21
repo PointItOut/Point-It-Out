@@ -11,6 +11,7 @@ import { submitAnswerIndex, setQuestion } from '../store/currentQuestion'
 import { updateScore, evaluateAnswer } from '../store/score'
 import { noMediaStream } from '../canPlay'
 import { Crown } from './index'
+import soundsObject from '../sounds'
 
 
 class CameraCanvas extends Component {
@@ -76,7 +77,7 @@ class CameraCanvas extends Component {
       setTimeout(() => {
         submitUserGuess(null) // reset userGuess for next question
         setNewQuestion(question) // increment question
-      }, 1000)
+      }, 1500)
     }
   }
 
@@ -151,8 +152,12 @@ class CameraCanvas extends Component {
               currentQuestion.userGuessIndex !== null && choices.length
                 ? choices.map((choice, index) => {
                   if (choice.isCorrect) {
+                    if (currentQuestion.userGuessIndex === index) {
+                      soundsObject.giggle.play()
+                    }
                     return <GreenBorder xPosition={xPositions[index]} />
                   } else if (currentQuestion.userGuessIndex === index) {
+                    soundsObject.wrongHorn.play()
                     return <RedBorder xPosition={xPositions[index]} />
                   } else {
                     return null
