@@ -1215,12 +1215,15 @@ async function seed() {
     }),
     Question.create({
       text: "What is David Yang's verdict on pugs?"
+    }),
+    Question.create({
+      text: "Who wants to get a bun?"
     })
   ])
 
   await Promise.all(petQuestions.map(ques => ques.setCategory(fullstackPets)))
 
-  const [codyQues, firaQues, brunoQues, davidQues] = questions
+  const [codyQues, firaQues, brunoQues, davidQues, bunQues] = questions
 
   // FULLSTACK PETS CHOICES
 
@@ -1282,18 +1285,38 @@ async function seed() {
       text: 'not actually adorable'
     }),
     Choice.create({
-      text: 'breathtaking'
+      text: 'completely breathtaking'
     }),
     Choice.create({
-      text: 'suspicious'
+      text: 'a bit suspicious'
     }),
     Choice.create({
-      text: 'intimidating'
+      text: 'a bit intimidating'
     })
   ])
 
   await Promise.all(davidChoices.map(choice => choice.setQuestion(davidQues)))
+
+  const bunChoices = await Promise.all([
+    Choice.create({
+      text: ''
+    }),
+    Choice.create({
+      text: ''
+    }),
+    Choice.create({
+      text: ''
+    }),
+    Choice.create({
+      text: ''
+    })
+  ])
+
+  await Promise.all(bunChoices.map(choice => choice.setQuestion(bunQues)))
+
 }
+
+
 
 // We've separated the `seed` function from the `runSeed` function.
 // This way we can isolate the error handling and exit trapping.
