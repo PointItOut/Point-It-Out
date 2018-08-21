@@ -1299,16 +1299,17 @@ async function seed() {
 
   const bunChoices = await Promise.all([
     Choice.create({
-      text: ''
+      text: 'Jess'
     }),
     Choice.create({
-      text: ''
+      text: 'Chris'
     }),
     Choice.create({
-      text: ''
+      text: 'Everyone',
+      isCorrect: true
     }),
     Choice.create({
-      text: ''
+      text: 'Nimit'
     })
   ])
 
