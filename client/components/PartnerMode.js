@@ -22,10 +22,6 @@ class PartnerMode extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log('==*== component updated')
-    console.log('*** prevProps', prevProps)
-    console.log('$$$ newProps', this.props)
-    console.log('*** startgame', prevProps.startGame, this.props.startGame)
     if (prevProps.gameCountdown !== this.props.gameCountdown && !prevProps.timeover && this.props.startGame) {
       soundsObject.tick.play()
       const ticker = setInterval(function(){
