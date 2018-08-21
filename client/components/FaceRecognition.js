@@ -9,7 +9,6 @@ class FaceRecognition extends Component {
     componentDidMount() {
         var video = document.getElementsByClassName('video')[1];
         var canvas = document.querySelector('.konvajs-content canvas');
-        var context = canvas.getContext('2d')
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             // Not adding `{ audio: true }` since we only want video now
             navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
