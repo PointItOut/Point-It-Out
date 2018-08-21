@@ -223,7 +223,8 @@ footer i {
 }
 
 .countdown {
-  padding-left: 50%;
-  margin-top: 15%;
+  padding-left: 45%;
+  margin-top: 10%;
   position: absolute;
+  font-size: 15em;
 }
