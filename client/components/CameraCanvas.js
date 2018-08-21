@@ -11,6 +11,7 @@ import { submitAnswerIndex, setQuestion } from '../store/currentQuestion'
 import { updateScore, evaluateAnswer } from '../store/score'
 import { noMediaStream } from '../canPlay'
 import { Crown } from './index'
+import soundsObject from '../sounds'
 
 
 class CameraCanvas extends Component {

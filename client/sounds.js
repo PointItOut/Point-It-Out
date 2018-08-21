@@ -18,24 +18,25 @@ class Sound {
 }
 
 // we access the sounds files in the public folder
+const tick = new Sound('/sounds/clock-tick1.mp3')
 
 // before game starts?
 const waiting = new Sound('/sounds/doh_de_oh.mp3') // for lobby?
 
 // when you get an answer right?
-const yay = new Sound('/sounds/happykids.mp3')
 const levelUp = new Sound('/sounds/wood_plank_flicks.mp3')
+const giggle = new Sound('/sounds/giggle_5.mp3')
 
 // when you get an answer wrong?
-const gasp = new Sound('/sounds/gasp_8.mp3')
-const somethingFalling = new Sound('/sounds/back_board.mp3')
 const wrongHorn = new Sound('/sounds/horn_squeeze_clown.mp3')
-const glassShatter = new Sound('/sounds/small_glass_pane_shatter.mp3')
+const awwWrong = new Sound('/sounds/end.mp3')
 
 // end of game?
-const endForLoser = new Sound('/sounds/end.mp3') // for loser at end?
+const applause = new Sound('/sounds/applause7.mp3')
+const yay = new Sound('/sounds/happykids.mp3')
 
-const applause = new Sound('/sounds/applause7.mp3') // for winner at end?
+// export default [ waiting, yay, levelUp, gasp, somethingFalling, wrongHorn, glassShatter, endForLoser, applause ]
 
-module.exports = [ waiting, yay, levelUp, gasp, somethingFalling, wrongHorn, glassShatter, endForLoser, applause ]
-
+export default {
+  waiting, yay, levelUp, wrongHorn, awwWrong, applause, giggle, tick
+}
