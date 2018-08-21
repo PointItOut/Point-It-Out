@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faTrash} from '@fortawesome/free-solid-svg-icons'
-import { PieChart } from './index'
+import { PieChart, QuestionInfo } from './index'
 
 class EditCategory extends Component {
   constructor() {
@@ -170,17 +168,11 @@ class EditCategory extends Component {
               </div>
               <div className="card-body">
                 {questionList.map(question => (
-                  <div key={question.id}>
-                    <span>
-                      <FontAwesomeIcon
-                        className="pointer"
-                        icon={faTrash}
-                        onClick={() => this.handleDelete(question.id)}
-                      />
-                      &nbsp;
-                      {question.text}
-                    </span>
-                  </div>
+                  <QuestionInfo
+                    key={question.id}
+                    question={question}
+                    handleDelete={this.handleDelete}
+                  />
                 ))}
               </div>
             </div>

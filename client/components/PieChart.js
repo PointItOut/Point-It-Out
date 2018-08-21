@@ -63,6 +63,7 @@ class SimplePieChart extends React.Component {
           <h4 style={{color: '#FFBB28', fontWeight: 'bold'}} >Correct Answers</h4>
           <h4 style={{color: '#FF8042', fontWeight: 'bold'}} >Incorrect Answers</h4>
         </div>
+        <br />
       </div>
     )
   }
