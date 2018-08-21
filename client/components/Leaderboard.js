@@ -22,9 +22,7 @@ const Leaderboard = props => {
 
   return (
     <div className="main-container">
-      <h2 className="text-center">
-        {categoryDisplayed.name.toUpperCase()} CHAMPIONS
-      </h2>
+      <h3 className="text-center">Champions</h3>
 
       <div className="table-responsive-sm">
         <table className="table table-hover">

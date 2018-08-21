@@ -46,6 +46,14 @@ const Navbar = ({handleClick, isLoggedIn, username}) => (
               </Link>
             </li>
           )}
+          {isLoggedIn ? (
+            <li>
+              <Link to="/home" className="nav-link">
+                {' '}
+                Logged in as {username}
+              </Link>
+            </li>
+          ) : null}
           {/* if user is logged in display the link to log out otherwise link them to log in */}
           {isLoggedIn ? (
             <li className="nav-item">
@@ -62,7 +70,6 @@ const Navbar = ({handleClick, isLoggedIn, username}) => (
           )}
         </ul>
       </div>
-      {isLoggedIn ? <p>Logged in as {username}</p> : null}
     </nav>
   </div>
 )

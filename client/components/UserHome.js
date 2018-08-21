@@ -33,9 +33,6 @@ export class UserHome extends React.Component {
     const {loadQuestions} = this.props
     //load questions dispatches a thunk to get the questions and  dispatch an action to put them on state and redirect the user to the play page
     loadQuestions(this.props.chosenCategory, currentMode)
-    //can add more functionality here as needed
-
-    // this.props.history.push(`/${currentMode}`)
   }
 
   handleChooseCategory(category) {
@@ -60,25 +57,24 @@ export class UserHome extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="main-container  col-sm-12 col-md-8">
-            <h2 className="text-center">START NEW GAME</h2>
-            {/* move this to nav bar */}
-            <p className="text-right">Logged in as {user.userName}</p>
-            {!choosingMode && choosingCategory ? (
-              <CategoryWrapper
-                handleChooseCategory={this.handleChooseCategory}
-              />
-            ) : null}
-
-            {choosingMode ? (
-              <div>
-                <ModeOptions
-                  chosenCategory={this.props.chosenCategory}
-                  loadQuestions={this.props.loadQuestions}
+          <div className="col-sm-12 col-md-8">
+            <div className="main-container">
+              <h2 className="text-center">START NEW GAME</h2>
+              {!choosingMode && choosingCategory ? (
+                <CategoryWrapper
+                  handleChooseCategory={this.handleChooseCategory}
                 />
-                <CategoryOverview resetCategory={this.resetCategory} />
-              </div>
-            ) : null}
+              ) : null}
+              {choosingMode ? (
+                <div>
+                  <ModeOptions
+                    chosenCategory={this.props.chosenCategory}
+                    loadQuestions={this.props.loadQuestions}
+                  />
+                </div>
+              ) : null}
+            </div>
+            <CategoryOverview resetCategory={this.resetCategory} />
           </div>
           <div className="col-md-4">
             <JoinGame />
@@ -96,8 +92,7 @@ export class UserHome extends React.Component {
 const mapState = state => {
   return {
     chosenCategory: state.categories.current,
-    categories: state.categories,
-    user: state.user
+    categories: state.categories
   }
 }
 
@@ -114,6 +109,4 @@ export default connect(mapState, mapDispatch)(UserHome)
 /**
  * PROP TYPES
  */
-UserHome.propTypes = {
-
-}
+UserHome.propTypes = {}

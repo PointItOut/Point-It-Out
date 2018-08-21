@@ -32,14 +32,14 @@ class ModeOptions extends Component {
           className="btn btn-main"
           onClick={() => this.handleChooseMode('solo')}
         >
-          Solo Game
+          Start Solo Game
         </button>
         <button
           type="button"
           className="btn btn-main"
           onClick={() => this.handleChooseMode('partner')}
         >
-          Multi Player Game
+          Create Multiplayer Game
         </button>
         {this.state.partnerMode ? <AddGame /> : null}
       </div>

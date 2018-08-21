@@ -2,11 +2,12 @@
 :root {
   --bg-color: #e9e9e9;
   --box-color: white;
-  --accent-color: #7734dc;
+  --purplse-color: #7734dc;
   --gold-color: #f7d119;
   --button-color: #0096cc;
   --one-card-color: #1a7b41;
   --another-card-color: #e8411e;
+  --accent-color: rgb(0, 86, 117);
   --button-hover: rgb(0, 86, 117);
   --dark-text: rgb(35, 31, 31);
   --light-text: white;
@@ -54,6 +55,7 @@ body {
   background-color: var(--box-color);
   padding: 2em;
   border-radius: 2%;
+  margin-bottom: 2em;
 }
 
 .blue-header {
@@ -90,6 +92,7 @@ body {
 .navbar a,
 footer a {
   color: var(--light-text);
+  cursor: pointer;
 }
 
 footer {
@@ -103,15 +106,21 @@ footer {
 
 .navbar a:hover {
   background-color: var(--button-hover);
+  color: var(--light-text);
+}
+
+footer a:hover {
+  color: var(--light-text);
 }
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 a:hover {
   text-decoration: none;
-  color: var(--light-text);
+  cursor: pointer;
 }
 
 label {
