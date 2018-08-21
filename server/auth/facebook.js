@@ -16,7 +16,7 @@ passport.use(
       // const facebookId = profile.id
       // const name = profile.name
       // const email = profile.email
-      User.findOrCreate({facebookId: profile.id}, function(err, user) {
+      User.findOrCreate({where: {facebookId: profile.id}}, function(err, user) {
         // if (err) {
         //   return cb(err)
         // }
