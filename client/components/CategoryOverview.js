@@ -78,9 +78,10 @@ class CategoryOverview extends Component {
       return (
         <div className="main-container">
           <div className="text-center">
-            <h2 className="text-center">
-              {categoryDisplayed.name.toUpperCase()}
-            </h2>
+            <h2 className="text-center">Category: {categoryDisplayed.name}</h2>{' '}
+            &nbsp;<span className="badge badge-primary text-center">
+              {categoryDisplayed.questionTotal} questions
+            </span>&nbsp;
             <p className="text-center">
               {!categoryDisplayed.public && match ? (
                 <button
@@ -104,7 +105,10 @@ class CategoryOverview extends Component {
               !categoryDisplayed.public &&
               !match &&
               categoryDisplayed.authorId !== user.id ? (
-                <button onClick={this.handleUnsubscribe}>
+                <button
+                  className="btn btn-main"
+                  onClick={this.handleUnsubscribe}
+                >
                   Unsubscribe from Category
                 </button>
               ) : null}&nbsp;
@@ -113,9 +117,6 @@ class CategoryOverview extends Component {
                   <FontAwesomeIcon className="pointer" icon={faPencilAlt} />
                 </Link>
               ) : null}
-              &nbsp;<span className="badge badge-primary text-center">
-                {categoryDisplayed.questionTotal} questions
-              </span>
             </p>
           </div>
           <Leaderboard categoryDisplayed={categoryDisplayed} />
