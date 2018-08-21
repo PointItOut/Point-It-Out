@@ -55,8 +55,8 @@
     "opentok": "^2.6.2",
     "opentok-react": "^0.7.0",
     "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
     "passport-google-oauth": "^1.0.0",
-
     "pg": "^6.1.2",
     "pg-hstore": "^2.3.2",
     "prop-types": "^15.6.2",
@@ -73,6 +73,7 @@
     "react-router-dom": "^4.3.1",
     "react-sizeme": "^2.5.2",
     "react-webcam": "^1.0.1",
+    "recharts": "^1.1.0",
     "redux": "^3.6.0",
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.3.0",

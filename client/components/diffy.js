@@ -1,7 +1,7 @@
 import { create } from 'diffyjs'
 import React from 'react'
 import socket from '../socket'
-import { submitAnswer } from '../store/currentQuestion'
+import { submitAnswerIndex } from '../store/currentQuestion'
 import store from '../store'
 
 const diffy = create({
@@ -16,20 +16,29 @@ const diffy = create({
     const green = [matrix[4][0], matrix[5][0], matrix[6][0]]
     const yellow = [matrix[8][0], matrix[9][0], matrix[10][0]]
     const red = [matrix[12][0], matrix[13][0], matrix[14][0]]
-    if ((store.getState().currentQuestion.text !== '') && (!store.getState().game.timeover) && (store.getState().currentQuestion.userGuess === null)) {
+
+    const isQuestion = store.getState().currentQuestion.text !== ''
+    const stillTime = !store.getState().game.timeover
+    const needGuess = store.getState().currentQuestion.userGuessIndex === null
+
+    if (isQuestion && stillTime && needGuess) {
       if (purple.some(dot => dot < 200)) {
-        store.dispatch(submitAnswer(0))
+        console.log('YOU TOUCHED 0!')
+        store.dispatch(submitAnswerIndex(0))
       }
       if (green.some(dot => dot < 200)) {
-        store.dispatch(submitAnswer(1))
+        console.log('YOU TOUCHED 1!')
+        store.dispatch(submitAnswerIndex(1))
       }
 
       if (yellow.some(dot => dot < 200)) {
-        store.dispatch(submitAnswer(2))
+        console.log('YOU TOUCHED 2')
+        store.dispatch(submitAnswerIndex(2))
       }
 
       if (red.some(dot => dot < 200)) {
-        store.dispatch(submitAnswer(3))
+        console.log('YOU TOUCHED 3')
+        store.dispatch(submitAnswerIndex(3))
       }
     }
   }
