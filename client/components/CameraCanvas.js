@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Stage, Layer, Text } from 'react-konva'
+import { Shape, Stage, Layer, Text } from 'react-konva'
 import Konva from 'konva'
 import Webcam from 'react-webcam'
 import Diffy from './diffy'
@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 import { submitAnswer, setQuestion } from '../store/currentQuestion'
 import { updateScore } from '../store/score'
 import { noMediaStream } from '../canPlay'
+
 
 class CameraCanvas extends Component {
   constructor() {
@@ -46,7 +47,7 @@ class CameraCanvas extends Component {
   }
 
   nextQuestion(wasCorrect) {
-    const {setNewQuestion, questions, currentQuestion, submitUserGuess, updateUserScore, score, location, match, user} = this.props
+    const { setNewQuestion, questions, currentQuestion, submitUserGuess, updateUserScore, score, location, match, user } = this.props
 
     const question = questions.find(
       (ques, index) => {
@@ -73,7 +74,8 @@ class CameraCanvas extends Component {
   }
 
   render() {
-    const {opponent, location, currentQuestion, timeover} = this.props
+    const facecoords = this.props.facecoord
+    const { opponent, location, currentQuestion, timeover } = this.props
 
     const opponentNames = Object.keys(opponent).sort((name1, name2) => {
       const score1 = opponent[name1]
@@ -103,7 +105,7 @@ class CameraCanvas extends Component {
     return (
       <div id="video-container">
         <Diffy />
-        <Webcam onUserMediaError={noMediaStream} />
+        <Webcam className='video' onUserMediaError={noMediaStream} />
         <Stage
           ref={ref => {
             this.stageRef = ref
@@ -116,6 +118,26 @@ class CameraCanvas extends Component {
             <GreenRect />
             <YellowRect />
             <RedRect />
+            {(facecoords) ?
+              <Shape
+                sceneFunc={(context, shape) => {
+                  context.beginPath();
+                  context.moveTo(facecoords.x, facecoords.y * 0.9);
+                  context.lineTo(facecoords.x, facecoords.y * 0.9 - 200);
+                  context.lineTo((facecoords.x + facecoords.headWidth / 4), facecoords.y * 0.9 - 60);
+                  context.lineTo((facecoords.x + facecoords.headWidth / 2), facecoords.y * 0.9 - 200);
+                  context.lineTo(facecoords.x + facecoords.headWidth * 3 / 4, facecoords.y * 0.9 - 60);
+                  context.lineTo(facecoords.x + facecoords.headWidth, facecoords.y * 0.9 - 200);
+                  context.lineTo(facecoords.x + facecoords.headWidth, facecoords.y * 0.9);
+                  context.closePath();
+                  // (!) Konva specific method, it is very important
+                  context.fillStrokeShape(shape);
+                }}
+                fill="yellow"
+                stroke="black"
+                strokeWidth={2}
+              />
+              : null}
 
             {timeover && chkwinner && !pathname.includes('solo') ? (
               <Text
@@ -143,30 +165,30 @@ class CameraCanvas extends Component {
 
             {timeover && !pathname.includes('solo')
               ? opponentNames.map((name, index) => (
-                  <Text
-                    text={`${name}: ${opponent[name]}`}
-                    x={250}
-                    y={350 + index * 50}
-                    fontSize={50}
-                    fill={'blue'}
-                    align={'center'}
-                    width={800}
-                  />
-                ))
+                <Text
+                  text={`${name}: ${opponent[name]}`}
+                  x={250}
+                  y={350 + index * 50}
+                  fontSize={50}
+                  fill={'blue'}
+                  align={'center'}
+                  width={800}
+                />
+              ))
               : null}
 
             {// option text boxes
               choices.map((choice, index) => (
-                <ChoiceTextBox id={choice.id} choiceText={choice.text} xPosition={xPositions[index]}/>
+                <ChoiceTextBox id={choice.id} choiceText={choice.text} xPosition={xPositions[index]} />
               ))}
 
             {// if we have options and the user has guessed, show feedback:
               currentQuestion.userGuess !== null && choices.length
                 ? choices.map((choice, index) => {
                   if (choice.isCorrect) {
-                    return <GreenBorder xPosition={xPositions[index]}/>
+                    return <GreenBorder xPosition={xPositions[index]} />
                   } else if (currentQuestion.userGuess === index) {
-                    return <RedBorder xPosition={xPositions[index]}/>
+                    return <RedBorder xPosition={xPositions[index]} />
                   } else {
                     return null
                   }
@@ -174,7 +196,7 @@ class CameraCanvas extends Component {
                 : null}
 
             <QuestionBox />
-            <QuestionText questionText={currentQuestion.text}/>
+            <QuestionText questionText={currentQuestion.text} />
           </Layer>
         </Stage>
       </div>
@@ -187,7 +209,8 @@ const mapState = state => ({
   score: state.score,
   user: state.user,
   opponent: state.opponent,
-  timeover: state.game.timeover
+  timeover: state.game.timeover,
+  facecoord: state.facecoord
 })
 
 const mapDispatch = dispatch => ({
