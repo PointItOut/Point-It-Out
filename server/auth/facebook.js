@@ -37,8 +37,8 @@ router.get('/', passport.authenticate('facebook', {scope: 'email'}))
 router.get(
   '/callback',
   passport.authenticate('facebook', {
-    successRedirect: '/home',
-    failureRedirect: '/login'
+    successRedirect: 'https://point-it-out.herokuapp.com/home',
+    failureRedirect: 'https://point-it-out.herokuapp.com/login'
   }),
   function(req, res) {
     res.redirect('/home')
