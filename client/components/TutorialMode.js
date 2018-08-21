@@ -38,7 +38,7 @@ class TutorialMode extends Component {
 
     return (
     <div className="tutorial game-wrapper">
-      <CameraCanvas questions={questions} />
+      <CameraCanvas questions={questions} tutorialMode={true} />
       <div className="container" id="tutorial-sidebar">
         <h3>TUTORIAL:</h3>
         <h4>Touch the box with the correct answer</h4>
