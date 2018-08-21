@@ -5,13 +5,31 @@ import { CameraCanvas, GameSidebar } from './index'
 import Countdown from 'react-countdown-now'
 import { setTimeOver } from '../store/game'
 import { withRouter } from 'react-router-dom'
+import soundsObject from '../sounds'
 
 class SoloMode extends Component {
+  constructor() {
+    super()
+    this.state = {
+      ticker: null
+    }
+  }
+
   componentDidMount() {
     if (!this.props.startGame) {
       this.props.history.push('/home')
     }
+
+    soundsObject.tick.play()
+    const ticker = setInterval(function() {
+      soundsObject.tick.play()
+    }, 1000)
+
+    this.setState({
+      ticker: ticker
+    })
   }
+
 
 
   render() {
@@ -19,6 +37,7 @@ class SoloMode extends Component {
 
     const renderer = ({ seconds, completed }) => {
       if (completed) {
+        clearInterval(this.state.ticker)
         return (
           <div className="game-wrapper">
             <CameraCanvas questions={questions} />
