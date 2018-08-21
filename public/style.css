@@ -1,13 +1,45 @@
-:root {
+/*what we have now + a few extra*/
+/* :root {
   --bg-color: #e9e9e9;
   --box-color: white;
   --accent-color: #7734dc;
+  --gold-color: #f7d119;
+  --button-color: #0096cc;
+  --one-card-color: #1a7b41;
+  --another-card-color: #e8411e;
+  --button-hover: rgb(0, 86, 117);
+  --dark-text: rgb(35, 31, 31);
+  --light-text: white;
+  --primary: #0096cc;
+} */
+
+/*like our fav website*/
+:root {
+  --bg-color: #e9e9e9;
+  --box-color: white;
+  --accent-color: #a560eb;
+  --gold-color: #f7bf33;
+  --one-card-color: #b64740;
+  --another-card-color: #d26b3e;
   --button-color: #0096cc;
   --button-hover: rgb(0, 86, 117);
   --dark-text: rgb(35, 31, 31);
   --light-text: white;
   --primary: #0096cc;
 }
+/*
+:root {
+  --bg-color: #e9e9e9;
+  --box-color: white;
+  --accent-color: #af330f;
+  --gold-color: #ee9e24;
+  --one-card-color: #48b9cd;
+  --button-color: #0096cc;
+  --button-hover: rgb(0, 86, 117);
+  --dark-text: rgb(35, 31, 31);
+  --light-text: white;
+  --primary: #0096cc;
+} */
 
 body {
   background-color: var(--bg-color);
@@ -26,6 +58,11 @@ body {
 
 .blue-header {
   background-color: var(--button-color);
+  color: var(--light-text);
+}
+
+.accent-header {
+  background-color: var(--accent-color);
   color: var(--light-text);
 }
 

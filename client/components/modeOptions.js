@@ -26,19 +26,20 @@ class ModeOptions extends Component {
     const {chooseMode} = this.props
     return (
       <div>
+        <h4>Step 2: Choose a Mode</h4>
         <button
           type="button"
           className="btn btn-main"
           onClick={() => this.handleChooseMode('solo')}
         >
-          Challenge Yourself!
+          Solo Game
         </button>
         <button
           type="button"
           className="btn btn-main"
           onClick={() => this.handleChooseMode('partner')}
         >
-          Challenge a Friend!
+          Multi Player Game
         </button>
         {this.state.partnerMode ? <AddGame /> : null}
       </div>

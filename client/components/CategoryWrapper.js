@@ -39,26 +39,25 @@ class CategoryWrapper extends Component {
     if (loaded) {
       return (
         <div>
+          <h4>Step 1: Choose a Category</h4>
+          <CategoryChoices
+            categories={categories.public}
+            chooseCategory={handleChooseCategory}
+          />
+          <h5>Your Categories</h5>
+
+          <CategoryChoices
+            categories={categories.private}
+            chooseCategory={handleChooseCategory}
+          />
           <button
             type="button"
             className="btn btn-main"
             onClick={this.handleMakeCategory}
           >
-            Make your own Category!
+            Add a category
           </button>
-
           {makeNewCategory ? <AddCategory /> : null}
-
-          <h2>Public Categories:</h2>
-          <CategoryChoices
-            categories={categories.public}
-            chooseCategory={handleChooseCategory}
-          />
-          <h2>Private Categories:</h2>
-          <CategoryChoices
-            categories={categories.private}
-            chooseCategory={handleChooseCategory}
-          />
         </div>
       )
     } else {

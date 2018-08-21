@@ -28,7 +28,7 @@ const Leaderboard = props => {
 
       <div className="table-responsive-sm">
         <table className="table table-hover">
-          <thead className="blue-header">
+          <thead className="accent-header">
             <tr>
               <th scope="column">Place</th>
               <th scope="column">User</th>

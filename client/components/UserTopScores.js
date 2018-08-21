@@ -26,7 +26,7 @@ class UserTopScores extends React.Component {
     if (loaded) {
       return (
         <div className="card">
-          <div className="card-header blue-header">
+          <div className="card-header accent-header">
             <h4 className="text-center">YOUR TOP SCORES</h4>
           </div>
           <div className="card-body">
