@@ -23,6 +23,6 @@ export default CategoryChoices
 
 // PROP TYPES
 CategoryChoices.propTypes = {
-  categories: PropTypes.object,
+  categories: PropTypes.array,
   chooseCategory: PropTypes.func
 }

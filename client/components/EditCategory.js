@@ -16,6 +16,7 @@ class EditCategory extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleAddQuestion = this.handleAddQuestion.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   handleChange(evt) {

@@ -5,7 +5,7 @@ import Webcam from 'react-webcam'
 import Diffy from './diffy'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { PurpleRect, GreenRect, YellowRect, RedRect, ChoiceTextBox, QuestionText, QuestionBox, RedBorder, GreenBorder } from './canvas-rects'
+import { PurpleRect, GreenRect, YellowRect, RedRect, ChoiceTextBox, QuestionText, QuestionBox, RedBorder, GreenBorder, OpponentScoreRect, WinnerRect, TieRect, Backdrop } from './canvas-rects'
 import { connect } from 'react-redux'
 import { submitAnswerIndex, setQuestion } from '../store/currentQuestion'
 import { updateScore, evaluateAnswer } from '../store/score'
@@ -53,7 +53,7 @@ class CameraCanvas extends Component {
         partnerMode,
         oldTotal: score,
         userId: user.id,
-        username: user.username,
+        username: user.userName,
         gameName
       }
 
@@ -122,6 +122,7 @@ class CameraCanvas extends Component {
             <GreenRect />
             <YellowRect />
             <RedRect />
+
             {(facecoords) ?
               <Shape
                 sceneFunc={(context, shape) => {
@@ -143,43 +144,17 @@ class CameraCanvas extends Component {
               />
               : null}
 
-            {timeover && chkwinner && !pathname.includes('solo') ? (
-              <Text
-                text={`The winner is ${winner[0]}`}
-                x={250}
-                y={280}
-                fontSize={50}
-                fill={'blue'}
-                align={'center'}
-                width={500}
-              />
-            ) : null}
+            {timeover && chkwinner && !pathname.includes('solo') ? <WinnerRect winner={winner}/> : null}
 
-            {timeover && !chkwinner && !pathname.includes('solo') ? (
-              <Text
-                text={`It's a draw`}
-                x={250}
-                y={280}
-                fontSize={50}
-                fill={'blue'}
-                align={'center'}
-                width={400}
-              />
-            ) : null}
+            {timeover && !chkwinner && !pathname.includes('solo') ? <TieRect /> : null}
 
             {timeover && !pathname.includes('solo')
               ? opponentNames.map((name, index) => (
-                <Text
-                  text={`${name}: ${opponent[name]}`}
-                  x={250}
-                  y={350 + index * 50}
-                  fontSize={50}
-                  fill={'blue'}
-                  align={'center'}
-                  width={800}
-                />
+                <OpponentScoreRect name={name} opponent={opponent} index={index}/>
               ))
               : null}
+
+            {timeover && !pathname.includes('solo') ? <Backdrop /> : null}
 
             {// option text boxes
               choices.map((choice, index) => (
@@ -220,7 +195,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   submitUserGuess: guess => dispatch(submitAnswerIndex(guess)),
   setNewQuestion: question => dispatch(setQuestion(question)),
-  checkAnswer: (choiceObj, userId) => dispatch(evaluateAnswer(choiceObj, userId)),
+  checkAnswer: (choiceObj, gameObj) => dispatch(evaluateAnswer(choiceObj, gameObj)),
   updateUserScore: (score, partner, username, gameName) =>
     dispatch(updateScore(score, partner, username, gameName))
 })
