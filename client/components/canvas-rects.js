@@ -104,6 +104,8 @@ export const RedBorder = ({xPosition}) => {
       height={75}
       stroke="red"
       strokeWidth={10}
+      shadowColor="#FF5733"
+      shadowBlur={30}
     />
   )
 }
@@ -117,7 +119,7 @@ export const GreenBorder = ({xPosition}) => {
       height={75}
       stroke="#1BA527"
       strokeWidth={10}
-      shadowColor="#4BB224"
+      shadowColor="#7CB224"
       shadowBlur={30}
     />
   )
