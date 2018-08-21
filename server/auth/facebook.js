@@ -12,16 +12,17 @@ passport.use(
       callbackURL: 'https://point-it-out.herokuapp.com/auth/facebook/callback'
     },
     function(accessToken, refreshToken, profile, cb) {
-      console.log('PROFILE ', profile)
-      // const facebookId = profile.id
-      // const name = profile.name
-      // const email = profile.email
-      User.findOrCreate({facebookId: profile.id}, function(err, user) {
-        // if (err) {
-        //   return cb(err)
-        // }
-        return cb(err, user)
+      console.log('after lunch version', 'profile', profile)
+      console.log('OUR ACCESS TOKEN', accessToken)
+      User.findOrCreate({
+        where: {facebookId: profile.id, userName: profile.displayName}
       })
+
+        .then(([user]) => cb(null, user))
+        .catch(err => {
+          console.log('ERR', err)
+          cb(err)
+        })
     }
   )
 )
@@ -37,8 +38,8 @@ router.get('/', passport.authenticate('facebook', {scope: 'email'}))
 router.get(
   '/callback',
   passport.authenticate('facebook', {
-    successRedirect: '/home',
-    failureRedirect: '/login'
+    successRedirect: 'https://point-it-out.herokuapp.com/home',
+    failureRedirect: 'https://point-it-out.herokuapp.com/login'
   }),
   function(req, res) {
     res.redirect('/home')
