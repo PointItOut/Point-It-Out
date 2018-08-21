@@ -1,6 +1,7 @@
 const router = require('express').Router()
-const { Game, User } = require('../db/models')
+const { Game, User, Choice, Question } = require('../db/models')
 const OpenTok = require('opentok')
+const tutorialQuestions = require('../tutorial-questions')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -9,6 +10,34 @@ router.get('/', async (req, res, next) => {
   } catch (err) {
     next(err)
   }
+})
+
+router.post('/guess/:choiceId', async (req, res, next) => {
+  try {
+    // req.body has a userId (if there is one) and a tutorialMode (which is true or false)
+    if (req.body.tutorialMode) {
+      const allTutorialChoices = tutorialQuestions.reduce((acc, ques) => {
+        return [...acc, ...ques.choices]
+      }, [])
+      const userChoice = allTutorialChoices.find(choice => choice.id === +req.params.choiceId)
+
+      userChoice.isCorrect ? res.json('correct') : res.json('incorrect')
+    } else {
+      // otherwise we're playing a real game
+      const userGuess = await Choice.findById(+req.params.choiceId)
+      const currentQuestion = await Question.findById(userGuess.questionId)
+
+      const { correctGuesses, incorrectGuesses } = currentQuestion
+
+      if (userGuess.isCorrect) {
+        await currentQuestion.update({ correctGuesses: correctGuesses + 1})
+        res.json('correct')
+      } else {
+        await currentQuestion.update({ incorrectGuesses: incorrectGuesses + 1})
+        res.json('incorrect')
+      }
+    }
+  } catch (err) { next(err) }
 })
 
 router.get('/:name', async (req, res, next) => {

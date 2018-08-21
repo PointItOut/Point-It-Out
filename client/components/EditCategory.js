@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faTrash} from '@fortawesome/free-solid-svg-icons'
+import { PieChart, QuestionInfo } from './index'
 
 class EditCategory extends Component {
   constructor() {
@@ -77,12 +76,19 @@ class EditCategory extends Component {
 
   render() {
     // will have a button to return the user to /home?
-    const {questionName, answer, choice1, choice2, choice3} = this.state
+    const {questionName, answer, choice1, choice2, choice3, questionList, categoryName} = this.state
     const {history} = this.props
 
     const invalidInfo =
       !questionName || !answer || !choice1 || !choice2 || !choice3
-    const {categoryName, questionList} = this.state
+
+    const totalAnswersCorrect = questionList.reduce((total, question) => {
+      return total + question.correctGuesses
+    }, 0)
+
+    const totalAnswersIncorrect = questionList.reduce((total, question) => {
+      return total + question.incorrectGuesses
+    }, 0)
 
     return (
       <div className="container">
@@ -90,11 +96,13 @@ class EditCategory extends Component {
           <div className="main-container col-sm-12 col-md-8">
             <h2 className="text-center">{categoryName.toUpperCase()}</h2>
 
+            <PieChart totalCorrect={totalAnswersCorrect} totalIncorrect={totalAnswersIncorrect} />
+
             <h3>Create a new question</h3>
             <form id="new-question-form" onSubmit={this.handleAddQuestion}>
               <div className="form-group row">
                 <div className="col-sm-12">
-                  <label htmlFor="questionName">Question text</label>
+                  <label htmlFor="questionName">Question text:</label>
                   <input
                     type="text"
                     name="questionName"
@@ -104,7 +112,7 @@ class EditCategory extends Component {
                   />
                 </div>
                 <div className="col-sm-12">
-                  <label htmlFor="answer">Correct choice</label>
+                  <label htmlFor="answer">Correct Answer:</label>
                   <input
                     type="text"
                     className="form-control"
@@ -114,7 +122,7 @@ class EditCategory extends Component {
                   />
                 </div>
                 <div className="col-sm-12">
-                  <label htmlFor="choice1">Choice</label>
+                  <label htmlFor="choice1">Choice:</label>
                   <input
                     type="text"
                     className="form-control"
@@ -124,7 +132,7 @@ class EditCategory extends Component {
                   />
                 </div>
                 <div className="col-sm-12">
-                  <label htmlFor="choice2">Choice</label>
+                  <label htmlFor="choice2">Choice:</label>
                   <input
                     type="text"
                     className="form-control"
@@ -134,7 +142,7 @@ class EditCategory extends Component {
                   />
                 </div>
                 <div className="col-sm-12">
-                  <label htmlFor="choice3">Choice</label>
+                  <label htmlFor="choice3">Choice:</label>
                   <input
                     className="form-control"
                     type="text"
@@ -160,17 +168,11 @@ class EditCategory extends Component {
               </div>
               <div className="card-body">
                 {questionList.map(question => (
-                  <div key={question.id}>
-                    <span>
-                      <FontAwesomeIcon
-                        className="pointer"
-                        icon={faTrash}
-                        onClick={() => this.handleDelete(question.id)}
-                      />
-                      &nbsp;
-                      {question.text}
-                    </span>
-                  </div>
+                  <QuestionInfo
+                    key={question.id}
+                    question={question}
+                    handleDelete={this.handleDelete}
+                  />
                 ))}
               </div>
             </div>
