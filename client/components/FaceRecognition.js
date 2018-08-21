@@ -31,9 +31,10 @@ class FaceRecognition extends Component {
             var positions = ctracker.getCurrentPosition();
             if (positions) {
                 const headWidth = canvasWidth * Math.abs(positions[14][0] - positions[0][0]) * 1.2 / 130
-                const halfHeadHeight = Math.abs(positions[33][1] - positions[7][1])
+                const halfHeadHeight = canvasHeight * (Math.abs(positions[62][1] - positions[7][1]) / 100) * 0.6
+                console.log('===============>', halfHeadHeight)
                 const x = canvasWidth - canvasWidth * positions[14][0] / 130
-                const y = (canvasHeight * Math.max(positions[20][1], positions[21][1], positions[17][1], positions[16][1]) / 100) - 100
+                const y = (canvasHeight * Math.max(positions[20][1], positions[21][1], positions[17][1], positions[16][1]) / 100) - halfHeadHeight
                 setCoords({ x, y, headWidth })
             }
         }

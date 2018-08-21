@@ -129,28 +129,8 @@ class CameraCanvas extends Component {
             <YellowRect />
             <RedRect />
 
-            {/* {(facecoords) ?
-              <Shape
-                sceneFunc={(context, shape) => {
-                  context.beginPath();
-                  context.moveTo(facecoords.x, facecoords.y * 0.9);
-                  context.lineTo(facecoords.x, facecoords.y * 0.9 - 200);
-                  context.lineTo((facecoords.x + facecoords.headWidth / 4), facecoords.y * 0.9 - 60);
-                  context.lineTo((facecoords.x + facecoords.headWidth / 2), facecoords.y * 0.9 - 200);
-                  context.lineTo(facecoords.x + facecoords.headWidth * 3 / 4, facecoords.y * 0.9 - 60);
-                  context.lineTo(facecoords.x + facecoords.headWidth, facecoords.y * 0.9 - 200);
-                  context.lineTo(facecoords.x + facecoords.headWidth, facecoords.y * 0.9);
-                  context.closePath();
-                  // (!) Konva specific method, it is very important
-                  context.fillStrokeShape(shape);
-                }}
-                fill="yellow"
-                stroke="black"
-                strokeWidth={2}
-              />
-              : null} */}
 
-            {/* {timeover && chkwinner && !pathname.includes('solo') ? <WinnerRect winner={winner} /> : null}
+            {timeover && chkwinner && !pathname.includes('solo') ? <WinnerRect winner={winner} /> : null}
 
             {timeover && !chkwinner && !pathname.includes('solo') ? <TieRect /> : null}
 
@@ -158,7 +138,7 @@ class CameraCanvas extends Component {
               ? opponentNames.map((name, index) => (
                 <OpponentScoreRect name={name} opponent={opponent} index={index} />
               ))
-              : null} */}
+              : null}
 
             {/* {timeover && !pathname.includes('solo') ? <Backdrop /> : null} */}
 
