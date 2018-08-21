@@ -39,7 +39,11 @@ class CameraCanvas extends Component {
     const { currentQuestion, checkAnswer, user, location, match, tutorialMode, score } = this.props
     const { text, choices, userGuessIndex } = currentQuestion
 
-    if ((userGuessIndex !== prevProps.currentQuestion.userGuessIndex) && (text !== '')) {
+    const currentQuestionExists = text !== ''
+    const notGuessedYet = prevProps.currentQuestion.userGuessIndex === null
+    const newGuessSubmitted = userGuessIndex !== null
+
+    if (currentQuestionExists && notGuessedYet && newGuessSubmitted) {
       const partnerMode = !location.pathname.includes('solo')
       const gameName = match.params.name ? match.params.name : undefined
 
