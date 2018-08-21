@@ -1221,6 +1221,7 @@ async function seed() {
     })
   ])
 
+  /*
   await Promise.all(petQuestions.map(ques => ques.setCategory(fullstackPets)))
 
   const [codyQues, firaQues, brunoQues, davidQues, bunQues] = questions
@@ -1314,6 +1315,7 @@ async function seed() {
   ])
 
   await Promise.all(bunChoices.map(choice => choice.setQuestion(bunQues)))
+  */
 
 }
 
