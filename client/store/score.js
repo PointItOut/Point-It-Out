@@ -16,15 +16,15 @@ export const resetScore = () => {
   }
 }
 
-export const updateScore = (total, partner, username, gameName) => {
-  if (partner === true) {
-    socket.emit('new-score', { total, username, gameName })
-  }
-  return {
-    type: UPDATE_SCORE,
-    total
-  }
-}
+// const updateScore = (total, partner, username, gameName) => {
+//   if (partner === true) {
+//     socket.emit('new-score', { total, username, gameName })
+//   }
+//   return {
+//     type: UPDATE_SCORE,
+//     total
+//   }
+// }
 
 const incrementScore = () => ({
   type: INCREMENT_SCORE
@@ -34,7 +34,6 @@ const incrementScore = () => ({
 export const evaluateAnswer = (choiceObj, gameObj) => async dispatch => {
   try {
     const { tutorialMode, partnerMode, oldTotal, userId, username, gameName } = gameObj
-
     const { data } = await axios.post(`/api/game/guess/${choiceObj.id}`, { userId, tutorialMode })
 
     if (data === 'correct') {

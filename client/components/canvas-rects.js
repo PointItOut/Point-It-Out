@@ -120,3 +120,60 @@ export const GreenBorder = ({xPosition}) => {
     />
   )
 }
+
+export const WinnerRect = props => {
+  const winnerName = props.winner[0]
+  return (
+    <Text
+      text={`The winner is ${winnerName}`}
+      x={250}
+      y={280}
+      fontSize={50}
+      fill='blue'
+      align='center'
+      width={500}
+    />
+  )
+}
+
+export const TieRect = () => {
+  return (
+    <Text
+      text={`It's a draw`}
+      x={250}
+      y={280}
+      fontSize={50}
+      fill='blue'
+      align='center'
+      width={400}
+    />
+  )
+}
+
+export const OpponentScoreRect = props => {
+  const { name, opponent, index } = props
+  return (
+    <Text
+      text={`${name}: ${opponent[name]}`}
+      x={250}
+      y={350 + index * 50}
+      fontSize={50}
+      fill='blue'
+      align='center'
+      width={800}
+    />
+  )
+}
+
+export const Backdrop = () => {
+  return (
+    <Rect
+      x={100}
+      y={100}
+      width={800}
+      height={500}
+      fill='black'
+      opacity={0.5}
+    />
+  )
+}

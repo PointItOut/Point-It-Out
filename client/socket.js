@@ -29,7 +29,7 @@ socket.on('webcam', payload => {
 })
 
 socket.on('new-score', newlist => {
-  console.log('receieved new-game', newlist)
+  console.log('===*=== receieved new-list', newlist)
   store.dispatch(gotList(newlist))
 })
 
