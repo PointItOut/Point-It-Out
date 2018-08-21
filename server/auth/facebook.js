@@ -13,7 +13,14 @@ passport.use(
     },
     function(accessToken, refreshToken, profile, cb) {
       console.log('after lunch version', 'profile', profile)
+      console.log('OUR ACCESS TOKEN', accessToken)
       User.findOrCreate({where: {facebookId: profile.id}})
+
+        .then(([user]) => cb(null, user))
+        .catch(err => {
+          console.log('WTF ERR', err)
+          cb(err)
+        })
     }
   )
 )
