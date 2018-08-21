@@ -6,7 +6,7 @@ import {logout} from '../store'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faHandPointUp} from '@fortawesome/free-solid-svg-icons'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isLoggedIn, username}) => (
   <div>
     <nav className="navbar navbar-expand-lg">
       <div className="navbar-brand">
@@ -62,6 +62,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           )}
         </ul>
       </div>
+      {isLoggedIn ? <p>Logged in as {username}</p> : null}
     </nav>
   </div>
 )
@@ -71,7 +72,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    username: state.user.userName
   }
 }
 
