@@ -15,7 +15,6 @@ import {
   QuestionBox,
   RedBorder,
   GreenBorder,
-  OpponentScoreRect,
   WinnerRect,
   TieRect,
   Backdrop
@@ -156,18 +155,6 @@ class CameraCanvas extends Component {
             <GreenRect />
             <YellowRect />
             <RedRect />
-
-            {/* {timeover && !pathname.includes('solo')
-              ? opponentNames.map((name, index) => (
-                  <OpponentScoreRect
-                    name={name}
-                    opponent={opponent}
-                    index={index}
-                  />
-                ))
-              : null} */}
-
-            {/* {timeover && !pathname.includes('solo') ? <Backdrop /> : null} */}
 
             {// option text boxes
             choices.map((choice, index) => (
