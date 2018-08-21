@@ -9,7 +9,7 @@ passport.use(
     {
       clientID: process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
-      callbackURL: '/auth/facebook/callback'
+      callbackURL: 'https://point-it-out.herokuapp.com/auth/facebook/callback'
     },
     function(accessToken, refreshToken, profile, cb) {
       console.log('PROFILE ', profile)
