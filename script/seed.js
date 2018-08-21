@@ -294,7 +294,7 @@ async function seed() {
   // assign each question to the stateCapitals category
   const associatedToCategory = await Promise.all(questions.map(question => question.setCategory(stateCapitals)))
 
-  console.log(`seeded ${questions.length} questions`)
+  console.log(`seeded ${questions.length} state capital questions`)
   console.log(`seeded successfully`)
 
   //CHOICES
@@ -1198,8 +1198,101 @@ async function seed() {
 
   await Promise.all(wyomingChoices.map(choice => choice.setQuestion(Wyoming)))
 
-  console.log(`seeded ${200} choices`)
+  console.log(`seeded ${200} state capital choices`)
   console.log(`seeded successfully`)
+
+
+  // FULLSTACK PETS QUESTIONS
+  const petQuestions = await Promise.all([
+    Question.create({
+      text: 'What kind of dog is Cody?'
+    }),
+    Question.create({
+      text: 'What kind of animal is Fira?'
+    }),
+    Question.create({
+      text: "Who is Bruno's human?"
+    }),
+    Question.create({
+      text: "What is David Yang's verdict on pugs?"
+    })
+  ])
+
+  await Promise.all(petQuestions.map(ques => ques.setCategory(fullstackPets)))
+
+  const [codyQues, firaQues, brunoQues, davidQues] = questions
+
+  // FULLSTACK PETS CHOICES
+
+  const codyChoices = await Promise.all([
+    Choice.create({
+      text: 'a majestic pug',
+      isCorrect: true
+    }),
+    Choice.create({
+      text: 'a regal goldendoodle'
+    }),
+    Choice.create({
+      text: 'a wise bloodhound'
+    }),
+    Choice.create({
+      text: 'a confident chihuahua'
+    })
+  ])
+
+  await Promise.all(codyChoices.map(choice => choice.setQuestion(codyQues)))
+
+  const firaChoices = await Promise.all([
+    Choice.create({
+      text: 'Snake',
+      isCorrect: true
+    }),
+    Choice.create({
+      text: 'Parrot'
+    }),
+    Choice.create({
+      text: 'Guniea Pig'
+    }),
+    Choice.create({
+      text: 'Sloth'
+    })
+  ])
+
+  await Promise.all(firaChoices.map(choice => choice.setQuestion(firaQues)))
+
+  const brunoChoices = await Promise.all([
+    Choice.create({
+      text: 'Aleks'
+    }),
+    Choice.create({
+      text: 'John'
+    }),
+    Choice.create({
+      text: 'Tom'
+    }),
+    Choice.create({
+      text: 'Dan'
+    })
+  ])
+
+  await Promise.all(brunoChoices.map(choice => choice.setQuestion(brunoQues)))
+
+  const davidChoices = await Promise.all([
+    Choice.create({
+      text: 'not actually adorable'
+    }),
+    Choice.create({
+      text: 'breathtaking'
+    }),
+    Choice.create({
+      text: 'suspicious'
+    }),
+    Choice.create({
+      text: 'intimidating'
+    })
+  ])
+
+  await Promise.all(davidChoices.map(choice => choice.setQuestion(davidQues)))
 }
 
 // We've separated the `seed` function from the `runSeed` function.
