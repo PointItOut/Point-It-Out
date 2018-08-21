@@ -39,13 +39,13 @@ class CategoryWrapper extends Component {
     if (loaded) {
       return (
         <div>
-          <h4>Step 1: Choose a Category</h4>
+          <h4 className="text-center">Step 1: Choose a Category</h4>
+          <p>Public categories</p>
           <CategoryChoices
             categories={categories.public}
             chooseCategory={handleChooseCategory}
           />
-          <h5>Your Categories</h5>
-
+          <p>Your Custom Categories</p>
           <CategoryChoices
             categories={categories.private}
             chooseCategory={handleChooseCategory}

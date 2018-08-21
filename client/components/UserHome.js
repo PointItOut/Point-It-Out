@@ -21,17 +21,10 @@ export class UserHome extends React.Component {
       choosingMode: false,
       choosingCategory: true
     }
-    // this.handlePlay = this.handlePlay.bind(this)
+
     this.handleChooseCategory = this.handleChooseCategory.bind(this)
     this.resetCategory = this.resetCategory.bind(this)
   }
-
-  // handlePlay() {
-  //   this.setState({
-  //     choosingCategory: true,
-  //     active: true
-  //   })
-  // }
 
   handleChooseMode(currentMode) {
     if (currentMode === 'partner') {
