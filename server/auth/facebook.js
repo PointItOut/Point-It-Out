@@ -9,7 +9,7 @@ passport.use(
     {
       clientID: process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
-      callbackURL: 'https://point-it-out.herokuapp.com/login/facebook/callback'
+      callbackURL: '/auth/facebook/callback'
     },
     function(accessToken, refreshToken, profile, cb) {
       console.log('PROFILE ', profile)
@@ -28,7 +28,7 @@ passport.use(
 // Redirect the user to Facebook for authentication.  When complete,
 // Facebook will redirect the user back to the application at
 //     /auth/facebook/callback
-router.get('/', passport.authenticate('facebook'))
+router.get('/', passport.authenticate('facebook', {scope: 'email'}))
 
 // Facebook will redirect the user to this URL after approval.  Finish the
 // authentication process by attempting to obtain an access token.  If
@@ -37,7 +37,7 @@ router.get('/', passport.authenticate('facebook'))
 router.get(
   '/callback',
   passport.authenticate('facebook', {
-    // successRedirect: '/home',
+    successRedirect: '/home',
     failureRedirect: '/login'
   }),
   function(req, res) {
