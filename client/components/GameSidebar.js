@@ -72,7 +72,9 @@ class GameSidebar extends Component {
       deleteGame,
       score,
       isSolo,
-      user
+      user,
+      handleRestart,
+      restartGame
     } = this.props
     const Mode = 'partner'
 
@@ -108,7 +110,10 @@ class GameSidebar extends Component {
               <button
                 type="button"
                 className="btn btn-main"
-                onClick={() => this.props.restartGame()}
+                onClick={() => {
+                  handleRestart()
+                  restartGame()
+                }}
               >
                 Play Again
             </button>
@@ -159,7 +164,7 @@ const mapDispatchToProps = function (dispatch) {
     setHighScore: (score, category, user) =>
       dispatch(setHighScore(score, category, user)),
     restartGame: () => {
-      dispatch(startGame())
+      dispatch(startGame(true))
       dispatch(updateScore(0))
     },
     updateSoloScore: (num) => dispatch(updateScore(num))

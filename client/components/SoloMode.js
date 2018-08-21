@@ -11,8 +11,10 @@ class SoloMode extends Component {
   constructor() {
     super()
     this.state = {
-      ticker: null
+      ticker: null,
+      restarting: false
     }
+    this.handleRestart = this.handleRestart.bind(this)
   }
 
   componentDidMount() {
@@ -30,7 +32,25 @@ class SoloMode extends Component {
     })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.restarting === false && this.state.restarting === true) {
+      soundsObject.tick.play()
+      const ticker = setInterval(function() {
+        soundsObject.tick.play()
+      }, 1000)
 
+      this.setState({
+        ticker: ticker,
+        restarting: false
+      })
+    }
+  }
+
+  handleRestart() {
+    this.setState({
+      restarting: true
+    })
+  }
 
   render() {
     const { questions, timeover } = this.props
@@ -41,7 +61,7 @@ class SoloMode extends Component {
         return (
           <div className="game-wrapper">
             <CameraCanvas questions={questions} />
-            <GameSidebar isSolo={this.props.match.path === '/solo'} />
+            <GameSidebar isSolo={this.props.match.path === '/solo'} handleRestart={this.handleRestart}/>
           </div>
         )
       } else {
