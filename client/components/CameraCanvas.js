@@ -30,7 +30,7 @@ class CameraCanvas extends Component {
     console.log(this.stageRef.getStage())
 
     const { setNewQuestion, questions, submitUserGuess } = this.props
-
+    console.log('MOUNTING')
     setNewQuestion(questions[0]) // start with first question
     submitUserGuess(null) // to reset userguess to null
     this.setState({
@@ -39,6 +39,7 @@ class CameraCanvas extends Component {
   }
 
   componentDidUpdate(prevProps) {
+
     const { currentQuestion, checkAnswer, user, location, match, tutorialMode, score } = this.props
     const { text, choices, userGuessIndex } = currentQuestion
 
@@ -47,6 +48,7 @@ class CameraCanvas extends Component {
     const newGuessSubmitted = userGuessIndex !== null
 
     if (currentQuestionExists && notGuessedYet && newGuessSubmitted) {
+      console.log('ABOUT TO CHECK ANSWER')
       const partnerMode = !location.pathname.includes('solo')
       const gameName = match.params.name ? match.params.name : undefined
 
@@ -59,6 +61,7 @@ class CameraCanvas extends Component {
         gameName
       }
 
+      choices[userGuessIndex].isCorrect ? soundsObject.giggle.play() : soundsObject.wrongHorn.play()
       checkAnswer(choices[userGuessIndex], gameObj)
       this.nextQuestion()
     }
@@ -105,8 +108,6 @@ class CameraCanvas extends Component {
     }
     const pathname = location.pathname
     const showCrown = pathname.includes('solo') || (winner.includes(user.userName))
-    console.log('showCr6666wn=====>', facecoords && timeover && showCrown)
-
     const { choices } = currentQuestion
     const xPositions = [0, 266, 533, 799]
 
@@ -129,12 +130,8 @@ class CameraCanvas extends Component {
             <GreenRect />
             <YellowRect />
             <RedRect />
-
-
             {timeover && chkwinner && !pathname.includes('solo') ? <WinnerRect winner={winner} /> : null}
-
             {timeover && !chkwinner && !pathname.includes('solo') ? <TieRect /> : null}
-
             {timeover && !pathname.includes('solo')
               ? opponentNames.map((name, index) => (
                 <OpponentScoreRect name={name} opponent={opponent} index={index} />
@@ -151,13 +148,14 @@ class CameraCanvas extends Component {
             {// if we have options and the user has guessed, show feedback:
               currentQuestion.userGuessIndex !== null && choices.length
                 ? choices.map((choice, index) => {
+                  console.log('inside mapping', currentQuestion.userGuessIndex)
                   if (choice.isCorrect) {
                     if (currentQuestion.userGuessIndex === index) {
-                      soundsObject.giggle.play()
+                      // soundsObject.giggle.play()
                     }
                     return <GreenBorder xPosition={xPositions[index]} />
                   } else if (currentQuestion.userGuessIndex === index) {
-                    soundsObject.wrongHorn.play()
+                    // soundsObject.wrongHorn.play()
                     return <RedBorder xPosition={xPositions[index]} />
                   } else {
                     return null
