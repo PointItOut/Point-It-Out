@@ -30,9 +30,10 @@ class FaceRecognition extends Component {
             requestAnimationFrame(positionLoop);
             var positions = ctracker.getCurrentPosition();
             if (positions) {
-                const headWidth = canvasWidth * Math.abs(positions[20][0] - positions[16][0]) * 1.2 / 130
-                const x = canvasWidth - canvasWidth * positions[20][0] / 130 - headWidth;
-                const y = canvasHeight * Math.max(positions[20][1], positions[21][1], positions[17][1], positions[16][1]) / 100;
+                const headWidth = canvasWidth * Math.abs(positions[14][0] - positions[0][0]) * 1.2 / 130
+                const halfHeadHeight = Math.abs(positions[33][1] - positions[7][1])
+                const x = canvasWidth - canvasWidth * positions[14][0] / 130
+                const y = (canvasHeight * Math.max(positions[20][1], positions[21][1], positions[17][1], positions[16][1]) / 100) - 100
                 setCoords({ x, y, headWidth })
             }
         }
