@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-import {Instructions} from './index'
+import {Instructions, PieChart} from './index'
 import {connect} from 'react-redux'
 
 const Splash = ({isLoggedIn, history}) => {

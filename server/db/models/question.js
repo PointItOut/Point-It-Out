@@ -6,6 +6,14 @@ const Question = db.define('questions', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {notEmpty: true}
+  },
+  correctGuesses: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+  incorrectGuesses: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
 })
 
