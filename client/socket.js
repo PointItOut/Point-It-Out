@@ -15,10 +15,6 @@ socket.on('new-connection', payload => {
   console.log(payload)
 })
 
-socket.on('purple', payload => {
-  console.log(payload)
-})
-
 socket.on('redirect', payload => {
   store.dispatch(startGame(false))
   history.push('/home')
@@ -29,7 +25,7 @@ socket.on('webcam', payload => {
 })
 
 socket.on('new-score', newlist => {
-  console.log('receieved new-game', newlist)
+  console.log('===*=== receieved new-list', newlist)
   store.dispatch(gotList(newlist))
 })
 
