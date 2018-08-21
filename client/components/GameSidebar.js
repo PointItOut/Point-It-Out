@@ -9,6 +9,7 @@ import { setTimeOver, startGame, deleteGame } from '../store/game'
 import socket from '../socket'
 import { setHighScore, updateScore } from '../store/score'
 import FaceRecognition from './FaceRecognition'
+import soundsObject from '../sounds'
 
 class GameSidebar extends Component {
   constructor() {
@@ -18,6 +19,7 @@ class GameSidebar extends Component {
   }
 
   handleScores(score) {
+    soundsObject.applause.play()
     const {
       user,
       currentCategory,
@@ -32,6 +34,10 @@ class GameSidebar extends Component {
     } else {
       setHighScore(score, undefined, user)
     }
+  }
+
+  componentWillUnmount() {
+    soundsObject.applause.stop()
   }
 
   render() {

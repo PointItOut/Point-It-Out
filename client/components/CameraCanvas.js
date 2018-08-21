@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Shape, Stage, Layer, Text } from 'react-konva'
+import { Shape, Stage, Layer, Text, Image } from 'react-konva'
 import Konva from 'konva'
 import Webcam from 'react-webcam'
 import Diffy from './diffy'
@@ -10,6 +10,8 @@ import { connect } from 'react-redux'
 import { submitAnswerIndex, setQuestion } from '../store/currentQuestion'
 import { updateScore, evaluateAnswer } from '../store/score'
 import { noMediaStream } from '../canPlay'
+import { Crown } from './index'
+import soundsObject from '../sounds'
 
 
 class CameraCanvas extends Component {
@@ -75,14 +77,13 @@ class CameraCanvas extends Component {
       setTimeout(() => {
         submitUserGuess(null) // reset userGuess for next question
         setNewQuestion(question) // increment question
-      }, 1000)
+      }, 1500)
     }
   }
 
   render() {
     const facecoords = this.props.facecoord
-    const { opponent, location, currentQuestion, timeover } = this.props
-
+    const { opponent, location, currentQuestion, timeover, user } = this.props
     const opponentNames = Object.keys(opponent).sort((name1, name2) => {
       const score1 = opponent[name1]
       const score2 = opponent[name2]
@@ -103,6 +104,9 @@ class CameraCanvas extends Component {
       chkwinner = true
     }
     const pathname = location.pathname
+    const showCrown = pathname.includes('solo') || (winner.includes(user.userName))
+    console.log('showCr6666wn=====>', facecoords && timeover && showCrown)
+
     const { choices } = currentQuestion
     const xPositions = [0, 266, 533, 799]
 
@@ -118,43 +122,26 @@ class CameraCanvas extends Component {
           height={750}
         >
           <Layer>
+            {(facecoords && timeover && showCrown) ?
+              <Crown facecoords={facecoords} pathname={pathname} />
+              : null}
             <PurpleRect />
             <GreenRect />
             <YellowRect />
             <RedRect />
 
-            {(facecoords) ?
-              <Shape
-                sceneFunc={(context, shape) => {
-                  context.beginPath();
-                  context.moveTo(facecoords.x, facecoords.y * 0.9);
-                  context.lineTo(facecoords.x, facecoords.y * 0.9 - 200);
-                  context.lineTo((facecoords.x + facecoords.headWidth / 4), facecoords.y * 0.9 - 60);
-                  context.lineTo((facecoords.x + facecoords.headWidth / 2), facecoords.y * 0.9 - 200);
-                  context.lineTo(facecoords.x + facecoords.headWidth * 3 / 4, facecoords.y * 0.9 - 60);
-                  context.lineTo(facecoords.x + facecoords.headWidth, facecoords.y * 0.9 - 200);
-                  context.lineTo(facecoords.x + facecoords.headWidth, facecoords.y * 0.9);
-                  context.closePath();
-                  // (!) Konva specific method, it is very important
-                  context.fillStrokeShape(shape);
-                }}
-                fill="yellow"
-                stroke="black"
-                strokeWidth={2}
-              />
-              : null}
 
-            {timeover && chkwinner && !pathname.includes('solo') ? <WinnerRect winner={winner}/> : null}
+            {timeover && chkwinner && !pathname.includes('solo') ? <WinnerRect winner={winner} /> : null}
 
             {timeover && !chkwinner && !pathname.includes('solo') ? <TieRect /> : null}
 
             {timeover && !pathname.includes('solo')
               ? opponentNames.map((name, index) => (
-                <OpponentScoreRect name={name} opponent={opponent} index={index}/>
+                <OpponentScoreRect name={name} opponent={opponent} index={index} />
               ))
               : null}
 
-            {timeover && !pathname.includes('solo') ? <Backdrop /> : null}
+            {/* {timeover && !pathname.includes('solo') ? <Backdrop /> : null} */}
 
             {// option text boxes
               choices.map((choice, index) => (
@@ -165,8 +152,12 @@ class CameraCanvas extends Component {
               currentQuestion.userGuessIndex !== null && choices.length
                 ? choices.map((choice, index) => {
                   if (choice.isCorrect) {
+                    if (currentQuestion.userGuessIndex === index) {
+                      soundsObject.giggle.play()
+                    }
                     return <GreenBorder xPosition={xPositions[index]} />
                   } else if (currentQuestion.userGuessIndex === index) {
+                    soundsObject.wrongHorn.play()
                     return <RedBorder xPosition={xPositions[index]} />
                   } else {
                     return null

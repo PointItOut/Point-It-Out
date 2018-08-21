@@ -6,15 +6,35 @@ import {Opentok, GameSidebar, CameraCanvas, Lobby} from './index'
 import {getQuestions} from '../store/questions'
 import Countdown from '../../node_modules/react-countdown-now'
 import {withRouter} from 'react-router-dom'
+import soundsObject from '../sounds'
 
 class PartnerMode extends Component {
   constructor() {
     super()
+    this.state = {
+      ticker: null
+    }
   }
 
   async componentDidMount() {
     console.log('Getting games')
     await this.props.getGames()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.gameCountdown !== this.props.gameCountdown && !prevProps.timeover && this.props.startGame) {
+      soundsObject.tick.play()
+      const ticker = setInterval(function(){
+        soundsObject.tick.play()
+      }, 1000)
+      this.setState({
+        ticker: ticker
+      })
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.ticker)
   }
 
   render() {
@@ -27,8 +47,8 @@ class PartnerMode extends Component {
 
     const currentgame = games.find(game => game.name === name)
     const renderer = ({seconds, completed}) => {
-      console.log({seconds, completed})
       if (completed) {
+        clearInterval(this.state.ticker)
         return (
           <div className="game-wrapper">
             {!this.props.startGame ? (
@@ -79,7 +99,8 @@ const mapState = state => {
     token: state.game.token,
     questions: state.questions,
     startGame: state.game.startGame,
-    gameCountdown: state.game.gameCountdown
+    gameCountdown: state.game.gameCountdown,
+    timeover: state.game.timeover
   }
 }
 

@@ -114,4 +114,6 @@ export default connect(mapState, mapDispatch)(UserHome)
 /**
  * PROP TYPES
  */
-UserHome.propTypes = {}
+UserHome.propTypes = {
+
+}
