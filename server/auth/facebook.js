@@ -13,15 +13,8 @@ passport.use(
     },
     function(accessToken, refreshToken, profile, cb) {
       console.log('PROFILE ', profile)
-      // const facebookId = profile.id
-      // const name = profile.name
-      // const email = profile.email
-      User.findOrCreate({where: {facebookId: profile.id}}, function(err, user) {
-        // if (err) {
-        //   return cb(err)
-        // }
-        return cb(err, user)
-      })
+
+      User.findOrCreate({where: {facebookId: profile.id}})
     }
   )
 )
