@@ -1,18 +1,20 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { CameraCanvas, GameSidebar } from './index'
+import {connect} from 'react-redux'
+import {CameraCanvas, GameSidebar} from './index'
 import Countdown from 'react-countdown-now'
-import { setTimeOver } from '../store/game'
-import { withRouter } from 'react-router-dom'
+import {setTimeOver} from '../store/game'
+import {withRouter} from 'react-router-dom'
 import soundsObject from '../sounds'
 
 class SoloMode extends Component {
   constructor() {
     super()
     this.state = {
-      ticker: null
+      ticker: null,
+      restarting: false
     }
+    this.handleRestart = this.handleRestart.bind(this)
   }
 
   componentDidMount() {
@@ -30,22 +32,40 @@ class SoloMode extends Component {
     })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.restarting === false && this.state.restarting === true) {
+      soundsObject.tick.play()
+      const ticker = setInterval(function() {
+        soundsObject.tick.play()
+      }, 1000)
 
+      this.setState({
+        ticker: ticker,
+        restarting: false
+      })
+    }
+  }
+
+  handleRestart() {
+    this.setState({
+      restarting: true
+    })
+  }
 
   render() {
-    const { questions, timeover } = this.props
+    const {questions, timeover} = this.props
 
-    const renderer = ({ seconds, completed }) => {
+    const renderer = ({seconds, completed}) => {
       if (completed) {
         clearInterval(this.state.ticker)
         return (
           <div className="game-wrapper">
             <CameraCanvas questions={questions} />
-            <GameSidebar isSolo={this.props.match.path === '/solo'} />
+            <GameSidebar isSolo={this.props.match.path === '/solo'} handleRestart={this.handleRestart}/>
           </div>
         )
       } else {
-        return <span className="clock">{seconds}</span>
+        return <span className="clock countdown">{seconds}</span>
       }
     }
 
@@ -74,7 +94,7 @@ const mapState = state => {
   }
 }
 
-const mapDispatchToProps = function (dispatch) {
+const mapDispatchToProps = function(dispatch) {
   return {
     setTimeOver: logic => dispatch(setTimeOver(logic))
   }
