@@ -128,28 +128,46 @@ export const GreenBorder = ({xPosition}) => {
 export const WinnerRect = props => {
   const winnerName = props.winner[0]
   return (
+    // <Text
+    //   text={`The winner is ${winnerName}`}
+    //   x={250}
+    //   y={280}
+    //   fontSize={50}
+    //   fill="blue"
+    //   align="center"
+    //   width={500}
+    // />
     <Text
       text={`The winner is ${winnerName}`}
-      x={250}
-      y={280}
-      fontSize={50}
-      fill="blue"
+      x={150}
+      y={700}
+      fontSize={35}
+      fill="white"
       align="center"
-      width={500}
+      width={700}
     />
   )
 }
 
 export const TieRect = () => {
   return (
+    // <Text
+    //   text={`It's a draw`}
+    //   x={250}
+    //   y={280}
+    //   fontSize={50}
+    //   fill="blue"
+    //   align="center"
+    //   width={400}
+    // />
     <Text
       text={`It's a draw`}
-      x={250}
-      y={280}
-      fontSize={50}
-      fill="blue"
+      x={150}
+      y={700}
+      fontSize={35}
+      fill="white"
       align="center"
-      width={400}
+      width={700}
     />
   )
 }
@@ -171,6 +189,14 @@ export const OpponentScoreRect = props => {
 
 export const Backdrop = () => {
   return (
-    <Rect x={100} y={100} width={800} height={500} fill="black" opacity={0.5} />
+    // <Rect
+    //   x={100}
+    //   y={100}
+    //   width={800}
+    //   height={500}
+    //   fill="#efe9e8"
+    //   opacity={0.5}
+    // />
+    <Rect x={100} y={680} width={800} height={75} fill="#a560eb" />
   )
 }
