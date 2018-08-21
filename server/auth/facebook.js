@@ -12,16 +12,8 @@ passport.use(
       callbackURL: 'https://point-it-out.herokuapp.com/auth/facebook/callback'
     },
     function(accessToken, refreshToken, profile, cb) {
-      console.log('PROFILE ', profile)
-      // const facebookId = profile.id
-      // const name = profile.name
-      // const email = profile.email
-      User.findOrCreate({where: {facebookId: profile.id}}, function(err, user) {
-        // if (err) {
-        //   return cb(err)
-        // }
-        return cb(err, user)
-      })
+      console.log('after lunch version', 'profile', profile)
+      User.findOrCreate({where: {facebookId: profile.id}})
     }
   )
 )
