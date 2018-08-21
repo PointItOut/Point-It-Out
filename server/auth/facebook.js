@@ -34,7 +34,7 @@ router.get('/login/facebook', passport.authenticate('facebook'))
 // authentication process by attempting to obtain an access token.  If
 // access was granted, the user will be logged in.  Otherwise,
 // authentication has failed.
-router.get(
+router.git(
   '/login/facebook/callback',
   passport.authenticate('facebook', {
     // successRedirect: '/home',
