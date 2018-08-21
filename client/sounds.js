@@ -17,25 +17,23 @@ class Sound {
   }
 }
 
-// we access the sounds files in the public folder
+// COUNTDOWN
 const tick = new Sound('/sounds/clock-tick1.mp3')
 
-// before game starts?
-const waiting = new Sound('/sounds/doh_de_oh.mp3') // for lobby?
+// BEFORE GAME STARTS
+const waiting = new Sound('/sounds/doh_de_oh.mp3')
 
-// when you get an answer right?
+// RIGHT ANSWERS
 const levelUp = new Sound('/sounds/wood_plank_flicks.mp3')
 const giggle = new Sound('/sounds/giggle_5.mp3')
 
-// when you get an answer wrong?
+// WRONG ANSWERS
 const wrongHorn = new Sound('/sounds/horn_squeeze_clown.mp3')
 const awwWrong = new Sound('/sounds/end.mp3')
 
-// end of game?
+// END OF GAME
 const applause = new Sound('/sounds/applause7.mp3')
 const yay = new Sound('/sounds/happykids.mp3')
-
-// export default [ waiting, yay, levelUp, gasp, somethingFalling, wrongHorn, glassShatter, endForLoser, applause ]
 
 export default {
   waiting, yay, levelUp, wrongHorn, awwWrong, applause, giggle, tick
