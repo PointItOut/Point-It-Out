@@ -76,7 +76,7 @@ class CameraCanvas extends Component {
       setTimeout(() => {
         submitUserGuess(null) // reset userGuess for next question
         setNewQuestion(question) // increment question
-      }, 1000)
+      }, 1500)
     }
   }
 
