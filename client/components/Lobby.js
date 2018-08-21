@@ -6,6 +6,7 @@ import socket from '../socket'
 import {Navbar} from '.'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faSpinner} from '@fortawesome/free-solid-svg-icons'
+import soundsObject from '../sounds'
 
 class Lobby extends Component {
   constructor() {
@@ -15,7 +16,13 @@ class Lobby extends Component {
   async componentDidMount() {
     await this.props.me()
     console.log('THE USER: ', this.props.user)
+    soundsObject.waiting.play()
   }
+
+  componentWillUnmount() {
+    soundsObject.waiting.stop()
+  }
+
   handleClick(currentgame) {
     socket.emit('startGame', {currentgame})
   }
