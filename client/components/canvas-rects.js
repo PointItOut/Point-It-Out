@@ -8,7 +8,7 @@ export const PurpleRect = () => {
       y={10}
       width={200}
       height={75}
-      fill='#E84EDD'
+      fill='#a347f7'
       // opacity={0.5}
     />
   )
@@ -47,7 +47,7 @@ export const RedRect = () => {
       y={10}
       width={200}
       height={75}
-      fill='#FF8042'
+      fill='#fd6cac'
       // opacity={0.5}
     />
   )
@@ -89,7 +89,7 @@ export const QuestionBox = () => {
       y={680}
       width={800}
       height={75}
-      fill='blue'
+      fill='#0096CC'
       opacity={0.5}
     />
   )

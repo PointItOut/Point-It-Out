@@ -3,7 +3,9 @@ import { PieChart, Pie, Cell} from 'recharts'
 import PropTypes from 'prop-types'
 const RADIAN = Math.PI / 180;
 
-function renderLabel({cx, cy, midAngle, innerRadius, outerRadius, index }) {
+function renderLabel(internalProps) {
+
+  const {cx, cy, midAngle, innerRadius, outerRadius, index } = internalProps
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5
   const x = cx + radius * Math.cos(-midAngle * RADIAN)
   const y = cy + radius * Math.sin(-midAngle * RADIAN)
@@ -48,8 +50,9 @@ class SimplePieChart extends React.Component {
               outerRadius={80}
               fill="#8884d8"
               paddingAngle={5}
-              labelLine={false}
-              label={renderLabel}
+              labelLine={true}
+              label={true}
+              isAnimationActive={false}
             >
               <Cell fill="#FFBB28"/>
               <Cell fill="#FF8042"/>
