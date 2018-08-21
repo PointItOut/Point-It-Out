@@ -45,10 +45,14 @@ async function seed() {
     Category.create({
       name: 'state capitals',
       public: true
+    }),
+    Category.create({
+      name: 'pets of fullstack',
+      public: true
     })
   ])
 
-  const [stateCapitals] = categories
+  const [stateCapitals, fullstackPets] = categories
   console.log(`seeded ${categories.length} categories`)
   console.log(`seeded successfully`)
 
