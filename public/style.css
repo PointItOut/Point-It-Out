@@ -1,4 +1,9 @@
+<<<<<<< HEAD
+/*what we have now + a few extra*/
+
+=======
 /* what we have now + a few extra
+>>>>>>> master
 :root {
   --bg-color: #e9e9e9;
   --box-color: white;
@@ -15,6 +20,7 @@
 } */
 
 /*like our fav website*/
+
 /* :root {
   --bg-color: #e9e9e9;
   --box-color: white;
@@ -50,6 +56,7 @@
   font-size: 1em;
   color: var(--dark-text);
 } */
+
 /*
 .main-container {
   background-color: var(--box-color);
@@ -78,8 +85,12 @@
   font-size: 3em;
 }
 
+<<<<<<< HEAD
+.navbar, .btn-main {
+=======
 .navbar,
 .btn-primary {
+>>>>>>> master
   font-size: 1.5em;
 }
 
@@ -89,8 +100,7 @@
   margin-bottom: 2em;
 }
 
-.navbar a,
-footer a {
+.navbar a, footer a {
   color: var(--light-text);
   cursor: pointer;
 }
@@ -139,6 +149,7 @@ form div {
   /* margin: 0px auto;
   width: 1000px;
 }*/
+
 /*
 .card {
   margin-bottom: 2em;
@@ -159,10 +170,15 @@ video {
   height: 750px;
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg); */
+
 /* Safari and Chrome */
+
 /* -moz-transform: rotateY(180deg); */
+
 /* Firefox */
+
 /* } */
+
 /*
 .game-wrapper {
   display: flex;
@@ -178,6 +194,7 @@ video {
 #game-sidebar {
   flex-grow: 1;
 } */
+
 /*
 #tutorial-sidebar {
   flex-grow: 1;
@@ -253,23 +270,29 @@ footer i {
   flex-direction: row;
   justify-content: center;
   width: 500px;
-  padding-bottom: 100px;
-} */
+  height: 100px;
+  padding-bottom: 0px;
+  margin-top: 30px
+}
 
-/* #pie-chart {
+#pie-chart {
+  height: 200px;
   flex-shrink: 0;
   flex-basis: 200px;
+  align-self: center;
 }
 
 #pie-key {
   flex-grow: 1;
   flex-basis: 200px;
-  align-self: flex-end;
-} */
+  align-self: center;
+  padding-left: 2em;
+  font-weight: bold;
+}
 
 /* .countdown {
   padding-left: 45%;
   margin-top: 10%;
   position: absolute;
   font-size: 15em;
-} */
+}

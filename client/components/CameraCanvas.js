@@ -1,13 +1,13 @@
-import React, {Component} from 'react'
-import {Shape, Stage, Layer, Text, Image} from 'react-konva'
+import React, { Component } from 'react'
+import { Shape, Stage, Layer, Text, Image } from 'react-konva'
 import Konva from 'konva'
 import Webcam from 'react-webcam'
 import Diffy from './diffy'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
   PurpleRect,
-  GreenRect,
+  BlueRect,
   YellowRect,
   RedRect,
   ChoiceTextBox,
@@ -20,11 +20,11 @@ import {
   Backdrop,
   SoloPlayerEndGame
 } from './canvas-rects'
-import {connect} from 'react-redux'
-import {submitAnswerIndex, setQuestion} from '../store/currentQuestion'
-import {updateScore, evaluateAnswer} from '../store/score'
-import {noMediaStream} from '../canPlay'
-import {Crown} from './index'
+import { connect } from 'react-redux'
+import { submitAnswerIndex, setQuestion } from '../store/currentQuestion'
+import { updateScore, evaluateAnswer } from '../store/score'
+import { noMediaStream } from '../canPlay'
+import { Crown } from './index'
 import soundsObject from '../sounds'
 import { setTimeOver } from '../store/game'
 
@@ -56,7 +56,7 @@ class CameraCanvas extends Component {
       tutorialMode,
       score
     } = this.props
-    const {text, choices, userGuessIndex} = currentQuestion
+    const { text, choices, userGuessIndex } = currentQuestion
 
     const currentQuestionExists = text !== ''
     const notGuessedYet = prevProps.currentQuestion.userGuessIndex === null
@@ -114,7 +114,7 @@ class CameraCanvas extends Component {
 
   render() {
     const facecoords = this.props.facecoord
-    const {opponent, location, currentQuestion, timeover, user} = this.props
+    const { opponent, location, currentQuestion, timeover, user } = this.props
     const opponentNames = Object.keys(opponent).sort((name1, name2) => {
       const score1 = opponent[name1]
       const score2 = opponent[name2]
@@ -137,7 +137,7 @@ class CameraCanvas extends Component {
     const pathname = location.pathname
     const showCrown =
       pathname.includes('solo') || winner.includes(user.userName)
-    const {choices} = currentQuestion
+    const { choices } = currentQuestion
     const xPositions = [0, 266, 533, 799]
 
     return (
@@ -154,18 +154,18 @@ class CameraCanvas extends Component {
           <Layer>
 
             <PurpleRect />
-            <GreenRect />
+            <BlueRect />
             <YellowRect />
             <RedRect />
 
             {// option text boxes
-            choices.map((choice, index) => (
-              <ChoiceTextBox
-                id={choice.id}
-                choiceText={choice.text}
-                xPosition={xPositions[index]}
-              />
-            ))}
+              choices.map((choice, index) => (
+                <ChoiceTextBox
+                  id={choice.id}
+                  choiceText={choice.text}
+                  xPosition={xPositions[index]}
+                />
+              ))}
 
             {// if we have options and the user has guessed, show feedback:
               currentQuestion.userGuessIndex !== null && choices.length
@@ -182,13 +182,13 @@ class CameraCanvas extends Component {
                     return null
                   }
                 })
-              : null}
+                : null}
 
             <QuestionBox />
             <QuestionText questionText={currentQuestion.text} />
-{facecoords && timeover && showCrown ? (
-  <Crown facecoords={facecoords} pathname={pathname} />
-) : null}
+            {facecoords && timeover && showCrown ? (
+              <Crown facecoords={facecoords} pathname={pathname} />
+            ) : null}
             {timeover ? <Backdrop /> : null}
 
             {timeover && chkwinner && !pathname.includes('solo') ? (

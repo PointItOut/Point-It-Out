@@ -45,42 +45,38 @@ async function seed() {
     Category.create({
       name: 'state capitals',
       public: true
-    }),
-    Category.create({
-      name: 'pets of fullstack',
-      public: true
     })
   ])
 
-  const [stateCapitals, fullstackPets] = categories
+  const [stateCapitals] = categories
   console.log(`seeded ${categories.length} categories`)
   console.log(`seeded successfully`)
 
-  // USERS_CATEGORIES
-  const usersCategories = await Promise.all([
-    UserCategory.create({
-      userId: 1,
-      categoryId: 1,
-      userHighScore: 20
-    }),
-    UserCategory.create({
-      userId: 2,
-      categoryId: 1,
-      userHighScore: 18
-    }),
-    UserCategory.create({
-      userId: 3,
-      categoryId: 1,
-      userHighScore: 12
-    }),
-    UserCategory.create({
-      userId: 4,
-      categoryId: 1,
-      userHighScore: 14
-    })
-  ])
-  console.log(`seeded ${usersCategories.length} user_category instances`)
-  console.log('seeded successfully')
+  // // USERS_CATEGORIES
+  // const usersCategories = await Promise.all([
+  //   UserCategory.create({
+  //     userId: 1,
+  //     categoryId: 1,
+  //     userHighScore: 20
+  //   }),
+  //   UserCategory.create({
+  //     userId: 2,
+  //     categoryId: 1,
+  //     userHighScore: 18
+  //   }),
+  //   UserCategory.create({
+  //     userId: 3,
+  //     categoryId: 1,
+  //     userHighScore: 12
+  //   }),
+  //   UserCategory.create({
+  //     userId: 4,
+  //     categoryId: 1,
+  //     userHighScore: 14
+  //   })
+  // ])
+  // console.log(`seeded ${usersCategories.length} user_category instances`)
+  // console.log('seeded successfully')
 
   //QUESTIONS
   // state capital questions
@@ -1200,122 +1196,6 @@ async function seed() {
 
   console.log(`seeded ${200} state capital choices`)
   console.log(`seeded successfully`)
-
-
-  // FULLSTACK PETS QUESTIONS
-  const petQuestions = await Promise.all([
-    Question.create({
-      text: 'What kind of dog is Cody?'
-    }),
-    Question.create({
-      text: 'What kind of animal is Fira?'
-    }),
-    Question.create({
-      text: "Who is Bruno's human?"
-    }),
-    Question.create({
-      text: "What is David Yang's verdict on pugs?"
-    }),
-    Question.create({
-      text: "Who wants to get a bun?"
-    })
-  ])
-
-  /*
-  await Promise.all(petQuestions.map(ques => ques.setCategory(fullstackPets)))
-
-  const [codyQues, firaQues, brunoQues, davidQues, bunQues] = questions
-
-  // FULLSTACK PETS CHOICES
-
-  const codyChoices = await Promise.all([
-    Choice.create({
-      text: 'a majestic pug',
-      isCorrect: true
-    }),
-    Choice.create({
-      text: 'a regal goldendoodle'
-    }),
-    Choice.create({
-      text: 'a wise bloodhound'
-    }),
-    Choice.create({
-      text: 'a confident chihuahua'
-    })
-  ])
-
-  await Promise.all(codyChoices.map(choice => choice.setQuestion(codyQues)))
-
-  const firaChoices = await Promise.all([
-    Choice.create({
-      text: 'Snake',
-      isCorrect: true
-    }),
-    Choice.create({
-      text: 'Parrot'
-    }),
-    Choice.create({
-      text: 'Guniea Pig'
-    }),
-    Choice.create({
-      text: 'Sloth'
-    })
-  ])
-
-  await Promise.all(firaChoices.map(choice => choice.setQuestion(firaQues)))
-
-  const brunoChoices = await Promise.all([
-    Choice.create({
-      text: 'Aleks'
-    }),
-    Choice.create({
-      text: 'John'
-    }),
-    Choice.create({
-      text: 'Tom'
-    }),
-    Choice.create({
-      text: 'Dan'
-    })
-  ])
-
-  await Promise.all(brunoChoices.map(choice => choice.setQuestion(brunoQues)))
-
-  const davidChoices = await Promise.all([
-    Choice.create({
-      text: 'not actually adorable'
-    }),
-    Choice.create({
-      text: 'completely breathtaking'
-    }),
-    Choice.create({
-      text: 'a bit suspicious'
-    }),
-    Choice.create({
-      text: 'a bit intimidating'
-    })
-  ])
-
-  await Promise.all(davidChoices.map(choice => choice.setQuestion(davidQues)))
-
-  const bunChoices = await Promise.all([
-    Choice.create({
-      text: 'Jess'
-    }),
-    Choice.create({
-      text: 'Chris'
-    }),
-    Choice.create({
-      text: 'Everyone',
-      isCorrect: true
-    }),
-    Choice.create({
-      text: 'Nimit'
-    })
-  ])
-
-  await Promise.all(bunChoices.map(choice => choice.setQuestion(bunQues)))
-  */
 
 }
 
