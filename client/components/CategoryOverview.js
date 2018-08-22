@@ -130,7 +130,7 @@ class CategoryOverview extends Component {
               ) : null}
             </p>
           </div>
-          <PieChart totalCorrect={userData ? userData.correctGuesses : 0} totalIncorrect={userData ? userData.incorrectGuesses : 0} />
+          <PieChart totalCorrect={userData ? userData.correctGuesses : 0} totalIncorrect={userData ? userData.incorrectGuesses : 0} categoryName={categoryDisplayed.name} userChart={true} />
           <Leaderboard categoryDisplayed={categoryDisplayed} />
         </div>
       )

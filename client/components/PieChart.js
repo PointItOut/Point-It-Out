@@ -1,5 +1,5 @@
 import React from 'react'
-import { PieChart, Pie, Cell } from 'recharts'
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
 import PropTypes from 'prop-types'
 const RADIAN = Math.PI / 180;
 
@@ -25,8 +25,9 @@ function renderLabel(internalProps) {
 
 class SimplePieChart extends React.Component {
   render() {
-    const { totalCorrect, totalIncorrect } = this.props
+    const { totalCorrect, totalIncorrect, userChart, categoryName } = this.props
     // this is the TOTAL CORRECT for the entire category and the TOTAL INCORRECT for the entire category
+    const text = userChart ? `your overall performance in ${categoryName}:` : `users' performance in ${categoryName}:`
 
     const data = [
       { name: "Correct Responses", value: totalCorrect },
@@ -41,36 +42,39 @@ class SimplePieChart extends React.Component {
 
       return (
         <div id="pie-container">
-          <div id="pie-chart">
-            <PieChart
-              width={250}
-              height={300}
-              onMouseEnter={this.onPieEnter}
-            >
-              <Pie
-                dataKey="value"
-                data={data}
-                cx={120}
-                cy={200}
-                innerRadius={60}
-                outerRadius={80}
-                fill="#8884d8"
-                paddingAngle={5}
-                labelLine={true}
-                label={true}
-                isAnimationActive={false}
-              >
-                <Cell fill="#FFBB28" />
-                <Cell fill="#FF8042" />
-              </Pie>
-            </PieChart>
-          </div>
           <div id="pie-key">
-            <h4 style={{ color: '#FFBB28', fontWeight: 'bold' }} >Correct Answers</h4>
-            <h4 style={{ color: '#FF8042', fontWeight: 'bold' }} >Incorrect Answers</h4>
+            <h6 style={{ fontWeight: 'bold' }}>{text}</h6>
+            <h4 style={{ color: '#FFBB28', fontWeight: 'bold', fontSize: '18px' }} >Correct Answers</h4>
+            <h4 style={{ color: '#FF8042', fontWeight: 'bold', fontSize: '18px' }} >Incorrect Answers</h4>
+          </div>
+          <div id="pie-chart">
+            <ResponsiveContainer width={250} height='100%' >
+              <PieChart
+                width={200}
+                height={200}
+                onMouseEnter={this.onPieEnter}
+              >
+                <Pie
+                  dataKey="value"
+                  data={data}
+                  cx={120}
+                  cy={100}
+                  innerRadius={35}
+                  outerRadius={55}
+                  fill="#8884d8"
+                  paddingAngle={5}
+                  labelLine={true}
+                  label={true}
+                  isAnimationActive={false}
+                >
+                  <Cell fill="#FFBB28" />
+                  <Cell fill="#FF8042" />
+                </Pie>
+              </PieChart>
+            </ResponsiveContainer>
           </div>
           <br />
-        </div>
+        </div >
       )
     }
   }
