@@ -272,4 +272,24 @@ footer i {
   margin-top: 10%;
   position: absolute;
   font-size: 15em;
+<<<<<<< HEAD
 } */
+=======
+}
+
+.logo img {
+  height: 80px;
+  width: 80px;
+  margin-left: -0.5em;
+  margin-top: -0.5em;
+  margin-bottom: -0.5em;
+}
+.warning {
+  padding: 0 0.5em;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  background-color: orange;
+  color: white;
+  margin-left: 1em;
+}
+>>>>>>> master
