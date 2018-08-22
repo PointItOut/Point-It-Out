@@ -26,6 +26,7 @@ import {updateScore, evaluateAnswer} from '../store/score'
 import {noMediaStream} from '../canPlay'
 import {Crown} from './index'
 import soundsObject from '../sounds'
+import { setTimeOver } from '../store/game'
 
 class CameraCanvas extends Component {
   constructor() {
@@ -87,13 +88,20 @@ class CameraCanvas extends Component {
       setNewQuestion,
       questions,
       currentQuestion,
-      submitUserGuess
+      submitUserGuess,
+      location
     } = this.props
     const question = questions.find((ques, index) => {
       return questions[index - 1]
         ? questions[index - 1].id === currentQuestion.id
         : false
     })
+    if (!question && location.pathname.includes('solo')) {
+      // we are in solo mode and we have run out of questions!
+      console.log('Out of questions, so time to end solo mode game?')
+      // set timeover to true?
+      this.props.endGameEarly()
+    }
 
     // if we have another question remaining and the user has made a guess
     if (question && currentQuestion.userGuess !== null) {
@@ -219,7 +227,8 @@ const mapDispatch = dispatch => ({
   checkAnswer: (choiceObj, gameObj) =>
     dispatch(evaluateAnswer(choiceObj, gameObj)),
   updateUserScore: (score, partner, username, gameName) =>
-    dispatch(updateScore(score, partner, username, gameName))
+    dispatch(updateScore(score, partner, username, gameName)),
+  endGameEarly: () => dispatch(setTimeOver(true))
 })
 
 export default withRouter(connect(mapState, mapDispatch)(CameraCanvas))
