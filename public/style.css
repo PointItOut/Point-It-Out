@@ -273,3 +273,12 @@ footer i {
   position: absolute;
   font-size: 15em;
 }
+
+.warning {
+  padding: 0 0.5em;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  background-color: orange;
+  color: white;
+  margin-left: 1em;
+}
