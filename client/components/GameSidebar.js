@@ -15,7 +15,7 @@ class GameSidebar extends Component {
   constructor() {
     super()
     this.handleScores = this.handleScores.bind(this)
-    this.state = { timer: Date.now() + 10000 }
+    this.state = { timer: Date.now() + 60000 }
   }
 
   handleScores(score) {
