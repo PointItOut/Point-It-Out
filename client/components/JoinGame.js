@@ -67,7 +67,9 @@ class JoinGame extends Component {
                 Join
               </button>
               {!this.state.nameExist && (
-                <span>Game does not exist, please try again</span>
+                <span className="warning">
+                  Game does not exist, please try again
+                </span>
               )}
             </form>
           </div>

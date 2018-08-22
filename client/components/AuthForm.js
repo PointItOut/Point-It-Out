@@ -50,8 +50,8 @@ const AuthForm = props => {
         </form>
         <a href="/auth/facebook">
           <button type="button" className="btn btn-facebook">
+            {displayName} with Facebook &nbsp;{' '}
             <FontAwesomeIcon icon={faFacebook} />
-            {displayName} with Facebook
           </button>
         </a>
       </div>
