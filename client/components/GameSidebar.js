@@ -126,6 +126,7 @@ class GameSidebar extends Component {
               type="button"
               onClick={() => {
                 deleteGame(currentgame.name, Mode)
+                this.props.updateSoloScore(0)
               }}
             >
               Exit
