@@ -26,6 +26,11 @@ $body-color: $body-text;
 $navbar-dark-color: $light-text;
 $nav-tabs-link-active-color: $light-text;
 
+.navbar {
+  font-size: 1.5em;
+  margin-bottom: 2em;
+}
+
 //footer
 footer {
   padding: 1em;
@@ -83,14 +88,6 @@ footer {
 
 //fix button links
 //and other blue links
-
-// .navbar {
-//   font-size: 1.5em;
-// }
-
-// .navbar {
-//   margin-bottom: 2em;
-// }
 
 label {
   display: block;
@@ -209,6 +206,15 @@ video {
   margin-top: 10%;
   position: absolute;
   font-size: 15em;
+}
+.logo {
+  img {
+    height: 80px;
+    width: 80px;
+    margin-left: -0.5em;
+    margin-top: -0.5em;
+    margin-bottom: -0.5em;
+  }
 }
 
 //later I would like to change this to only include what I need,  but right now I want to make sure it works first
