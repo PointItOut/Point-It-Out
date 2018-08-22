@@ -1,0 +1,254 @@
+//colors
+$orange: rgb(255, 128, 66);
+$gold: #ffbb28;
+$bronze: #cd7f32;
+
+//brand
+$primary: #0096cc;
+$secondary: rgb(0, 86, 117);
+$accent: $gold;
+$secondary-accent: $orange;
+$background: #e9e9e9;
+$body-text: rgb(35, 31, 31);
+$box-color: white;
+$light-text: white;
+$dark: $primary;
+$info: $gold;
+
+//fonts
+$font: museo-sans, sans-serif;
+
+//setting bootstrap variables
+$font-family-base: $font;
+$card-cap-bg: $secondary;
+$body-bg: $background;
+$body-color: $body-text;
+
+//navbar
+$navbar-dark-color: $light-text;
+$nav-tabs-link-active-color: $light-text;
+
+.navbar {
+  font-size: 1.5em;
+  margin-bottom: 2em;
+  font-weight: 90;
+}
+
+//footer
+footer {
+  padding: 1em;
+  left: 0;
+  width: 100%;
+  background-color: $primary;
+  color: $light-text;
+  margin-top: 1em;
+  a {
+    color: $light-text;
+    cursor: pointer;
+  }
+  a:hover {
+    color: darken($light-text, 15%);
+  }
+}
+//buttons
+.btn-primary {
+  margin: 1rem;
+
+  a {
+    color: $light-text;
+  }
+  a:hover {
+    color: darken($light-text, 15%);
+  }
+}
+
+// badges
+.badge {
+  margin-bottom: 1em;
+}
+
+//consider using a card for the main container instead
+.main-container {
+  background-color: $box-color;
+  padding: 2em;
+  border-radius: 2%;
+  margin-bottom: 2em;
+}
+
+.blue-header {
+  background-color: $primary;
+  color: $light-text;
+}
+
+.accent-header {
+  color: $light-text;
+}
+
+.scoreboard {
+  color: $secondary;
+  font-weight: bold;
+  text-align: center;
+}
+
+.score {
+  font-size: 3em;
+}
+
+.warning {
+  padding: 0 0.5em;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  background-color: $orange;
+  color: $light-text;
+  margin-left: 1em;
+}
+
+//fix button links
+//and other blue links
+
+label {
+  display: block;
+}
+
+form div {
+  margin: 1em;
+  display: inline-block;
+}
+
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.card {
+  margin-bottom: 2em;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1000px;
+  height: 750px;
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  /* Safari and Chrome */
+  -moz-transform: rotateY(180deg);
+  /* Firefox */
+}
+
+.game-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#video-container {
+  flex-shrink: 0;
+  flex-basis: auto;
+}
+
+#game-sidebar {
+  flex-grow: 1;
+}
+
+#tutorial-sidebar {
+  flex-grow: 1;
+}
+
+.OT_publisher {
+  display: none;
+}
+
+.OT_subscriber {
+  float: left;
+  margin-left: 1em;
+}
+
+.clock {
+  font-family: museo-sans, sans-serif;
+  font-style: normal;
+  font-size: 5em;
+  color: $secondary;
+  text-align: center;
+}
+
+.no-interaction {
+  pointer-events: none;
+}
+
+.mainPage {
+  min-height: calc(100vh - 200px);
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.lobby {
+  margin-top: 3em;
+  min-height: calc(100vh - 7em);
+  width: 100%;
+}
+
+#pie-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 500px;
+  height: 100px;
+  padding-bottom: 0px;
+  margin-top: 30px
+}
+
+#pie-chart {
+  height: 200px;
+  flex-shrink: 0;
+  flex-basis: 200px;
+  align-self: center;
+}
+
+#pie-key {
+  flex-grow: 1;
+  flex-basis: 200px;
+  align-self: center;
+  padding-left: 2em;
+  font-weight: bold;
+}
+
+.countdown {
+  padding-left: 45%;
+  margin-top: 10%;
+  position: absolute;
+  font-size: 15em;
+}
+.logo {
+  img {
+    height: 80px;
+    width: 80px;
+    margin-left: -0.5em;
+    margin-top: -0.5em;
+    margin-bottom: -0.5em;
+  }
+}
+
+.blueIconLink {
+  color: $primary;
+  cursor: pointer;
+  &:hover {
+    color: darken($primary, 15%);
+  }
+}
+
+
+
+//later I would like to change this to only include what I need,  but right now I want to make sure it works first
+@import '~bootstrap/scss/bootstrap';

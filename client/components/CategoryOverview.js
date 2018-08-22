@@ -43,12 +43,20 @@ class CategoryOverview extends Component {
   async componentDidUpdate(prevProps) {
     const { match, currentCategory, user } = this.props
     if (prevProps.currentCategory !== currentCategory) {
-      const { data } = await axios.get(`/api/categories/${currentCategory.id}`)
-      const userInfo = await axios.get(`/api/users/${user.id}/categories/${currentCategory.id}`)
-      this.setState({
-        categoryDisplayed: data,
-        userData: userInfo.data
-      })
+      if (currentCategory.id) {
+        const { data } = await axios.get(`/api/categories/${currentCategory.id}`)
+        const userInfo = await axios.get(`/api/users/${user.id}/categories/${currentCategory.id}`)
+        this.setState({
+          categoryDisplayed: data,
+          userData: userInfo.data
+        })
+      } else {
+        // currentCategory must be {} because we reset it
+        this.setState({
+          categoryDisplayed: null,
+          userData: {}
+        })
+      }
     }
   }
 
@@ -85,14 +93,14 @@ class CategoryOverview extends Component {
         <div className="main-container">
           <div className="text-center">
             <h2 className="text-center">Category: {categoryDisplayed.name}</h2>{' '}
-            &nbsp;<span className="badge badge-primary text-center">
+            &nbsp;<span className="badge badge-info text-center">
               {categoryDisplayed.questionTotal} questions
             </span>&nbsp;
             <p className="text-center">
               {!categoryDisplayed.public && match ? (
                 <button
                   type="button"
-                  className="btn btn-main"
+                  className="btn btn-primary"
                   onClick={this.handleAddToAccount}
                 >
                   Add to my account
@@ -102,22 +110,17 @@ class CategoryOverview extends Component {
                 !categoryDisplayed.public &&
                   categoryDisplayed.authorId === user.id ? (
                     <FontAwesomeIcon
-                      className="pointer"
+                      className="blueIconLink"
                       icon={faTrash}
                       onClick={this.handleDeleteCategory}
                     />
                   ) : null}&nbsp;
-
-              {user.id === categoryDisplayed.authorId ? (
-                <Link to={`/categories/${categoryDisplayed.id}/edit`}>Edit</Link>
-              ) : null}
-
               {// if you are looking at a private category you are subscribed to (i.e. no match.params) and it is NOT a category you made, you can unsubscribe from the category
                 !categoryDisplayed.public &&
                   !match &&
                   categoryDisplayed.authorId !== user.id ? (
                     <button
-                      className="btn btn-main"
+                      className="btn btn-info"
                       onClick={this.handleUnsubscribe}
                     >
                       Unsubscribe from Category
@@ -125,7 +128,10 @@ class CategoryOverview extends Component {
                   ) : null}&nbsp;
               {user.id === categoryDisplayed.authorId ? (
                 <Link to={`/categories/${categoryDisplayed.id}/edit`}>
-                  <FontAwesomeIcon className="pointer" icon={faPencilAlt} />
+                  <FontAwesomeIcon
+                    className="blueIconLink"
+                    icon={faPencilAlt}
+                  />
                 </Link>
               ) : null}
             </p>
