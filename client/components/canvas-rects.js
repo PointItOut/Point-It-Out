@@ -1,5 +1,5 @@
 import React from 'react'
-import {Rect, Text} from 'react-konva'
+import { Rect, Text } from 'react-konva'
 
 export const PurpleRect = () => {
   return (
@@ -9,20 +9,20 @@ export const PurpleRect = () => {
       width={200}
       height={75}
       fill="#a347f7"
-      // opacity={0.5}
+    // opacity={0.5}
     />
   )
 }
 
-export const GreenRect = () => {
+export const BlueRect = () => {
   return (
     <Rect
       x={266}
       y={10}
       width={200}
       height={75}
-      fill="#26AF2F"
-      // opacity={0.5}
+      fill="#0096cc"
+    // opacity={0.5}
     />
   )
 }
@@ -35,7 +35,7 @@ export const YellowRect = () => {
       width={200}
       height={75}
       fill="#FFBB28"
-      // opacity={0.5}
+    // opacity={0.5}
     />
   )
 }
@@ -48,12 +48,12 @@ export const RedRect = () => {
       width={200}
       height={75}
       fill="#fd6cac"
-      // opacity={0.5}
+    // opacity={0.5}
     />
   )
 }
 
-export const ChoiceTextBox = ({choiceText, id, xPosition}) => {
+export const ChoiceTextBox = ({ choiceText, id, xPosition }) => {
   return (
     <Text
       key={id}
@@ -68,7 +68,7 @@ export const ChoiceTextBox = ({choiceText, id, xPosition}) => {
   )
 }
 
-export const QuestionText = ({questionText}) => {
+export const QuestionText = ({ questionText }) => {
   return (
     <Text
       text={questionText}
@@ -90,12 +90,12 @@ export const QuestionBox = () => {
       width={800}
       height={75}
       fill="#f44336"
-      // opacity={0.5}
+    // opacity={0.5}
     />
   )
 }
 
-export const RedBorder = ({xPosition}) => {
+export const RedBorder = ({ xPosition }) => {
   return (
     <Rect
       x={xPosition}
@@ -110,7 +110,7 @@ export const RedBorder = ({xPosition}) => {
   )
 }
 
-export const GreenBorder = ({xPosition}) => {
+export const GreenBorder = ({ xPosition }) => {
   return (
     <Rect
       x={xPosition}
