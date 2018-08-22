@@ -1,5 +1,5 @@
 import React from 'react'
-import { Rect, Text } from 'react-konva'
+import {Rect, Text} from 'react-konva'
 
 export const PurpleRect = () => {
   return (
@@ -8,7 +8,7 @@ export const PurpleRect = () => {
       y={10}
       width={200}
       height={75}
-      fill='#a347f7'
+      fill="#a347f7"
       // opacity={0.5}
     />
   )
@@ -21,7 +21,7 @@ export const GreenRect = () => {
       y={10}
       width={200}
       height={75}
-      fill='#26AF2F'
+      fill="#26AF2F"
       // opacity={0.5}
     />
   )
@@ -34,7 +34,7 @@ export const YellowRect = () => {
       y={10}
       width={200}
       height={75}
-      fill='#FFBB28'
+      fill="#FFBB28"
       // opacity={0.5}
     />
   )
@@ -47,7 +47,7 @@ export const RedRect = () => {
       y={10}
       width={200}
       height={75}
-      fill='#fd6cac'
+      fill="#fd6cac"
       // opacity={0.5}
     />
   )
@@ -62,22 +62,22 @@ export const ChoiceTextBox = ({choiceText, id, xPosition}) => {
       y={30}
       fontSize={25}
       width={200}
-      align='center'
-      fill='black'
+      align="center"
+      fill="black"
     />
   )
 }
 
 export const QuestionText = ({questionText}) => {
   return (
-      <Text
-        text={questionText}
-        x={150}
-        y={700}
-        fontSize={35}
-        fill='white'
-        align='center'
-        width={700}
+    <Text
+      text={questionText}
+      x={150}
+      y={700}
+      fontSize={35}
+      fill="white"
+      align="center"
+      width={700}
     />
   )
 }
@@ -89,8 +89,8 @@ export const QuestionBox = () => {
       y={680}
       width={800}
       height={75}
-      fill='#0096CC'
-      opacity={0.5}
+      fill="#f44336"
+      // opacity={0.5}
     />
   )
 }
@@ -102,8 +102,10 @@ export const RedBorder = ({xPosition}) => {
       y={10}
       width={200}
       height={75}
-      stroke='red'
+      stroke="red"
       strokeWidth={10}
+      shadowColor="#FF5733"
+      shadowBlur={30}
     />
   )
 }
@@ -115,8 +117,10 @@ export const GreenBorder = ({xPosition}) => {
       y={10}
       width={200}
       height={75}
-      stroke='green'
+      stroke="#1BA527"
       strokeWidth={10}
+      shadowColor="#7CB224"
+      shadowBlur={30}
     />
   )
 }
@@ -126,12 +130,12 @@ export const WinnerRect = props => {
   return (
     <Text
       text={`The winner is ${winnerName}`}
-      x={250}
-      y={280}
-      fontSize={50}
-      fill='blue'
-      align='center'
-      width={500}
+      x={150}
+      y={700}
+      fontSize={35}
+      fill="white"
+      align="center"
+      width={700}
     />
   )
 }
@@ -140,40 +144,30 @@ export const TieRect = () => {
   return (
     <Text
       text={`It's a draw`}
-      x={250}
-      y={280}
-      fontSize={50}
-      fill='blue'
-      align='center'
-      width={400}
+      x={150}
+      y={700}
+      fontSize={35}
+      fill="white"
+      align="center"
+      width={700}
     />
   )
 }
 
-export const OpponentScoreRect = props => {
-  const { name, opponent, index } = props
+export const SoloPlayerEndGame = () => {
   return (
     <Text
-      text={`${name}: ${opponent[name]}`}
-      x={250}
-      y={350 + index * 50}
-      fontSize={50}
-      fill='blue'
-      align='center'
-      width={800}
+      text={`Good Job!`}
+      x={150}
+      y={700}
+      fontSize={35}
+      fill="white"
+      align="center"
+      width={700}
     />
   )
 }
 
 export const Backdrop = () => {
-  return (
-    <Rect
-      x={100}
-      y={100}
-      width={800}
-      height={500}
-      fill='black'
-      opacity={0.5}
-    />
-  )
+  return <Rect x={100} y={680} width={800} height={75} fill="#009688" />
 }
