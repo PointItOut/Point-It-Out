@@ -66,6 +66,15 @@ footer {
   margin: 1rem;
 }
 
+.btn-facebook {
+  margin: 1rem;
+  background-color: #3b5998;
+  color: $light-text;
+  &:hover {
+    background-color: darken(#3b5998, 15%);
+  }
+}
+
 // badges
 .badge {
   margin-bottom: 1em;

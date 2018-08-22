@@ -1,14 +1,16 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import { auth } from '../store'
+import {auth} from '../store'
 import FacebookLoginButton from './FacebookLoginButton'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faFacebookF, faFacebook} from '@fortawesome/free-brands-svg-icons'
 
 /**
  * COMPONENT
  */
 const AuthForm = props => {
-  const { name, displayName, handleSubmit, error } = props
+  const {name, displayName, handleSubmit, error} = props
 
   return (
     <div className="container">
@@ -17,31 +19,41 @@ const AuthForm = props => {
           <h2 className="text-center">{name.toUpperCase()}</h2>
           <div className="form-group">
             <label htmlFor="email">Email</label>
-            <input name="email" type="text" required />
+            <input name="email" type="text" className="form-control" required />
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input name="password" type="password" required />
+            <input
+              name="password"
+              type="password"
+              className="form-control"
+              required
+            />
           </div>
           {props.name === 'signup' ? (
             <div className="form-group">
               <label htmlFor="username">Username</label>
-              <input name="username" type="text" required />
+              <input
+                name="username"
+                type="text"
+                required
+                className="form-control"
+              />
             </div>
           ) : null}
           <div>
-            <a href="/auth/facebook">
-              <button type="button" className="btn btn-primary">
-                {displayName} with Facebook
-              </button>
-            </a>
             <button type="submit" className="btn btn-primary">
               {displayName}
             </button>
           </div>
           {error && error.response && <div> {error.response.data} </div>}
         </form>
-        {/* <a href="/auth/google">{displayName} with Google</a> */}
+        <a href="/auth/facebook">
+          <button type="button" className="btn btn-facebook">
+            <FontAwesomeIcon icon={faFacebook} />
+            {displayName} with Facebook
+          </button>
+        </a>
       </div>
     </div>
   )
