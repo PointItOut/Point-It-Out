@@ -89,8 +89,8 @@ export const QuestionBox = () => {
       y={680}
       width={800}
       height={75}
-      fill="#0096CC"
-      opacity={0.5}
+      fill="#f44336"
+      // opacity={0.5}
     />
   )
 }
@@ -169,5 +169,5 @@ export const SoloPlayerEndGame = () => {
 }
 
 export const Backdrop = () => {
-  return <Rect x={100} y={680} width={800} height={75} fill="#a560eb" />
+  return <Rect x={100} y={680} width={800} height={75} fill="#009688" />
 }
