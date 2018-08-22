@@ -150,7 +150,8 @@ class GameSidebar extends Component {
             type="button"
             className="btn btn-main"
             onClick={() => {
-              this.props.history.push('/home')
+              window.location.reload(true)
+              // this.props.history.push('/home')
             }}
           >
             Exit
