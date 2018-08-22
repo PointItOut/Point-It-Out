@@ -91,6 +91,8 @@ class EditCategory extends Component {
       return total + question.incorrectGuesses
     }, 0)
 
+    const textTooLong = answer.length > 22 || choice1.length > 22 || choice2.length > 22 || choice3.length > 22
+
     return (
       <div className="container">
         <div className="row">
@@ -117,7 +119,9 @@ class EditCategory extends Component {
                   />
                 </div>
                 <div className="col-sm-12">
-                  <label htmlFor="answer">Correct Answer:</label>
+                  <label htmlFor="answer">Correct Answer:
+                  {this.state.answer.length > 22 ? <span className="warning">Your answer is too long!</span> : null }
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -127,7 +131,9 @@ class EditCategory extends Component {
                   />
                 </div>
                 <div className="col-sm-12">
-                  <label htmlFor="choice1">Choice:</label>
+                  <label htmlFor="choice1">Choice:
+                  {this.state.choice1.length > 22 ? <span className="warning">Your answer is too long!</span> : null }
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -137,7 +143,9 @@ class EditCategory extends Component {
                   />
                 </div>
                 <div className="col-sm-12">
-                  <label htmlFor="choice2">Choice:</label>
+                  <label htmlFor="choice2">Choice:
+                  {this.state.choice2.length > 22 ? <span className="warning">Your answer is too long!</span> : null }
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -147,7 +155,9 @@ class EditCategory extends Component {
                   />
                 </div>
                 <div className="col-sm-12">
-                  <label htmlFor="choice3">Choice:</label>
+                  <label htmlFor="choice3">Choice:
+                  {this.state.choice3.length > 22 ? <span className="warning">Your answer is too long!</span> : null }
+                  </label>
                   <input
                     className="form-control"
                     type="text"
@@ -160,7 +170,7 @@ class EditCategory extends Component {
               <button
                 type="submit"
                 className="btn btn-main"
-                disabled={invalidInfo}
+                disabled={invalidInfo || textTooLong}
               >
                 Add Question
               </button>
