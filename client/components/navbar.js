@@ -8,7 +8,7 @@ import {faHandPointUp} from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = ({handleClick, isLoggedIn, username}) => (
   <div>
-    <nav className="navbar navbar-expand-lg">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="navbar-brand">
         <Link to="/">
           <FontAwesomeIcon
