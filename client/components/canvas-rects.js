@@ -154,20 +154,19 @@ export const TieRect = () => {
   )
 }
 
-// export const OpponentScoreRect = props => {
-//   const {name, opponent, index} = props
-//   return (
-//     <Text
-//       text={`${name}: ${opponent[name]}`}
-//       x={250}
-//       y={350 + index * 50}
-//       fontSize={50}
-//       fill="blue"
-//       align="center"
-//       width={800}
-//     />
-//   )
-// }
+export const SoloPlayerEndGame = () => {
+  return (
+    <Text
+      text={`Good Job!`}
+      x={150}
+      y={700}
+      fontSize={35}
+      fill="white"
+      align="center"
+      width={700}
+    />
+  )
+}
 
 export const Backdrop = () => {
   return <Rect x={100} y={680} width={800} height={75} fill="#a560eb" />

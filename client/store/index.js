@@ -16,8 +16,10 @@ import score from './score'
 const reducer = combineReducers({ user, categories, questions, currentQuestion, score, game, opponent, facecoord })
 
 const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
+  applyMiddleware(thunkMiddleware)
 )
+
+// createLogger({ collapsed: true }))
 const store = createStore(reducer, middleware)
 
 export default store
