@@ -19,7 +19,6 @@ class PartnerMode extends Component {
   }
 
   async componentDidMount() {
-    console.log('Getting games')
     await this.props.getGames()
   }
 
@@ -59,6 +58,7 @@ class PartnerMode extends Component {
     const currentgame = games.find(game => game.name === name)
     const renderer = ({seconds, completed}) => {
       if (completed) {
+        // console.log('clearing interval now')
         clearInterval(this.state.ticker)
         return (
           <div className="game-wrapper">
@@ -74,6 +74,7 @@ class PartnerMode extends Component {
               currentgame={currentgame}
               token={token}
               startGame={this.props.startGame}
+              handleRestart={this.handleRestart}
             />
           </div>
         )
