@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import axios from 'axios'
-import {PieChart, QuestionInfo} from './index'
+import { PieChart, QuestionInfo } from './index'
 
 class EditCategory extends Component {
   constructor() {
@@ -27,20 +27,20 @@ class EditCategory extends Component {
 
   async handleAddQuestion(evt) {
     evt.preventDefault()
-    const {questionName, answer, choice1, choice2, choice3} = this.state
+    const { questionName, answer, choice1, choice2, choice3 } = this.state
     const postBody = {
       question: {
         text: questionName,
         categoryId: +this.props.match.params.categoryId
       },
       choices: [
-        {text: answer, isCorrect: true},
-        {text: choice1, isCorrect: false},
-        {text: choice2, isCorrect: false},
-        {text: choice3, isCorrect: false}
+        { text: answer, isCorrect: true },
+        { text: choice1, isCorrect: false },
+        { text: choice2, isCorrect: false },
+        { text: choice3, isCorrect: false }
       ]
     }
-    const {data} = await axios.post('/api/questions', postBody)
+    const { data } = await axios.post('/api/questions', postBody)
     this.setState(prevState => {
       return {
         questionList: [...prevState.questionList, data],
@@ -66,8 +66,8 @@ class EditCategory extends Component {
   }
 
   async componentDidMount() {
-    const {categoryId} = this.props.match.params
-    const {data} = await axios.get(`/api/categories/${categoryId}`)
+    const { categoryId } = this.props.match.params
+    const { data } = await axios.get(`/api/categories/${categoryId}`)
 
     this.setState({
       categoryName: data.name,
@@ -86,7 +86,7 @@ class EditCategory extends Component {
       questionList,
       categoryName
     } = this.state
-    const {history} = this.props
+    const { history } = this.props
 
     const invalidInfo =
       !questionName || !answer || !choice1 || !choice2 || !choice3
@@ -111,14 +111,13 @@ class EditCategory extends Component {
           <div className="main-container col-sm-12 col-md-8">
             <h2 className="text-center">{categoryName.toUpperCase()}</h2>
 
-            {questionList.length ? (
-              <PieChart
-                totalCorrect={totalAnswersCorrect}
-                totalIncorrect={totalAnswersIncorrect}
-              />
-            ) : null}
+            {
+              questionList.length ? (
+                <PieChart totalCorrect={totalAnswersCorrect} totalIncorrect={totalAnswersIncorrect} categoryName={categoryName} />
+              ) : null
+            }
 
-            <h3>Create a new question</h3>
+            <h3 style={{ paddingTop: '50px' }}>Create a new question</h3>
             <form id="new-question-form" onSubmit={this.handleAddQuestion}>
               <div className="form-group row">
                 <div className="col-sm-12">
@@ -224,7 +223,7 @@ class EditCategory extends Component {
             </button>
           </div>
         </div>
-      </div>
+      </div >
     )
   }
 }

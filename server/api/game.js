@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Game, User, Choice, Question } = require('../db/models')
+const { Game, User, Choice, Question, UserCategory } = require('../db/models')
 const OpenTok = require('opentok')
 const tutorialQuestions = require('../tutorial-questions')
 
@@ -26,14 +26,17 @@ router.post('/guess/:choiceId', async (req, res, next) => {
       // otherwise we're playing a real game
       const userGuess = await Choice.findById(+req.params.choiceId)
       const currentQuestion = await Question.findById(userGuess.questionId)
+      const userCategory = await UserCategory.findOne({ where: { userId: req.user.id, categoryId: currentQuestion.categoryId } })
 
       const { correctGuesses, incorrectGuesses } = currentQuestion
 
       if (userGuess.isCorrect) {
-        await currentQuestion.update({ correctGuesses: correctGuesses + 1})
+        await currentQuestion.update({ correctGuesses: correctGuesses + 1 })
+        await userCategory.update({ correctGuesses: userCategory.correctGuesses + 1 })
         res.json('correct')
       } else {
-        await currentQuestion.update({ incorrectGuesses: incorrectGuesses + 1})
+        await currentQuestion.update({ incorrectGuesses: incorrectGuesses + 1 })
+        await userCategory.update({ incorrectGuesses: userCategory.incorrectGuesses + 1 })
         res.json('incorrect')
       }
     }

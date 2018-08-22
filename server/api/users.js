@@ -17,6 +17,19 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:userId/categories/:categoryId', userMatchesParam, async (req, res, next) => {
+  try {
+    const userCategory = await UserCategory.findOne({
+      where: {
+        userId: +req.params.userId,
+        categoryId: +req.params.categoryId
+      }
+    })
+    res.json(userCategory)
+  } catch (err) { next(err) }
+})
+
+
 // for when a user subscribes to a category
 router.put('/:userId/categories', userMatchesParam, async (req, res, next) => {
   try {
