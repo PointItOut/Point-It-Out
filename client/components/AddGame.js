@@ -51,20 +51,23 @@ class AddGame extends Component {
   render() {
     return (
       <div>
+        <h4>Step 3: Create a game</h4>
         <form onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor="newGame">Create New Game</label>
+          <div className="col-sm-12">
+            <label htmlFor="newGame">Name of new game</label>
             <input
               type="text"
               name="newGame"
+              className="form-control"
               value={this.state.newGame}
               onChange={this.handleChange}
+              required
             />
           </div>
           <button type="submit" className="btn btn-main">
-
-            Create
+            Play
           </button>
+
           {this.state.nameExist && (
             <span>This name is in use, please choose a new name</span>
           )}
@@ -95,4 +98,3 @@ const ConnectAddGame = withRouter(
   connect(mapState, mapDispatchToProps)(AddGame)
 )
 export default ConnectAddGame
-

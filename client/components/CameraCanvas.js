@@ -1,18 +1,31 @@
-import React, { Component } from 'react'
-import { Shape, Stage, Layer, Text, Image } from 'react-konva'
+import React, {Component} from 'react'
+import {Shape, Stage, Layer, Text, Image} from 'react-konva'
 import Konva from 'konva'
 import Webcam from 'react-webcam'
 import Diffy from './diffy'
-import { withRouter } from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { PurpleRect, GreenRect, YellowRect, RedRect, ChoiceTextBox, QuestionText, QuestionBox, RedBorder, GreenBorder, OpponentScoreRect, WinnerRect, TieRect, Backdrop } from './canvas-rects'
-import { connect } from 'react-redux'
-import { submitAnswerIndex, setQuestion } from '../store/currentQuestion'
-import { updateScore, evaluateAnswer } from '../store/score'
-import { noMediaStream } from '../canPlay'
-import { Crown } from './index'
+import {
+  PurpleRect,
+  GreenRect,
+  YellowRect,
+  RedRect,
+  ChoiceTextBox,
+  QuestionText,
+  QuestionBox,
+  RedBorder,
+  GreenBorder,
+  WinnerRect,
+  TieRect,
+  Backdrop,
+  SoloPlayerEndGame
+} from './canvas-rects'
+import {connect} from 'react-redux'
+import {submitAnswerIndex, setQuestion} from '../store/currentQuestion'
+import {updateScore, evaluateAnswer} from '../store/score'
+import {noMediaStream} from '../canPlay'
+import {Crown} from './index'
 import soundsObject from '../sounds'
-
 
 class CameraCanvas extends Component {
   constructor() {
@@ -29,7 +42,7 @@ class CameraCanvas extends Component {
     // log Konva.Stage instance
     console.log(this.stageRef.getStage())
 
-    const { setNewQuestion, questions, submitUserGuess } = this.props
+    const {setNewQuestion, questions, submitUserGuess} = this.props
     console.log('MOUNTING')
     setNewQuestion(questions[0]) // start with first question
     submitUserGuess(null) // to reset userguess to null
@@ -39,9 +52,16 @@ class CameraCanvas extends Component {
   }
 
   componentDidUpdate(prevProps) {
-
-    const { currentQuestion, checkAnswer, user, location, match, tutorialMode, score } = this.props
-    const { text, choices, userGuessIndex } = currentQuestion
+    const {
+      currentQuestion,
+      checkAnswer,
+      user,
+      location,
+      match,
+      tutorialMode,
+      score
+    } = this.props
+    const {text, choices, userGuessIndex} = currentQuestion
 
     const currentQuestionExists = text !== ''
     const notGuessedYet = prevProps.currentQuestion.userGuessIndex === null
@@ -61,19 +81,26 @@ class CameraCanvas extends Component {
         gameName
       }
 
-      choices[userGuessIndex].isCorrect ? soundsObject.giggle.play() : soundsObject.wrongHorn.play()
+      choices[userGuessIndex].isCorrect
+        ? soundsObject.giggle.play()
+        : soundsObject.wrongHorn.play()
       checkAnswer(choices[userGuessIndex], gameObj)
       this.nextQuestion()
     }
   }
 
   nextQuestion() {
-    const { setNewQuestion, questions, currentQuestion, submitUserGuess } = this.props
-    const question = questions.find(
-      (ques, index) => {
-        return questions[index - 1] ? questions[index - 1].id === currentQuestion.id : false
-      }
-    )
+    const {
+      setNewQuestion,
+      questions,
+      currentQuestion,
+      submitUserGuess
+    } = this.props
+    const question = questions.find((ques, index) => {
+      return questions[index - 1]
+        ? questions[index - 1].id === currentQuestion.id
+        : false
+    })
 
     // if we have another question remaining and the user has made a guess
     if (question && currentQuestion.userGuess !== null) {
@@ -86,7 +113,7 @@ class CameraCanvas extends Component {
 
   render() {
     const facecoords = this.props.facecoord
-    const { opponent, location, currentQuestion, timeover, user } = this.props
+    const {opponent, location, currentQuestion, timeover, user} = this.props
     const opponentNames = Object.keys(opponent).sort((name1, name2) => {
       const score1 = opponent[name1]
       const score2 = opponent[name2]
@@ -107,14 +134,15 @@ class CameraCanvas extends Component {
       chkwinner = true
     }
     const pathname = location.pathname
-    const showCrown = pathname.includes('solo') || (winner.includes(user.userName))
-    const { choices } = currentQuestion
+    const showCrown =
+      pathname.includes('solo') || winner.includes(user.userName)
+    const {choices} = currentQuestion
     const xPositions = [0, 266, 533, 799]
 
     return (
       <div id="video-container">
         <Diffy />
-        <Webcam className='video' onUserMediaError={noMediaStream} />
+        <Webcam className="video" onUserMediaError={noMediaStream} />
         <Stage
           ref={ref => {
             this.stageRef = ref
@@ -123,31 +151,26 @@ class CameraCanvas extends Component {
           height={750}
         >
           <Layer>
-            {(facecoords && timeover && showCrown) ?
+            {facecoords && timeover && showCrown ? (
               <Crown facecoords={facecoords} pathname={pathname} />
-              : null}
+            ) : null}
             <PurpleRect />
             <GreenRect />
             <YellowRect />
             <RedRect />
-            {timeover && chkwinner && !pathname.includes('solo') ? <WinnerRect winner={winner} /> : null}
-            {timeover && !chkwinner && !pathname.includes('solo') ? <TieRect /> : null}
-            {timeover && !pathname.includes('solo')
-              ? opponentNames.map((name, index) => (
-                <OpponentScoreRect name={name} opponent={opponent} index={index} />
-              ))
-              : null}
-
-            {/* {timeover && !pathname.includes('solo') ? <Backdrop /> : null} */}
 
             {// option text boxes
-              choices.map((choice, index) => (
-                <ChoiceTextBox id={choice.id} choiceText={choice.text} xPosition={xPositions[index]} />
-              ))}
+            choices.map((choice, index) => (
+              <ChoiceTextBox
+                id={choice.id}
+                choiceText={choice.text}
+                xPosition={xPositions[index]}
+              />
+            ))}
 
             {// if we have options and the user has guessed, show feedback:
-              currentQuestion.userGuessIndex !== null && choices.length
-                ? choices.map((choice, index) => {
+            currentQuestion.userGuessIndex !== null && choices.length
+              ? choices.map((choice, index) => {
                   console.log('inside mapping', currentQuestion.userGuessIndex)
                   if (choice.isCorrect) {
                     if (currentQuestion.userGuessIndex === index) {
@@ -161,10 +184,27 @@ class CameraCanvas extends Component {
                     return null
                   }
                 })
-                : null}
+              : null}
 
             <QuestionBox />
             <QuestionText questionText={currentQuestion.text} />
+
+            {timeover ? <Backdrop /> : null}
+
+            {timeover && chkwinner && !pathname.includes('solo') ? (
+              <WinnerRect winner={winner} />
+            ) : null}
+
+            {timeover && !chkwinner && !pathname.includes('solo') ? (
+              <TieRect />
+            ) : null}
+
+            {timeover && !chkwinner && !pathname.includes('solo') ? (
+              <TieRect />
+            ) : null}
+            {timeover && pathname.includes('solo') ? (
+              <SoloPlayerEndGame />
+            ) : null}
           </Layer>
         </Stage>
       </div>
@@ -184,7 +224,8 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   submitUserGuess: guess => dispatch(submitAnswerIndex(guess)),
   setNewQuestion: question => dispatch(setQuestion(question)),
-  checkAnswer: (choiceObj, gameObj) => dispatch(evaluateAnswer(choiceObj, gameObj)),
+  checkAnswer: (choiceObj, gameObj) =>
+    dispatch(evaluateAnswer(choiceObj, gameObj)),
   updateUserScore: (score, partner, username, gameName) =>
     dispatch(updateScore(score, partner, username, gameName))
 })

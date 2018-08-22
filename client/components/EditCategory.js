@@ -164,7 +164,7 @@ class EditCategory extends Component {
           </div>
           <div className="col-md-4">
             <div className="card">
-              <div className="card-header blue-header">
+              <div className="card-header accent-header">
                 <h4>Current Questions</h4>
               </div>
               <div className="card-body">

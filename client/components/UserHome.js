@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { setCurrentCategory } from '../store/categories'
-import { getQuestions } from '../store/questions'
+import {connect} from 'react-redux'
+import {setCurrentCategory} from '../store/categories'
+import {getQuestions} from '../store/questions'
 import {
   JoinGame,
   CategoryWrapper,
@@ -19,34 +19,24 @@ export class UserHome extends React.Component {
     super()
     this.state = {
       choosingMode: false,
-      choosingCategory: false
+      choosingCategory: true
     }
-    this.handlePlay = this.handlePlay.bind(this)
+
     this.handleChooseCategory = this.handleChooseCategory.bind(this)
     this.resetCategory = this.resetCategory.bind(this)
   }
 
-  handlePlay() {
-    this.setState({
-      choosingCategory: true,
-      active: true
-    })
-  }
-
   handleChooseMode(currentMode) {
     if (currentMode === 'partner') {
-      this.setState({ partnerMode: true })
+      this.setState({partnerMode: true})
     }
-    const { loadQuestions } = this.props
+    const {loadQuestions} = this.props
     //load questions dispatches a thunk to get the questions and  dispatch an action to put them on state and redirect the user to the play page
     loadQuestions(this.props.chosenCategory, currentMode)
-    //can add more functionality here as needed
-
-    // this.props.history.push(`/${currentMode}`)
   }
 
   handleChooseCategory(category) {
-    const { chooseCategory } = this.props
+    const {chooseCategory} = this.props
     chooseCategory(category)
     this.setState({
       choosingMode: true
@@ -55,49 +45,38 @@ export class UserHome extends React.Component {
 
   resetCategory() {
     this.setState({
-      choosingCategory: false,
+      choosingCategory: true,
       choosingMode: false
     })
   }
 
   render() {
-    const { categories, user } = this.props
-    const { choosingCategory, choosingMode, partnerMode } = this.state
+    const {categories, user} = this.props
+    const {choosingCategory, choosingMode, partnerMode} = this.state
     console.log('user is', user)
     return (
       <div className="container">
         <div className="row">
-          <div className="main-container  col-sm-12 col-md-8">
-            <h2 className="text-center">YOUR DASHBOARD</h2>
-            <p className="text-right">Logged in as {user.userName}</p>
-            {!choosingCategory ? (
-              <div>
-
-                <button
-                  type="button"
-                  onClick={this.handlePlay}
-                  className="btn btn-main"
-                >
-                  New Game
-                </button>
-              </div>
-            ) : null}
-
-            {!choosingMode && choosingCategory ? (
-              <CategoryWrapper
-                handleChooseCategory={this.handleChooseCategory}
-              />
-            ) : null}
-
-            {choosingMode ? (
-              <div>
-                <ModeOptions
-                  chosenCategory={this.props.chosenCategory}
-                  loadQuestions={this.props.loadQuestions}
+          <div className="col-sm-12 col-md-8">
+            <div className="main-container">
+              <h2 className="text-center">START NEW GAME</h2>
+              {!choosingMode && choosingCategory ? (
+                <CategoryWrapper
+                  handleChooseCategory={this.handleChooseCategory}
                 />
-                <CategoryOverview resetCategory={this.resetCategory} />
-              </div>
-            ) : null}
+              ) : null}
+
+              {choosingMode ? (
+                <div>
+                  <ModeOptions
+                    chosenCategory={this.props.chosenCategory}
+                    loadQuestions={this.props.loadQuestions}
+                    resetCategory={this.resetCategory}
+                  />
+                </div>
+              ) : null}
+            </div>
+            <CategoryOverview resetCategory={this.resetCategory} />
           </div>
           <div className="col-md-4">
             <JoinGame />
@@ -115,8 +94,7 @@ export class UserHome extends React.Component {
 const mapState = state => {
   return {
     chosenCategory: state.categories.current,
-    categories: state.categories,
-    user: state.user
+    categories: state.categories
   }
 }
 
@@ -133,6 +111,4 @@ export default connect(mapState, mapDispatch)(UserHome)
 /**
  * PROP TYPES
  */
-UserHome.propTypes = {
-
-}
+UserHome.propTypes = {}
