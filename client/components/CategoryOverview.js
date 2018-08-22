@@ -116,6 +116,17 @@ class CategoryOverview extends Component {
             <button onClick={this.handleDeleteCategory}>Delete Category</button>
           ) : null}
 
+          {user.id === categoryDisplayed.authorId ? (
+            <Link to={`/categories/${categoryDisplayed.id}/edit`}>Edit</Link>
+          ) : null}
+
+          {user.id === categoryDisplayed.authorId ? (
+            <div>
+              <h6>To let others subscribe to your category, tell them to visit this URL:</h6>
+              <h6>{`https://point-it-out.herokuapp.com/categories/${categoryDisplayed.id}`}</h6>
+            </div>
+          ) : null}
+
           {// if you are looking at a private category you are subscribed to (i.e. no match.params) and it is NOT a category you made, you can unsubscribe from the category
           !categoryDisplayed.public &&
           !match &&
@@ -123,10 +134,6 @@ class CategoryOverview extends Component {
             <button onClick={this.handleUnsubscribe}>
               Unsubscribe from Category
             </button>
-          ) : null}
-
-          {user.id === categoryDisplayed.authorId ? (
-            <Link to={`/categories/${categoryDisplayed.id}/edit`}>Edit</Link>
           ) : null}
 
           <h3>{categoryDisplayed.questionTotal} questions</h3>
