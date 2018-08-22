@@ -34,14 +34,14 @@ class ModeOptions extends Component {
         <h4>Step 2: Choose a mode</h4>
         <button
           type="button"
-          className="btn btn-main"
+          className="btn btn-primary"
           onClick={() => this.handleChooseMode('solo')}
         >
           Start Solo Game
         </button>
         <button
           type="button"
-          className="btn btn-main"
+          className="btn btn-primary"
           onClick={() => this.handleChooseMode('partner')}
         >
           Create Multiplayer Game
@@ -50,6 +50,8 @@ class ModeOptions extends Component {
         <div className="row">
           <div className="col-sm-10">
             <FontAwesomeIcon
+              color="#0096cc"
+              className="blueIconLink"
               icon={faChevronCircleLeft}
               size="2x"
               onClick={() => resetCategory()}

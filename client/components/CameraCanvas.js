@@ -152,9 +152,7 @@ class CameraCanvas extends Component {
           height={750}
         >
           <Layer>
-            {facecoords && timeover && showCrown ? (
-              <Crown facecoords={facecoords} pathname={pathname} />
-            ) : null}
+
             <PurpleRect />
             <GreenRect />
             <YellowRect />
@@ -188,7 +186,9 @@ class CameraCanvas extends Component {
 
             <QuestionBox />
             <QuestionText questionText={currentQuestion.text} />
-
+{facecoords && timeover && showCrown ? (
+  <Crown facecoords={facecoords} pathname={pathname} />
+) : null}
             {timeover ? <Backdrop /> : null}
 
             {timeover && chkwinner && !pathname.includes('solo') ? (

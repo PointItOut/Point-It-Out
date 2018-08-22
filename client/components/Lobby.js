@@ -39,7 +39,7 @@ class Lobby extends Component {
           {user.host ? (
             <div>
               <button
-                className="btn btn-main"
+                className="btn btn-primary"
                 type="button"
                 onClick={() => this.handleClick(currentgame)}
               >

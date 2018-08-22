@@ -18,15 +18,15 @@ const Splash = ({isLoggedIn, history}) => {
           {/* if they are signed in show a play button
       otherwise display a signup or login button */}
           {isLoggedIn ? (
-            <button type="button" className="btn btn-main">
+            <button type="button" className="btn btn-primary">
               <Link to="home">Play</Link>
             </button>
           ) : (
             <span>
-              <button type="button" className="btn btn-main">
+              <button type="button" className="btn btn-primary">
                 <Link to="/signup">Signup</Link>
               </button>
-              <button type="button" className="btn btn-main">
+              <button type="button" className="btn btn-primary">
                 <Link to="/login">Login</Link>
               </button>
             </span>
@@ -34,7 +34,7 @@ const Splash = ({isLoggedIn, history}) => {
           {/* button to open modal with instructions */}
           <button
             type="button"
-            className="btn btn-main"
+            className="btn btn-primary"
             data-toggle="modal"
             data-target="#instructionModal"
           >

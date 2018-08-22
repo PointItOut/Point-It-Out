@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {setCurrentCategory} from '../store/categories'
+import {setCurrentCategory, setCategory} from '../store/categories'
 import {getQuestions} from '../store/questions'
 import {
   JoinGame,
@@ -44,6 +44,7 @@ export class UserHome extends React.Component {
   }
 
   resetCategory() {
+    this.props.clearCurrentCategory()
     this.setState({
       choosingCategory: true,
       choosingMode: false
@@ -94,7 +95,8 @@ export class UserHome extends React.Component {
 const mapState = state => {
   return {
     chosenCategory: state.categories.current,
-    categories: state.categories
+    categories: state.categories,
+    user: state.user
   }
 }
 
@@ -102,7 +104,8 @@ const mapDispatch = dispatch => {
   return {
     chooseCategory: category => dispatch(setCurrentCategory(category)),
     loadQuestions: (category, currentMode) =>
-      dispatch(getQuestions(category, currentMode))
+      dispatch(getQuestions(category, currentMode)),
+    clearCurrentCategory: () => dispatch(setCategory({}))
   }
 }
 

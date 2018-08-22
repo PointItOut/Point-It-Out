@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import axios from 'axios'
 import { PieChart, QuestionInfo } from './index'
 
@@ -27,20 +27,20 @@ class EditCategory extends Component {
 
   async handleAddQuestion(evt) {
     evt.preventDefault()
-    const {questionName, answer, choice1, choice2, choice3} = this.state
+    const { questionName, answer, choice1, choice2, choice3 } = this.state
     const postBody = {
       question: {
         text: questionName,
         categoryId: +this.props.match.params.categoryId
       },
       choices: [
-        {text: answer, isCorrect: true},
-        {text: choice1, isCorrect: false},
-        {text: choice2, isCorrect: false},
-        {text: choice3, isCorrect: false}
+        { text: answer, isCorrect: true },
+        { text: choice1, isCorrect: false },
+        { text: choice2, isCorrect: false },
+        { text: choice3, isCorrect: false }
       ]
     }
-    const {data} = await axios.post('/api/questions', postBody)
+    const { data } = await axios.post('/api/questions', postBody)
     this.setState(prevState => {
       return {
         questionList: [...prevState.questionList, data],
@@ -66,8 +66,8 @@ class EditCategory extends Component {
   }
 
   async componentDidMount() {
-    const {categoryId} = this.props.match.params
-    const {data} = await axios.get(`/api/categories/${categoryId}`)
+    const { categoryId } = this.props.match.params
+    const { data } = await axios.get(`/api/categories/${categoryId}`)
 
     this.setState({
       categoryName: data.name,
@@ -77,8 +77,16 @@ class EditCategory extends Component {
 
   render() {
     // will have a button to return the user to /home?
-    const {questionName, answer, choice1, choice2, choice3, questionList, categoryName} = this.state
-    const {history} = this.props
+    const {
+      questionName,
+      answer,
+      choice1,
+      choice2,
+      choice3,
+      questionList,
+      categoryName
+    } = this.state
+    const { history } = this.props
 
     const invalidInfo =
       !questionName || !answer || !choice1 || !choice2 || !choice3
@@ -91,6 +99,12 @@ class EditCategory extends Component {
       return total + question.incorrectGuesses
     }, 0)
 
+    const textTooLong =
+      answer.length > 22 ||
+      choice1.length > 22 ||
+      choice2.length > 22 ||
+      choice3.length > 22
+
     return (
       <div className="container">
         <div className="row">
@@ -99,11 +113,11 @@ class EditCategory extends Component {
 
             {
               questionList.length ? (
-              <PieChart totalCorrect={totalAnswersCorrect} totalIncorrect={totalAnswersIncorrect} />
+                <PieChart totalCorrect={totalAnswersCorrect} totalIncorrect={totalAnswersIncorrect} categoryName={categoryName} />
               ) : null
             }
 
-            <h3>Create a new question</h3>
+            <h3 style={{ paddingTop: '50px' }}>Create a new question</h3>
             <form id="new-question-form" onSubmit={this.handleAddQuestion}>
               <div className="form-group row">
                 <div className="col-sm-12">
@@ -117,7 +131,12 @@ class EditCategory extends Component {
                   />
                 </div>
                 <div className="col-sm-12">
-                  <label htmlFor="answer">Correct Answer:</label>
+                  <label htmlFor="answer">
+                    Correct Answer:
+                    {this.state.answer.length > 22 ? (
+                      <span className="warning">Your answer is too long!</span>
+                    ) : null}
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -127,7 +146,12 @@ class EditCategory extends Component {
                   />
                 </div>
                 <div className="col-sm-12">
-                  <label htmlFor="choice1">Choice:</label>
+                  <label htmlFor="choice1">
+                    Choice:
+                    {this.state.choice1.length > 22 ? (
+                      <span className="warning">Your answer is too long!</span>
+                    ) : null}
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -137,7 +161,12 @@ class EditCategory extends Component {
                   />
                 </div>
                 <div className="col-sm-12">
-                  <label htmlFor="choice2">Choice:</label>
+                  <label htmlFor="choice2">
+                    Choice:
+                    {this.state.choice2.length > 22 ? (
+                      <span className="warning">Your answer is too long!</span>
+                    ) : null}
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -147,7 +176,12 @@ class EditCategory extends Component {
                   />
                 </div>
                 <div className="col-sm-12">
-                  <label htmlFor="choice3">Choice:</label>
+                  <label htmlFor="choice3">
+                    Choice:
+                    {this.state.choice3.length > 22 ? (
+                      <span className="warning">Your answer is too long!</span>
+                    ) : null}
+                  </label>
                   <input
                     className="form-control"
                     type="text"
@@ -159,8 +193,8 @@ class EditCategory extends Component {
               </div>
               <button
                 type="submit"
-                className="btn btn-main"
-                disabled={invalidInfo}
+                className="btn btn-primary"
+                disabled={invalidInfo || textTooLong}
               >
                 Add Question
               </button>
@@ -182,14 +216,14 @@ class EditCategory extends Component {
               </div>
             </div>
             <button
-              className="btn btn-main"
+              className="btn btn-primary"
               onClick={() => history.push('/home')}
             >
               Return Home
             </button>
           </div>
         </div>
-      </div>
+      </div >
     )
   }
 }
