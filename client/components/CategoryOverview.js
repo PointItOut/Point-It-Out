@@ -115,6 +115,16 @@ class CategoryOverview extends Component {
                       onClick={this.handleDeleteCategory}
                     />
                   ) : null}&nbsp;
+
+              { // if you are the author of the category, share the url with your friends:
+                categoryDisplayed.authorId === user.id ? (
+                  <div>
+                    <h6>Share this URL with friends to let them play with your category:</h6>
+                    <h6>{`http://point-it-out.herokuapp.com/categories/${categoryDisplayed.id}`}</h6>
+                  </div>
+                ) : null
+              }&nbsp;
+
               {// if you are looking at a private category you are subscribed to (i.e. no match.params) and it is NOT a category you made, you can unsubscribe from the category
                 !categoryDisplayed.public &&
                   !match &&
