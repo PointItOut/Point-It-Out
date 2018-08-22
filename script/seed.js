@@ -46,13 +46,13 @@ async function seed() {
       name: 'state capitals',
       public: true
     }),
-    Category.create({
-      name: 'pets of fullstack',
-      public: true
-    })
+    // Category.create({
+    //   name: 'pets of fullstack',
+    //   public: true
+    // })
   ])
 
-  const [stateCapitals, fullstackPets] = categories
+  const [stateCapitals] = categories
   console.log(`seeded ${categories.length} categories`)
   console.log(`seeded successfully`)
 
@@ -1202,6 +1202,7 @@ async function seed() {
   console.log(`seeded successfully`)
 
 
+  /*
   // FULLSTACK PETS QUESTIONS
   const petQuestions = await Promise.all([
     Question.create({
@@ -1221,9 +1222,8 @@ async function seed() {
     })
   ])
 
-  /*
   await Promise.all(petQuestions.map(ques => ques.setCategory(fullstackPets)))
-
+  console.log('associated petquestions to fullstackpets')
   const [codyQues, firaQues, brunoQues, davidQues, bunQues] = questions
 
   // FULLSTACK PETS CHOICES
@@ -1245,6 +1245,8 @@ async function seed() {
   ])
 
   await Promise.all(codyChoices.map(choice => choice.setQuestion(codyQues)))
+  console.log('are cody choices associated to right question?', codyQues.id)
+  console.log('codyques', codyQues)
 
   const firaChoices = await Promise.all([
     Choice.create({
