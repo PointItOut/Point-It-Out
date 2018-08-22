@@ -36,9 +36,12 @@ $nav-tabs-link-active-color: $light-text;
 
 //footer
 footer {
-  padding: 1em;
+  color: white;
+  position: fixed;
+  bottom: 0;
   left: 0;
   width: 100%;
+  padding: 1em;
   background-color: $primary;
   color: $light-text;
   margin-top: 1em;
@@ -252,3 +255,4 @@ video {
 
 //later I would like to change this to only include what I need,  but right now I want to make sure it works first
 @import '~bootstrap/scss/bootstrap';
+
