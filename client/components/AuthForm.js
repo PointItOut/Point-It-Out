@@ -1,14 +1,14 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import {auth} from '../store'
+import { auth } from '../store'
 import FacebookLoginButton from './FacebookLoginButton'
 
 /**
  * COMPONENT
  */
 const AuthForm = props => {
-  const {name, displayName, handleSubmit, error} = props
+  const { name, displayName, handleSubmit, error } = props
 
   return (
     <div className="container">
@@ -17,16 +17,16 @@ const AuthForm = props => {
           <h2 className="text-center">{name.toUpperCase()}</h2>
           <div className="form-group">
             <label htmlFor="email">Email</label>
-            <input name="email" type="text" />
+            <input name="email" type="text" required />
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input name="password" type="password" />
+            <input name="password" type="password" required />
           </div>
           {props.name === 'signup' ? (
             <div className="form-group">
               <label htmlFor="username">Username</label>
-              <input name="username" type="text" />
+              <input name="username" type="text" required />
             </div>
           ) : null}
           <div>

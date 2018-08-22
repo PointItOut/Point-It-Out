@@ -97,7 +97,11 @@ class EditCategory extends Component {
           <div className="main-container col-sm-12 col-md-8">
             <h2 className="text-center">{categoryName.toUpperCase()}</h2>
 
-            <PieChart totalCorrect={totalAnswersCorrect} totalIncorrect={totalAnswersIncorrect} />
+            {
+              questionList.length ? (
+              <PieChart totalCorrect={totalAnswersCorrect} totalIncorrect={totalAnswersIncorrect} />
+              ) : null
+            }
 
             <h3>Create a new question</h3>
             <form id="new-question-form" onSubmit={this.handleAddQuestion}>

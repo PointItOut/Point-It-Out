@@ -62,7 +62,7 @@ class AddCategory extends Component {
               <button
                 type="submit"
                 className="btn btn-primary"
-                disabled={invalidName}
+                disabled={invalidName || !this.state.newCategoryName}
               >
                 Submit
               </button>

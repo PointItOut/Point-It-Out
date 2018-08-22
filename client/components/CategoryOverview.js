@@ -101,6 +101,11 @@ class CategoryOverview extends Component {
                   onClick={this.handleDeleteCategory}
                 />
               ) : null}&nbsp;
+
+              {user.id === categoryDisplayed.authorId ? (
+                <Link to={`/categories/${categoryDisplayed.id}/edit`}>Edit</Link>
+              ) : null}
+
               {// if you are looking at a private category you are subscribed to (i.e. no match.params) and it is NOT a category you made, you can unsubscribe from the category
               !categoryDisplayed.public &&
               !match &&

@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Countdown from 'react-countdown-now'
 import AddConfetti from './AddConfetti'
-import { Scoreboard, Opentok } from './index'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-import { setTimeOver, startGame, deleteGame } from '../store/game'
+import {Scoreboard, Opentok} from './index'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+import {setTimeOver, startGame, deleteGame} from '../store/game'
 import socket from '../socket'
-import { setHighScore, updateScore } from '../store/score'
+import {setHighScore, updateScore} from '../store/score'
 import FaceRecognition from './FaceRecognition'
 import soundsObject from '../sounds'
 
@@ -15,7 +15,7 @@ class GameSidebar extends Component {
   constructor() {
     super()
     this.handleScores = this.handleScores.bind(this)
-    this.state = { timer: Date.now() + 10000 }
+    this.state = {timer: Date.now() + 60000}
   }
 
   handleScores(score) {
@@ -27,7 +27,7 @@ class GameSidebar extends Component {
       setHighScore,
       setTimeOver
     } = this.props
-    // current is category, but where does that come from...
+
     setTimeOver(true)
     if (isSolo) {
       setHighScore(score, currentCategory, user)
@@ -41,7 +41,7 @@ class GameSidebar extends Component {
   }
 
   render() {
-    const renderer = ({ minutes, seconds, completed }) => {
+    const renderer = ({minutes, seconds, completed}) => {
       if (completed) {
         return (
           <div>
@@ -96,29 +96,29 @@ class GameSidebar extends Component {
         {!this.props.isSolo ? (
           <Opentok currentgame={currentgame} token={token} />
         ) : (
-            <div>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => {
-                  this.props.updateSoloScore(0)
-                  this.props.history.push('/home')
-                }}
-              >
-                Exit
+          <div>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => {
+                this.props.updateSoloScore(0)
+                this.props.history.push('/home')
+              }}
+            >
+              Exit
             </button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => {
-                  handleRestart()
-                  restartGame()
-                }}
-              >
-                Play Again
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => {
+                handleRestart()
+                restartGame()
+              }}
+            >
+              Play Again
             </button>
-            </div>
-          )}
+          </div>
+        )}
         {startGame && user.host && !isSolo ? (
           <div>
             <button
@@ -135,7 +135,10 @@ class GameSidebar extends Component {
             <button
               type="button"
               className="btn btn-primary"
-              onClick={() => socket.emit('rematch', { currentgame })}
+              onClick={() => {
+                socket.emit('rematch', {currentgame})
+                handleRestart()
+              }}
             >
               Rematch
             </button>
@@ -158,7 +161,7 @@ class GameSidebar extends Component {
   }
 }
 
-const mapDispatchToProps = function (dispatch) {
+const mapDispatchToProps = function(dispatch) {
   return {
     deleteGame: (gamename, mode) => dispatch(deleteGame(gamename, mode)),
     setTimeOver: logic => dispatch(setTimeOver(logic)),
@@ -168,7 +171,7 @@ const mapDispatchToProps = function (dispatch) {
       dispatch(startGame(true))
       dispatch(updateScore(0))
     },
-    updateSoloScore: (num) => dispatch(updateScore(num))
+    updateSoloScore: num => dispatch(updateScore(num))
   }
 }
 

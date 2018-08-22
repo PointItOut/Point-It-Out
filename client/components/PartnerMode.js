@@ -12,14 +12,12 @@ class PartnerMode extends Component {
   constructor() {
     super()
     this.state = {
-      ticker: null,
       restarting: false
     }
     this.handleRestart = this.handleRestart.bind(this)
   }
 
   async componentDidMount() {
-    console.log('Getting games')
     await this.props.getGames()
   }
 
@@ -28,18 +26,10 @@ class PartnerMode extends Component {
 
     if ((prevProps.gameCountdown !== this.props.gameCountdown && !prevProps.timeover && this.props.startGame) || restartingTheGame) {
       soundsObject.tick.play()
-      const ticker = setInterval(function() {
-        soundsObject.tick.play()
-      }, 1000)
       this.setState({
-        ticker: ticker,
         restarting: false
       })
     }
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.state.ticker)
   }
 
   handleRestart() {
@@ -59,7 +49,6 @@ class PartnerMode extends Component {
     const currentgame = games.find(game => game.name === name)
     const renderer = ({seconds, completed}) => {
       if (completed) {
-        clearInterval(this.state.ticker)
         return (
           <div className="game-wrapper">
             {!this.props.startGame ? (
@@ -74,6 +63,7 @@ class PartnerMode extends Component {
               currentgame={currentgame}
               token={token}
               startGame={this.props.startGame}
+              handleRestart={this.handleRestart}
             />
           </div>
         )
@@ -91,6 +81,7 @@ class PartnerMode extends Component {
           date={this.props.gameCountdown}
           renderer={renderer.bind(this)}
           zeroPadLength={1}
+          onTick={() => soundsObject.tick.play()}
         />
       </div>
     )
