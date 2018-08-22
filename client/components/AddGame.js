@@ -62,6 +62,7 @@ class AddGame extends Component {
             />
           </div>
           <button type="submit" className="btn btn-main">
+
             Create
           </button>
           {this.state.nameExist && (
