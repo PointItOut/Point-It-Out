@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import { PieChart, QuestionInfo } from './index'
+import {PieChart, QuestionInfo} from './index'
 
 class EditCategory extends Component {
   constructor() {
@@ -77,7 +77,15 @@ class EditCategory extends Component {
 
   render() {
     // will have a button to return the user to /home?
-    const {questionName, answer, choice1, choice2, choice3, questionList, categoryName} = this.state
+    const {
+      questionName,
+      answer,
+      choice1,
+      choice2,
+      choice3,
+      questionList,
+      categoryName
+    } = this.state
     const {history} = this.props
 
     const invalidInfo =
@@ -91,7 +99,11 @@ class EditCategory extends Component {
       return total + question.incorrectGuesses
     }, 0)
 
-    const textTooLong = answer.length > 22 || choice1.length > 22 || choice2.length > 22 || choice3.length > 22
+    const textTooLong =
+      answer.length > 22 ||
+      choice1.length > 22 ||
+      choice2.length > 22 ||
+      choice3.length > 22
 
     return (
       <div className="container">
@@ -99,11 +111,12 @@ class EditCategory extends Component {
           <div className="main-container col-sm-12 col-md-8">
             <h2 className="text-center">{categoryName.toUpperCase()}</h2>
 
-            {
-              questionList.length ? (
-              <PieChart totalCorrect={totalAnswersCorrect} totalIncorrect={totalAnswersIncorrect} />
-              ) : null
-            }
+            {questionList.length ? (
+              <PieChart
+                totalCorrect={totalAnswersCorrect}
+                totalIncorrect={totalAnswersIncorrect}
+              />
+            ) : null}
 
             <h3>Create a new question</h3>
             <form id="new-question-form" onSubmit={this.handleAddQuestion}>
@@ -119,8 +132,11 @@ class EditCategory extends Component {
                   />
                 </div>
                 <div className="col-sm-12">
-                  <label htmlFor="answer">Correct Answer:
-                  {this.state.answer.length > 22 ? <span className="warning">Your answer is too long!</span> : null }
+                  <label htmlFor="answer">
+                    Correct Answer:
+                    {this.state.answer.length > 22 ? (
+                      <span className="warning">Your answer is too long!</span>
+                    ) : null}
                   </label>
                   <input
                     type="text"
@@ -131,8 +147,11 @@ class EditCategory extends Component {
                   />
                 </div>
                 <div className="col-sm-12">
-                  <label htmlFor="choice1">Choice:
-                  {this.state.choice1.length > 22 ? <span className="warning">Your answer is too long!</span> : null }
+                  <label htmlFor="choice1">
+                    Choice:
+                    {this.state.choice1.length > 22 ? (
+                      <span className="warning">Your answer is too long!</span>
+                    ) : null}
                   </label>
                   <input
                     type="text"
@@ -143,8 +162,11 @@ class EditCategory extends Component {
                   />
                 </div>
                 <div className="col-sm-12">
-                  <label htmlFor="choice2">Choice:
-                  {this.state.choice2.length > 22 ? <span className="warning">Your answer is too long!</span> : null }
+                  <label htmlFor="choice2">
+                    Choice:
+                    {this.state.choice2.length > 22 ? (
+                      <span className="warning">Your answer is too long!</span>
+                    ) : null}
                   </label>
                   <input
                     type="text"
@@ -155,8 +177,11 @@ class EditCategory extends Component {
                   />
                 </div>
                 <div className="col-sm-12">
-                  <label htmlFor="choice3">Choice:
-                  {this.state.choice3.length > 22 ? <span className="warning">Your answer is too long!</span> : null }
+                  <label htmlFor="choice3">
+                    Choice:
+                    {this.state.choice3.length > 22 ? (
+                      <span className="warning">Your answer is too long!</span>
+                    ) : null}
                   </label>
                   <input
                     className="form-control"
@@ -169,7 +194,7 @@ class EditCategory extends Component {
               </div>
               <button
                 type="submit"
-                className="btn btn-main"
+                className="btn btn-primary"
                 disabled={invalidInfo || textTooLong}
               >
                 Add Question
@@ -192,7 +217,7 @@ class EditCategory extends Component {
               </div>
             </div>
             <button
-              className="btn btn-main"
+              className="btn btn-primary"
               onClick={() => history.push('/home')}
             >
               Return Home

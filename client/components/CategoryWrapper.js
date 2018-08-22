@@ -52,7 +52,7 @@ class CategoryWrapper extends Component {
           />
           <button
             type="button"
-            className="btn btn-main"
+            className="btn btn-primary"
             onClick={this.handleMakeCategory}
           >
             Add a category

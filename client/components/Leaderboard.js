@@ -16,7 +16,7 @@ const Leaderboard = props => {
     sortedScores[i].color = '#0096cc'
   }
   //assigns gold, silver and bronze for first second and third trophies
-  if (sortedScores[0]) sortedScores[0].color = '#ffc200'
+  if (sortedScores[0]) sortedScores[0].color = '#ffbb28'
   if (sortedScores[1]) sortedScores[1].color = '#7b7b7b'
   if (sortedScores[2]) sortedScores[2].color = '#cd7f32'
 
