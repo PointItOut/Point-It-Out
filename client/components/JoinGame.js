@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import {getGames, updateGame} from '../store/game'
 import {withRouter} from 'react-router-dom'
 import socket from '../socket'
-import {isScreenLarge, tooSmallToast, noCamera} from '../canPlay'
+import {isScreenLarge, tooSmallToast} from '../canPlay'
 
 class JoinGame extends Component {
   constructor() {
@@ -60,6 +60,7 @@ class JoinGame extends Component {
                   name="joinGame"
                   value={this.state.joinGame}
                   onChange={this.handleChange}
+                  className="form-control"
                 />
               </div>
               <button type="submit" className="btn btn-primary">

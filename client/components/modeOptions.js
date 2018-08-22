@@ -50,6 +50,8 @@ class ModeOptions extends Component {
         <div className="row">
           <div className="col-sm-10">
             <FontAwesomeIcon
+              color="#0096cc"
+              className="blueIconLink"
               icon={faChevronCircleLeft}
               size="2x"
               onClick={() => resetCategory()}
