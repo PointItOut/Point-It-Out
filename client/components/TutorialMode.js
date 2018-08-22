@@ -34,21 +34,29 @@ class TutorialMode extends Component {
 
   render() {
     const { questions, currentQuestion } = this.props
-    const endOfTutorial = (currentQuestion.text === 'Touch the green square') && (currentQuestion.userGuess !== null)
+    const endOfTutorial = (currentQuestion.text === 'Touch the blue square') && (currentQuestion.userGuess !== null)
 
     return (
     <div className="tutorial game-wrapper">
       <CameraCanvas questions={questions} tutorialMode={true} />
+
       <div className="container" id="tutorial-sidebar">
-        <h3>TUTORIAL:</h3>
-        <h4>Touch the box with the correct answer</h4>
-        <h4>If your answer is wrong, you will see it in red</h4>
-        <h4>The correct answer will be shown in green</h4>
-        <h4>Good luck!</h4>
-        <button onClick={this.handleExit} >Exit Tutorial</button>
-        {
-          endOfTutorial ? <h5>You have completed this tutorial. Click the exit button to return to the main page and start playing!</h5> : null
-        }
+        <div className="card">
+          <div className="card-header accent-header">
+            <h4 className="text-center">TUTORIAL</h4>
+          </div>
+          <div className="card-body">
+            <h4 className="tutorial-tip">Touch the box with the correct answer</h4>
+            <h4 className="tutorial-tip">If your answer is wrong, you will see it in red</h4>
+            <h4 className="tutorial-tip">The correct answer will be shown in green</h4>
+            <h4 className="tutorial-tip">Good luck!</h4>
+            <button className="btn btn-primary" onClick={this.handleExit} >Exit Tutorial</button>
+          </div>
+          {
+            endOfTutorial ? <h5 className="tutorial-end">Nice job! Click EXIT to return to the main page and start playing!</h5> : null
+          }
+        </div>
+
       </div>
     </div>
     )

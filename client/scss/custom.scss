@@ -248,7 +248,22 @@ video {
   }
 }
 
+.tutorial-header {
+  margin-top: 50px;
+  color: #0096cc;
+  font-weight: bold;
+  padding-left: 10px;
+}
 
+.tutorial-tip {
+  padding: 10px;
+}
+
+.tutorial-end {
+  padding: 10px;
+  font-weight: bold;
+  color: #FFBB28;
+}
 
 //later I would like to change this to only include what I need,  but right now I want to make sure it works first
 @import '~bootstrap/scss/bootstrap';
