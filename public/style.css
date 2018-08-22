@@ -273,3 +273,11 @@ footer i {
   position: absolute;
   font-size: 15em;
 }
+
+.logo img {
+  height: 80px;
+  width: 80px;
+  margin-left: -0.5em;
+  margin-top: -0.5em;
+  margin-bottom: -0.5em;
+}
