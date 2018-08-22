@@ -27,7 +27,6 @@ class AddGame extends Component {
   }
 
   async handleSubmit(evt) {
-    console.log('fff', this.props.current)
     evt.preventDefault()
     const gameName = this.state.newGame
     const gamesArray = this.props.games
@@ -53,13 +52,13 @@ class AddGame extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label htmlFor="newGame">Create New Game</label>
+            <label htmlFor="newGame">Name for your game:</label>
             <input
               type="text"
               name="newGame"
               value={this.state.newGame}
               onChange={this.handleChange}
-            />
+              />
           </div>
           <button type="submit" className="btn btn-main">
             Create
@@ -68,6 +67,8 @@ class AddGame extends Component {
             <span>This name is in use, please choose a new name</span>
           )}
         </form>
+        <h6> Remember to share the name of your game with your friends!</h6>
+        <br />
       </div>
     )
   }
