@@ -5,6 +5,14 @@ const UserCategory = db.define('UserCategory', {
   userHighScore: {
     type: Sequelize.INTEGER,
     defaultValue: 0
+  },
+  correctGuesses: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+  incorrectGuesses: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
 })
 
