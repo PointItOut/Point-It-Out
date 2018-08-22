@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import {postGame, getGames} from '../store/game'
-import {withRouter} from 'react-router-dom'
+import { postGame, getGames } from '../store/game'
+import { withRouter } from 'react-router-dom'
 import socket from '../socket'
-import {setTimeOver} from '../store/game'
+import { setTimeOver } from '../store/game'
 
 class AddGame extends Component {
   constructor() {
@@ -23,7 +23,7 @@ class AddGame extends Component {
   }
 
   handleChange(evt) {
-    this.setState({newGame: evt.target.value})
+    this.setState({ newGame: evt.target.value })
   }
 
   async handleSubmit(evt) {
@@ -35,15 +35,15 @@ class AddGame extends Component {
     const username = this.props.user.userName
 
     if (existGame) {
-      this.setState({nameExist: true})
+      this.setState({ nameExist: true })
     } else {
       const current = this.props.current
       const questions = this.props.questions
-      this.setState({nameExist: false})
-      socket.emit('questions', {questions, gameName})
-      socket.emit('new-score', {username, total: 0, gameName})
+      this.setState({ nameExist: false })
+      socket.emit('questions', { questions, gameName })
+      socket.emit('new-score', { username, total: 0, gameName })
       await this.props.postGame(gameName, current.id)
-      this.setState({newGame: ''})
+      this.setState({ newGame: '' })
       this.props.history.push(`/game/${gameName}`)
     }
   }
@@ -77,7 +77,7 @@ class AddGame extends Component {
   }
 }
 
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function (dispatch) {
   return {
     postGame: (name, current) => dispatch(postGame(name, current)),
     getGames: () => dispatch(getGames()),
