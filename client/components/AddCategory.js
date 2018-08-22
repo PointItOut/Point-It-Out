@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import { makeNewCategory } from '../store/categories'
+import {makeNewCategory} from '../store/categories'
 
 class AddCategory extends Component {
   constructor() {
@@ -15,7 +15,7 @@ class AddCategory extends Component {
   }
 
   handleChange(evt) {
-    const { categories } = this.props
+    const {categories} = this.props
     const publicNames = categories.public.map(category => category.name)
     const privateNames = categories.private.map(category => category.name)
     const categoryNames = [...publicNames, privateNames]
@@ -36,34 +36,40 @@ class AddCategory extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    const { submitNewCategory, user } = this.props
-    const { newCategoryName } = this.state
-    submitNewCategory({ name: newCategoryName }, user.id)
-    // redirect to new view for editing that category?
+    const {submitNewCategory, user} = this.props
+    const {newCategoryName} = this.state
+    submitNewCategory({name: newCategoryName}, user.id)
   }
 
   render() {
-    const { handleSubmit, handleChange } = this
-    const { newCategoryName, invalidName } = this.state
+    const {handleSubmit, handleChange} = this
+    const {newCategoryName, invalidName} = this.state
 
     return (
       <div>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="newGame">New Category Name: </label>
-            <input
-              type="text"
-              name="newCategory"
-              value={newCategoryName}
-              onChange={handleChange}
-            />
+          <div className="form-group row">
+            <div className="col-sm-12">
+              <label htmlFor="newGame">Name for new category</label>
+              <input
+                type="text"
+                className="form-control"
+                name="newCategory"
+                value={newCategoryName}
+                onChange={handleChange}
+              />
+
+              <button
+                type="submit"
+                className="btn btn-main"
+                disabled={invalidName || !this.state.newCategoryName} >
+                Submit
+              </button>
+              {invalidName ? (
+                <span>This name is in use, please choose a new name</span>
+              ) : null}
+            </div>
           </div>
-          <button type="submit" className="btn btn-main" disabled={invalidName || !this.state.newCategoryName}>
-            Submit
-          </button>
-          {invalidName ? (
-            <span>This name is in use, please choose a new name</span>
-          ) : null}
         </form>
       </div>
     )
@@ -77,7 +83,7 @@ const mapState = state => {
   }
 }
 
-const mapDispatchToProps = function (dispatch) {
+const mapDispatchToProps = function(dispatch) {
   return {
     submitNewCategory: (category, userId) =>
       dispatch(makeNewCategory(category, userId))

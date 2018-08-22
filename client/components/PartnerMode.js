@@ -58,7 +58,6 @@ class PartnerMode extends Component {
     const currentgame = games.find(game => game.name === name)
     const renderer = ({seconds, completed}) => {
       if (completed) {
-        // console.log('clearing interval now')
         clearInterval(this.state.ticker)
         return (
           <div className="game-wrapper">

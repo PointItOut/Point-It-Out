@@ -18,15 +18,6 @@ const AddConfetti = sizeMe({
             height: PropTypes.number,
         }),
     }
-    // componentDidMount() {
-
-    //     // this.props.setTimeOver(true)
-
-    //     // this.props.deleteQuestions()
-    //     // this.props.updateScore(0)
-
-
-    // }
     render() {
         return (
             <div

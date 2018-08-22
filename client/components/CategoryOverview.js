@@ -8,6 +8,8 @@ import {
   userUnsubscribeFromCategory
 } from '../store/categories'
 import {Leaderboard} from '.'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faTrash, faPencilAlt} from '@fortawesome/free-solid-svg-icons'
 
 class CategoryOverview extends Component {
   constructor() {
@@ -15,7 +17,6 @@ class CategoryOverview extends Component {
     this.state = {
       categoryDisplayed: null
     }
-    this.renderModeOptions = this.renderModeOptions.bind(this)
     this.handleAddToAccount = this.handleAddToAccount.bind(this)
     this.handleDeleteCategory = this.handleDeleteCategory.bind(this)
     this.handleUnsubscribe = this.handleUnsubscribe.bind(this)
@@ -55,28 +56,6 @@ class CategoryOverview extends Component {
     history.push('/home')
   }
 
-  renderModeOptions() {
-    const {chooseMode} = this.props
-    return (
-      <div>
-        <button
-          type="button"
-          className="btn btn-main"
-          onClick={() => chooseMode('solo')}
-        >
-          Challenge Yourself!
-        </button>
-        <button
-          type="button"
-          className="btn btn-main"
-          onClick={() => chooseMode('partner')}
-        >
-          Challenge a Friend!
-        </button>
-      </div>
-    )
-  }
-
   handleDeleteCategory() {
     const {removeUsersCategory, resetCategory} = this.props
     const {categoryDisplayed} = this.state
@@ -97,46 +76,54 @@ class CategoryOverview extends Component {
 
     if (categoryDisplayed) {
       return (
-        <div>
-          {!categoryDisplayed.public && match ? (
-            <button
-              type="button"
-              className="btn btn-main"
-              onClick={this.handleAddToAccount}
-            >
-              Add to my account
-            </button>
-          ) : null}
+        <div className="main-container">
+          <div className="text-center">
+            <h2 className="text-center">Category: {categoryDisplayed.name}</h2>{' '}
+            &nbsp;<span className="badge badge-primary text-center">
+              {categoryDisplayed.questionTotal} questions
+            </span>&nbsp;
+            <p className="text-center">
+              {!categoryDisplayed.public && match ? (
+                <button
+                  type="button"
+                  className="btn btn-main"
+                  onClick={this.handleAddToAccount}
+                >
+                  Add to my account
+                </button>
+              ) : null}&nbsp;
+              {// if you are looking at a category you made, you can delete the category from the database
+              !categoryDisplayed.public &&
+              categoryDisplayed.authorId === user.id ? (
+                <FontAwesomeIcon
+                  className="pointer"
+                  icon={faTrash}
+                  onClick={this.handleDeleteCategory}
+                />
+              ) : null}&nbsp;
 
-          <h1>{categoryDisplayed.name}</h1>
+              {user.id === categoryDisplayed.authorId ? (
+                <Link to={`/categories/${categoryDisplayed.id}/edit`}>Edit</Link>
+              ) : null}
 
-          {// if you are looking at a category you made, you can delete the category from the database
-          !categoryDisplayed.public &&
-          categoryDisplayed.authorId === user.id ? (
-            <button onClick={this.handleDeleteCategory}>Delete Category</button>
-          ) : null}
-
-          {user.id === categoryDisplayed.authorId ? (
-            <Link to={`/categories/${categoryDisplayed.id}/edit`}>Edit</Link>
-          ) : null}
-
-          {user.id === categoryDisplayed.authorId ? (
-            <div>
-              <h6>To let others subscribe to your category, tell them to visit this URL:</h6>
-              <h6>{`https://point-it-out.herokuapp.com/categories/${categoryDisplayed.id}`}</h6>
-            </div>
-          ) : null}
-
-          {// if you are looking at a private category you are subscribed to (i.e. no match.params) and it is NOT a category you made, you can unsubscribe from the category
-          !categoryDisplayed.public &&
-          !match &&
-          categoryDisplayed.authorId !== user.id ? (
-            <button onClick={this.handleUnsubscribe}>
-              Unsubscribe from Category
-            </button>
-          ) : null}
-
-          <h3>{categoryDisplayed.questionTotal} questions</h3>
+              {// if you are looking at a private category you are subscribed to (i.e. no match.params) and it is NOT a category you made, you can unsubscribe from the category
+              !categoryDisplayed.public &&
+              !match &&
+              categoryDisplayed.authorId !== user.id ? (
+                <button
+                  className="btn btn-main"
+                  onClick={this.handleUnsubscribe}
+                >
+                  Unsubscribe from Category
+                </button>
+              ) : null}&nbsp;
+              {user.id === categoryDisplayed.authorId ? (
+                <Link to={`/categories/${categoryDisplayed.id}/edit`}>
+                  <FontAwesomeIcon className="pointer" icon={faPencilAlt} />
+                </Link>
+              ) : null}
+            </p>
+          </div>
           <Leaderboard categoryDisplayed={categoryDisplayed} />
         </div>
       )
@@ -158,7 +145,6 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(CategoryOverview)
-
 
 CategoryOverview.propTypes = {
   currentCategory: PropTypes.object,
