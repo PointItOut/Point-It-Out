@@ -65,11 +65,13 @@ export class UserHome extends React.Component {
                   handleChooseCategory={this.handleChooseCategory}
                 />
               ) : null}
+
               {choosingMode ? (
                 <div>
                   <ModeOptions
                     chosenCategory={this.props.chosenCategory}
                     loadQuestions={this.props.loadQuestions}
+                    resetCategory={this.resetCategory}
                   />
                 </div>
               ) : null}

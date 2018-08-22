@@ -4,6 +4,11 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import {AddGame} from '.'
 import {isScreenLarge, tooSmallToast} from '../canPlay'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {
+  faChevronCircleLeft,
+  faChevronCircleRight
+} from '@fortawesome/free-solid-svg-icons'
 
 class ModeOptions extends Component {
   constructor() {
@@ -23,7 +28,7 @@ class ModeOptions extends Component {
   }
 
   render() {
-    const {chooseMode} = this.props
+    const {resetCategory} = this.props
     return (
       <div>
         <h4>Step 2: Choose a mode</h4>
@@ -42,6 +47,16 @@ class ModeOptions extends Component {
           Create Multiplayer Game
         </button>
         {this.state.partnerMode ? <AddGame /> : null}
+        <div className="row">
+          <div className="col-sm-10">
+            <FontAwesomeIcon
+              icon={faChevronCircleLeft}
+              size="2x"
+              onClick={() => resetCategory()}
+            />
+          </div>
+          <div className="col-sm-1" />
+        </div>
       </div>
     )
   }
