@@ -48,8 +48,8 @@ class JoinGame extends Component {
     return (
       <div>
         <div className="card">
-          <div className="card-header blue-header">
-            <h4 className="text-center">Join Existing Game</h4>
+          <div className="card-header accent-header">
+            <h4 className="text-center">JOIN EXISTING GAME</h4>
           </div>
           <div className="card-body">
             <form onSubmit={this.handleSubmit}>
