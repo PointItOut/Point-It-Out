@@ -11,7 +11,6 @@ class SoloMode extends Component {
   constructor() {
     super()
     this.state = {
-      ticker: null,
       restarting: false
     }
     this.handleRestart = this.handleRestart.bind(this)
@@ -21,26 +20,14 @@ class SoloMode extends Component {
     if (!this.props.startGame) {
       this.props.history.push('/home')
     }
-
+    // for the initial tick at 3
     soundsObject.tick.play()
-    const ticker = setInterval(function() {
-      soundsObject.tick.play()
-    }, 1000)
-
-    this.setState({
-      ticker: ticker
-    })
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.restarting === false && this.state.restarting === true) {
-      soundsObject.tick.play()
-      const ticker = setInterval(function() {
-        soundsObject.tick.play()
-      }, 1000)
-
+      soundsObject.tick.play() // for the initial tick at 3
       this.setState({
-        ticker: ticker,
         restarting: false
       })
     }
@@ -78,6 +65,7 @@ class SoloMode extends Component {
           date={this.props.gameCountdown}
           renderer={renderer.bind(this)}
           zeroPadLength={1}
+          onTick={() => soundsObject.tick.play()}
         />
       </div>
     )

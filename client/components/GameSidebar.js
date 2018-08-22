@@ -15,7 +15,7 @@ class GameSidebar extends Component {
   constructor() {
     super()
     this.handleScores = this.handleScores.bind(this)
-    this.state = { timer: Date.now() + 10000 }
+    this.state = { timer: Date.now() + 60000 }
   }
 
   handleScores(score) {
@@ -27,7 +27,7 @@ class GameSidebar extends Component {
       setHighScore,
       setTimeOver
     } = this.props
-    // current is category, but where does that come from...
+
     setTimeOver(true)
     if (isSolo) {
       setHighScore(score, currentCategory, user)
@@ -135,7 +135,10 @@ class GameSidebar extends Component {
             <button
               type="button"
               className="btn btn-main"
-              onClick={() => socket.emit('rematch', { currentgame })}
+              onClick={() => {
+                socket.emit('rematch', { currentgame })
+                handleRestart()
+              }}
             >
               Rematch
             </button>
