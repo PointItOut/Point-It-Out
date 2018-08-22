@@ -1,0 +1,6 @@
+// Your variable overrides
+$body-bg: #000;
+$body-color: #111;
+
+//later I would like to change this to only include what I need,  but right now I want to make sure it works first
+@import 'node_modules/bootstrap/scss/bootstrap';
