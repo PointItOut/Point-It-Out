@@ -30,22 +30,23 @@ const Instructions = props => {
           <div className="modal-body">
             <ol>
               <li>Each round is 60 seconds long</li>
-              <li>Once you guess, you will see the correct answer in green </li>
-              <li>If you guessed incorrectly, you will also see your answer in red</li>
-              <li>The game will automatically move on to the next question</li>
+              <li>The question displays at the bottom of the webcam and the choices at the top</li>
+              <li>After guessing, the correct answer will be shown with a green border</li>
+              <li>If you guessed incorrectly, your answer will be displayed with a red border</li>
               <li>Each correct answer is worth 1 point</li>
-              <li>Play by yourself or with friends</li>
-              <li>Whoever gets the most points wins the round!</li>
+              <li>Play by yourself or start a game with friends</li>
+              <li>The game ends when the time is up</li>
+              <li>Whoever gets the most points wins the round and gets a crown!</li>
             </ol>
             <h4>Tips</h4>
             <ol>
               <li>Place your computer on a stable surface</li>
               <li>Position yourself so you are below the row of answers</li>
-              <li>Make sure you are well lit</li>
-              <li>Tap the box of your choice decisively!</li>
+              <li>Make sure you are in a place that is well-lit</li>
+              <li>Don't be hesitant! Tap the box of your choice decisively!</li>
             </ol>
           </div>
-          <button onClick={props.handleClick} data-dismiss="modal">Practice!</button>
+          <button className="btn btn-primary" onClick={props.handleClick} data-dismiss="modal">Practice!</button>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 
 const tutorialQuestions = [{
-  text: 'Touch the red square',
+  text: 'Touch the pink square',
   id: 1,
   choices: [{
     id: 1,
@@ -9,7 +9,7 @@ const tutorialQuestions = [{
     questionId: 1
   }, {
     id: 2,
-    text: 'Green',
+    text: 'Blue',
     isCorrect: false,
     questionId: 1
   }, {
@@ -19,7 +19,7 @@ const tutorialQuestions = [{
     questionId: 1
   }, {
     id: 4,
-    text: 'RED!',
+    text: 'PINK!',
     isCorrect: true,
     questionId: 1
   }]
@@ -33,7 +33,7 @@ const tutorialQuestions = [{
     questionId: 2
   }, {
     id: 6,
-    text: 'Green',
+    text: 'Blue',
     isCorrect: false,
     questionId: 2
   }, {
@@ -43,7 +43,7 @@ const tutorialQuestions = [{
     questionId: 2
   }, {
     id: 8,
-    text: 'Red',
+    text: 'Pink',
     isCorrect: false,
     questionId: 2
   }]
@@ -57,7 +57,7 @@ const tutorialQuestions = [{
     questionId: 3
   }, {
     id: 10,
-    text: 'Green',
+    text: 'Blue',
     isCorrect: false,
     questionId: 3
   }, {
@@ -67,12 +67,12 @@ const tutorialQuestions = [{
     questionId: 3
   }, {
     id: 12,
-    text: 'Red',
+    text: 'Pink',
     isCorrect: false,
     questionId: 3
   }]
 }, {
-  text: 'Touch the green square',
+  text: 'Touch the blue square',
   id: 4,
   choices: [{
     id: 13,
@@ -81,7 +81,7 @@ const tutorialQuestions = [{
     questionId: 4
   }, {
     id: 14,
-    text: 'GREEN!',
+    text: 'BLUE!',
     isCorrect: true,
     questionId: 4
   }, {
@@ -91,7 +91,7 @@ const tutorialQuestions = [{
     questionId: 4
   }, {
     id: 16,
-    text: 'Red',
+    text: 'Pink',
     isCorrect: false,
     questionId: 4
   }]

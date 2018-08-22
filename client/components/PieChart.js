@@ -27,7 +27,7 @@ class SimplePieChart extends React.Component {
   render() {
     const { totalCorrect, totalIncorrect, userChart, categoryName } = this.props
     // this is the TOTAL CORRECT for the entire category and the TOTAL INCORRECT for the entire category
-    const text = userChart ? `your overall performance in ${categoryName}:` : `users' performance in ${categoryName}:`
+    const text = userChart ? `YOUR OVERALL PERFORMANCE in ${categoryName}:` : `USERS' OVERALL PERFORMANCE in ${categoryName}:`
 
     const data = [
       { name: "Correct Responses", value: totalCorrect },
