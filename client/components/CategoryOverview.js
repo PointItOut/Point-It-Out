@@ -39,10 +39,17 @@ class CategoryOverview extends Component {
   async componentDidUpdate(prevProps) {
     const {match, currentCategory} = this.props
     if (prevProps.currentCategory !== currentCategory) {
-      const {data} = await axios.get(`/api/categories/${currentCategory.id}`)
-      this.setState({
-        categoryDisplayed: data
-      })
+      if (currentCategory.id) {
+        const {data} = await axios.get(`/api/categories/${currentCategory.id}`)
+        this.setState({
+          categoryDisplayed: data
+        })
+      } else {
+        // currentCategory must be {} because we reset it
+        this.setState({
+          categoryDisplayed: null
+        })
+      }
     }
   }
 
