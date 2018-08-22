@@ -219,7 +219,7 @@ class EditCategory extends Component {
               className="btn btn-primary"
               onClick={() => history.push('/home')}
             >
-              Return Home
+              Back
             </button>
           </div>
         </div>
