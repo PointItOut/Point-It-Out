@@ -16,6 +16,7 @@ const Navbar = ({handleClick, isLoggedIn, username}) => (
           </Link>
         </div>
       </div>
+      {/*hamburger menu*/}
       <button
         className="navbar-toggler"
         type="button"
@@ -43,14 +44,7 @@ const Navbar = ({handleClick, isLoggedIn, username}) => (
               </Link>
             </li>
           )}
-          {isLoggedIn ? (
-            <li>
-              <Link to="/home" className="nav-link">
-                {' '}
-                Logged in as {username}
-              </Link>
-            </li>
-          ) : null}
+
           {/* if user is logged in display the link to log out otherwise link them to log in */}
           {isLoggedIn ? (
             <li className="nav-item">
@@ -66,6 +60,15 @@ const Navbar = ({handleClick, isLoggedIn, username}) => (
             </li>
           )}
         </ul>
+        {isLoggedIn ? (
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link to="/home" className="nav-link">
+                Logged in as {username}
+              </Link>
+            </li>
+          </ul>
+        ) : null}
       </div>
     </nav>
   </div>
