@@ -58,7 +58,7 @@ class AddCategory extends Component {
               onChange={handleChange}
             />
           </div>
-          <button type="submit" className="btn btn-main" disabled={invalidName}>
+          <button type="submit" className="btn btn-main" disabled={invalidName || !this.state.newCategoryName}>
             Submit
           </button>
           {invalidName ? (
