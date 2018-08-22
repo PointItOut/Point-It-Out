@@ -1,75 +1,36 @@
-/* what we have now + a few extra
-:root {
-  --bg-color: #e9e9e9;
-  --box-color: white;
-  --purplse-color: #7734dc;
-  --gold-color: #f7d119;
-  --button-color: #0096cc;
-  --one-card-color: #1a7b41;
-  --another-card-color: #e8411e;
-  --accent-color: rgb(0, 86, 117);
-  --button-hover: rgb(0, 86, 117);
-  --dark-text: rgb(35, 31, 31);
-  --light-text: white;
-  --primary: #0096cc;
-} */
+$primary: #0096cc;
+$secondary: rgb(0, 86, 117);
+$body-bg: #e9e9e9;
+$body-color: rgb(35, 31, 31);
+$font-family-base: museo-sans, sans-serif;
+$box-color: white;
+$light-text: white;
+$card-cap-bg: $secondary;
+//update navbar colors and update the navbar class appropriately
 
-/*like our fav website*/
-/* :root {
-  --bg-color: #e9e9e9;
-  --box-color: white;
-  --accent-color: #a560eb;
-  --gold-color: #f7bf33;
-  --one-card-color: #b64740;
-  --another-card-color: #d26b3e;
-  --button-color: #0096cc;
-  --button-hover: rgb(0, 86, 117);
-  --dark-text: rgb(35, 31, 31);
-  --light-text: white;
-  --primary: #0096cc;
-}
-/*
-:root {
-  --bg-color: #e9e9e9;
-  --box-color: white;
-  --accent-color: #af330f;
-  --gold-color: #ee9e24;
-  --one-card-color: #48b9cd;
-  --button-color: #0096cc;
-  --button-hover: rgb(0, 86, 117);
-  --dark-text: rgb(35, 31, 31);
-  --light-text: white;
-  --primary: #0096cc;
-} */
-
-/* body {
-  background-color: var(--bg-color);
-  font-family: museo-sans, sans-serif;
-  font-style: normal;
-  font-weight: 100;
-  font-size: 1em;
-  color: var(--dark-text);
-} */
-/*
+//consider using a card for the main container instead
 .main-container {
-  background-color: var(--box-color);
+  background-color: $box-color;
   padding: 2em;
   border-radius: 2%;
   margin-bottom: 2em;
 }
 
+button {
+  margin: 1em;
+}
+
 .blue-header {
-  background-color: var(--button-color);
-  color: var(--light-text);
+  background-color: $primary;
+  color: $light-text;
 }
 
 .accent-header {
-  background-color: var(--accent-color);
-  color: var(--light-text);
+  color: $light-text;
 }
 
 .scoreboard {
-  color: var(--accent-color);
+  color: $secondary;
   font-weight: bold;
   text-align: center;
 }
@@ -78,8 +39,7 @@
   font-size: 3em;
 }
 
-.navbar,
-.btn-primary {
+.navbar {
   font-size: 1.5em;
 }
 
@@ -137,9 +97,9 @@ form div {
   top: 0;
   left: 0;
   /* margin: 0px auto;
-  width: 1000px;
-}*/
-/*
+  width: 1000px; */
+}
+
 .card {
   margin-bottom: 2em;
 }
@@ -158,12 +118,12 @@ video {
   width: 1000px;
   height: 750px;
   transform: rotateY(180deg);
-  -webkit-transform: rotateY(180deg); */
-/* Safari and Chrome */
-/* -moz-transform: rotateY(180deg); */
-/* Firefox */
-/* } */
-/*
+  -webkit-transform: rotateY(180deg);
+  /* Safari and Chrome */
+  -moz-transform: rotateY(180deg);
+  /* Firefox */
+}
+
 .game-wrapper {
   display: flex;
   flex-direction: row;
@@ -177,8 +137,8 @@ video {
 
 #game-sidebar {
   flex-grow: 1;
-} */
-/*
+}
+
 #tutorial-sidebar {
   flex-grow: 1;
 }
@@ -192,40 +152,15 @@ video {
   margin-left: 1em;
 }
 
-button {
-  margin: 1em;
-}
-
-.btn-primary {
-  background-color: var(--button-color);
-  color: var(--light-text);
-  border-radius: 10%;
-  font-size: 1em;
-}
-
-.btn-primary:hover {
-  background-color: var(--button-hover);
-  color: var(--light-text);
-}
-
-.btn-primary a {
-  color: white;
-}
-
-.btn-primary a:hover {
-  color: white;
-  text-decoration: none;
-}
-
 .clock {
   font-family: museo-sans, sans-serif !important;
   font-style: normal;
   font-size: 5em;
   color: var(--accent-color);
   text-align: center;
-} */
+}
 
-/* .no-interaction {
+.no-interaction {
   pointer-events: none;
 }
 
@@ -254,9 +189,9 @@ footer i {
   justify-content: center;
   width: 500px;
   padding-bottom: 100px;
-} */
+}
 
-/* #pie-chart {
+#pie-chart {
   flex-shrink: 0;
   flex-basis: 200px;
 }
@@ -265,11 +200,14 @@ footer i {
   flex-grow: 1;
   flex-basis: 200px;
   align-self: flex-end;
-} */
+}
 
-/* .countdown {
+.countdown {
   padding-left: 45%;
   margin-top: 10%;
   position: absolute;
   font-size: 15em;
-} */
+}
+
+//later I would like to change this to only include what I need,  but right now I want to make sure it works first
+@import '~bootstrap/scss/bootstrap';

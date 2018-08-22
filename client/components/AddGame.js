@@ -64,7 +64,7 @@ class AddGame extends Component {
               required
             />
           </div>
-          <button type="submit" className="btn btn-main">
+          <button type="submit" className="btn btn-primary">
             Play
           </button>
 

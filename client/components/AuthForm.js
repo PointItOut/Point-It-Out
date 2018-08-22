@@ -31,11 +31,11 @@ const AuthForm = props => {
           ) : null}
           <div>
             <a href="/auth/facebook">
-              <button type="button" className="btn btn-main">
+              <button type="button" className="btn btn-primary">
                 {displayName} with Facebook
               </button>
             </a>
-            <button type="submit" className="btn btn-main">
+            <button type="submit" className="btn btn-primary">
               {displayName}
             </button>
           </div>

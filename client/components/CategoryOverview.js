@@ -86,7 +86,7 @@ class CategoryOverview extends Component {
               {!categoryDisplayed.public && match ? (
                 <button
                   type="button"
-                  className="btn btn-main"
+                  className="btn btn-primary"
                   onClick={this.handleAddToAccount}
                 >
                   Add to my account
@@ -106,7 +106,7 @@ class CategoryOverview extends Component {
               !match &&
               categoryDisplayed.authorId !== user.id ? (
                 <button
-                  className="btn btn-main"
+                  className="btn btn-primary"
                   onClick={this.handleUnsubscribe}
                 >
                   Unsubscribe from Category

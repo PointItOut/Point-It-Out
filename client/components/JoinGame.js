@@ -62,7 +62,7 @@ class JoinGame extends Component {
                   onChange={this.handleChange}
                 />
               </div>
-              <button type="submit" className="btn btn-main">
+              <button type="submit" className="btn btn-primary">
                 Join
               </button>
               {!this.state.nameExist && (

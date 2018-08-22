@@ -34,14 +34,14 @@ class ModeOptions extends Component {
         <h4>Step 2: Choose a mode</h4>
         <button
           type="button"
-          className="btn btn-main"
+          className="btn btn-primary"
           onClick={() => this.handleChooseMode('solo')}
         >
           Start Solo Game
         </button>
         <button
           type="button"
-          className="btn btn-main"
+          className="btn btn-primary"
           onClick={() => this.handleChooseMode('partner')}
         >
           Create Multiplayer Game

@@ -155,7 +155,7 @@ class EditCategory extends Component {
               </div>
               <button
                 type="submit"
-                className="btn btn-main"
+                className="btn btn-primary"
                 disabled={invalidInfo}
               >
                 Add Question
@@ -178,7 +178,7 @@ class EditCategory extends Component {
               </div>
             </div>
             <button
-              className="btn btn-main"
+              className="btn btn-primary"
               onClick={() => history.push('/home')}
             >
               Return Home

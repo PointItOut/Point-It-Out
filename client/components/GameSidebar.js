@@ -99,7 +99,7 @@ class GameSidebar extends Component {
             <div>
               <button
                 type="button"
-                className="btn btn-main"
+                className="btn btn-primary"
                 onClick={() => {
                   this.props.updateSoloScore(0)
                   this.props.history.push('/home')
@@ -109,7 +109,7 @@ class GameSidebar extends Component {
             </button>
               <button
                 type="button"
-                className="btn btn-main"
+                className="btn btn-primary"
                 onClick={() => {
                   handleRestart()
                   restartGame()
@@ -122,7 +122,7 @@ class GameSidebar extends Component {
         {startGame && user.host && !isSolo ? (
           <div>
             <button
-              className="btn btn-main"
+              className="btn btn-primary"
               type="button"
               onClick={() => {
                 deleteGame(currentgame.name, Mode)
@@ -134,7 +134,7 @@ class GameSidebar extends Component {
 
             <button
               type="button"
-              className="btn btn-main"
+              className="btn btn-primary"
               onClick={() => socket.emit('rematch', { currentgame })}
             >
               Rematch
@@ -145,7 +145,7 @@ class GameSidebar extends Component {
         {!user.host && !isSolo ? (
           <button
             type="button"
-            className="btn btn-main"
+            className="btn btn-primary"
             onClick={() => {
               this.props.history.push('/home')
             }}
