@@ -19,7 +19,6 @@ class PartnerMode extends Component {
   }
 
   async componentDidMount() {
-    console.log('Getting games')
     await this.props.getGames()
   }
 
@@ -74,6 +73,7 @@ class PartnerMode extends Component {
               currentgame={currentgame}
               token={token}
               startGame={this.props.startGame}
+              handleRestart={this.handleRestart}
             />
           </div>
         )

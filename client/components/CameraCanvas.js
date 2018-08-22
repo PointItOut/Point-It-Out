@@ -37,13 +37,7 @@ class CameraCanvas extends Component {
   }
 
   componentDidMount() {
-    // log stage react wrapper
-    console.log(this.stageRef)
-    // log Konva.Stage instance
-    console.log(this.stageRef.getStage())
-
-    const {setNewQuestion, questions, submitUserGuess} = this.props
-    console.log('MOUNTING')
+    const { setNewQuestion, questions, submitUserGuess } = this.props
     setNewQuestion(questions[0]) // start with first question
     submitUserGuess(null) // to reset userguess to null
     this.setState({
@@ -68,7 +62,6 @@ class CameraCanvas extends Component {
     const newGuessSubmitted = userGuessIndex !== null
 
     if (currentQuestionExists && notGuessedYet && newGuessSubmitted) {
-      console.log('ABOUT TO CHECK ANSWER')
       const partnerMode = !location.pathname.includes('solo')
       const gameName = match.params.name ? match.params.name : undefined
 
@@ -169,9 +162,8 @@ class CameraCanvas extends Component {
             ))}
 
             {// if we have options and the user has guessed, show feedback:
-            currentQuestion.userGuessIndex !== null && choices.length
-              ? choices.map((choice, index) => {
-                  console.log('inside mapping', currentQuestion.userGuessIndex)
+              currentQuestion.userGuessIndex !== null && choices.length
+                ? choices.map((choice, index) => {
                   if (choice.isCorrect) {
                     if (currentQuestion.userGuessIndex === index) {
                       // soundsObject.giggle.play()
