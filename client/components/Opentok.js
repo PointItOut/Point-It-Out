@@ -4,7 +4,7 @@ import {OTSession, OTPublisher, OTStreams, OTSubscriber} from 'opentok-react'
 
 class Opentok extends React.Component {
   render() {
-    const { currentgame, token } = this.props
+    const {currentgame, token} = this.props
 
     return (
       <div className="card">
@@ -13,7 +13,7 @@ class Opentok extends React.Component {
         </div>
         <div className="opentokContainer card-body">
           <OTSession
-            apiKey="46169082"
+            apiKey="46176672"
             sessionId={currentgame.sessionId}
             token={token}
           >
