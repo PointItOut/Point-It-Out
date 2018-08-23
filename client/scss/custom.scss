@@ -223,7 +223,7 @@ video {
   width: 500px;
   height: 100px;
   padding-bottom: 0px;
-  margin-top: 30px
+  margin-top: 30px;
 }
 
 #pie-chart {
@@ -279,9 +279,8 @@ video {
 .tutorial-end {
   padding: 10px;
   font-weight: bold;
-  color: #FFBB28;
+  color: #ffbb28;
 }
 
 //later I would like to change this to only include what I need,  but right now I want to make sure it works first
 @import '~bootstrap/scss/bootstrap';
-
