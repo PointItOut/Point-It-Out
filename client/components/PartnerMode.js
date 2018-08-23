@@ -22,9 +22,15 @@ class PartnerMode extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const restartingTheGame = prevState.restarting === false && this.state.restarting === true
+    const restartingTheGame =
+      prevState.restarting === false && this.state.restarting === true
 
-    if ((prevProps.gameCountdown !== this.props.gameCountdown && !prevProps.timeover && this.props.startGame) || restartingTheGame) {
+    if (
+      (prevProps.gameCountdown !== this.props.gameCountdown &&
+        !prevProps.timeover &&
+        this.props.startGame) ||
+      restartingTheGame
+    ) {
       soundsObject.tick.play()
       this.setState({
         restarting: false
@@ -50,7 +56,7 @@ class PartnerMode extends Component {
     const renderer = ({seconds, completed}) => {
       if (completed) {
         return (
-          <div className="game-wrapper">
+          <div className="game-wrapper mainPage">
             {!this.props.startGame ? (
               <Lobby currentgame={currentgame} token={token} />
             ) : (

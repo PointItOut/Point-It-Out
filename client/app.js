@@ -10,14 +10,19 @@ const App = props => {
   return (
     <div>
       {props.location.pathname.includes('solo') ||
-      props.location.pathname.includes('game') || props.location.pathname.includes('tutorial') ? null : (
+      props.location.pathname.includes('game') ||
+      props.location.pathname.includes('tutorial') ? null : (
         <Navbar />
       )}
       <div className="mainPage">
         <Routes />
         <ButterToast trayPosition="bottom-right" />
       </div>
-      <Footer />
+      {props.location.pathname.includes('solo') ||
+      props.location.pathname.includes('game') ||
+      props.location.pathname.includes('tutorial') ? null : (
+        <Footer />
+      )}
     </div>
   )
 }

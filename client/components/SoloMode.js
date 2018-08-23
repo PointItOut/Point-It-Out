@@ -46,9 +46,12 @@ class SoloMode extends Component {
       if (completed) {
         clearInterval(this.state.ticker)
         return (
-          <div className="game-wrapper">
+          <div className="game-wrapper mainPage">
             <CameraCanvas questions={questions} />
-            <GameSidebar isSolo={this.props.match.path === '/solo'} handleRestart={this.handleRestart}/>
+            <GameSidebar
+              isSolo={this.props.match.path === '/solo'}
+              handleRestart={this.handleRestart}
+            />
           </div>
         )
       } else {

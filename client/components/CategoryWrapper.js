@@ -45,7 +45,7 @@ class CategoryWrapper extends Component {
             categories={categories.public}
             chooseCategory={handleChooseCategory}
           />
-          <p>Your Custom Categories</p>
+          <p>Your custom categories</p>
           <CategoryChoices
             categories={categories.private}
             chooseCategory={handleChooseCategory}
