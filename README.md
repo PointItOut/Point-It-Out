@@ -19,6 +19,7 @@ Sivan Gilead
 
 ## Built with:
 Node, Express, Sequelize, PostgreSQL, React, Redux, React-Redux, React-Router, React-Konva, Opentak
+
 Diffy.js was used for movement tracking: https://www.npmjs.com/package/diffyjs
 
 
