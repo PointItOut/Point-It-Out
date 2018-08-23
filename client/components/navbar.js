@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import Path from 'path'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faHandPointUp} from '@fortawesome/free-solid-svg-icons'
 
@@ -12,7 +13,7 @@ const Navbar = ({handleClick, isLoggedIn, username}) => (
       <div className="navbar-brand">
         <div className="logo">
           <Link to="/">
-            <img src="./whiteLogo.png" />
+            <img src={Path.join(__dirname, './whiteLogo.png')} />
           </Link>
         </div>
       </div>
