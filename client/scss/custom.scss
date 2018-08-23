@@ -28,6 +28,10 @@ $body-color: $body-text;
 $navbar-dark-color: $light-text;
 $nav-tabs-link-active-color: $light-text;
 
+body {
+
+}
+
 .navbar {
   font-size: 1.5em;
   margin-bottom: 2em;
@@ -202,9 +206,9 @@ video {
   pointer-events: none;
 }
 
-.mainPage {
-  min-height: calc(100vh - 200px);
-}
+// .mainPage {
+//   min-height: calc(100vh - 200px);
+// }
 
 .pointer {
   cursor: pointer;
