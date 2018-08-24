@@ -8,7 +8,7 @@ After forking and cloning the project, run 'npm install' to download all the nec
 #### GETTING STARTED:
 The command 'npm run start-dev' will run the app in development mode on your local machine. To run the server and/or webpack separately, use 'npm run start-server' and 'npm run build-client.'
 
-## Screenshots
+#### SCREENSHOT:
 ![screenshot1](./public/images/screenshot1.png)
 
 
