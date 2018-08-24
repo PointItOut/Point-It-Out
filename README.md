@@ -8,6 +8,10 @@ After forking and cloning the project, run 'npm install' to download all the nec
 #### GETTING STARTED:
 The command 'npm run start-dev' will run the app in development mode on your local machine. To run the server and/or webpack separately, use 'npm run start-server' and 'npm run build-client.'
 
+## Screenshots
+![screenshot1](./public/images/screenshot1.png)
+
+
 #### RUNNING TESTS:
 All test files end with .spec.js. The command 'npm test' will run all tests for the project. You must have a database named pointItOut-test in order to run the test files.
 
