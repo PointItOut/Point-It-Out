@@ -27,7 +27,7 @@ router.post('/guess/:choiceId', async (req, res, next) => {
       const userGuess = await Choice.findById(+req.params.choiceId)
       const currentQuestion = await Question.findById(userGuess.questionId)
       console.log('=============================================>', currentQuestion.categoryId, req.user.id)
-      const userCategory = await UserCategory.findOne({ where: { userId: req.user.id, categoryId: currentQuestion.categoryId } })
+      const userCategory = await UserCategory.findOrCreate({ where: { userId: req.user.id, categoryId: currentQuestion.categoryId } })
 
       const { correctGuesses, incorrectGuesses } = currentQuestion
 
