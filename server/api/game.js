@@ -26,6 +26,7 @@ router.post('/guess/:choiceId', async (req, res, next) => {
       // otherwise we're playing a real game
       const userGuess = await Choice.findById(+req.params.choiceId)
       const currentQuestion = await Question.findById(userGuess.questionId)
+      console.log('=============================================>', currentQuestion.categoryId, req.user.id)
       const userCategory = await UserCategory.findOne({ where: { userId: req.user.id, categoryId: currentQuestion.categoryId } })
 
       const { correctGuesses, incorrectGuesses } = currentQuestion
@@ -56,6 +57,7 @@ router.get('/:name', async (req, res, next) => {
     let token = opentok.generateToken(existgame.sessionId)
 
     await User.update({ gameId: existgame.id, token }, { where: { id: req.user.id } })
+    await UserCategory.findOrCreate({ where: { userId: req.user.id, categoryId: existgame.categoryId } })
 
     res.json({ token })
   } catch (err) {
@@ -79,6 +81,7 @@ router.post('/', async (req, res, next) => {
 
       let sessionId = session.sessionId
       const newGame = await Game.create({ name: req.body.name, sessionId, categoryId: req.body.category })
+      await UserCategory.findOrCreate({ where: { userId: req.user.id, categoryId: req.body.category } })
 
 
       let token = opentok.generateToken(newGame.sessionId)
