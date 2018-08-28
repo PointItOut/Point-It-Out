@@ -6,40 +6,40 @@ const {Choice, Question} = require('../db/models')
 
 const questions = [
   {
-    theQuestion: 'What is the capital of Russia',
-    category: 'geography'
+    text: 'What is the capital of Russia',
+    categoryId: 1
   },
   {
-    theQuestion: 'Who was the first U.S. President',
-    category: 'history'
+    text: 'Who was the first U.S. President',
+    categoryId: 2
   },
   {
-    theQuestion: 'Who was the artist who painted Starry Night',
-    category: 'art'
+    text: 'Who was the artist who painted Starry Night',
+    categoryId: 3
   }
 ]
 
 const choices = [
   {
-    theChoice: 'Moscow',
+    text: 'Moscow',
     isCorrect: true,
     isPicture: false,
     questionId: 1
   },
   {
-    theChoice: 'Boston',
+    text: 'Boston',
     isCorrect: false,
     isPicture: false,
     questionId: 1
   },
   {
-    theChoice: 'Tel Aviv',
+    text: 'Tel Aviv',
     isCorrect: false,
     isPicture: false,
     questionId: 1
   },
   {
-    theChoice: 'D.C.',
+    text: 'D.C.',
     isCorrect: false,
     isPicture: false,
     questionId: 1
@@ -48,7 +48,8 @@ const choices = [
 
 describe('Question routes', () => {
   beforeEach(() => {
-    return db.sync({ force: true })
+    return db
+      .sync({force: true})
       .then(() => Question.bulkCreate(questions))
       .then(() => Choice.bulkCreate(choices))
   })
@@ -57,10 +58,10 @@ describe('Question routes', () => {
     return db.sync({force: true})
   })
 
-  describe('/api/questions/:category', () => {
-    it('GET /api/questions/:categories', async () => {
+  describe('/api/questions/:categoryId', () => {
+    it('GET /api/questions/:categoryId', async () => {
       const res = await request(app)
-        .get('/api/questions/history')
+        .get('/api/questions/1')
         .expect(200)
       expect(res.body).to.be.an('array')
       expect(res.body.length).to.be.equal(1)
@@ -76,7 +77,7 @@ describe('Question routes', () => {
       expect(res.body).to.be.an('array')
       expect(res.body.length).to.be.equal(3)
       const myQuestion = res.body.find(elem => elem.id === 1)
-      expect(myQuestion.theQuestion).to.be.equal('What is the capital of Russia')
+      expect(myQuestion.text).to.be.equal('What is the capital of Russia')
       expect(myQuestion.choices.length).to.be.equal(4)
     })
   })

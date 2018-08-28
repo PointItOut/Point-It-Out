@@ -8,19 +8,6 @@ router.get('/', async (req, res, next) => {
       include: {model: Choice}
     })
 
-    /*
-    const responseBody = questions.map(question => {
-      return {
-        id: question.id,
-        text: question.text,
-        categoryId: question.categoryId,
-        correctGuesses: question.correctGuesses,
-        incorrectGuesses: question.incorrectGuesses,
-        choices: question.choices.map(choice => ({id: choice.id, text: choice.text}))
-      }
-    })
-    */
-
     res.json(questions)
   } catch (err) {
     next(err)
@@ -35,45 +22,39 @@ router.get('/:categoryId', async (req, res, next) => {
       include: {model: Choice}
     })
 
-    // const responseBody = questions.map(question => {
-    //   return {
-    //     id: question.id,
-    //     text: question.text,
-    //     categoryId: question.categoryId,
-    //     correctGuesses: question.correctGuesses,
-    //     incorrectGuesses: question.incorrectGuesses,
-    //     choices: question.choices.map(choice => ({id: choice.id, text: choice.text}))
-    //   }
-    // })
-
     res.json(questions)
   } catch (err) {
     next(err)
   }
 })
 
-router.delete('/:categoryId/:questionId', userOwnsCategory, async (req, res, next) => {
-  try {
+router.delete(
+  '/:categoryId/:questionId',
+  userOwnsCategory,
+  async (req, res, next) => {
+    try {
+      await Question.destroy({
+        where: {
+          id: +req.params.questionId
+        }
+      })
 
-    await Question.destroy({
-      where: {
-        id: +req.params.questionId
-      }
-    })
+      await Choice.destroy({
+        where: {
+          questionId: +req.params.questionId
+        }
+      })
 
-    await Choice.destroy({
-      where: {
-        questionId: +req.params.questionId
-      }
-    })
-
-    res.status(204).send()
-  } catch (err) { next(err) }
-})
+      res.status(204).send()
+    } catch (err) {
+      next(err)
+    }
+  }
+)
 
 router.post('/', async (req, res, next) => {
   try {
-    const { question, choices } = req.body
+    const {question, choices} = req.body
     // question object has a categoryId!!
     const newQuestion = await Question.create(question)
 
@@ -83,10 +64,14 @@ router.post('/', async (req, res, next) => {
     }))
     const questionChoices = await Choice.bulkCreate(choiceObjects)
 
-    const questionWithChoices = await Question.findById(newQuestion.id, { include: {model: Choice} })
+    const questionWithChoices = await Question.findById(newQuestion.id, {
+      include: {model: Choice}
+    })
 
     res.json(questionWithChoices)
-  } catch (err) { next(err) }
+  } catch (err) {
+    next(err)
+  }
 })
 
 module.exports = router
