@@ -1,6 +1,5 @@
 import axios from 'axios'
 import history from '../history'
-import socket from '../socket'
 import {startGame} from './game'
 import {updateScore} from './score'
 
@@ -50,9 +49,11 @@ export const getQuestions = (chosenCategory, currentMode) => async dispatch => {
 
 export const getTutorialQuestions = () => async dispatch => {
   try {
-    const { data } = await axios.get('/api/tutorial')
+    const {data} = await axios.get('/api/tutorial')
     dispatch(gotTutorialQuestions(data.questions))
-  } catch (err) { console.error(err) }
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 //REDUCER
