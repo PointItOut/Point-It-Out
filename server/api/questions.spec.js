@@ -1,8 +1,9 @@
 const {expect} = require('chai')
+const session = require('supertest-session')
 const request = require('supertest')
 const db = require('../db')
 const app = require('../index')
-const {Choice, Question} = require('../db/models')
+const {Choice, Question, Category} = require('../db/models')
 
 const questions = [
   {
@@ -11,11 +12,11 @@ const questions = [
   },
   {
     text: 'Who was the first U.S. President',
-    categoryId: 2
+    categoryId: 1
   },
   {
     text: 'Who was the artist who painted Starry Night',
-    categoryId: 3
+    categoryId: 1
   }
 ]
 
@@ -45,11 +46,35 @@ const choices = [
     questionId: 1
   }
 ]
-
+let authenticatedSession
 describe('Question routes', () => {
-  beforeEach(() => {
+  let testSession = session(app)
+
+  before(done =>
+    testSession
+      .post('/signup')
+      .send({email: 'cody@email.com', password: '123', username: 'Cody'})
+      .expect(200)
+      .end(function(err) {
+        if (err) return done(err)
+        authenticatedSession = testSession
+        return done()
+      })
+  )
+
+  beforeEach(async done => {
+    await testSession
+      .post('/signup')
+      .send({email: 'cody@email.com', password: '123', username: 'Cody'})
+      .expect(200)
+      .end(function(err) {
+        if (err) return done(err)
+        authenticatedSession = testSession
+        return done()
+      })
     return db
       .sync({force: true})
+      .then(() => Category.create({name: 'history', authorId: 1}))
       .then(() => Question.bulkCreate(questions))
       .then(() => Choice.bulkCreate(choices))
   })
@@ -58,18 +83,18 @@ describe('Question routes', () => {
     return db.sync({force: true})
   })
 
-  describe('/api/questions/:categoryId', () => {
+  describe('getting questions for a category', () => {
     it('GET /api/questions/:categoryId', async () => {
       const res = await request(app)
         .get('/api/questions/1')
         .expect(200)
       expect(res.body).to.be.an('array')
-      expect(res.body.length).to.be.equal(1)
+      expect(res.body.length).to.be.equal(3)
       expect(res.body[0].choices).to.be.an('array')
     })
   })
 
-  describe('/api/questions/', () => {
+  describe('getting all questions', () => {
     it('GET /api/questions', async () => {
       const res = await request(app)
         .get('/api/questions')
@@ -79,6 +104,17 @@ describe('Question routes', () => {
       const myQuestion = res.body.find(elem => elem.id === 1)
       expect(myQuestion.text).to.be.equal('What is the capital of Russia')
       expect(myQuestion.choices.length).to.be.equal(4)
+    })
+  })
+  describe('deleting a question', () => {
+    it('DELETE /api/questions/:categoryId/:questionId', async () => {
+      const res = await authenticatedSession(app)
+        .delete('/api/questions/1/1')
+        .expect(204)
+      const allQuestions = await Question.findAll()
+      const allChoices = await Choice.findAll()
+      expect(allQuestions.length).to.be.equal(2)
+      expect(allChoices.length).to.be.equal(0)
     })
   })
 })
