@@ -36,7 +36,7 @@ Node, Express, Sequelize, PostgreSQL, React, Redux, React-Redux, React-Router.
 [react-Konva](https://github.com/konvajs/react-konva), [Opentok](https://tokbox.com/), [clmtrackr](https://github.com/auduno/clmtrackr), [Diffyjs](https://www.npmjs.com/package/diffyjs), [butter-toast](https://github.com/ealush/butter-toast), [react-confetti](https://www.npmjs.com/package/react-confetti), [react-countdown](https://github.com/ndresx/react-countdown), [recharts](https://github.com/recharts/recharts)
 
 ## AUTHORS:
-Alexandra Ash,
-Amy Berg,
-Kate Dubitski Kopitchinski,
-Sivan Gilead
+[Alexandra Ash](https://github.com/alexandraleah),
+[Amy Berg](https://github.com/amyjberg),
+[Kate Dubitski Kopitchinski](https://github.com/KateDK),
+[Sivan Gilead](https://github.com/sivangilead)
