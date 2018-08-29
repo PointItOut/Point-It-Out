@@ -46,32 +46,18 @@ const choices = [
     questionId: 1
   }
 ]
-let authenticatedSession
+// let authenticatedSession
 describe('Question routes', () => {
   let testSession = session(app)
 
-  before(done =>
-    testSession
+  beforeEach(async () => {
+    let authenticatedSession = await testSession
       .post('/signup')
-      .send({email: 'cody@email.com', password: '123', username: 'Cody'})
+      .send({email: 'cody@email.com', password: '123', userName: 'Cody'})
       .expect(200)
-      .end(function(err) {
-        if (err) return done(err)
-        authenticatedSession = testSession
-        return done()
-      })
-  )
+  })
 
-  beforeEach(async done => {
-    await testSession
-      .post('/signup')
-      .send({email: 'cody@email.com', password: '123', username: 'Cody'})
-      .expect(200)
-      .end(function(err) {
-        if (err) return done(err)
-        authenticatedSession = testSession
-        return done()
-      })
+  beforeEach(() => {
     return db
       .sync({force: true})
       .then(() => Category.create({name: 'history', authorId: 1}))
