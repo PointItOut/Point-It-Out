@@ -15,7 +15,14 @@ The command 'npm run start-dev' will run the app in development mode on your loc
 Single Player Mode:
 ![screenshot1](./public/images/screenshot1.png)
 
+Single Player end of game:
+![screenshot3](./public/images/screenshot3.png)
+
 Multiplayer Mode:
+![screenshot2](./public/images/screenshot2.png)
+
+Category creation/edit:
+![screenshot4](./public/images/screenshot4.png)
 
 
 #### RUNNING TESTS:
@@ -27,8 +34,10 @@ Amy Berg,
 Kate Dubitski Kopitchinski,
 Sivan Gilead
 
-## Built with:
-Node, Express, Sequelize, PostgreSQL, React, Redux, React-Redux, React-Router, React-Konva, Opentak
+## App created using:
+Node, Express, Sequelize, PostgreSQL, React, Redux, React-Redux, React-Router. 
+## Aditional libraries and API's:
+[react-Konva](https://github.com/konvajs/react-konva), [Opentok](https://tokbox.com/), [clmtrackr](https://github.com/auduno/clmtrackr), [Diffyjs](https://www.npmjs.com/package/diffyjs), [butter-toast](https://github.com/ealush/butter-toast), [react-confetti](https://www.npmjs.com/package/react-confetti), [react-countdown](https://github.com/ndresx/react-countdown), [recharts](https://github.com/recharts/recharts)
 
-Diffy.js was used for movement tracking: https://www.npmjs.com/package/diffyjs
+
 
