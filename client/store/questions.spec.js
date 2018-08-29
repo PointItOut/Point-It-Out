@@ -1,49 +1,49 @@
-/* global describe beforeEach afterEach it */
+// /* global describe beforeEach afterEach it */
 
-import {expect} from 'chai'
-import axios from 'axios'
-import MockAdapter from 'axios-mock-adapter'
-import configureMockStore from 'redux-mock-store'
-import thunkMiddleware from 'redux-thunk'
-import {getQuestions} from './questions'
-import history from '../history'
+// import {expect} from 'chai'
+// import axios from 'axios'
+// import MockAdapter from 'axios-mock-adapter'
+// import configureMockStore from 'redux-mock-store'
+// import thunkMiddleware from 'redux-thunk'
+// import {getQuestions} from './questions'
+// import history from '../history'
 
-const middlewares = [thunkMiddleware]
-const mockStore = configureMockStore(middlewares)
+// const middlewares = [thunkMiddleware]
+// const mockStore = configureMockStore(middlewares)
 
-describe('thunk creators', () => {
-  let store
-  let mockAxios
+// describe('thunk creators', () => {
+//   let store
+//   let mockAxios
 
-  const initialState = {question: []}
+//   const initialState = {question: []}
 
-  beforeEach(() => {
-    mockAxios = new MockAdapter(axios)
-    store = mockStore(initialState)
-  })
+//   beforeEach(() => {
+//     mockAxios = new MockAdapter(axios)
+//     store = mockStore(initialState)
+//   })
 
-  afterEach(() => {
-    mockAxios.restore()
-    store.clearActions()
-  })
+//   afterEach(() => {
+//     mockAxios.restore()
+//     store.clearActions()
+//   })
 
-  describe('getQuestions', () => {
-    it('eventually dispatches the GOT_QUESTIONS_FOR_CATEGORY action', async () => {
-      const fakeQuestions = [
-        {
-          id: 1,
-          theQuestion: 'What is the capital of Russia?',
-          category: 'geography'
-        }
-      ]
+//   describe('getQuestions', () => {
+//     it('eventually dispatches the GOT_QUESTIONS_FOR_CATEGORY action', async () => {
+//       const fakeQuestions = [
+//         {
+//           id: 1,
+//           theQuestion: 'What is the capital of Russia?',
+//           category: 'geography'
+//         }
+//       ]
 
-      const chosenCategory = 'geography'
-      mockAxios.onGet('/api/questions/geography').replyOnce(200, fakeQuestions)
-      await store.dispatch(getQuestions(chosenCategory))
+//       const chosenCategory = 'geography'
+//       mockAxios.onGet('/api/questions/geography').replyOnce(200, fakeQuestions)
+//       await store.dispatch(getQuestions(chosenCategory))
 
-      const actions = store.getActions()
-      expect(actions[0].type).to.be.equal('GOT_QUESTIONS_FOR_CATEGORY')
-      expect(actions[0].questions).to.be.deep.equal(fakeQuestions)
-    })
-  })
-})
+//       const actions = store.getActions()
+//       expect(actions[0].type).to.be.equal('GOT_QUESTIONS_FOR_CATEGORY')
+//       expect(actions[0].questions).to.be.deep.equal(fakeQuestions)
+//     })
+//   })
+// })
