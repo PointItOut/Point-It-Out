@@ -1,9 +1,19 @@
 const {expect} = require('chai')
 const session = require('supertest-session')
 const request = require('supertest')
-const db = require('../db')
+const Sequelize = require('sequelize')
+// const db = require('../db')
 const app = require('../index')
 const {Choice, Question, Category} = require('../db/models')
+
+const databaseName = 'pointItOut-test'
+
+const db = new Sequelize(
+  process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`,
+  {
+    logging: false
+  }
+)
 
 const questions = [
   {
@@ -50,19 +60,22 @@ const choices = [
 describe('Question routes', () => {
   let testSession = session(app)
 
+  // beforeEach(async () => {
+  //   let authenticatedSession = await testSession
+  //     .post('/signup')
+  //     .send({email: 'cody@email.com', password: '123', userName: 'Cody'})
+  //     .expect(200)
+  // })
+
   beforeEach(async () => {
+    await db.sync({force: true})
     let authenticatedSession = await testSession
       .post('/signup')
-      .send({email: 'cody@email.com', password: '123', userName: 'Cody'})
+      .send({email: 'fira@email.com', password: '123', userName: 'Fira'})
       .expect(200)
-  })
-
-  beforeEach(() => {
-    return db
-      .sync({force: true})
-      .then(() => Category.create({name: 'history', authorId: 1}))
-      .then(() => Question.bulkCreate(questions))
-      .then(() => Choice.bulkCreate(choices))
+    await Category.create({name: 'history', authorId: 1})
+    await Question.bulkCreate(questions)
+    await Choice.bulkCreate(choices)
   })
 
   afterEach(() => {
