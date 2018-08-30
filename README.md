@@ -33,7 +33,7 @@ All test files end with .spec.js. The command 'npm test' will run all tests for 
 ## App created using:
 Node, Express, Sequelize, PostgreSQL, React, Redux, React-Redux, React-Router. 
 ## Aditional libraries and API's:
-[react-Konva](https://github.com/konvajs/react-konva), [Opentok](https://tokbox.com/), [clmtrackr](https://github.com/auduno/clmtrackr), [Diffyjs](https://www.npmjs.com/package/diffyjs), [butter-toast](https://github.com/ealush/butter-toast), [react-confetti](https://www.npmjs.com/package/react-confetti), [react-countdown](https://github.com/ndresx/react-countdown), [recharts](https://github.com/recharts/recharts)
+[react-Konva](https://github.com/konvajs/react-konva), [Opentok](https://tokbox.com/), [clmtrackr](https://github.com/auduno/clmtrackr), [Diffyjs](https://www.npmjs.com/package/diffyjs), [butter-toast](https://github.com/ealush/butter-toast), [react-confetti](https://www.npmjs.com/package/react-confetti), [react-countdown](https://github.com/ndresx/react-countdown), [recharts](https://github.com/recharts/recharts), [passport-facebook](http://www.passportjs.org/docs/facebook/)
 
 ## AUTHORS:
 [Alexandra Ash](https://github.com/alexandraleah),
