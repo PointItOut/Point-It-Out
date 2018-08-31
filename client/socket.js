@@ -1,10 +1,8 @@
 import io from 'socket.io-client'
 import {gotList} from './store/opponent'
 import {gotQuestionsForCategory} from './store/questions'
-// const socket = io('string')
-// const socket = io(window.location.origin)
-//pull out sockets to a file like as with history.js
-const socket = global.window ? io(window.location.origin) : io('string') // find way to stub w/ mock window or diff string
+const socket =
+  process.env.NODE_ENV === 'test' ? io('string') : io(window.location.origin)
 import store from './store'
 import {startGame} from './store/game'
 import history from './history'
