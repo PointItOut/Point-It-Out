@@ -5,7 +5,7 @@ const request = require('supertest')
 const Sequelize = require('sequelize')
 // const db = require('../db')
 const app = require('../index')
-const {Choice, Question, Category} = require('../db/models')
+const {Choice, Question, Category, User} = require('../db/models')
 
 const databaseName = 'pointItOut-test'
 
@@ -57,23 +57,22 @@ const choices = [
     questionId: 1
   }
 ]
-// let authenticatedSession
+let authenticatedSession
 describe('Question routes', () => {
   let testSession = session(app)
 
-  // beforeEach(async () => {
-  //   let authenticatedSession = await testSession
-  //     .post('/signup')
-  //     .send({email: 'cody@email.com', password: '123', userName: 'Cody'})
-  //     .expect(200)
-  // })
-
   beforeEach(async () => {
     await db.sync({force: true})
-    let authenticatedSession = await testSession
+    authenticatedSession = await testSession
       .post('/signup')
       .send({email: 'fira@email.com', password: '123', userName: 'Fira'})
       .expect(200)
+
+    await User.create({
+      email: 'fira@email.com',
+      password: '123',
+      userName: 'Fira'
+    })
     await Category.create({name: 'history', authorId: 1})
     await Question.bulkCreate(questions)
     await Choice.bulkCreate(choices)
@@ -108,9 +107,8 @@ describe('Question routes', () => {
   })
   describe('deleting a question', () => {
     it('DELETE /api/questions/:categoryId/:questionId', async () => {
-      const res = await authenticatedSession(app)
-        .delete('/api/questions/1/1')
-        .expect(204)
+      console.log('authenticated session is', authenticatedSession)
+      await authenticatedSession.delete('/api/questions/1/1').expect(204)
       const allQuestions = await Question.findAll()
       const allChoices = await Choice.findAll()
       expect(allQuestions.length).to.be.equal(2)
